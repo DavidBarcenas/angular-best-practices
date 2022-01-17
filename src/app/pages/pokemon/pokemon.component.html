@@ -5,8 +5,8 @@
     </div>
     <button (click)="savePokemon()" class="capture-btn">
       <div class="capture-btn-img">
-        <img src="../../../assets/pokeball-open.jpg" alt="Capture" *ngIf="!isCaptured">
-        <img src="../../../assets/pokeball-close.png" alt="Break Free" *ngIf="isCaptured">
+        <img src="./assets/pokeball-open.jpg" alt="Capture" *ngIf="!isCaptured">
+        <img src="./assets/pokeball-close.png" alt="Break Free" *ngIf="isCaptured">
       </div>
       {{isCaptured ? 'Break Free' : 'Capture'}}
     </button>
