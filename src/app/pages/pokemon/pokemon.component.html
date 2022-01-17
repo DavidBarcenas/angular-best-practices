@@ -1,0 +1,43 @@
+<div class="pokemon" *ngIf="pokemon">
+  <div class="pokemon-img">
+    <div class="pokemon-img-wrap">
+      <img [src]="getPokemonImage()" [alt]="pokemon.name">
+    </div>
+    <button (click)="savePokemon()" class="capture-btn">
+      <div class="capture-btn-img">
+        <img src="../../../assets/pokeball-open.jpg" alt="Capture" *ngIf="!isCaptured">
+        <img src="../../../assets/pokeball-close.png" alt="Break Free" *ngIf="isCaptured">
+      </div>
+      {{isCaptured ? 'Break Free' : 'Capture'}}
+    </button>
+  </div>
+
+  <div class="pokemon-about">
+    <span>#{{pokemon.id | transformId}}</span>
+    <h1>{{pokemon.name | uppercase}}</h1>
+    <div class="pokemon-about-details">
+      <p>Height: <b>{{pokemon.height | convertUnit:'height'}} cm</b></p>
+      <p>Weight: <b>{{pokemon.weight | convertUnit:'weight'}} kg</b> </p>
+      <p>Type: <b>{{ pokemon.types | flatNames: 'type' | titlecase }}</b></p>
+      <p>Abilities: <b>{{ pokemon.abilities | flatNames: 'ability' | titlecase }}</b></p>
+    </div>
+    <div class="pokemon-sprites">
+      <img [src]="pokemon.sprites.front_default" alt="front" />
+      <img [src]="pokemon.sprites.back_default" alt="back" />
+      <img [src]="pokemon.sprites.front_shiny" alt="front shiny" />
+      <img [src]="pokemon.sprites.back_shiny" alt="back shiny" />
+    </div>
+    <div class="pokemon-info">
+      <div>
+        <p *ngFor="let item of pokemon.stats | slice:0:3">
+          {{item.stat.name}} : <b>{{item.base_stat}}</b>
+        </p>
+      </div>
+      <div>
+        <p *ngFor="let item of pokemon.stats | slice:3">
+          {{item.stat.name}} : <b>{{item.base_stat}}</b>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

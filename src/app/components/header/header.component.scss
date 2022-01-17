@@ -1,0 +1,25 @@
+.header {
+  background-color: #ef5350;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  img {
+    width: 160px;
+  }
+
+  a { 
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
