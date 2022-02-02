@@ -22,5 +22,6 @@ module.exports = {
       "warn",
       { "detectObjects": true, "enforceConst": true, "ignoreArrayIndexes": true }
     ],
+    "@typescript-eslint/no-empty-function": "off"
   },
 };
