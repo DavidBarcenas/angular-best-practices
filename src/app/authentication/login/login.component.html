@@ -1,21 +1,22 @@
-<mat-card>
-  <form>
-    <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Outline form field</mat-label>
-        <input matInput placeholder="Placeholder" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Outline form field</mat-label>
-        <input matInput placeholder="Placeholder" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
-      </mat-form-field>
-    </div>
-    <button mat-raised-button color="warn">Acceder</button>
-  </form>
-</mat-card>
+<div class="d-flex align-items-center justify-content-center login">
+  <mat-card>
+    <form>
+      <label class="login-title">TRAVEL</label>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Ingrese su usuario" />
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Ingrese su contraseña" />
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="warn" class="btn-block">Acceder</button>
+    </form>
+  </mat-card>
+</div>

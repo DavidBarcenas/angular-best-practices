@@ -1,0 +1,23 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+
+  &-title {
+    color: var(--red);
+    display: block;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  form {
+    min-width: 350px;
+    padding: 2rem 1rem;
+  }
+
+  mat-form-field {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
