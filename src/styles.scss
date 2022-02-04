@@ -2,6 +2,7 @@
 
 :root {
   --red: #f44336;
+  --red600: #e53935;
 }
 
 html,
@@ -11,6 +12,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #f5f8fa;
+  overflow-x: hidden;
 }
 
 .btn-block {

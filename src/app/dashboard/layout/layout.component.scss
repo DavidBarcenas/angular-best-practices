@@ -1,4 +1,19 @@
 .main-container {
   width: 100vw;
   height: 100vh;
+
+  &-content {
+    max-width: 1320px;
+    margin: auto;
+    padding: 2rem;
+  }
+}
+
+.sidenav {
+  width: 265px;
+  background-color: var(--red600);
+}
+
+.toolbar-main {
+  justify-content: space-between;
 }
