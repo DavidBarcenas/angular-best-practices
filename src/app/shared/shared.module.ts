@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EmailInputComponent } from './components/email-input/email-input.component';
 
 const MaterialModules = [
   MatCardModule,
@@ -19,7 +21,8 @@ const MaterialModules = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...MaterialModules],
-  exports: [...MaterialModules],
+  declarations: [EmailInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, ...MaterialModules],
+  exports: [ReactiveFormsModule, ...MaterialModules, EmailInputComponent],
 })
 export class SharedModule {}

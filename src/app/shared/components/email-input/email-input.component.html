@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline">
+  <mat-label>Usuario</mat-label>
+  <input
+    matInput
+    placeholder="Ingrese su usuario"
+    [value]="email"
+    [disabled]="isDisabled"
+    (input)="handleInput($event.target)"
+  />
+  <mat-icon matSuffix>person</mat-icon>
+</mat-form-field>

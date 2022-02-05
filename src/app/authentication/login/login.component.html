@@ -1,18 +1,26 @@
 <div class="d-flex align-items-center justify-content-center login">
   <mat-card>
-    <form>
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off">
       <label class="login-title">TRAVEL</label>
       <div>
         <mat-form-field appearance="outline">
-          <mat-label>Usuario</mat-label>
-          <input matInput placeholder="Ingrese su usuario" />
-          <mat-icon matSuffix>person</mat-icon>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese su usuario"
+            formControlName="email"
+          />
+          <mat-icon matSuffix>mail</mat-icon>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Ingrese su contraseña" />
+          <input
+            matInput
+            placeholder="Ingrese su contraseña"
+            formControlName="password"
+          />
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
       </div>
