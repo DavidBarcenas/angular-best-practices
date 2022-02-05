@@ -28,7 +28,9 @@
             placeholder="Ingrese su contraseña"
             formControlName="password"
           />
-          <mat-error *ngIf="password?.touched && password?.errors">
+          <mat-error
+            *ngIf="password?.touched && password?.hasError('required')"
+          >
             {{ errors['required'] }}
           </mat-error>
         </mat-form-field>

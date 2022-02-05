@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { formErrors } from '~/app/shared/constants/form-errors';
 import { ValidateEmail } from '~/app/shared/validators/email';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,11 @@ export class LoginComponent implements OnInit {
     password: [null, [Validators.required]],
   });
   errors = formErrors;
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -24,6 +30,9 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
+    this.auth.isLoggedIn = false;
+    this.router.navigate(['/dashboard']);
   }
 
   get email(): AbstractControl | null {
