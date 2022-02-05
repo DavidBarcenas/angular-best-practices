@@ -4,6 +4,11 @@
 
 export const environment = {
   production: false,
+  apiUrl: '',
+  apiVersion: '',
+  get api(): string {
+    return this.apiUrl + this.apiVersion;
+  },
 };
 
 /*
