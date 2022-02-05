@@ -2,32 +2,35 @@
   <mat-card>
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off">
       <label class="login-title">TRAVEL</label>
-      <div>
-        <mat-form-field appearance="outline">
+      <div class="form-control">
+        <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input
             matInput
             placeholder="Ingrese su usuario"
             formControlName="email"
           />
-          <mat-icon matSuffix>mail</mat-icon>
-          <mat-error *ngIf="email?.touched && email?.errors"
-            >El campo es requerido</mat-error
-          >
+          <mat-error *ngIf="email?.touched && email?.hasError('required')">
+            {{ errors['required'] }}
+          </mat-error>
+          <mat-error
+            *ngIf="email?.touched && email?.hasError('email') && email?.value"
+            >{{ errors['email'] }}
+          </mat-error>
         </mat-form-field>
       </div>
-      <div>
-        <mat-form-field appearance="outline">
+      <div class="form-control">
+        <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
           <input
+            type="password"
             matInput
             placeholder="Ingrese su contraseña"
             formControlName="password"
           />
-          <mat-icon matSuffix>lock</mat-icon>
-          <mat-error *ngIf="password?.touched && password?.errors"
-            >El campo es requerido</mat-error
-          >
+          <mat-error *ngIf="password?.touched && password?.errors">
+            {{ errors['required'] }}
+          </mat-error>
         </mat-form-field>
       </div>
       <button mat-raised-button color="warn" class="btn-block">Acceder</button>

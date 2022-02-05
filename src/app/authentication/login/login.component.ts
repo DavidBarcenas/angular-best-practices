@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { formErrors } from '~/app/shared/constants/form-errors';
 import { ValidateEmail } from '~/app/shared/validators/email';
 
 @Component({
@@ -12,13 +13,17 @@ export class LoginComponent implements OnInit {
     email: [null, [Validators.required, ValidateEmail]],
     password: [null, [Validators.required]],
   });
+  errors = formErrors;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 
   handleSubmit(): void {
-    console.log(this.form.value);
     this.form.markAllAsTouched();
+
+    if (this.form.invalid) {
+      return;
+    }
   }
 
   get email(): AbstractControl | null {
