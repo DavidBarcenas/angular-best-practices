@@ -6,5 +6,5 @@ export function ValidateEmail(
   control: AbstractControl,
 ): ValidationErrors | null {
   const emailIsValid = emailRegex.test(control.value);
-  return emailIsValid ? null : { error: 'The email is invalid.' };
+  return emailIsValid ? null : { email: 'The email is invalid.' };
 }

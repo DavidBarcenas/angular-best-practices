@@ -11,6 +11,9 @@
             formControlName="email"
           />
           <mat-icon matSuffix>mail</mat-icon>
+          <mat-error *ngIf="email?.touched && email?.errors"
+            >El campo es requerido</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
@@ -22,6 +25,9 @@
             formControlName="password"
           />
           <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="password?.touched && password?.errors"
+            >El campo es requerido</mat-error
+          >
         </mat-form-field>
       </div>
       <button mat-raised-button color="warn" class="btn-block">Acceder</button>
