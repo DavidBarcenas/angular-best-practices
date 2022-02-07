@@ -1,6 +1,7 @@
+/* eslint-disable no-magic-numbers */
 module.exports = {
   arrowParens: 'avoid',
-  bracketSpacing: true,
+  bracketSpacing: false,
   embeddedLanguageFormatting: 'auto',
   endOfLine: 'lf',
   htmlWhitespaceSensitivity: 'css',
