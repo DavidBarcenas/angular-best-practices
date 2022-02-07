@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 const MaterialModules = [
   MatCardModule,
@@ -17,11 +20,17 @@ const MaterialModules = [
   MatButtonModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatDialogModule,
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [DeleteButtonComponent, ConfirmModalComponent],
   imports: [CommonModule, ReactiveFormsModule, ...MaterialModules],
-  exports: [ReactiveFormsModule, ...MaterialModules],
+  exports: [
+    ReactiveFormsModule,
+    DeleteButtonComponent,
+    ConfirmModalComponent,
+    ...MaterialModules,
+  ],
 })
 export class SharedModule {}
