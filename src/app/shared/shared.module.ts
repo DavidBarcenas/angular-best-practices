@@ -7,6 +7,11 @@ import { Components } from './components';
 @NgModule({
   declarations: [...Components],
   imports: [CommonModule, ReactiveFormsModule, ...MaterialModules],
-  exports: [ReactiveFormsModule, ...MaterialModules, ...Components],
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ...MaterialModules,
+    ...Components,
+  ],
 })
 export class SharedModule {}
