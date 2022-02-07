@@ -6,8 +6,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmModalComponent} from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-delete-button',

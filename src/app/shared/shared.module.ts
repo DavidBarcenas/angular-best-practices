@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModules } from './angular-material';
-import { Components } from './components';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MaterialModules} from './angular-material';
+import {Components} from './components';
 
 @NgModule({
   declarations: [...Components],

@@ -1,5 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import {HttpErrorResponse} from '@angular/common/http';
+import {throwError} from 'rxjs';
 
 export function handleError(error: HttpErrorResponse) {
   const clientSide = 0;
