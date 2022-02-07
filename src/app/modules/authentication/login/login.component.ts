@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { formErrors } from '~/app/shared/constants/form-errors';
-import { ValidateEmail } from '~/app/shared/validators/email';
+import { formErrors } from '~/app/data/constants/form-errors';
+import { ValidateEmail } from '~/app/utils/validators/email';
 import { AuthService } from '../services/auth.service';
 
 @Component({
