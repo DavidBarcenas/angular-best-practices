@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@data/services/auth.service';
 import { formErrors } from '@data/constants/form-errors';
-import { ValidateEmail } from '@utils/validators/email';
+import { ValidateEmail } from '@utils/validators';
 
 @Component({
   selector: 'app-login',

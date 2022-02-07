@@ -1,5 +1,5 @@
 interface FormError {
-  [t: string]: string;
+  [key: string]: string;
 }
 
 export const formErrors: FormError = {
