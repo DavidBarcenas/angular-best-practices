@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { formErrors } from '~/app/data/constants/form-errors';
 import { ValidateEmail } from '~/app/utils/validators/email';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../data/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.auth.isLoggedIn = false;
+    this.auth.isLoggedIn = true;
     this.router.navigate(['/dashboard']);
   }
 
