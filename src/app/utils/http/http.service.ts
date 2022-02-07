@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
-import { environment } from '~/environments/environment';
+import { environment } from '@env/environment';
 import { handleError } from './handle-error';
 
 interface Body<T> {

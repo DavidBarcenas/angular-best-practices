@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { formErrors } from '~/app/data/constants/form-errors';
-import { ValidateEmail } from '~/app/utils/validators/email';
-import { AuthService } from '../../../data/services/auth.service';
+import { AuthService } from '@data/services/auth.service';
+import { formErrors } from '@data/constants/form-errors';
+import { ValidateEmail } from '@utils/validators/email';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   handleSubmit(): void {
     this.form.markAllAsTouched();
 
-    if (this.form.invalid) {
+    if (this.form.invalid === true) {
       return;
     }
 
