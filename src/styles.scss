@@ -16,17 +16,23 @@ body {
   overflow-x: hidden;
 }
 
-.btn-block {
+.mat-raised-button.btn-block {
   width: 100%;
 }
 
-.mat-form-field-appearance-fill .mat-form-field-flex {
-  background-color: #f5f8fa;
-  border-color: #f5f8fa;
-  color: #5e6278;
-  transition: color 0.2s ease, background-color 0.2s ease;
+.mat-raised-button.mat-warn {
+  padding: calc(0.75rem + 1px) calc(1.5rem + 1px);
+  line-height: 1.4;
+  font-size: 1rem;
 }
 
 .form-control {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  color: #5e6278;
+  background-color: #f5f8fa;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
 }

@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTableModule} from '@angular/material/table';
 
 export const MaterialModules = [
   MatCardModule,
@@ -16,4 +17,5 @@ export const MaterialModules = [
   MatSidenavModule,
   MatToolbarModule,
   MatDialogModule,
+  MatTableModule,
 ];
