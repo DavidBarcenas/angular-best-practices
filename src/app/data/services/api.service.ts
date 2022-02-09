@@ -10,7 +10,7 @@ import {handleError} from '@utils/handle-error';
 export class ApiService {
   constructor(private readonly http: HttpClient) {}
 
-  post<T>(endpoint: string, body: any): Observable<T> {
+  post<T, K>(endpoint: string, body: K): Observable<T> {
     return this.http
       .post<T>(environment.apiUrl + endpoint, body)
       .pipe(catchError(error => handleError(error)));

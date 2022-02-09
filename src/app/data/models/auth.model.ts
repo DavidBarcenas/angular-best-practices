@@ -9,3 +9,13 @@ export interface GetToken {
   password: string;
   language: string;
 }
+
+export class Auth {
+  static getToken(email: string): GetToken {
+    return {
+      email,
+      password: '',
+      language: 'es-MX',
+    };
+  }
+}

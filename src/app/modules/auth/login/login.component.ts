@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthService} from '@data/services/auth.service';
 import {formErrors} from '@data/constants/form-errors';
 import {ValidateEmail} from '@utils/validators';
+import {ApiService} from '@data/services/api.service';
+import {Auth, GetToken, GetTokenResponse} from '@data/models/auth.model';
+import {environment} from '@env/environment';
 
 @Component({
   selector: 'app-login',
@@ -16,22 +17,19 @@ export class LoginComponent implements OnInit {
     password: [null, [Validators.required]],
   });
   errors = formErrors;
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router,
-  ) {}
+  constructor(private fb: FormBuilder, private api: ApiService) {}
 
   ngOnInit(): void {}
 
   handleSubmit(): void {
     this.form.markAllAsTouched();
-
     if (this.form.invalid) {
       return;
     }
-
-    // this.auth.login(this.form.value.email, this.form.value.password);
+    const payload = Auth.getToken(this.form.value.email);
+    this.api
+      .post<GetTokenResponse, GetToken>(environment.getToken, payload)
+      .subscribe(res => console.log(res));
   }
 
   get email(): AbstractControl | null {
