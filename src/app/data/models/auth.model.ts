@@ -4,18 +4,14 @@ export interface GetTokenResponse {
   tokenExpiration: string;
 }
 
-export interface GetToken {
-  email: string;
-  password: string;
-  language: string;
+export class GetToken {
+  constructor(
+    public email: string,
+    public password = '',
+    public language = 'es-MX',
+  ) {}
 }
 
-export class Auth {
-  static getToken(email: string): GetToken {
-    return {
-      email,
-      password: '',
-      language: 'es-MX',
-    };
-  }
+export class RefreshToken {
+  constructor(public token: string | null, public language = 'es-MX') {}
 }

@@ -3,8 +3,6 @@ import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {formErrors} from '@data/constants/form-errors';
 import {ValidateEmail} from '@utils/validators';
 import {ApiService} from '@data/services/api.service';
-import {Auth, GetToken, GetTokenResponse} from '@data/models/auth.model';
-import {environment} from '@env/environment';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +24,6 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    const payload = Auth.getToken(this.form.value.email);
-    this.api
-      .post<GetTokenResponse, GetToken>(environment.getToken, payload)
-      .subscribe(res => console.log(res));
   }
 
   get email(): AbstractControl | null {
