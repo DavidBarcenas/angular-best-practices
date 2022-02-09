@@ -27,12 +27,11 @@ export class LoginComponent implements OnInit {
   handleSubmit(): void {
     this.form.markAllAsTouched();
 
-    if (this.form.invalid === true) {
+    if (this.form.invalid) {
       return;
     }
 
-    this.auth.isLoggedIn = true;
-    this.router.navigate(['/dashboard']);
+    // this.auth.login(this.form.value.email, this.form.value.password);
   }
 
   get email(): AbstractControl | null {
