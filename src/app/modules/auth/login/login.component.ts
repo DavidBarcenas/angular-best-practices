@@ -3,6 +3,8 @@ import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {formErrors} from '@data/constants/form-errors';
 import {ValidateEmail} from '@utils/validators';
 import {ApiService} from '@data/services/api.service';
+import {AuthService} from '@data/services/auth.service';
+import {GetToken} from '@data/models/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: [null, [Validators.required]],
   });
   errors = formErrors;
-  constructor(private fb: FormBuilder, private api: ApiService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -24,6 +26,8 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    const payload = new GetToken(this.form.value.email);
+    this.authService.login(payload).subscribe();
   }
 
   get email(): AbstractControl | null {
