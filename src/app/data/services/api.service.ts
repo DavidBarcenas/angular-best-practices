@@ -10,6 +10,12 @@ import {handleError} from '@utils/handle-error';
 export class ApiService {
   constructor(private readonly http: HttpClient) {}
 
+  get(endpoint: string) {
+    return this.http
+      .get(environment.api + endpoint)
+      .pipe(catchError(error => handleError(error)));
+  }
+
   post<T, K>(endpoint: string, body: K): Observable<T> {
     return this.http
       .post<T>(environment.apiUrl + endpoint, body)

@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ApiService} from '@data/services/api.service';
+import {environment} from '@env/environment';
+import {map, Observable} from 'rxjs';
 
 export interface PeriodicElement {
   name: string;
@@ -26,9 +29,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['name', 'lastname'];
   dataSource = ELEMENT_DATA;
-  constructor() {}
+  users$: Observable<any>;
+  constructor(private api: ApiService) {
+    this.users$ = this.api
+      .get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10')
+      .pipe(map((resp: any) => resp.data));
+  }
 
   ngOnInit(): void {}
 }

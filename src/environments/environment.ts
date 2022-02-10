@@ -6,6 +6,7 @@ export const environment = {
   apiVersion: env.apiVersion,
   getToken: env.endpoints.getToken,
   refreshToken: env.endpoints.refreshToken,
+  users: env.endpoints.users,
   get api(): string {
     return this.apiUrl + this.apiVersion;
   },
