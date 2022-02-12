@@ -1,3 +1,12 @@
-<div class="d-flex align-items-center justify-content-center spinner-mask">
-  <mat-spinner class="spinner"></mat-spinner>
-</div>
+<ng-container *ngIf="show">
+  <div class="d-flex align-items-center justify-content-center spinner-mask">
+    <div class="sk-chase">
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+    </div>
+  </div>
+</ng-container>
