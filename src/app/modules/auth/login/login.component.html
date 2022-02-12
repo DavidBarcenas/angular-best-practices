@@ -1,12 +1,15 @@
 <div class="d-flex align-items-center justify-content-center login">
   <mat-card>
+    <h1 class="login-title">Iniciar sesión en <span>Travel Portal</span></h1>
     <img
       src="../../../../assets/img/airplane.svg"
       alt="Airplane"
-      width="100px"
+      class="login-img"
     />
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off">
-      <label class="login-title">TRAVEL</label>
+      <label class="login-label-session">
+        Utiliza tus credenciales de acceso.
+      </label>
       <div class="form-control">
         <mat-form-field appearance="fill">
           <mat-label>Correo electrónico</mat-label>
