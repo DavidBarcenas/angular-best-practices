@@ -36,3 +36,7 @@ body {
   border: 1px solid transparent;
   font-size: 0.9rem;
 }
+
+.mat-raised-button.mat-warn {
+  background-color: var(--red);
+}

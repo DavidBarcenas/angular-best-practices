@@ -1,8 +1,4 @@
-interface FormError {
-  [key: string]: string;
+export class FormError {
+  static required = 'El campo es requerido';
+  static invalid_email = 'El correo es inválido';
 }
-
-export const formErrors: FormError = {
-  required: 'El campo es requerido',
-  email: 'El correo es inválido',
-};

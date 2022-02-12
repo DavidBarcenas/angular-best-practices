@@ -1,13 +1,14 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable, tap} from 'rxjs';
+import {catchError, Observable, tap} from 'rxjs';
 import {environment} from '@env/environment';
 import {
   GetToken,
   GetTokenResponse,
   RefreshToken,
 } from '@data/models/auth.model';
+import {handleError} from '@utils/handle-error';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,10 @@ export class AuthService {
   login(auth: GetToken): Observable<GetTokenResponse> {
     return this.http
       .post<GetTokenResponse>(environment.apiUrl + environment.getToken, auth)
-      .pipe(tap(res => this.saveToken(res.token)));
+      .pipe(
+        tap(res => this.saveToken(res.token)),
+        catchError(error => handleError(error)),
+      );
   }
 
   refreshToken(): Observable<GetTokenResponse> {
@@ -30,7 +34,10 @@ export class AuthService {
         environment.apiUrl + environment.refreshToken,
         payload,
       )
-      .pipe(tap(res => this.saveToken(res.token)));
+      .pipe(
+        tap(res => this.saveToken(res.token)),
+        catchError(error => handleError(error)),
+      );
   }
 
   isAuthenticated(): boolean {

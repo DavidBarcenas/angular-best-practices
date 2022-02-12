@@ -1,25 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import {formErrors} from '@data/constants/form-errors';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
 import {ValidateEmail} from '@utils/validators';
-import {ApiService} from '@data/services/api.service';
 import {AuthService} from '@data/services/auth.service';
 import {GetToken} from '@data/models/auth.model';
+import {FormError} from '@data/constants/form-errors';
+
+const EMAIL_FIELD = 'email';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form = this.fb.group({
     email: [null, [Validators.required, ValidateEmail]],
     password: [null, [Validators.required]],
   });
-  errors = formErrors;
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
-
-  ngOnInit(): void {}
+  formError = FormError;
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   handleSubmit(): void {
     this.form.markAllAsTouched();
@@ -27,14 +31,38 @@ export class LoginComponent implements OnInit {
       return;
     }
     const payload = new GetToken(this.form.value.email);
-    this.authService.login(payload).subscribe();
+    this.authService.login(payload).subscribe(res => {
+      if (res.token) {
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 
-  get email(): AbstractControl | null {
-    return this.form.get('email');
+  private fieldHasError(field: string, error: string): boolean {
+    return Boolean(
+      this.form.get(field)?.touched && this.form.get(field)?.hasError(error),
+    );
   }
 
-  get password(): AbstractControl | null {
-    return this.form.get('password');
+  get invalidEmail(): boolean {
+    return Boolean(
+      this.form.get(EMAIL_FIELD)?.touched &&
+        this.form.get(EMAIL_FIELD)?.hasError(EMAIL_FIELD) &&
+        this.form.get(EMAIL_FIELD)?.value?.length,
+    );
+  }
+
+  get requiredEmail(): boolean {
+    return Boolean(
+      this.form.get(EMAIL_FIELD)?.touched &&
+        this.form.get(EMAIL_FIELD)?.hasError('required'),
+    );
+  }
+
+  get requiredPassword(): boolean {
+    return Boolean(
+      this.form.get('password')?.touched &&
+        this.form.get('password')?.hasError('required'),
+    );
   }
 }
