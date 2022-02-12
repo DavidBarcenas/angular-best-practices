@@ -30,13 +30,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UsersListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'lastname'];
-  dataSource = ELEMENT_DATA;
-  users$: Observable<any>;
-  constructor(private api: ApiService) {
-    this.users$ = this.api
-      .get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10')
-      .pipe(map((resp: any) => resp.data));
-  }
+  dataSource = [];
+  constructor(private api: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.api
+      .get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10')
+      .subscribe((resp: any) => (this.dataSource = resp.data));
+  }
 }

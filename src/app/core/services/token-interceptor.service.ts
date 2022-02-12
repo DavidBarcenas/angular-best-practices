@@ -38,6 +38,7 @@ export class TokenInterceptorService implements HttpInterceptor {
           error.status === 401 &&
           this.authService.isAuthenticated()
         ) {
+          console.log('entra 401');
           if (!this.refreshTokenInProgress) {
             this.refreshTokenInProgress = true;
             this.accessTokenSubject.next(null);

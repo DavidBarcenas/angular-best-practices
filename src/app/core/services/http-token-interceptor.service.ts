@@ -21,7 +21,7 @@ export class HttpTokenInterceptorService implements HttpInterceptor {
     if (this.authService.isAuthenticated()) {
       req = req.clone({
         setHeaders: {
-          authorization: `Bearer ${this.authService.getToken()}`,
+          Authorization: `Bearer ${this.authService.getToken()}`,
         },
       });
     }
