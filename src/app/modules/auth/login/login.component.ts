@@ -32,16 +32,11 @@ export class LoginComponent {
     }
     const payload = new GetToken(this.form.value.email);
     this.authService.login(payload).subscribe(res => {
+      console.log('response', res);
       if (res.token) {
         this.router.navigate(['/dashboard']);
       }
     });
-  }
-
-  private fieldHasError(field: string, error: string): boolean {
-    return Boolean(
-      this.form.get(field)?.touched && this.form.get(field)?.hasError(error),
-    );
   }
 
   get invalidEmail(): boolean {

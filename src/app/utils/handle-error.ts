@@ -2,6 +2,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {throwError} from 'rxjs';
 
 export function handleError(error: HttpErrorResponse) {
+  console.log('que manda el back', error);
   const clientSide = 0;
   if (error.status === clientSide) {
     // A client-side or network error occurred. Handle it accordingly.
