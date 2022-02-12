@@ -33,6 +33,9 @@
               "src/assets/styles/bootstrap-utilities.min.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/app/styles"]
+            },
             "scripts": []
           },
           "configurations": {
