@@ -1,7 +1,7 @@
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {catchError, Observable, tap} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, share, tap} from 'rxjs';
 import {environment} from '@env/environment';
 import {
   GetToken,
@@ -17,7 +17,9 @@ const UNAUTHORIZED_STATUS = 401;
 })
 export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
+  isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
   invalidCredentials = false;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   login(auth: GetToken): Observable<GetTokenResponse> {
@@ -48,8 +50,8 @@ export class AuthService {
       );
   }
 
-  isAuthenticated(): boolean {
-    return Boolean(this.getToken());
+  isLoggedIn(): Observable<boolean> {
+    return this.isLoginSubject.asObservable().pipe(share());
   }
 
   getToken(): string | null {
@@ -66,10 +68,12 @@ export class AuthService {
 
   logout(): void {
     this.removeToken();
+    this.isLoginSubject.next(false);
     this.router.navigateByUrl('/login');
   }
 
   private saveToken(token: string): void {
     localStorage.setItem(this.JWT_TOKEN, token);
+    this.isLoginSubject.next(true);
   }
 }

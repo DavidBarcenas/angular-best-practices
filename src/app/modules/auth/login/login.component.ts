@@ -4,7 +4,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {ValidateEmail} from '@utils/validators';
 import {AuthService} from '@data/services/auth.service';
 import {GetToken} from '@data/models/auth.model';
-import {FormError} from '@data/constants/form-errors';
+import {ErrorMessages} from '@data/constants/error-messages';
 
 const EMAIL_FIELD = 'email';
 
@@ -18,8 +18,7 @@ export class LoginComponent {
     email: [null, [Validators.required, ValidateEmail]],
     password: [null, [Validators.required]],
   });
-  formError = FormError;
-
+  errorMessages = ErrorMessages;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

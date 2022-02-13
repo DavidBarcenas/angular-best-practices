@@ -14,7 +14,7 @@
         Utiliza tus credenciales de acceso
       </p>
       <ng-template #invalidCredentials>
-        <p class="badge-danger">El correo y/o la contraseña son incorrectos.</p>
+        <p class="badge-danger">{{ errorMessages.invalidCredentials }}</p>
       </ng-template>
       <div class="form-control">
         <mat-form-field appearance="fill">
@@ -24,10 +24,12 @@
             placeholder="Ingrese su usuario"
             formControlName="email"
           />
-          <mat-error *ngIf="requiredEmail">{{ formError.required }}</mat-error>
-          <mat-error *ngIf="invalidEmail">{{
-            formError.invalid_email
-          }}</mat-error>
+          <mat-error *ngIf="requiredEmail">
+            {{ errorMessages.required }}
+          </mat-error>
+          <mat-error *ngIf="invalidEmail">
+            {{ errorMessages.invalidEmail }}
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="form-control">
@@ -40,7 +42,7 @@
             formControlName="password"
           />
           <mat-error *ngIf="requiredPassword">
-            {{ formError.required }}
+            {{ errorMessages.required }}
           </mat-error>
         </mat-form-field>
       </div>

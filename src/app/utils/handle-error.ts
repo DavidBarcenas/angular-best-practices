@@ -8,6 +8,9 @@ export function handleError(error: HttpErrorResponse) {
     // A client-side or network error occurred. Handle it accordingly.
     console.error('An error occurred:', error.error);
   } else {
+    if (error.status === 401) {
+      console.log('no tienes permiso para ver eso');
+    }
     // The backend returned an unsuccessful response code.
     // The response body may contain clues as to what went wrong.
     console.error(
@@ -16,5 +19,5 @@ export function handleError(error: HttpErrorResponse) {
     );
   }
 
-  return throwError(() => 'Something bad happened; please try again later.');
+  return throwError(() => error.error.title);
 }
