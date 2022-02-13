@@ -7,9 +7,15 @@
       class="login-img"
     />
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off">
-      <label class="login-label-session">
+      <p
+        class="login-label-session"
+        *ngIf="!unauthorizedUser; else invalidCredentials"
+      >
         Utiliza tus credenciales de acceso
-      </label>
+      </p>
+      <ng-template #invalidCredentials>
+        <p class="badge-danger">El correo y/o la contraseña son incorrectos.</p>
+      </ng-template>
       <div class="form-control">
         <mat-form-field appearance="fill">
           <mat-label>Correo electrónico</mat-label>

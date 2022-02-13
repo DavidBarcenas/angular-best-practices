@@ -100,7 +100,7 @@ export class InterceptorService implements HttpInterceptor {
               return throwError(() => new Error(error.message));
             }
           }
-          return throwError(() => new Error(error.message));
+          return throwError(() => error);
         }),
       )
       .pipe(finalize(() => this.loadingservice.setLoading(false, req.url)));

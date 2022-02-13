@@ -19,6 +19,7 @@ export class LoginComponent {
     password: [null, [Validators.required]],
   });
   formError = FormError;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -37,6 +38,10 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']);
       }
     });
+  }
+
+  get unauthorizedUser() {
+    return this.authService.invalidCredentials;
   }
 
   get invalidEmail(): boolean {

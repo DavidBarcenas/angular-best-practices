@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError, Observable, tap} from 'rxjs';
@@ -10,11 +10,14 @@ import {
 } from '@data/models/auth.model';
 import {handleError} from '@utils/handle-error';
 
+const UNAUTHORIZED_STATUS = 401;
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
+  invalidCredentials = false;
   constructor(private http: HttpClient, private router: Router) {}
 
   login(auth: GetToken): Observable<GetTokenResponse> {
@@ -22,7 +25,12 @@ export class AuthService {
       .post<GetTokenResponse>(environment.apiUrl + environment.getToken, auth)
       .pipe(
         tap(res => this.saveToken(res.token)),
-        catchError(error => handleError(error)),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === UNAUTHORIZED_STATUS) {
+            this.invalidCredentials = true;
+          }
+          return handleError(error);
+        }),
       );
   }
 

@@ -10,6 +10,7 @@ import {environment} from '@env/environment';
 export class UsersListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'lastname'];
   dataSource = [];
+
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
