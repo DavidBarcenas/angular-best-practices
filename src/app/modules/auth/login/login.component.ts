@@ -6,8 +6,6 @@ import {AuthService} from '@data/services/auth.service';
 import {GetToken} from '@data/models/auth.model';
 import {ErrorMessages} from '@data/constants/error-messages';
 
-const EMAIL_FIELD = 'email';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,27 +39,5 @@ export class LoginComponent {
 
   get unauthorizedUser() {
     return this.authService.invalidCredentials;
-  }
-
-  get invalidEmail(): boolean {
-    return Boolean(
-      this.form.get(EMAIL_FIELD)?.touched &&
-        this.form.get(EMAIL_FIELD)?.hasError(EMAIL_FIELD) &&
-        this.form.get(EMAIL_FIELD)?.value?.length,
-    );
-  }
-
-  get requiredEmail(): boolean {
-    return Boolean(
-      this.form.get(EMAIL_FIELD)?.touched &&
-        this.form.get(EMAIL_FIELD)?.hasError('required'),
-    );
-  }
-
-  get requiredPassword(): boolean {
-    return Boolean(
-      this.form.get('password')?.touched &&
-        this.form.get('password')?.hasError('required'),
-    );
   }
 }

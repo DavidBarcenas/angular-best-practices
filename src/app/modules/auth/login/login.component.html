@@ -6,7 +6,13 @@
       alt="Airplane"
       class="login-img"
     />
-    <form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="handleSubmit()"
+      #myForm="ngForm"
+      autocomplete="off"
+      novalidate
+    >
       <p
         class="login-label-session"
         *ngIf="!unauthorizedUser; else invalidCredentials"
@@ -24,10 +30,14 @@
             placeholder="Ingrese su usuario"
             formControlName="email"
           />
-          <mat-error *ngIf="requiredEmail">
+          <mat-error
+            *ngIf="form.get('email')?.hasError('required') && myForm.submitted"
+          >
             {{ errorMessages.required }}
           </mat-error>
-          <mat-error *ngIf="invalidEmail">
+          <mat-error
+            *ngIf="form.get('email')?.hasError('email') && myForm.submitted"
+          >
             {{ errorMessages.invalidEmail }}
           </mat-error>
         </mat-form-field>
@@ -41,7 +51,11 @@
             placeholder="Ingrese su contraseña"
             formControlName="password"
           />
-          <mat-error *ngIf="requiredPassword">
+          <mat-error
+            *ngIf="
+              form.get('password')?.hasError('required') && myForm.submitted
+            "
+          >
             {{ errorMessages.required }}
           </mat-error>
         </mat-form-field>
