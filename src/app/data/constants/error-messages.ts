@@ -1,5 +1,5 @@
-export class ErrorMessages {
-  static required = 'El campo es requerido';
-  static invalidEmail = 'El correo es inválido';
-  static invalidCredentials = 'El correo y/o la contraseña son incorrectos';
-}
+export const ERROR_MESSAGES: Record<string, string> = {
+  required: 'El campo es requerido',
+  invalidEmail: 'El correo es inválido',
+  invalidCredentials: 'El correo y/o la contraseña son incorrectos',
+};

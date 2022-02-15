@@ -4,7 +4,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {ValidateEmail} from '@utils/validators';
 import {AuthService} from '@data/services/auth.service';
 import {GetToken} from '@data/models/auth.model';
-import {ErrorMessages} from '@data/constants/error-messages';
+import {ERROR_MESSAGES} from '@data/constants/error-messages';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,8 @@ export class LoginComponent {
     email: [null, [Validators.required, ValidateEmail]],
     password: [null, [Validators.required]],
   });
-  errorMessages = ErrorMessages;
+  invalidCredentials = ERROR_MESSAGES['invalidCredentials'];
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

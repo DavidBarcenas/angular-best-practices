@@ -13,14 +13,11 @@
       autocomplete="off"
       novalidate
     >
-      <p
-        class="login-label-session"
-        *ngIf="!unauthorizedUser; else invalidCredentials"
-      >
+      <p class="login-label-session" *ngIf="!unauthorizedUser; else message">
         Utiliza tus credenciales de acceso
       </p>
-      <ng-template #invalidCredentials>
-        <p class="badge-danger">{{ errorMessages.invalidCredentials }}</p>
+      <ng-template #message>
+        <p class="badge-danger">{{ invalidCredentials }}</p>
       </ng-template>
       <div class="form-control">
         <mat-form-field appearance="fill">
@@ -30,15 +27,8 @@
             placeholder="Ingrese su usuario"
             formControlName="email"
           />
-          <mat-error
-            *ngIf="form.get('email')?.hasError('required') && myForm.submitted"
-          >
-            {{ errorMessages.required }}
-          </mat-error>
-          <mat-error
-            *ngIf="form.get('email')?.hasError('email') && myForm.submitted"
-          >
-            {{ errorMessages.invalidEmail }}
+          <mat-error>
+            <app-field-errors field="email"></app-field-errors>
           </mat-error>
         </mat-form-field>
       </div>
@@ -51,12 +41,8 @@
             placeholder="Ingrese su contraseña"
             formControlName="password"
           />
-          <mat-error
-            *ngIf="
-              form.get('password')?.hasError('required') && myForm.submitted
-            "
-          >
-            {{ errorMessages.required }}
+          <mat-error>
+            <app-field-errors field="password"></app-field-errors>
           </mat-error>
         </mat-form-field>
       </div>
