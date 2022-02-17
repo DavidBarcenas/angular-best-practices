@@ -1,13 +1,15 @@
-import {NgModule} from '@angular/core';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from '@shared/shared.module';
-import {CoreModule} from '@core/core.module';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+
 import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {CoreModule} from '@core/core.module';
 import {DashboardComponent} from './layout/dashboard/dashboard.component';
 import {InterceptorService} from '@core/services/interceptor.service';
+import {NgModule} from '@angular/core';
+import {SharedModule} from '@shared/shared.module';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
@@ -18,6 +20,7 @@ import {InterceptorService} from '@core/services/interceptor.service';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {
