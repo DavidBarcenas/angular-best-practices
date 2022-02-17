@@ -1,5 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {Injectable} from '@angular/core';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  filter,
+  finalize,
+  switchMap,
+  take,
+  throwError,
+} from 'rxjs';
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -7,17 +16,9 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  catchError,
-  filter,
-  finalize,
-  Observable,
-  switchMap,
-  take,
-  throwError,
-} from 'rxjs';
+
 import {AuthService} from '@data/services/auth.service';
+import {Injectable} from '@angular/core';
 import {LoadingService} from '@shared/services/loading/loading.service';
 
 const UNAUTHORIZED_STATUS = 401;

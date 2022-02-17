@@ -1,16 +1,14 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {BehaviorSubject, catchError, Observable, share, tap} from 'rxjs';
-import {environment} from '@env/environment';
+import {BehaviorSubject, Observable, share, tap} from 'rxjs';
 import {
   GetToken,
   GetTokenResponse,
   RefreshToken,
 } from '@data/models/auth.model';
-import {handleError} from '@utils/handle-error';
 
-const UNAUTHORIZED_STATUS = 401;
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {environment} from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,15 +23,7 @@ export class AuthService {
   login(auth: GetToken): Observable<GetTokenResponse> {
     return this.http
       .post<GetTokenResponse>(environment.apiUrl + environment.getToken, auth)
-      .pipe(
-        tap(res => this.saveToken(res.token)),
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === UNAUTHORIZED_STATUS) {
-            this.invalidCredentials = true;
-          }
-          return handleError(error);
-        }),
-      );
+      .pipe(tap(res => this.saveToken(res.token)));
   }
 
   refreshToken(): Observable<GetTokenResponse> {
@@ -44,10 +34,7 @@ export class AuthService {
         environment.apiUrl + environment.refreshToken,
         payload,
       )
-      .pipe(
-        tap(res => this.saveToken(res.token)),
-        catchError(error => handleError(error)),
-      );
+      .pipe(tap(res => this.saveToken(res.token)));
   }
 
   isLoggedIn(): Observable<boolean> {

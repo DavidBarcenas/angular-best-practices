@@ -1,10 +1,13 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
-import {ValidateEmail} from '@utils/validators';
+
 import {AuthService} from '@data/services/auth.service';
-import {GetToken} from '@data/models/auth.model';
+import {Component} from '@angular/core';
 import {ERROR_MESSAGES} from '@data/constants/error-messages';
+import {GetToken} from '@data/models/auth.model';
+import {Router} from '@angular/router';
+import {ValidateEmail} from '@utils/validators';
+
+const UNAUTHORIZED_STATUS = 401;
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,7 @@ export class LoginComponent {
     email: [null, [Validators.required, ValidateEmail]],
     password: [null, [Validators.required]],
   });
-  invalidCredentials = ERROR_MESSAGES['invalidCredentials'];
+  invalidCredentials: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -25,20 +28,21 @@ export class LoginComponent {
   ) {}
 
   handleSubmit(): void {
-    this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
     }
     const payload = new GetToken(this.form.value.email);
-    this.authService.login(payload).subscribe(res => {
-      console.log('response', res);
-      if (res.token) {
-        this.router.navigate(['/dashboard']);
-      }
-    });
-  }
-
-  get unauthorizedUser() {
-    return this.authService.invalidCredentials;
+    this.authService.login(payload).subscribe(
+      res => {
+        if (res.token) {
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      error => {
+        if (error.status === UNAUTHORIZED_STATUS) {
+          this.invalidCredentials = ERROR_MESSAGES['invalidCredentials'];
+        }
+      },
+    );
   }
 }

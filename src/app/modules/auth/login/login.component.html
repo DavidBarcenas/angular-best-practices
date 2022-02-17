@@ -12,7 +12,7 @@
       autocomplete="off"
       novalidate
     >
-      <p class="login-label-session" *ngIf="!unauthorizedUser; else message">
+      <p class="login-label-session" *ngIf="!invalidCredentials; else message">
         Utiliza tus credenciales de acceso
       </p>
       <ng-template #message>
