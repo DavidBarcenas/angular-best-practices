@@ -1,12 +1,2 @@
 <app-spinner [show]="showLoading"></app-spinner>
-<button (click)="openSwal()">Do it!</button>
 <router-outlet></router-outlet>
-<swal
-  #deleteSwal
-  title="Delete this?"
-  text="This cannot be undone"
-  icon="warning"
-  [showCancelButton]="true"
-  [focusCancel]="true"
->
-</swal>

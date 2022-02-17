@@ -9,7 +9,6 @@ import {DashboardComponent} from './layout/dashboard/dashboard.component';
 import {InterceptorService} from '@core/services/interceptor.service';
 import {NgModule} from '@angular/core';
 import {SharedModule} from '@shared/shared.module';
-import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
@@ -20,7 +19,6 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {
