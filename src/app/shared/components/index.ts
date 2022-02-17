@@ -3,7 +3,7 @@ import {DeleteButtonComponent} from './delete-button/delete-button.component';
 import {FieldErrorsComponent} from './field-errors/field-errors.component';
 import {SpinnerComponent} from './spinner/spinner.component';
 
-export const Components = [
+export const components = [
   DeleteButtonComponent,
   ConfirmModalComponent,
   SpinnerComponent,
