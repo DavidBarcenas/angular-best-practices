@@ -20,16 +20,13 @@ export class LoginComponent {
     email: [null, [Validators.required, ValidateEmail]],
     password: [null, [Validators.required]],
   });
-  invalidCredentials: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private alertService: AlertService,
-  ) {
-    this.alertService.openDialog();
-  }
+  ) {}
 
   handleSubmit(): void {
     if (this.form.invalid) {
@@ -44,7 +41,10 @@ export class LoginComponent {
       },
       error => {
         if (error.status === UNAUTHORIZED_STATUS) {
-          this.invalidCredentials = ERROR_MESSAGES['invalidCredentials'];
+          this.alertService.open({
+            type: 'error',
+            message: ERROR_MESSAGES['invalidCredentials'],
+          });
         }
       },
     );

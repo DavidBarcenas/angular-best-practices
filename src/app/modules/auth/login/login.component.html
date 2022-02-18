@@ -12,12 +12,7 @@
       autocomplete="off"
       novalidate
     >
-      <p class="login-label-session" *ngIf="!invalidCredentials; else message">
-        Utiliza tus credenciales de acceso
-      </p>
-      <ng-template #message>
-        <p class="badge-danger">{{ invalidCredentials }}</p>
-      </ng-template>
+      <p class="login-label-session">Utiliza tus credenciales de acceso</p>
       <div class="form-control">
         <mat-form-field appearance="fill">
           <mat-label>Correo electrónico</mat-label>
