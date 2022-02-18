@@ -1,5 +1,6 @@
 import {FormBuilder, Validators} from '@angular/forms';
 
+import {AlertService} from '@shared/services/alert/alert.service';
 import {AuthService} from '@data/services/auth.service';
 import {Component} from '@angular/core';
 import {ERROR_MESSAGES} from '@data/constants/error-messages';
@@ -25,7 +26,10 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-  ) {}
+    private alertService: AlertService,
+  ) {
+    this.alertService.openDialog();
+  }
 
   handleSubmit(): void {
     if (this.form.invalid) {
