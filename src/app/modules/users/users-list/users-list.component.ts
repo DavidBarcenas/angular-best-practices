@@ -9,8 +9,85 @@ import {environment} from '@env/environment';
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'lastname'];
-  dataSource = [];
+  displayedColumns: string[] = [
+    'name',
+    'email',
+    'rol',
+    'status',
+    'joined date',
+  ];
+  dataSource = [
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+    {
+      name: 'Emma Smith',
+      status: 'active',
+      email: 'smith@kpmg.com',
+      rol: 'Administrator',
+      joinedDate: '21 Feb 2022, 9:23 pm',
+    },
+  ];
 
   constructor(private api: ApiService) {}
 

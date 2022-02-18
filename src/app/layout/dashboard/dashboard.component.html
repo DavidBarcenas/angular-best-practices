@@ -7,9 +7,13 @@
   </button>
 </mat-toolbar>
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened>
+  <mat-drawer #drawer class="sidenav" mode="side">
     <app-sidenav></app-sidenav>
   </mat-drawer>
+  <mat-toolbar class="breadcrumbs-bar">
+    <b>Lista de usuarios </b>
+    <span>Administración de usuarios - Usuarios - Lista de usuarios</span>
+  </mat-toolbar>
   <div class="main-container-content">
     <router-outlet></router-outlet>
   </div>

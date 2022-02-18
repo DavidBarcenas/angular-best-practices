@@ -20,3 +20,25 @@
   background-color: var(--red600);
   color: #fff;
 }
+
+.breadcrumbs-bar {
+  background: #fff;
+  overflow: hidden;
+  flex-wrap: wrap;
+  flex-direction: column;
+  line-height: normal;
+  justify-content: center;
+  align-content: center;
+
+  b {
+    color: #181c32;
+    width: 100%;
+  }
+
+  span {
+    width: 100%;
+    display: block;
+    color: #a1a5b7;
+    font-size: 0.9rem;
+  }
+}
