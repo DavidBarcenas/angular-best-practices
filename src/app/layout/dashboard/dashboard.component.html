@@ -1,19 +1,30 @@
+<mat-toolbar
+  class="toolbar-main d-flex align-items-center justify-content-between"
+>
+  <h1 class="d-flex align-items-center">Travel Portal</h1>
+  <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened></mat-drawer>
-  <mat-toolbar color="warn" class="toolbar-main">
-    <h1 routerLink="/">
-      <img
-        src="../../../assets/img/logo.svg"
-        alt="Travel"
-        width="60px"
-        verticalalign="middle"
-      />
-      Travel
-    </h1>
-    <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </mat-toolbar>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <div class="sidenav-wrapper">
+      <nav>
+        <ul>
+          <li>
+            <span>Administración de usuarios</span>
+            <ul>
+              <li>
+                <a href="">Usuarios</a>
+                <a href="">Roles AV</a>
+                <a href="">Roles Coporativos</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </mat-drawer>
   <div class="main-container-content">
     <router-outlet></router-outlet>
   </div>

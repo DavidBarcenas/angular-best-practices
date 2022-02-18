@@ -12,6 +12,10 @@ $my-theme: mat.define-light-theme(
       accent: $my-accent,
       warn: $my-warn,
     ),
+    typography:
+      mat.define-typography-config(
+        $font-family: 'Lato',
+      ),
   )
 );
 

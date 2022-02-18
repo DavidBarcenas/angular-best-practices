@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+
 import {ApiService} from '@data/services/api.service';
 import {environment} from '@env/environment';
 
@@ -14,8 +15,6 @@ export class UsersListComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.api
-      .get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10')
-      .subscribe((resp: any) => (this.dataSource = resp.data));
+    this.api.get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10');
   }
 }

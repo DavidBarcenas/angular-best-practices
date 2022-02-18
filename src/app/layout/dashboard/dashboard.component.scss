@@ -1,3 +1,8 @@
+.toolbar-main {
+  background: var(--red);
+  color: #fff;
+}
+
 .main-container {
   width: 100vw;
   height: 100vh;
@@ -11,9 +16,26 @@
 
 .sidenav {
   width: 265px;
+  height: calc(100vh - 64px);
   background-color: var(--red600);
-}
+  color: #fff;
 
-.toolbar-main {
-  justify-content: space-between;
+  &-wrapper {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    height: 65px;
+  }
+
+  h1,
+  a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  a {
+    font-size: 1rem;
+  }
 }

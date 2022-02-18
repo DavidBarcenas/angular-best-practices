@@ -1,8 +1,8 @@
 @import 'custom-theme';
 
 :root {
-  --red: #de0108;
-  --red600: #e53935;
+  --red: #ed0707;
+  --red600: #de0108;
 }
 
 html,
@@ -11,9 +11,15 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
   background-color: #f5f8fa;
   overflow-x: hidden;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .loading-overlay {
