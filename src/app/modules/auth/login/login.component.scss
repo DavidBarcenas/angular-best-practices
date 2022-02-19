@@ -5,8 +5,6 @@
     fixed;
   width: 100vw;
   height: 100vh;
-  position: relative;
-  z-index: 1;
 
   &-title {
     color: var(--red);
@@ -30,7 +28,6 @@
   }
 
   &-label-session {
-    color: #181c32;
     display: block;
     text-align: center;
     margin-bottom: 1rem;
