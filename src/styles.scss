@@ -37,10 +37,6 @@ ol {
   font-size: 1rem;
 }
 
-.form-control {
-  margin-bottom: 0.5rem;
-}
-
 .mat-form-field-appearance-fill .mat-form-field-flex {
   color: #5e6278;
   background-color: #f5f8fa;
@@ -59,4 +55,8 @@ ol {
   padding: 0.75rem 1rem;
   font-weight: 600;
   border-radius: 0.475rem;
+}
+
+mat-form-field {
+  width: 100%;
 }
