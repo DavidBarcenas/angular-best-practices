@@ -2,9 +2,9 @@
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .table-wrap {
-    width: 100%;
-    overflow-x: scroll;
-  }
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
