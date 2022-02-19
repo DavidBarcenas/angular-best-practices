@@ -6,9 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@modules/auth/authentication.module').then(
-        m => m.AuthenticationModule,
-      ),
+      import('@modules/auth/authentication.module').then(m => m.AuthenticationModule),
   },
   {
     path: 'dashboard',
@@ -16,8 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: 'users',
-        loadChildren: () =>
-          import('@modules/users/users.module').then(m => m.UsersModule),
+        loadChildren: () => import('@modules/users/users.module').then(m => m.UsersModule),
       },
       {path: '', redirectTo: '/dashboard/users', pathMatch: 'full'},
     ],

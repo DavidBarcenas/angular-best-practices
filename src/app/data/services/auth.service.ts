@@ -1,9 +1,5 @@
 import {BehaviorSubject, Observable, share, tap} from 'rxjs';
-import {
-  GetToken,
-  GetTokenResponse,
-  RefreshToken,
-} from '@data/models/auth.model';
+import {GetToken, GetTokenResponse, RefreshToken} from '@data/models/auth.model';
 
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
@@ -30,10 +26,7 @@ export class AuthService {
     const token = this.getToken();
     const payload = new RefreshToken(token);
     return this.http
-      .post<GetTokenResponse>(
-        environment.apiUrl + environment.refreshToken,
-        payload,
-      )
+      .post<GetTokenResponse>(environment.apiUrl + environment.refreshToken, payload)
       .pipe(tap(res => this.saveToken(res.token)));
   }
 

@@ -9,13 +9,7 @@ import {environment} from '@env/environment';
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  displayedColumns: string[] = [
-    'name',
-    'email',
-    'rol',
-    'status',
-    'joined date',
-  ];
+  displayedColumns: string[] = ['name', 'email', 'rol', 'status', 'joined date'];
   dataSource = [
     {
       name: 'Emma Smith',

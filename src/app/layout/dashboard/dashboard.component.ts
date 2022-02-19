@@ -20,10 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   destroyed = new Subject<void>();
   sideNavMode: MatDrawerMode = 'side';
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor(private breakpointObserver: BreakpointObserver, private cdr: ChangeDetectorRef) {
     this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small])
       .pipe(takeUntil(this.destroyed))

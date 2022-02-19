@@ -5,11 +5,7 @@ export interface GetTokenResponse {
 }
 
 export class GetToken {
-  constructor(
-    public email: string,
-    public password = '',
-    public language = 'es-MX',
-  ) {}
+  constructor(public email: string, public password = '', public language = 'es-MX') {}
 }
 
 export class RefreshToken {

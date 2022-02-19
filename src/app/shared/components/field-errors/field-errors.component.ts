@@ -15,9 +15,7 @@ export class FieldErrorsComponent {
     this.form = this.reactiveForm;
 
     if (!this.form) {
-      throw new Error(
-        'control-errors must be used with a parent formGroup directive',
-      );
+      throw new Error('control-errors must be used with a parent formGroup directive');
     }
   }
 

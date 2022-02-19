@@ -12,9 +12,7 @@ export class LoadingService {
 
   setLoading(loading: boolean, url: string): void {
     if (!url) {
-      throw new Error(
-        'The request URL must be provided to the LoadingService.setLoading function',
-      );
+      throw new Error('The request URL must be provided to the LoadingService.setLoading function');
     }
     if (loading) {
       this.requestQueue.set(url, loading);

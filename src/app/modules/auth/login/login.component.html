@@ -1,26 +1,13 @@
 <div class="d-flex align-items-center justify-content-center login">
   <mat-card>
     <h1 class="login-title">Iniciar sesión en <span>Travel Portal</span></h1>
-    <img
-      src="../../../../assets/img/airplane.svg"
-      alt="Airplane"
-      class="login-img"
-    />
-    <form
-      [formGroup]="form"
-      (ngSubmit)="handleSubmit()"
-      autocomplete="off"
-      novalidate
-    >
+    <img src="../../../../assets/img/airplane.svg" alt="Airplane" class="login-img" />
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off" novalidate>
       <p class="login-label-session">Utiliza tus credenciales de acceso</p>
       <div>
         <mat-form-field appearance="standard">
           <mat-label>Correo electrónico</mat-label>
-          <input
-            matInput
-            placeholder="Ingrese su usuario"
-            formControlName="email"
-          />
+          <input matInput placeholder="Ingrese su usuario" formControlName="email" />
           <mat-error>
             <app-field-errors field="email"></app-field-errors>
           </mat-error>
@@ -33,8 +20,7 @@
             type="password"
             matInput
             placeholder="Ingrese su contraseña"
-            formControlName="password"
-          />
+            formControlName="password" />
           <mat-error>
             <app-field-errors field="password"></app-field-errors>
           </mat-error>

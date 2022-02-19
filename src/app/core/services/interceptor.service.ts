@@ -31,15 +31,9 @@ export class InterceptorService implements HttpInterceptor {
   refreshTokenInProgress = false;
   accessTokenSubject = new BehaviorSubject<string | null>(null);
 
-  constructor(
-    private authService: AuthService,
-    private loadingservice: LoadingService,
-  ) {}
+  constructor(private authService: AuthService, private loadingservice: LoadingService) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loadingservice.setLoading(true, req.url);
     return this.authService.isLoggedIn().pipe(
       take(TAKE_FIRST),

@@ -8,12 +8,6 @@ import {directives} from './directives';
 @NgModule({
   declarations: [...components, ...directives],
   imports: [CommonModule, ReactiveFormsModule, ...MaterialModules],
-  exports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ...MaterialModules,
-    ...components,
-    ...directives,
-  ],
+  exports: [CommonModule, ReactiveFormsModule, ...MaterialModules, ...components, ...directives],
 })
 export class SharedModule {}

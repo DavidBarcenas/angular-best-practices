@@ -8,11 +8,7 @@ import {Observable} from 'rxjs';
 export class DashboardGuard implements CanActivate {
   constructor(private router: Router) {}
 
-  canActivate():
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
 }

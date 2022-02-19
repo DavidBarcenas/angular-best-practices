@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AlertData, AlertService} from '@shared/services/alert/alert.service';
 
@@ -26,8 +21,7 @@ export class AlertComponent implements OnInit {
     this.modalType = this.data.type;
 
     if (!this.data.message) {
-      this.message =
-        this.modalType === 'error' ? 'Ocurrió un error' : 'Operación exitosa';
+      this.message = this.modalType === 'error' ? 'Ocurrió un error' : 'Operación exitosa';
     } else {
       this.message = this.data.message;
     }
