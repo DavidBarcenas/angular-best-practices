@@ -1,10 +1,10 @@
-.table {
-  width: 100%;
-}
-
 .table-responsive {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
+}
+
+.table {
+  width: 100%;
 }

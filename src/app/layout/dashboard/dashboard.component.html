@@ -14,7 +14,7 @@
   </button>
 </mat-toolbar>
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+  <mat-drawer #drawer class="sidenav" [mode]="sideNavMode">
     <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-toolbar class="breadcrumbs-bar">

@@ -1,3 +1,4 @@
+import {LayoutModule} from '@angular/cdk/layout';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -22,4 +23,5 @@ export const MaterialModules = [
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
+  LayoutModule,
 ];
