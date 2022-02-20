@@ -15,12 +15,12 @@ html,
 body {
   width: 100vw;
   min-height: 100%;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
   background-color: #f5f8fa;
   color: var(--gray-text);
-  overflow-x: hidden;
 }
 
 ul,

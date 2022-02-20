@@ -1,25 +1,11 @@
-.toolbar-main {
-  background: var(--red);
-  color: #fff;
-
-  h1 {
-    font-weight: bold;
-
-    img {
-      margin-right: 0.5rem;
-    }
-  }
-}
-
 .main-container {
   width: 100vw;
   height: 100vh;
-  padding-bottom: 4rem;
 
   &-content {
     max-width: 1320px;
     margin: auto;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
   }
 }
 

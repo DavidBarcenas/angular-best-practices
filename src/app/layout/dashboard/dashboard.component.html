@@ -1,29 +1,4 @@
-<mat-toolbar class="toolbar-main d-flex align-items-center justify-content-between">
-  <div class="d-flex align-items-center">
-    <h1 class="d-flex align-items-center">
-      <img src="../../../assets/img/logo-airline.svg" alt="Travel Portal" width="40" />
-      Travel Portal
-    </h1>
-  </div>
-  <div class="d-flex align-items-center">
-    <div>
-      <mat-icon fontSet="material-icons-outlined">language</mat-icon>
-      <span>México - Español</span>
-    </div>
-    <button mat-button [matMenuTriggerFor]="menu">
-      <mat-icon fontSet="material-icons-outlined">account_circle</mat-icon>
-      David Bárcenas
-      <span class="material-icons"> arrow_drop_down </span>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
+<app-header (toggleMenu)="drawer.toggle()"></app-header>
 <mat-drawer-container class="main-container" autosize>
   <mat-drawer #drawer class="sidenav" [mode]="sideNavMode">
     <app-sidenav></app-sidenav>
