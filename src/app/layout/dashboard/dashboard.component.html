@@ -3,10 +3,7 @@
   <mat-drawer #drawer class="sidenav" [mode]="sideNavMode">
     <app-sidenav></app-sidenav>
   </mat-drawer>
-  <mat-toolbar class="breadcrumbs-bar">
-    <b>Lista de usuarios </b>
-    <span>Administración de usuarios - Usuarios - Lista de usuarios</span>
-  </mat-toolbar>
+  <app-breadcrumbs></app-breadcrumbs>
   <div class="main-container-content">
     <router-outlet></router-outlet>
   </div>

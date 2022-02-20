@@ -14,10 +14,12 @@
       <mat-icon fontSet="material-icons-outlined">arrow_drop_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon fontSet="material-icons-outlined">logout</mat-icon>
-        <span>Cerrar sesión</span>
-      </button>
+      <div class="account-dropdown">
+        <button mat-menu-item>
+          <mat-icon fontSet="material-icons-outlined">logout</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+      </div>
     </mat-menu>
     <button mat-icon-button aria-label="Menu" (click)="handleToggleMenu()">
       <mat-icon>menu</mat-icon>

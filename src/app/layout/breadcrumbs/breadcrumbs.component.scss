@@ -1,0 +1,36 @@
+@import 'mq';
+
+.breadcrumbs-bar {
+  background: #fff;
+  overflow: hidden;
+  line-height: normal;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  @include mq(md) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  b {
+    color: var(--gray-text);
+    margin-bottom: 5px;
+    font-size: 1rem;
+
+    @include mq(md) {
+      border-right: 1px solid var(--gray-light-text);
+      margin-right: 1rem;
+      padding-right: 1rem;
+      margin-bottom: 0;
+    }
+  }
+
+  span {
+    color: var(--gray-light-text);
+    font-size: 0.75rem;
+  }
+}

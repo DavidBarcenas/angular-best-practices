@@ -1,10 +1,12 @@
 @import 'custom-theme';
+@import 'mq';
 
 :root {
   --red: #ed0707;
   --red600: #de0108;
   --gray-text: #181c32;
   --gray-light-text: #a1a5b7;
+  --padding-top: 56px;
 }
 
 * {
@@ -18,6 +20,7 @@ body {
   overflow-x: hidden;
 }
 body {
+  font-size: 1rem;
   margin: 0;
   background-color: #f5f8fa;
   color: var(--gray-text);
