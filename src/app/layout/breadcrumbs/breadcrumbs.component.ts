@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss']
+  styleUrls: ['./breadcrumbs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  mode = '';
+  @Input()
+  set collapse(value: boolean) {
+    this.mode = value ? 'collapse' : 'expanded';
   }
 
+  constructor() {}
+
+  ngOnInit(): void {}
 }

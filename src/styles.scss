@@ -24,6 +24,10 @@ body {
   margin: 0;
   background-color: #f5f8fa;
   color: var(--gray-text);
+
+  @media screen and (min-width: 600px) {
+    --padding-top: 64px;
+  }
 }
 
 ul,

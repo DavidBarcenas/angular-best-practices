@@ -19,6 +19,7 @@ import {MatDrawerMode} from '@angular/material/sidenav';
 export class DashboardComponent implements OnInit, OnDestroy {
   destroyed = new Subject<void>();
   sideNavMode: MatDrawerMode = 'side';
+  openSidenav = false;
 
   constructor(private breakpointObserver: BreakpointObserver, private cdr: ChangeDetectorRef) {
     this.breakpointObserver

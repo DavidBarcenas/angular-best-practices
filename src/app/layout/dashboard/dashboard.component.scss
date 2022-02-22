@@ -1,6 +1,11 @@
 .main-container {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - var(--padding-top));
+
+  &-wrap {
+    position: relative;
+    padding-top: var(--padding-top);
+  }
 
   &-content {
     max-width: 1320px;
@@ -11,7 +16,7 @@
 
 .sidenav {
   width: 265px;
-  height: calc(100vh - var(--padding-top));
+  height: 100%;
   background-color: var(--red600);
   color: #fff;
 }

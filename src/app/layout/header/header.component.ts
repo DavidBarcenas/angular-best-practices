@@ -8,12 +8,14 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleMenu = new EventEmitter<boolean>();
+  private openSidenav = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   handleToggleMenu() {
-    this.toggleMenu.emit(true);
+    this.openSidenav = !this.openSidenav;
+    this.toggleMenu.emit(this.openSidenav);
   }
 }

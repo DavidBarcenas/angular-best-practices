@@ -1,10 +1,12 @@
-<app-header (toggleMenu)="drawer.toggle()"></app-header>
+<app-header (toggleMenu)="drawer.toggle(); openSidenav = $event"></app-header>
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav" [mode]="sideNavMode">
+  <mat-drawer #drawer class="sidenav" [mode]="sideNavMode" [opened]="openSidenav">
     <app-sidenav></app-sidenav>
   </mat-drawer>
-  <app-breadcrumbs></app-breadcrumbs>
-  <div class="main-container-content">
-    <router-outlet></router-outlet>
+  <div class="main-container-wrap">
+    <app-breadcrumbs [collapse]="openSidenav"></app-breadcrumbs>
+    <div class="main-container-content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </mat-drawer-container>

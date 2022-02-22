@@ -11,10 +11,16 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '@shared/shared.module';
 import {SidenavComponent} from './layout/sidenav/sidenav.component';
 import {HeaderComponent} from './layout/header/header.component';
-import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component';
+import {BreadcrumbsComponent} from './layout/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, SidenavComponent, HeaderComponent, BreadcrumbsComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    SidenavComponent,
+    HeaderComponent,
+    BreadcrumbsComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
