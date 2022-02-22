@@ -1,23 +1,29 @@
 <mat-card>
   <mat-card-content>
     <div class="table-responsive">
-      <table mat-table [dataSource]="dataSource" class="table">
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
+      <table mat-table [dataSource]="(dataSource | async)?.data" class="table">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let element">
             {{ element.name }}
           </td>
         </ng-container>
-
-        <!-- Name Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>Email</th>
           <td mat-cell *matCellDef="let element">
             {{ element.email }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.role.name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="lastLogin">
+          <th mat-header-cell *matHeaderCellDef>Last Login</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.dateLastLogin | date }}
           </td>
         </ng-container>
         <ng-container matColumnDef="status">
@@ -26,16 +32,10 @@
             {{ element.status }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="rol">
-          <th mat-header-cell *matHeaderCellDef>Role</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.rol }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="joined date">
+        <ng-container matColumnDef="joinedDate">
           <th mat-header-cell *matHeaderCellDef>Joined date</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.joinedDate }}
+            {{ element.dateCreated | date }}
           </td>
         </ng-container>
 

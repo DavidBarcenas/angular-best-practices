@@ -7,6 +7,7 @@
   --gray-text: #181c32;
   --gray-light-text: #a1a5b7;
   --padding-top: 56px;
+  --bg: #f5f8fa;
 }
 
 * {
@@ -22,7 +23,7 @@ body {
 body {
   font-size: 1rem;
   margin: 0;
-  background-color: #f5f8fa;
+  background-color: var(--bg);
   color: var(--gray-text);
 
   @media screen and (min-width: 600px) {
@@ -70,4 +71,18 @@ ol {
 
 mat-form-field {
   width: 100%;
+}
+
+.mat-drawer-container {
+  background: var(--bg);
+}
+
+th.mat-header-cell {
+  color: var(--gray-light-text);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+td.mat-cell {
+  color: #7e8299;
 }

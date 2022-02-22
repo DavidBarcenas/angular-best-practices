@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
 
 import {ApiService} from '@data/services/api.service';
 import {environment} from '@env/environment';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -9,83 +12,12 @@ import {environment} from '@env/environment';
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'rol', 'status', 'joined date'];
-  dataSource = [
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-    {
-      name: 'Emma Smith',
-      status: 'active',
-      email: 'smith@kpmg.com',
-      rol: 'Administrator',
-      joinedDate: '21 Feb 2022, 9:23 pm',
-    },
-  ];
+  displayedColumns: string[] = ['name', 'email', 'role', 'lastLogin', 'status', 'joinedDate'];
+  dataSource!: Observable<any>;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.api.get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10');
+    this.dataSource = this.api.get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10');
   }
 }
