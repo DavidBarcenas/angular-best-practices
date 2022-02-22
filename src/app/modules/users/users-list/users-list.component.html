@@ -2,6 +2,18 @@
   <mat-card-content>
     <div class="table-responsive">
       <table mat-table [dataSource]="(dataSource | async)?.data" class="table">
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.lastName }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.secondLastName }}
+          </td>
+        </ng-container>
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let element">
@@ -18,12 +30,6 @@
           <th mat-header-cell *matHeaderCellDef>Role</th>
           <td mat-cell *matCellDef="let element">
             {{ element.role.name }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="lastLogin">
-          <th mat-header-cell *matHeaderCellDef>Last Login</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.dateLastLogin | date }}
           </td>
         </ng-container>
         <ng-container matColumnDef="status">
