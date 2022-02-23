@@ -13,6 +13,7 @@
   display: inline-block;
   padding: 0.1rem 0.85rem;
   font-size: 0.8rem;
+  font-weight: bold;
   text-align: center;
   white-space: nowrap;
   border-radius: 0.475rem;
@@ -25,5 +26,21 @@
   &.danger {
     color: #f1416c;
     background-color: #fff5f8;
+  }
+}
+
+.header {
+  margin: 1rem 0 2rem;
+  h1 {
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.table-actions {
+  text-align: right;
+  button {
+    margin-left: 0.5rem;
+    background: var(--red);
   }
 }
