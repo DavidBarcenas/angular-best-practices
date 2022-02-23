@@ -1,24 +1,24 @@
-<div class="d-flex align-items-center justify-content-between header">
-  <h1>Usuarios</h1>
-  <div class="table-actions">
-    <button mat-flat-button color="warn">
-      <mat-icon fontSet="material-icons-outlined">filter_alt</mat-icon>
-      Filtros
-    </button>
-    <button mat-flat-button color="warn">
-      <mat-icon fontSet="material-icons-outlined">file_upload</mat-icon>
-      Carga masiva
-    </button>
-    <button mat-flat-button color="warn">
-      <mat-icon fontSet="material-icons-outlined">add</mat-icon>
-      Agregar usuario
-    </button>
-  </div>
-</div>
 <mat-card>
   <mat-card-content>
+    <div class="d-flex align-items-center justify-content-between header">
+      <h1>Usuarios</h1>
+      <div class="table-actions">
+        <button mat-flat-button class="btn-light-primary">
+          <mat-icon fontSet="material-icons-outlined">filter_alt</mat-icon>
+          Filtros
+        </button>
+        <button mat-flat-button class="btn-light-primary">
+          <mat-icon fontSet="material-icons-outlined">file_upload</mat-icon>
+          Carga masiva
+        </button>
+        <button mat-flat-button color="warn" class="btn-primary">
+          <mat-icon fontSet="material-icons-outlined">add</mat-icon>
+          Agregar usuario
+        </button>
+      </div>
+    </div>
     <div class="table-responsive">
-      <table mat-table [dataSource]="(dataSource | async)?.data" class="table">
+      <table mat-table [dataSource]="[]" class="table">
         <ng-container matColumnDef="firstName">
           <th mat-header-cell *matHeaderCellDef>Primer Apellido</th>
           <td mat-cell *matCellDef="let element">

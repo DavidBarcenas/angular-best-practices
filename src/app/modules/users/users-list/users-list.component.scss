@@ -30,8 +30,11 @@
 }
 
 .header {
-  margin: 1rem 0 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1rem 0;
+
   h1 {
+    font-size: 1.5rem;
     font-weight: 500;
     margin: 0;
   }
@@ -42,5 +45,14 @@
   button {
     margin-left: 0.5rem;
     background: var(--red);
+    color: #fff;
+    padding: 0.2rem 1.35rem;
+    font-weight: bold;
+    overflow: hidden;
+  }
+
+  .btn-light-primary {
+    background: rgba(#f44336, 0.1);
+    color: #f44336;
   }
 }

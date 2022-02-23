@@ -1,6 +1,6 @@
 <app-header (toggleMenu)="drawer.toggle(); openSidenav = $event"></app-header>
 <mat-drawer-container class="main-container" autosize>
-  <mat-drawer #drawer class="sidenav" [mode]="sideNavMode" [opened]="openSidenav">
+  <mat-drawer #drawer class="sidenav" [mode]="'over'" [opened]="openSidenav">
     <app-sidenav></app-sidenav>
   </mat-drawer>
   <div class="main-container-wrap">
