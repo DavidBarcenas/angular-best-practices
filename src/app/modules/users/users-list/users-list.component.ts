@@ -19,6 +19,7 @@ export class UsersListComponent implements OnInit {
     'role',
     'status',
     'joinedDate',
+    'actions',
   ];
   dataSource!: Observable<any>;
 

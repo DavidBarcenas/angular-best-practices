@@ -86,3 +86,21 @@ th.mat-header-cell {
 td.mat-cell {
   color: var(--gray-text);
 }
+
+.mat-icon-button.btn-action {
+  background-color: var(--bg);
+  color: var(--gray-light-text);
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.475rem;
+  margin: 0.2rem 0.1rem;
+  line-height: 32px;
+
+  .mat-icon {
+    font-size: 1.2rem;
+  }
+}
+
+.text-right {
+  text-align: right !important;
+}
