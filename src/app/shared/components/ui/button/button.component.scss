@@ -1,0 +1,31 @@
+.btn {
+  margin-left: 0.5rem;
+  padding: 0.2rem 1.35rem;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  .mat-icon {
+    margin-bottom: 4px;
+  }
+}
+
+.btn-primary {
+  background: var(--red);
+  color: #fff;
+
+  &:hover {
+    background: darken(#ed0707, 2%);
+  }
+}
+
+.btn-light {
+  background: rgba(#f44336, 0.1);
+  color: #f44336;
+
+  &:hover {
+    background: var(--red);
+    color: #fff;
+  }
+}

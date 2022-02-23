@@ -1,0 +1,9 @@
+<button
+  [type]="type"
+  mat-flat-button
+  color="warn"
+  class="btn"
+  [ngClass]="mode === 'light' ? 'btn-light' : 'btn-primary'">
+  <mat-icon fontSet="material-icons-outlined">{{ icon }}</mat-icon>
+  {{ text }}
+</button>

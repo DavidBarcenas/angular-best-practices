@@ -3,18 +3,9 @@
     <div class="d-flex align-items-center justify-content-between header">
       <h1>Usuarios</h1>
       <div class="table-actions">
-        <button mat-flat-button color="warn" class="btn-light-primary">
-          <mat-icon fontSet="material-icons-outlined">filter_alt</mat-icon>
-          Filtros
-        </button>
-        <button mat-flat-button color="warn" class="btn-light-primary">
-          <mat-icon fontSet="material-icons-outlined">file_upload</mat-icon>
-          Carga masiva
-        </button>
-        <button mat-flat-button color="warn" class="btn-primary">
-          <mat-icon fontSet="material-icons-outlined">add</mat-icon>
-          Agregar usuario
-        </button>
+        <app-button mode="light" text="Filtros" icon="filter_alt"></app-button>
+        <app-button mode="light" text="Carga masiva" icon="file_upload"></app-button>
+        <app-button text="Agregar usuarios"></app-button>
       </div>
     </div>
     <div class="table-responsive">
