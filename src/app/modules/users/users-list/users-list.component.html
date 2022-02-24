@@ -76,8 +76,9 @@
     </div>
   </mat-card-content>
 </mat-card> -->
-<app-section>
-  <ng-container #actions class="custom">
-    <button>Boton de afuera</button>
-  </ng-container>
-</app-section>
+<app-section title="Usuarios" [headerActions]="headerActions"></app-section>
+<ng-template #headerActions>
+  <app-button mode="light" text="Filtros" icon="filter_alt"></app-button>
+  <app-button mode="light" text="Carga masiva" icon="file_upload"></app-button>
+  <app-button text="Agregar usuarios"></app-button>
+</ng-template>

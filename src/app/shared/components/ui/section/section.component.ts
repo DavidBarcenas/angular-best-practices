@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'app-section',
@@ -6,7 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent implements OnInit {
-  @Input() customActions = false;
+  @Input() title = '';
+  @Input() headerActions!: TemplateRef<any>;
   constructor() {}
 
   ngOnInit(): void {}
