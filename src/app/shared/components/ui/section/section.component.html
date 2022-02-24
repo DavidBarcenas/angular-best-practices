@@ -3,7 +3,10 @@
     <mat-card-title>
       <div>
         <h1>Titulo de la sección</h1>
-        <div class="actions"></div>
+        <div class="actions" *ngIf="!customActions">
+          <button>Default</button>
+        </div>
+        <ng-template #actions *ngIf="customActions"></ng-template>
       </div>
     </mat-card-title>
   </mat-card-header>
@@ -11,7 +14,3 @@
     <ng-content></ng-content>
   </mat-card-content>
 </mat-card>
-
-<ng-template #actionsDefault>
-  <button>Agregar</button>
-</ng-template>

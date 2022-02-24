@@ -2,7 +2,6 @@
 import {Component, OnInit} from '@angular/core';
 
 import {ApiService} from '@data/services/api.service';
-import {environment} from '@env/environment';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -25,7 +24,5 @@ export class UsersListComponent implements OnInit {
 
   constructor(private api: ApiService) {}
 
-  ngOnInit(): void {
-    this.dataSource = this.api.get(environment.users + '/GetByFilters?pageNumber=1&pageSize=10');
-  }
+  ngOnInit(): void {}
 }
