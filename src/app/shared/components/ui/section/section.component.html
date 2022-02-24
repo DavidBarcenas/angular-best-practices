@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div>
+        <h1>Titulo de la sección</h1>
+        <div class="actions"></div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #actionsDefault>
+  <button>Agregar</button>
+</ng-template>
