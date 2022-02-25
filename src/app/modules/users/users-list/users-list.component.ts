@@ -16,7 +16,7 @@ export class UsersListComponent implements OnInit {
     {name: 'apellido paterno', key: 'lastName'},
     {name: 'nombre', key: 'name'},
     {name: 'correo', key: 'email'},
-    {name: 'rol', key: 'role.name'},
+    {name: 'rol', key: ['role', 'name']},
     {name: 'estatus', key: 'status'},
     {name: 'fecha ingreso', key: 'dateCreated'},
     {name: 'acciones', key: ''},
@@ -26,6 +26,6 @@ export class UsersListComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    // this.data = this.api.get(environment.users + '?PageNumber=1&PageSize=10');
+    this.data = this.api.get(environment.users + '?PageNumber=1&PageSize=10');
   }
 }

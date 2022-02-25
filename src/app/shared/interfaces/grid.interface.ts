@@ -1,6 +1,6 @@
 export interface GridColumns {
   name: string;
-  key: string;
+  key: string | string[];
 }
 
 export interface GridDataColumns extends GridColumns {
