@@ -13,7 +13,7 @@ export class ApiService {
   get(endpoint: string) {
     return this.http
       .get(environment.api + endpoint)
-      .pipe(map((res: any) => (res.data.length > 0 ? res.data : [])));
+      .pipe(map((res: any) => (res.data?.length > 0 ? res.data : [])));
   }
 
   post<T, K>(endpoint: string, body: K): Observable<T> {

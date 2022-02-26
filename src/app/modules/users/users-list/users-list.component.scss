@@ -1,12 +1,6 @@
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  box-sizing: border-box;
-}
-
-.table {
-  width: 100%;
+.name {
+  display: block;
+  color: var(--gray-text);
 }
 
 .badge {

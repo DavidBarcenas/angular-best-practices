@@ -11,21 +11,12 @@ import {environment} from '@env/environment';
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  columns = [
-    {name: 'apellido materno', key: 'secondLastName'},
-    {name: 'apellido paterno', key: 'lastName'},
-    {name: 'nombre', key: 'name'},
-    {name: 'correo', key: 'email'},
-    {name: 'rol', key: ['role', 'name']},
-    {name: 'estatus', key: 'status'},
-    {name: 'fecha ingreso', key: 'dateCreated'},
-    {name: 'acciones', key: ''},
-  ];
-  data!: Observable<any>;
+  dataSource!: Observable<any>;
+  displayedColumns: string[] = ['name', 'rol', 'status', 'joinedDate', 'actions'];
 
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.data = this.api.get(environment.users + '?PageNumber=1&PageSize=10');
+    this.dataSource = this.api.get(environment.users + '?PageNumber=1&PageSize=10');
   }
 }

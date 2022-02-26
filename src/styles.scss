@@ -6,6 +6,7 @@
   --red600: #de0108;
   --gray-text: #181c32;
   --gray-light-text: #a1a5b7;
+  --gray-dark-text: #7e8299;
   --padding-top: 56px;
   --bg: #f5f8fa;
 }
@@ -86,20 +87,6 @@ mat-form-field {
   background: var(--bg);
 }
 
-th.mat-header-cell {
-  color: var(--gray-light-text);
-  font-weight: 600;
-  text-transform: uppercase;
-  line-height: 1.5715;
-  padding: 1rem !important;
-}
-
-tr.mat-row td.mat-cell {
-  color: var(--gray-text);
-  line-height: 1.5715;
-  padding: 1rem;
-}
-
 .mat-icon-button.btn-action {
   background-color: var(--bg);
   color: var(--gray-light-text);
@@ -116,4 +103,41 @@ tr.mat-row td.mat-cell {
 
 .text-right {
   text-align: right !important;
+}
+
+th.mat-header-cell {
+  color: var(--gray-light-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.5715;
+  padding: 1rem !important;
+}
+
+tr.mat-row td.mat-cell {
+  color: var(--gray-dark-text);
+  line-height: 1.5715;
+  padding: 1rem;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  padding-left: 0 !important;
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 0 !important;
+}
+
+.grid-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.grid {
+  width: 100%;
 }
