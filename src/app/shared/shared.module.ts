@@ -4,11 +4,18 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {components} from './components';
 import {directives} from './directives';
-import { FlatObjectPipe } from './pipes/flat-object.pipe';
+import {pipes} from './pipes';
 
 @NgModule({
-  declarations: [...components, ...directives, FlatObjectPipe],
+  declarations: [...components, ...directives, ...pipes],
   imports: [CommonModule, ReactiveFormsModule, ...MaterialModules],
-  exports: [CommonModule, ReactiveFormsModule, ...MaterialModules, ...components, ...directives],
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ...MaterialModules,
+    ...components,
+    ...directives,
+    ...pipes,
+  ],
 })
 export class SharedModule {}

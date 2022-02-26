@@ -5,11 +5,11 @@ import {Pipe, PipeTransform} from '@angular/core';
   name: 'flatObject',
 })
 export class FlatObjectPipe implements PipeTransform {
-  transform(value: any, key: string | string[]): any {
+  transform(obj: any, key: string | string[]): any {
     if (Array.isArray(key)) {
-      return this.flatten(key, value);
+      return this.flatten(key, obj);
     }
-    return value[key];
+    return obj[key];
   }
 
   private flatten(keys: string[], obj: any) {
