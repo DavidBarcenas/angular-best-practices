@@ -12,7 +12,7 @@ import {environment} from '@env/environment';
 })
 export class UsersListComponent implements OnInit {
   dataSource!: Observable<any>;
-  displayedColumns: string[] = ['name', 'rol', 'status', 'joinedDate', 'actions'];
+  displayedColumns: string[] = ['name', 'email', 'rol', 'status', 'joinedDate', 'actions'];
 
   constructor(private api: ApiService) {}
 

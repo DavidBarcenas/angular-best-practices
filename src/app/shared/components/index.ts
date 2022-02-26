@@ -1,4 +1,5 @@
 import {AlertComponent} from './alert/alert.component';
+import {BadgeComponent} from './ui/badge/badge.component';
 import {ButtonComponent} from './ui/button/button.component';
 import {ConfirmModalComponent} from './confirm-modal/confirm-modal.component';
 import {DeleteButtonComponent} from './delete-button/delete-button.component';
@@ -16,4 +17,5 @@ export const components = [
   SectionComponent,
   SpinnerComponent,
   GridComponent,
+  BadgeComponent,
 ];
