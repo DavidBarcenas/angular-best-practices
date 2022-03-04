@@ -1,19 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Component, OnInit} from '@angular/core';
 
-import {ApiService} from '@data/services/api.service';
 import {GridColumns} from '@shared/interfaces/grid.interface';
 import {Observable} from 'rxjs';
 import {User} from '@data/interfaces/user.interface';
+import {UsersService} from '../services/users.service';
 import {environment} from '@env/environment';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],
+  providers: [UsersService],
 })
 export class UsersListComponent implements OnInit {
-  dataSource!: Observable<any>;
+  dataSource!: Observable<User[]>;
   columns: GridColumns[] = [
     {name: 'nombre', key: 'name'},
     {name: 'correo', key: 'email'},
@@ -23,11 +23,9 @@ export class UsersListComponent implements OnInit {
     {name: 'actions', key: ''},
   ];
 
-  constructor(private api: ApiService) {}
+  constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
-    this.api
-      .get<User[]>(environment.users + '?PageNumber=1&PageSize=10')
-      .subscribe(res => console.log(res));
+    this.dataSource = this.userService.getAll(environment.users + '?PageNumber=1&PageSize=10');
   }
 }
