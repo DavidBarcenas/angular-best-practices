@@ -4,7 +4,6 @@ import {GridColumns} from '@shared/interfaces/grid.interface';
 import {Observable} from 'rxjs';
 import {User} from '@data/interfaces/user.interface';
 import {UsersService} from '../services/users.service';
-import {environment} from '@env/environment';
 
 @Component({
   selector: 'app-users-list',
@@ -26,6 +25,6 @@ export class UsersListComponent implements OnInit {
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
-    this.dataSource = this.userService.getAll(environment.users + '?PageNumber=1&PageSize=10');
+    this.userService.getAll<User>().subscribe(res => console.log(res));
   }
 }
