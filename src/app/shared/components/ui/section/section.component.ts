@@ -8,7 +8,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef} from '@a
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionComponent implements OnInit {
-  @Input() title = '';
+  @Input() sectionTitle = '';
   @Input() headerActions!: TemplateRef<any>;
   constructor() {}
 

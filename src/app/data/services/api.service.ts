@@ -1,5 +1,6 @@
 import {Observable, map} from 'rxjs';
 
+import {ApiResponse} from '@data/interfaces/api-response.interface';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '@env/environment';
@@ -10,10 +11,17 @@ import {environment} from '@env/environment';
 export class ApiService {
   constructor(private readonly http: HttpClient) {}
 
-  get(endpoint: string) {
-    return this.http
-      .get(environment.api + endpoint)
-      .pipe(map((res: any) => (res.data?.length > 0 ? res.data : [])));
+  get<T>(endpoint: string): Observable<T | T[] | null> {
+    return this.http.get<ApiResponse<T>>(environment.api + endpoint).pipe(
+      map(({data, succeeded}) => {
+        if (!succeeded) {
+          if (data instanceof Array) {
+            return [];
+          }
+        }
+        return data;
+      }),
+    );
   }
 
   post<T, K>(endpoint: string, body: K): Observable<T> {
