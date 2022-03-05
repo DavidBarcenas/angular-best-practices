@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable, map} from 'rxjs';
 
 import {GridColumns} from '@shared/interfaces/grid.interface';
-import {Observable} from 'rxjs';
 import {User} from '@data/interfaces/user.interface';
 import {UsersService} from '../services/users.service';
 
@@ -12,19 +12,29 @@ import {UsersService} from '../services/users.service';
   providers: [UsersService],
 })
 export class UsersListComponent implements OnInit {
-  dataSource!: Observable<User[]>;
+  users$!: Observable<User[]>;
   columns: GridColumns[] = [
     {name: 'nombre', key: 'name'},
     {name: 'correo', key: 'email'},
     {name: 'rol', key: ['role', 'name']},
     {name: 'estatus', key: 'status'},
     {name: 'fecha ingreso', key: 'dateCreated'},
-    {name: 'actions', key: ''},
+    {name: 'acciones', key: ''},
   ];
 
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
-    this.userService.getAll<User>().subscribe(res => console.log(res));
+    this.users$ = this.userService.getAll<User>().pipe(map(users => this.transformName(users)));
+  }
+
+  transformName(users: User[]): User[] {
+    const modifiedUsers = users.map(user => {
+      return {
+        ...user,
+        name: `${user.secondLastName} ${user.lastName} ${user.name}`,
+      };
+    });
+    return modifiedUsers;
   }
 }

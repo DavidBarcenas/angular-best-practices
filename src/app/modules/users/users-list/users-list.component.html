@@ -1,5 +1,5 @@
 <app-section sectionTitle="Usuarios" [headerActions]="headerActions">
-  <app-grid [data]="dataSource" [columns]="columns"></app-grid>
+  <app-grid [data]="users$" [columns]="columns"></app-grid>
 </app-section>
 <ng-template #headerActions>
   <app-button mode="light" text="Filtros" icon="filter_alt"></app-button>

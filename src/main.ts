@@ -1,4 +1,4 @@
-import {AppInjector} from '@core/helpers/app-injector';
+import {AppInjector} from '@core/utils/app-injector';
 import {AppModule} from './app/app.module';
 import {enableProdMode} from '@angular/core';
 import {environment} from './environments/environment';
