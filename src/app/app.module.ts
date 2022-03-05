@@ -1,13 +1,12 @@
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {coreComponents, httpInterceptorProviders} from './core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
-import {InterceptorService} from '@core/services/interceptor.service';
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {SharedModule} from '@shared/shared.module';
-import {coreComponents} from './core';
 import {layoutComponents} from './layout';
 
 @NgModule({
@@ -19,13 +18,7 @@ import {layoutComponents} from './layout';
     AppRoutingModule,
     SharedModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true,
-    },
-  ],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

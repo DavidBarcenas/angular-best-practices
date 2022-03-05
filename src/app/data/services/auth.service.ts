@@ -23,6 +23,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<GetTokenResponse> {
+    console.log('ronavar token');
     const token = this.getToken();
     const payload = new RefreshToken(token);
     return this.http
