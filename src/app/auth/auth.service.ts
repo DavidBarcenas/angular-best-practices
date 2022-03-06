@@ -1,5 +1,5 @@
 import {BehaviorSubject, Observable, share, tap} from 'rxjs';
-import {GetToken, GetTokenResponse, RefreshToken} from '@data/models/auth.model';
+import {GetToken, GetTokenResponse, RefreshToken} from '@core/models/auth.model';
 
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';

@@ -1,7 +1,7 @@
 import {CanActivate, Router, UrlTree} from '@angular/router';
 import {Observable, map, take} from 'rxjs';
 
-import {AuthService} from '@data/services/auth.service';
+import {AuthService} from 'src/app/auth/auth.service';
 import {Injectable} from '@angular/core';
 
 const TAKE_FIRST = 1;

@@ -1,9 +1,22 @@
 import {Observable, map} from 'rxjs';
 
-import {ApiResponse} from '@data/interfaces/api-response.interface';
 import {AppInjector} from './app-injector';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '@env/environment';
+
+interface ApiResponse<T> extends ApiPagination {
+  succeeded: boolean;
+  message: string;
+  errors: null;
+  data: T;
+}
+
+interface ApiPagination {
+  pageNumber?: number;
+  pageSize?: number;
+  totalPages?: number;
+  totalItems?: number;
+}
 
 export abstract class AbstractRestService {
   private http: HttpClient;

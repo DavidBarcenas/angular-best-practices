@@ -19,7 +19,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 
-import {AuthService} from '@data/services/auth.service';
+import {AuthService} from 'src/app/auth/auth.service';
 import {Injectable} from '@angular/core';
 import {LoadingService} from '@shared/services/loading/loading.service';
 
