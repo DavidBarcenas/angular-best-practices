@@ -11,7 +11,6 @@ const TAKE_FIRST = 1;
 })
 export class DashboardGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
-
   canActivate(): Observable<boolean | UrlTree> {
     return this.authService.isLoggedIn().pipe(
       take(TAKE_FIRST),
