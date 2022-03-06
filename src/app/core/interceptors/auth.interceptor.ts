@@ -7,6 +7,7 @@ import {
   finalize,
   switchMap,
   take,
+  tap,
   throwError,
 } from 'rxjs';
 import {
@@ -15,6 +16,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
+  HttpResponse,
 } from '@angular/common/http';
 
 import {AuthService} from '@data/services/auth.service';
@@ -48,6 +50,22 @@ export class InterceptorService implements HttpInterceptor {
         return next
           .handle(req)
           .pipe(
+            tap(res => {
+              if (res instanceof HttpResponse) {
+                if (res.body?.message === 'Token was not provided' && isLogged) {
+                  this.authService.refreshToken().pipe(
+                    switchMap(res => {
+                      req = req.clone({
+                        setHeaders: {
+                          Authorization: `Bearer ${res.token}`,
+                        },
+                      });
+                      return next.handle(req);
+                    }),
+                  );
+                }
+              }
+            }),
             catchError((error: HttpErrorResponse) => {
               this.loadingservice.setLoading(false, req.url);
               if (error instanceof HttpErrorResponse) {

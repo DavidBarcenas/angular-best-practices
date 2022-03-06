@@ -13,6 +13,7 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
   invalidCredentials = false;
+  redirectUrl: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -23,7 +24,6 @@ export class AuthService {
   }
 
   refreshToken(): Observable<GetTokenResponse> {
-    console.log('ronavar token');
     const token = this.getToken();
     const payload = new RefreshToken(token);
     return this.http
