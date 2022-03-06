@@ -20,7 +20,7 @@
     "lib": ["es2020", "dom"],
     "paths": {
       "@core/*": ["src/app/core/*"],
-      "@data/*": ["src/app/auth/*"],
+      "@auth/*": ["src/app/auth/*"],
       "@layout/*": ["src/app/layout/*"],
       "@modules/*": ["src/app/modules/*"],
       "@shared/*": ["src/app/shared/*"],

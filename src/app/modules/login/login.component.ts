@@ -1,12 +1,12 @@
 import {FormBuilder, Validators} from '@angular/forms';
 
-import {AlertService} from '@shared/services/alert/alert.service';
-import {AuthService} from 'src/app/auth/auth.service';
+import {AlertService} from '@shared/services';
+import {AuthService} from '@auth/auth.service';
 import {Component} from '@angular/core';
 import {ERROR_MESSAGES} from '@core/constants/error-messages';
-import {GetToken} from '@core/models/auth.model';
+import {GetToken} from '@core/models';
 import {Router} from '@angular/router';
-import {ValidateEmail} from '@core/utils/validators';
+import {ValidateEmail} from '@core/utils';
 
 const UNAUTHORIZED_STATUS = 401;
 
