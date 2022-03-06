@@ -13,7 +13,6 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
   invalidCredentials = false;
-  redirectUrl: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 

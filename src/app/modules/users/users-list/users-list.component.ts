@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable, map} from 'rxjs';
 
 import {GridColumns} from '@shared/interfaces/grid.interface';
-import {User} from '@data/interfaces/user.interface';
+import {User} from '@data/models/user.model';
 import {UsersService} from '../services/users.service';
 
 @Component({

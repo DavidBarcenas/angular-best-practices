@@ -1,6 +1,6 @@
 import {Component, Host, Input, Optional} from '@angular/core';
 import {FormGroupDirective} from '@angular/forms';
-import {ERROR_MESSAGES} from '@data/constants/error-messages';
+import {ERROR_MESSAGES} from '@core/constants/error-messages';
 
 @Component({
   selector: 'app-field-errors',

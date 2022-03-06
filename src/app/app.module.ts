@@ -5,12 +5,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
+import {LoginComponent} from '@modules/login/login.component';
 import {NgModule} from '@angular/core';
 import {SharedModule} from '@shared/shared.module';
 import {layoutComponents} from './layout';
 
 @NgModule({
-  declarations: [AppComponent, coreComponents, layoutComponents],
+  declarations: [AppComponent, LoginComponent, coreComponents, layoutComponents],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
