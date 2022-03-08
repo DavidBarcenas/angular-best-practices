@@ -33,13 +33,13 @@ export class LoginComponent {
       return;
     }
     const payload = new GetToken(this.form.value.email);
-    this.authService.login(payload).subscribe(
-      res => {
-        if (res.token) {
+    this.authService.login(payload).subscribe({
+      next: ({token}) => {
+        if (token) {
           this.router.navigate(['/dashboard']);
         }
       },
-      error => {
+      error: error => {
         if (error.status === UNAUTHORIZED_STATUS) {
           this.alertService.open({
             type: 'error',
@@ -47,6 +47,6 @@ export class LoginComponent {
           });
         }
       },
-    );
+    });
   }
 }
