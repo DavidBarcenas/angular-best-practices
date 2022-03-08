@@ -36,7 +36,7 @@ export class LoginComponent {
     this.authService.login(payload).subscribe({
       next: ({token}) => {
         if (token) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/']);
         }
       },
       error: error => {
