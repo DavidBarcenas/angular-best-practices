@@ -1,7 +1,7 @@
 import {FormBuilder, Validators} from '@angular/forms';
 
 import {AlertService} from '@shared/services';
-import {AuthService} from '@auth/auth.service';
+import {AuthService} from '@core/auth.service';
 import {Component} from '@angular/core';
 import {ERROR_MESSAGES} from '@core/constants/error-messages';
 import {GetToken} from '@core/models';
