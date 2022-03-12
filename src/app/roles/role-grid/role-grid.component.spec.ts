@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoleGridComponent } from './role-grid.component';
+import {RoleGridComponent} from './role-grid.component';
 
 describe('RoleGridComponent', () => {
   let component: RoleGridComponent;
@@ -8,9 +8,8 @@ describe('RoleGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoleGridComponent ]
-    })
-    .compileComponents();
+      declarations: [RoleGridComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
