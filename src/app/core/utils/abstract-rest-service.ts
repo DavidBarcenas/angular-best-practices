@@ -1,7 +1,7 @@
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, map} from 'rxjs';
 
 import {AppInjector} from './app-injector';
-import {HttpClient} from '@angular/common/http';
 import {environment} from '@env/environment';
 
 interface ApiResponse<T> extends ApiPagination {
@@ -18,16 +18,29 @@ interface ApiPagination {
   totalItems?: number;
 }
 
+const DEFAULT_ITEMS_PER_PAGE = 10;
+const DEFAULT_CURRENT_PAGE = 1;
+
 export abstract class AbstractRestService {
   private http: HttpClient;
+  currentPage = DEFAULT_CURRENT_PAGE;
+
   constructor(private endpoint: string) {
     const injector = AppInjector.getInjector();
     this.http = injector.get(HttpClient);
   }
 
-  getAll<T>(): Observable<T[]> {
+  getAll<T>(
+    currentPage = DEFAULT_CURRENT_PAGE,
+    itemsPerPage = DEFAULT_ITEMS_PER_PAGE,
+  ): Observable<T[]> {
+    let params = new HttpParams();
+    if (currentPage) {
+      params = params.append('pageNumber', currentPage);
+      params = params.append('pageSize', itemsPerPage);
+    }
     return this.http
-      .get<ApiResponse<T[]>>(environment.api + this.endpoint)
+      .get<ApiResponse<T[]>>(environment.api + this.endpoint, {params})
       .pipe(map(({succeeded, data}) => (!succeeded ? [] : data)));
   }
 }

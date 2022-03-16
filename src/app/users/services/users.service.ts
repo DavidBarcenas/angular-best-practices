@@ -5,6 +5,6 @@ import {environment} from '@env/environment';
 @Injectable()
 export class UsersService extends AbstractRestService {
   constructor() {
-    super(environment.users + '?PageNumber=1&PageSize=10');
+    super(environment.users);
   }
 }

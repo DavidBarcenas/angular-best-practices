@@ -25,7 +25,9 @@ export class UsersListComponent implements OnInit {
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
-    this.users$ = this.userService.getAll<User>().pipe(map(users => this.transformName(users)));
+    this.users$ = this.userService
+      .getAll<User>(this.userService.currentPage)
+      .pipe(map(users => this.transformName(users)));
   }
 
   transformName(users: User[]): User[] {
