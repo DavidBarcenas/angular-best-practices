@@ -1,6 +1,6 @@
 # Email Validator
 
-### validators.ts
+validators.ts
 ```js
 import {AbstractControl, ValidationErrors} from '@angular/forms';
 
@@ -11,7 +11,7 @@ export function ValidateEmail(control: AbstractControl): ValidationErrors | null
 }
 ```
 
-### login.ts
+login.ts
 ```js
 import { ValidateEmail } from './validators';
 
@@ -21,7 +21,7 @@ form = this.fb.group({
 });
 ```
 
-### login.html
+login.html
 ```html
 <form [formGroup]="form">
   <input type="email" formControlName="email" />

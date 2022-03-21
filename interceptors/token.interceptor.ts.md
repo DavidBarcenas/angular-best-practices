@@ -1,6 +1,6 @@
 # Token Interceptor
 
-### auth.interceptor.ts
+auth.interceptor.ts
 ```js
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {BehaviorSubject, Observable, catchError, filter, switchMap, take, throwError} from 'rxjs';
@@ -80,14 +80,14 @@ export class TokenInterceptor implements HttpInterceptor {
 }
 ```
 
-### auth.service.ts
+auth.service.ts
 ```js
 import {BehaviorSubject, Observable, share} from 'rxjs';
 
 const JWT_TOKEN = 'JWT_TOKEN';
 
 export class AuthService {
-  loginSubject = new BehaviorSubject<boolean>(this.hasToken());
+  loginSubject = new BehaviorSubject<boolean>(!!this.getToken());
 
   isLoggedIn(): Observable<boolean> {
     return this.loginSubject.asObservable().pipe(share());
@@ -102,7 +102,7 @@ export class AuthService {
   }
 
   removeToken(): void {
-    localStorage.removeItem(this.JWT_TOKEN);
+    localStorage.removeItem(JWT_TOKEN);
   }
 
   logout(): void {
