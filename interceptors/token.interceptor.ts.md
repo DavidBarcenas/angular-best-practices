@@ -1,7 +1,11 @@
-import {BehaviorSubject, Observable, catchError, filter, switchMap, take, throwError} from 'rxjs';
+# Token Interceptor
+
+### auth.interceptor.ts
+```js
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {BehaviorSubject, Observable, catchError, filter, switchMap, take, throwError} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {AuthService} from '@core/auth.service';
+import {AuthService} from './auth.service';
 
 const UNAUTHORIZED_STATUS = 401;
 const TAKE_FIRST = 1;
@@ -74,3 +78,37 @@ export class TokenInterceptor implements HttpInterceptor {
     );
   }
 }
+```
+
+### auth.service.ts
+```js
+import {BehaviorSubject, Observable, share} from 'rxjs';
+
+const JWT_TOKEN = 'JWT_TOKEN';
+
+export class AuthService {
+  loginSubject = new BehaviorSubject<boolean>(this.hasToken());
+
+  isLoggedIn(): Observable<boolean> {
+    return this.loginSubject.asObservable().pipe(share());
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(JWT_TOKEN);
+  }
+
+  refreshToken(): Observable<RefreshToken> {
+    // ...Petición para renovar el token
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+  logout(): void {
+    this.removeToken();
+    this.loginSubject.next(false);
+    this.router.navigateByUrl('/login');
+  }
+}
+```

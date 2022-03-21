@@ -1,8 +1,7 @@
 # Email Validator
 
+### validators.ts
 ```js
-// validators.ts
-
 import {AbstractControl, ValidationErrors} from '@angular/forms';
 
 export function ValidateEmail(control: AbstractControl): ValidationErrors | null {
@@ -11,9 +10,9 @@ export function ValidateEmail(control: AbstractControl): ValidationErrors | null
   return emailIsValid ? null : { invalidEmail: 'The email is invalid' };
 }
 ```
-```js
-// login.ts
 
+### login.ts
+```js
 import { ValidateEmail } from './validators';
 
 form = this.fb.group({
@@ -22,15 +21,15 @@ form = this.fb.group({
 });
 ```
 
+### login.html
 ```html
-<!-- login.html -->
-
 <form [formGroup]="form">
   <input type="email" formControlName="email" />
-  <span *ngIf="form.get('email')?.errors?.invalidEmail && form.get('email')?.touched">El correo es inválido</span >
+  <span *ngIf="form.get('email')?.errors?.invalidEmail && form.get('email')?.touched">El correo es inválido</span>
 
   <input type="password" formControlName="password" />
-  <span *ngIf="form.get('password')?.errors?.required && form.get('password')?.touched">El correo es inválido</span >
-  <button>Submit</button>
+  <span *ngIf="form.get('password')?.errors?.required && form.get('password')?.touched">El campo es requerido</span>
+
+  <button>Acceder</button>
 </form>
 ```
