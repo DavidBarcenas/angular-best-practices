@@ -11,7 +11,7 @@ export function ValidateEmail(control: AbstractControl): ValidationErrors | null
 }
 ```
 
-login.ts
+login.component.ts
 ```js
 import { ValidateEmail } from './validators';
 
@@ -21,7 +21,7 @@ form = this.fb.group({
 });
 ```
 
-login.html
+login.component.html
 ```html
 <form [formGroup]="form">
   <input type="email" formControlName="email" />
