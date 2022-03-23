@@ -3,7 +3,7 @@
 Componente para mostrar errores de inputs de formularios reactivos.
 
 <div align="center">
-  <img src="./.static/field-errors.gif" alt="Field errors">
+  <img src="../.static/field-errors.gif" alt="Field errors">
 </div>
 
 Sin el componente
