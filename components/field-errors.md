@@ -10,13 +10,14 @@ Sin el componente
 ```html
 <input type="text" formControlName="name" />
 <span *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.touched">El campo es requerido</span>
-<!-- ...definir cada error -->
+<!-- definir cada error... -->
 ```
 
 Con el componente
 ```html
 <input type="text" formControlName="name" />
 <app-field-errors field="name"></app-field-errors>
+<!-- solo se necesita pasar el formControlName a la propiedad field -->
 ```
 
 ## Configuración
