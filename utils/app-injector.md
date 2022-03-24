@@ -17,6 +17,12 @@ export class AppInjector {
   }
 }
 ```
+some-class.ts
+```js
+// ejemplo de la inyección de http-client
+const injector = AppInjector.getInjector();
+this.http = injector.get(HttpClient);
+```
 
 main.ts
 

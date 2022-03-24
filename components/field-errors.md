@@ -19,11 +19,13 @@ Con el componente
 <app-field-errors field="name"></app-field-errors>
 ```
 
+## Configuración
+
 field-errors.component.ts
 ```js
 import {Component, Host, Input, Optional} from '@angular/core';
 import {FormGroupDirective} from '@angular/forms';
-import {ERROR_MESSAGES} from '@core/constants/error-messages';
+import {ERROR_MESSAGES} from './constants';
 
 @Component({
   selector: 'app-field-errors',
