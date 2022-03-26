@@ -1,5 +1,6 @@
 # Autofocus
 
+autofocus.directive.ts
 ```js
 import {ChangeDetectorRef, Directive, ElementRef} from '@angular/core';
 
@@ -16,6 +17,7 @@ export class AutofocusDirective {
 }
 ```
 
+example.component.html
 ```html
 <input type="text" autofocus />
 ```
