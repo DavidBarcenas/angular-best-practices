@@ -2,6 +2,10 @@
 
 Ejemplo de un componente plantilla el cual sirve para crear una estructura general de alguna sección y tener homologado el mismo estilo. Dejando que todo el contenido sea dinámico.
 
+<div>
+  <img src="../.static/section.gif" alt="Section component">
+</div>
+
 section.component.html
 ```html
 <section>

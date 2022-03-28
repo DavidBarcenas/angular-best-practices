@@ -2,25 +2,17 @@
 
 Componente para mostrar errores de inputs de formularios reactivos.
 
-<div align="center">
+<div>
   <img src="../.static/field-errors.gif" alt="Field errors">
 </div>
 
-Sin el componente
-```html
-<input type="text" formControlName="name" />
-<span *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.touched">El campo es requerido</span>
-<!-- definir cada error... -->
-```
 
-Con el componente
+field-errors.component.html
 ```html
-<input type="text" formControlName="name" />
-<app-field-errors field="name"></app-field-errors>
-<!-- solo se necesita pasar el formControlName a la propiedad field -->
+<ng-container *ngIf="error">
+  {{ error }}
+</ng-container>
 ```
-
-## Configuración
 
 field-errors.component.ts
 ```js
@@ -63,13 +55,6 @@ export class FieldErrorsComponent {
 }
 ```
 
-field-errors.component.html
-```html
-<ng-container *ngIf="error">
-  {{ error }}
-</ng-container>
-```
-
 constants.ts
 ```js
 // El objetivo de este archivo es tener todos los 
@@ -82,4 +67,19 @@ export const ERROR_MESSAGES: Record<string, string> = {
   invalidEmail: 'El correo es inválido',
   invalidCredentials: 'El correo y/o la contraseña son incorrectos',
 };
+```
+
+### Uso
+
+```html
+<input type="text" formControlName="name" />
+<app-field-errors field="name"></app-field-errors>
+<!-- solo se necesita pasar el formControlName a la propiedad field -->
+```
+
+Sin el componente
+```html
+<input type="text" formControlName="name" />
+<span *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.touched">El campo es requerido</span>
+<!-- definir cada error... -->
 ```
