@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./angular-logo.png" alt="Angular" width="100">
+  <img src="./.static/angular-logo.png" alt="Angular" width="100">
   <h1>Angular Utility Templates</h1>
 </div>
 

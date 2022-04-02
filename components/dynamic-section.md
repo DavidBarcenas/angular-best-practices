@@ -22,7 +22,7 @@ section.component.html
 </section>
 
 <ng-template #defaultHeader>
-  <!-- Mostrar botones para gregar o filtrar -->
+  <!-- Mostrar botones para agregar o filtrar -->
 </ng-template>
 
 <ng-template #defaultFooter>
