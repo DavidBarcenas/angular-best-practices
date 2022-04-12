@@ -1,6 +1,6 @@
 # Custom input
 
-Muchas veces necesitamos un input personalizado, por ejemplo un input de fecha, un input de hora, un input de color, etc. Pero no queremos estar copiando y pegando el mismo código en diferentes formularios, entonces, creamos un componente. Y para hacer mejor la experiencia de desarrollo implementaremos la interfaz de Control Value Accessor para que se comporte como un input cualquiera y funcione en cualquier formulario de angular.
+Muchas veces necesitamos un input personalizado, por ejemplo un input de fecha, un input de hora, un input de color, etc. Pero no queremos estar copiando y pegando el mismo código en diferentes formularios, entonces, creamos un componente; y para hacer mejor la experiencia de desarrollo implementaremos la interfaz de Control Value Accessor para que se comporte como un input cualquiera y funcione en cualquier formulario de angular.
 
 custom-input.component.html
 ```html
