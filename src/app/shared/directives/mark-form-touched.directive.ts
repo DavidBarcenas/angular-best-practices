@@ -2,7 +2,7 @@ import { Directive, HostListener, Self } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 
 @Directive({
-  selector: '[appMarkFormTouched]'
+  selector: '[appMarkFormTouched]',
 })
 export class MarkFormTouchedDirective {
   @HostListener('submit')
@@ -10,6 +10,5 @@ export class MarkFormTouchedDirective {
     this.container.control?.markAllAsTouched();
   }
 
-  constructor(@Self() private container: ControlContainer) { }
-
+  constructor(@Self() private container: ControlContainer) {}
 }

@@ -5,8 +5,6 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [MarkFormTouchedDirective, AutofocusDirective],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
 })
-export class SharedModule { }
+export class SharedModule {}
