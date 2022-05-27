@@ -5,7 +5,12 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { InputErrorComponent } from './components/input-error/input-error.component';
 
 @NgModule({
-  declarations: [MarkFormTouchedDirective, AutofocusDirective, InputErrorComponent],
+  declarations: [
+    MarkFormTouchedDirective,
+    AutofocusDirective,
+    InputErrorComponent,
+  ],
   imports: [CommonModule],
+  exports: [InputErrorComponent],
 })
 export class SharedModule {}
