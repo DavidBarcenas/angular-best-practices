@@ -1,6 +1,6 @@
 import { Component, Host, Input, OnInit, Optional } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
-import { ERROR_MESSAGES } from '../../utils/input-errors';
+import { ERROR_MESSAGES } from '../../utils/messages';
 
 @Component({
   selector: 'app-input-error',
@@ -34,10 +34,10 @@ export class InputErrorComponent implements OnInit {
     let firstError: string | null = null;
 
     if (control && this.formContainer.submitted) {
-      const defaultErrors = this.errors || ERROR_MESSAGES;
-      Object.keys(defaultErrors).some(error => {
+      const controlErrors = this.errors || ERROR_MESSAGES;
+      Object.keys(controlErrors).some(error => {
         if (control.hasError(error)) {
-          firstError = defaultErrors[error];
+          firstError = controlErrors[error];
           return true;
         }
         return false;
