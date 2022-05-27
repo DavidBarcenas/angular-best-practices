@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MarkFormTouchedDirective } from './directives/mark-form-touched.directive';
-import { AutofocusDirective } from './directives/autofocus.directive';
-import { InputErrorComponent } from './components/input-error/input-error.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { directives } from './directives';
+import { components } from './components';
 
 @NgModule({
-  declarations: [
-    MarkFormTouchedDirective,
-    AutofocusDirective,
-    InputErrorComponent,
-  ],
+  declarations: [directives, components],
   imports: [CommonModule, ReactiveFormsModule],
-  exports: [ReactiveFormsModule, InputErrorComponent],
+  exports: [ReactiveFormsModule, directives, components],
 })
 export class SharedModule {}
