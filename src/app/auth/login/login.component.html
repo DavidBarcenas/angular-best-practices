@@ -1,12 +1,28 @@
-<form [formGroup]="form">
-  <div>
-    <label for="email">Email</label>
-    <input type="email" id="email">
-    <app-input-error field="email"></app-input-error>
+<div class="auth">
+  <div class="auth-bg"></div>
+  <div class="auth-form">
+    <h1>Utilidades de Angular</h1>
+    <h2>Hola, bienvenido de nuevo</h2>
+    <p>Usa el correo <b>admin@utils.com</b> y la contraseña <b>root</b> para continuar.</p>
+    <form>
+      <div>
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email">
+      </div>
+      <div>
+        <label for="pswd">Contraseña</label>
+        <input type="password" id="pswd">
+      </div>
+      <div>
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Recordar</label>
+      </div>
+      <span>¿Olvidaste tu contraseña?</span>
+      <button>Continuar</button>
+    </form>
+    <span>También puedes iniciar sesión con</span>
+    <div>Gmail</div>
+    <div>Facebook</div>
+    <div>Twitter</div>
   </div>
-  <div>
-    <label for="psswd">Password</label>
-    <input type="password" id="psswd">
-  </div>
-  <button type="submit">Log in</button>
-</form>
+</div>
