@@ -4,9 +4,9 @@ module.exports = {
     project: 'tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin', "prettier"],
+  plugins: ['@typescript-eslint/eslint-plugin', 'prettier'],
   extends: [
-    "eslint:recommended",
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
@@ -17,6 +17,6 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
-    "no-multiple-empty-lines": ["warn", { "max": 2, "maxEOF": 1 }],
+    'no-multiple-empty-lines': ['warn', { max: 2, maxEOF: 1 }],
   },
 };
