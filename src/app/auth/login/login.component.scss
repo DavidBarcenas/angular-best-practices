@@ -33,14 +33,33 @@
   
   h1 {
     color: #fff;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 2rem;
     margin-left: 1rem;
+    letter-spacing: 1px;
   }
 }
 
 .auth-form {
   background-color: #fff;
-  min-width: 420px;
-  padding: 30px;
+  width: 500px;
+  padding: 3.5rem;
+
+  h2 {
+    font-weight: 600;
+  }
+
+  p {
+    background: #f8f5ff;
+    color: #7239ea;
+    padding: 1.5rem;
+    font-size: .9rem;
+    border-radius: 0.475rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+
+    b {
+      font-weight: 600;
+    }
+  }
 }
