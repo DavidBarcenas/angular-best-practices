@@ -25,7 +25,13 @@ h1, h2, h3, h4, h5, h6 {
   label {
     display: inline-block;
     margin-bottom: .3rem;
-    font-weight: 600;
+    font-size: .95rem;
+
+    &.required::after {
+      content: "*";
+      color: red;
+      margin-left: .3rem;
+    }
   }
 
   input {
@@ -42,5 +48,33 @@ h1, h2, h3, h4, h5, h6 {
     &:focus {
       outline: none;
     }
+  }
+}
+
+.btn {
+  background-color: #4f46e5;
+  color: #fff;
+  display: inline-block;
+  padding: 0.825rem 1.3rem;
+  border: none;
+  border-radius: 0.425rem;
+  box-sizing: border-box;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &-block {
+    display: block;
+    width: 100%;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #4338ca;
   }
 }
