@@ -1,40 +1,43 @@
 @import 'vars';
 
 .auth {
-  height: 100vh;
-  width: 100vw;
   background: $gray-800;
   position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  min-height: 100vh;
 
   .bg-circles,
-  .bg-pattern  {
+  .bg-pattern {
     position: absolute;
     color: $gray-700;
   }
 
   .bg-circles {
-    height: 100vh;
-    width: 100vw;
-    opacity: .25;
+    opacity: 0.25;
   }
-  
+
   .bg-pattern {
     top: 0;
     left: 0;
   }
 
-  &-container {
+  &-wrap {
     position: relative;
   }
 }
 
 .auth-title {
   margin-bottom: 1.5rem;
-  
+
+  img {
+    width: 50px;
+  }
+
   h1 {
     color: #fff;
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-left: 1rem;
     letter-spacing: 1px;
   }
@@ -43,18 +46,18 @@
 .auth-form {
   background-color: #fff;
   border-radius: 0.375rem;
-  width: 500px;
-  padding: 3.5rem;
+  padding: 2rem 1rem;
 
   h2 {
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 1.2rem;
   }
 
   p {
     background: #f8f5ff;
     color: #7239ea;
     padding: 1.5rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     border-radius: 0.475rem;
     font-weight: normal;
     margin-bottom: 2rem;
@@ -63,4 +66,13 @@
       font-weight: 600;
     }
   }
+}
+
+.remember {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.btn {
+  margin-bottom: 2rem;
 }
