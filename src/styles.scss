@@ -21,6 +21,18 @@ h5,
 h6 {
   margin: 0;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: inline-block;
+  margin: 0;
+}
+
 .d-center,
 .d-between {
   display: flex;

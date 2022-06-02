@@ -69,10 +69,43 @@
 }
 
 .remember {
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
+
+  a {
+    font-size: 0.85rem;
+  }
 }
 
 .btn {
   margin-bottom: 2rem;
+}
+
+.social-signin-text {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-buttons li {
+  display: block;
+  text-align: center;
+  padding: 0.75rem;
+  background-color: #f5f8fa;
+  color: #7e8299;
+  border-radius: 0.625rem;
+  margin-bottom: 1rem;
+
+  img {
+    width: 25px;
+    vertical-align: middle;
+    margin-right: 0.75rem;
+  }
+
+  span {
+    display: inline-block;
+    font-size: 0.95rem;
+  }
 }
