@@ -54,8 +54,8 @@
   }
 
   p {
-    background: #f8f5ff;
-    color: #7239ea;
+    background: $purple-100;
+    color: $purple-500;
     padding: 1.5rem;
     font-size: 0.9rem;
     border-radius: 0.475rem;
@@ -73,13 +73,23 @@
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
 
+  label {
+    display: flex;
+    align-items: center;
+  }
+
+  input[type='checkbox'] {
+    margin-right: 0.5rem;
+  }
+
   a {
     font-size: 0.85rem;
+    color: $purple-500;
   }
 }
 
 .btn {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .social-signin-text {
@@ -93,8 +103,8 @@
   display: block;
   text-align: center;
   padding: 0.75rem;
-  background-color: #f5f8fa;
-  color: #7e8299;
+  background-color: $gray-100;
+  color: $gray-500;
   border-radius: 0.625rem;
   margin-bottom: 1rem;
 
@@ -106,6 +116,6 @@
 
   span {
     display: inline-block;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 }

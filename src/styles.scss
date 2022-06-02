@@ -1,3 +1,5 @@
+@import 'vars';
+
 * {
   box-sizing: border-box;
 }
@@ -11,6 +13,7 @@ body {
   width: 100vw;
   font-family: Poppins, Helvetica, 'sans-serif';
   overflow-x: hidden;
+  color: $text-color;
 }
 
 h1,
@@ -31,6 +34,10 @@ ul {
 img {
   display: inline-block;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 .d-center,
@@ -63,7 +70,7 @@ img {
   height: 100%;
 }
 
-f.label {
+.f-label {
   display: inline-block;
   margin-bottom: 0.3rem;
   font-size: 0.95rem;
