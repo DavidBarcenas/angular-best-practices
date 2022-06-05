@@ -140,6 +140,19 @@ a {
   }
 }
 
+.link {
+  color: var(--purple-500);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .error {
   border-color: var(--red);
+}
+
+.m-0 {
+  margin: 0;
 }

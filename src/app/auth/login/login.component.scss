@@ -50,26 +50,22 @@
 
   @include mq(lg) {
     padding: 3rem;
-    max-width: 500px;
+    width: 500px;
   }
 
   h2 {
-    font-weight: 500;
-    font-size: 1.35rem;
+    font-weight: 600;
+    font-size: 1.4rem;
   }
 
   p {
-    background: var(--purple-100);
-    color: var(--purple-500);
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    border-radius: 0.475rem;
-    font-weight: normal;
     margin-bottom: 2rem;
+    font-size: 1.05rem;
+    color: var(--gray-500);
+  }
 
-    b {
-      font-weight: 600;
-    }
+  a {
+    font-weight: 500;
   }
 }
 
