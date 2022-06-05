@@ -52,25 +52,45 @@
           Usa el correo <b>admin@utils.com</b> y la contraseña <b>root</b> para
           continuar.
         </p>
-        <form>
+        <form
+          [formGroup]="form"
+          novalidate
+          autocomplete="off"
+          (ngSubmit)="handleSubmit()"
+        >
           <div class="form-group">
             <label for="email" class="f-label required"
               >Correo electrónico</label
             >
-            <input type="email" id="email" class="f-control" />
+            <input
+              type="email"
+              id="email"
+              class="f-control"
+              formControlName="email"
+              [ngClass]="form.get('email')?.errors ? 'error' : ''"
+            />
           </div>
           <div class="form-group">
             <label for="pswd" class="f-label required">Contraseña</label>
-            <input type="password" id="pswd" class="f-control" />
+            <input
+              type="password"
+              id="pswd"
+              class="f-control"
+              formControlName="psswd"
+            />
           </div>
           <div class="d-between remember">
             <label class="f-label" for="remember-me">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                formControlName="remember"
+              />
               Recordar
             </label>
             <a href="/">¿Olvidaste tu contraseña?</a>
           </div>
-          <button class="btn btn-block">Continuar</button>
+          <button type="submit" class="btn btn-block">Continuar</button>
         </form>
         <span class="social-signin-text">También puedes</span>
         <ul class="social-buttons">
