@@ -97,12 +97,13 @@ a {
   &:active,
   &:focus {
     outline: none;
+    border-color: var(--purple-500);
   }
 }
 
 .btn,
 .btn-light {
-  background-color: #4f46e5;
+  background-color: var(--purple-600);
   color: #fff;
   display: inline-block;
   padding: 0.825rem 1.3rem;
@@ -126,7 +127,7 @@ a {
   }
 
   &:hover {
-    background-color: #4338ca;
+    background-color: var(--purple-700);
   }
 }
 
@@ -135,8 +136,8 @@ a {
   color: var(--gray-500);
 
   &:hover {
-    color: #7e8299;
-    background-color: #eff2f5;
+    color: var(--gray-500);
+    background-color: var(--gray-200);
   }
 }
 
