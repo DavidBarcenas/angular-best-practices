@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Regex } from 'src/app/shared/utils/regex';
 
@@ -7,7 +7,7 @@ import { Regex } from 'src/app/shared/utils/regex';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form!: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -23,10 +23,6 @@ export class LoginComponent implements OnInit {
       ],
       remember: [false, Validators.required],
     });
-  }
-
-  ngOnInit(): void {
-    console.log('LoginComponent');
   }
 
   handleSubmit(): void {
