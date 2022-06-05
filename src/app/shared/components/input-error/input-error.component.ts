@@ -1,4 +1,4 @@
-import { Component, Host, Input, OnInit, Optional } from '@angular/core';
+import { Component, Host, Input, Optional } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
 import { ERROR_MESSAGES } from '../../utils/messages';
 
@@ -7,11 +7,10 @@ import { ERROR_MESSAGES } from '../../utils/messages';
   templateUrl: './input-error.component.html',
   styleUrls: ['./input-error.component.scss'],
 })
-export class InputErrorComponent implements OnInit {
+export class InputErrorComponent {
   @Input() field!: string;
   @Input() errors!: { [idx: string]: string };
   formContainer!: FormGroupDirective;
-  error: string | null = '';
 
   constructor(@Optional() @Host() private reactiveForm: FormGroupDirective) {
     this.formContainer = this.reactiveForm;
@@ -23,13 +22,8 @@ export class InputErrorComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.formContainer.ngSubmit.subscribe(() => {
-      this.error = this.getErrors();
-    });
-  }
-
-  getErrors(): string | null {
+  get error(): string | null {
+    console.log('se ejecuta el perro :: ', this.field);
     const control = this.formContainer.form.controls[this.field];
     let firstError: string | null = null;
 

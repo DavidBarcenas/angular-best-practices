@@ -55,7 +55,7 @@
           [formGroup]="form"
           novalidate
           autocomplete="off"
-          (ngSubmit)="handleSubmit()"
+          (submit)="handleSubmit()"
           #f="ngForm"
         >
           <div class="form-group">
@@ -67,7 +67,7 @@
               id="email"
               class="f-control"
               formControlName="email"
-              [class.error]="form.get('email')?.errors && f.submitted"
+              [class.invalid-field]="form.get('email')?.errors && f.submitted"
             />
             <app-input-error field="email"></app-input-error>
           </div>
@@ -78,7 +78,7 @@
               id="psswd"
               class="f-control"
               formControlName="psswd"
-              [class.error]="form.get('psswd')?.errors && f.submitted"
+              [class.invalid-field]="form.get('psswd')?.errors && f.submitted"
             />
             <app-input-error field="psswd"></app-input-error>
           </div>
@@ -88,7 +88,6 @@
                 type="checkbox"
                 id="remember-me"
                 formControlName="remember"
-                [class.error]="form.get('remember')?.errors && f.submitted"
               />
               Recordar
             </label>

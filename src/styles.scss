@@ -93,10 +93,10 @@ a {
   font-weight: 500;
   font-size: 1rem;
   transition: border calc(var(--animate-duration) / 3) ease-in-out;
+  outline: none;
 
-  &:active,
-  &:focus {
-    outline: none;
+  &:active:not(.invalid-field),
+  &:focus:not(.invalid-field) {
     border-color: var(--purple-500);
   }
 }
@@ -150,7 +150,7 @@ a {
   }
 }
 
-.error {
+.invalid-field {
   border-color: var(--red);
 }
 
