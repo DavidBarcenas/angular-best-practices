@@ -1,4 +1,5 @@
 @import 'vars';
+@import 'mq';
 
 * {
   box-sizing: border-box;
@@ -13,7 +14,7 @@ body {
   width: 100vw;
   font-family: Poppins, Helvetica, 'sans-serif';
   overflow-x: hidden;
-  color: $text-color;
+  color: var(--text-color);
 }
 
 h1,
@@ -77,7 +78,7 @@ a {
 
   &.required::after {
     content: '*';
-    color: red;
+    color: var(--red);
     margin-left: 0.3rem;
   }
 }
@@ -91,6 +92,7 @@ a {
   box-sizing: border-box;
   font-weight: 500;
   font-size: 1rem;
+  transition: border calc(var(--animate-duration) / 3) ease-in-out;
 
   &:active,
   &:focus {
@@ -127,5 +129,5 @@ a {
 }
 
 .error {
-  border-color: red;
+  border-color: var(--red);
 }

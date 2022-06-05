@@ -1,6 +1,6 @@
 .invalid-feedback {
   font-size: 0.725rem;
-  color: #f1416c;
+  color: var(--red);
 }
 
 @keyframes fadeInDown {
@@ -17,6 +17,6 @@
 
 .fadeInDown {
   animation-name: fadeInDown;
-  animation-duration: 0.8s;
+  animation-duration: var(--animate-duration);
   animation-fill-mode: both;
 }

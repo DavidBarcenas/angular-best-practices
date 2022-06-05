@@ -1,7 +1,11 @@
-$gray-100: #f5f8fa;
-$gray-500: #7e8299;
-$gray-700: #334155;
-$gray-800: #1e293b;
-$purple-100: #f8f5ff;
-$purple-500: #7239ea;
-$text-color: #181c32;
+:root {
+  --gray-100: #f5f8fa;
+  --gray-500: #7e8299;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --purple-100: #f8f5ff;
+  --purple-500: #7239ea;
+  --text-color: #181c32;
+  --red: #f1416c;
+  --animate-duration: 0.8s;
+}

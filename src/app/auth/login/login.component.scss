@@ -1,8 +1,7 @@
-@import 'vars';
 @import 'mq';
 
 .auth {
-  background: $gray-800;
+  background: var(--gray-800);
   position: relative;
   overflow: hidden;
   padding: 1rem;
@@ -11,7 +10,7 @@
   .bg-circles,
   .bg-pattern {
     position: absolute;
-    color: $gray-700;
+    color: var(--gray-700);
   }
 
   .bg-circles {
@@ -60,8 +59,8 @@
   }
 
   p {
-    background: $purple-100;
-    color: $purple-500;
+    background: var(--purple-100);
+    color: var(--purple-500);
     padding: 1.5rem;
     font-size: 0.9rem;
     border-radius: 0.475rem;
@@ -90,7 +89,7 @@
 
   a {
     font-size: 0.85rem;
-    color: $purple-500;
+    color: var(--purple-500);
   }
 }
 
@@ -109,8 +108,8 @@
   display: block;
   text-align: center;
   padding: 0.75rem;
-  background-color: $gray-100;
-  color: $gray-500;
+  background-color: var(--gray-100);
+  color: vr(--gray-500);
   border-radius: 0.625rem;
   margin-bottom: 1rem;
 
