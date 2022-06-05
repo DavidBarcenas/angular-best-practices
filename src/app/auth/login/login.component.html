@@ -57,27 +57,31 @@
           novalidate
           autocomplete="off"
           (ngSubmit)="handleSubmit()"
+          #f="ngForm"
         >
           <div class="form-group">
-            <label for="email" class="f-label required"
-              >Correo electrónico</label
-            >
+            <label for="email" class="f-label required">
+              Correo electrónico
+            </label>
             <input
               type="email"
               id="email"
               class="f-control"
               formControlName="email"
-              [ngClass]="form.get('email')?.errors ? 'error' : ''"
+              [class.error]="form.get('email')?.errors && f.submitted"
             />
+            <app-input-error field="email"></app-input-error>
           </div>
           <div class="form-group">
-            <label for="pswd" class="f-label required">Contraseña</label>
+            <label for="psswd" class="f-label required">Contraseña</label>
             <input
               type="password"
-              id="pswd"
+              id="psswd"
               class="f-control"
               formControlName="psswd"
+              [class.error]="form.get('psswd')?.errors && f.submitted"
             />
+            <app-input-error field="psswd"></app-input-error>
           </div>
           <div class="d-between remember">
             <label class="f-label" for="remember-me">
@@ -85,6 +89,7 @@
                 type="checkbox"
                 id="remember-me"
                 formControlName="remember"
+                [class.error]="form.get('remember')?.errors && f.submitted"
               />
               Recordar
             </label>

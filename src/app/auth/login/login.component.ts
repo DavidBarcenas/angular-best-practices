@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
           Validators.maxLength(16),
         ],
       ],
-      remember: [false],
+      remember: [false, Validators.required],
     });
   }
 

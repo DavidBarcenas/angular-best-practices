@@ -30,6 +30,7 @@ export class InputErrorComponent implements OnInit {
   }
 
   getErrors(): string | null {
+    console.log('SE EJECUTA');
     const control = this.formContainer.form.controls[this.field];
     let firstError: string | null = null;
 
