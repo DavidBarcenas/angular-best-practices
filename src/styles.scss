@@ -74,7 +74,7 @@ a {
 .f-label {
   display: inline-block;
   margin-bottom: 0.3rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 
   &.required::after {
     content: '*';
@@ -86,7 +86,7 @@ a {
 .f-control {
   display: block;
   width: 100%;
-  padding: 0.825rem 1.3rem;
+  padding: 0.825rem 1.2rem;
   border: 1px solid #ccc;
   border-radius: 0.425rem;
   box-sizing: border-box;
@@ -100,7 +100,8 @@ a {
   }
 }
 
-.btn {
+.btn,
+.btn-light {
   background-color: #4f46e5;
   color: #fff;
   display: inline-block;
@@ -111,6 +112,7 @@ a {
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
+  text-align: center;
   transition: all 0.2s ease-in-out;
 
   &-block {
@@ -125,6 +127,16 @@ a {
 
   &:hover {
     background-color: #4338ca;
+  }
+}
+
+.btn-light {
+  background-color: var(--gray-100);
+  color: var(--gray-500);
+
+  &:hover {
+    color: #7e8299;
+    background-color: #eff2f5;
   }
 }
 

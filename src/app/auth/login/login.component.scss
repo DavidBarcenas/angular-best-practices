@@ -104,23 +104,12 @@
   margin-bottom: 1.5rem;
 }
 
-.social-buttons li {
-  display: block;
-  text-align: center;
-  padding: 0.75rem;
-  background-color: var(--gray-100);
-  color: vr(--gray-500);
-  border-radius: 0.625rem;
+.social-buttons .btn-light {
   margin-bottom: 1rem;
 
   img {
     width: 25px;
     vertical-align: middle;
     margin-right: 0.75rem;
-  }
-
-  span {
-    display: inline-block;
-    font-size: 0.9rem;
   }
 }

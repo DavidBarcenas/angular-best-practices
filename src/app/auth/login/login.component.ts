@@ -21,7 +21,7 @@ export class LoginComponent {
           Validators.maxLength(16),
         ],
       ],
-      remember: [false, Validators.required],
+      remember: [false],
     });
   }
 
