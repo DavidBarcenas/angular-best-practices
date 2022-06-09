@@ -1,5 +1,6 @@
 import { Component, Host, Input, Optional } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
+import { defaultErrors } from '../../utils/messages';
 
 @Component({
   selector: 'app-input-error',
@@ -22,12 +23,12 @@ export class InputErrorComponent {
   }
 
   get error(): string | null {
-    console.log('se ejecuta el perro :: ', this.field);
+    console.log('se ejecuta');
     const control = this.formContainer.form.controls[this.field];
     let firstError: string | null = null;
 
     if (control && this.formContainer.submitted) {
-      const controlErrors = this.errors; // || ERROR_MESSAGES
+      const controlErrors = this.errors || defaultErrors;
       Object.keys(controlErrors).some(error => {
         if (control.hasError(error)) {
           firstError = controlErrors[error];
