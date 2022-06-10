@@ -23,7 +23,6 @@ export class InputErrorComponent {
   }
 
   get error(): string | null {
-    console.log('se ejecuta');
     const control = this.formContainer.form.controls[this.field];
     let firstError: string | null = null;
 
