@@ -1,48 +1,5 @@
 @import 'mq';
 
-.auth {
-  background: var(--gray-800);
-  position: relative;
-  overflow: hidden;
-  padding: 1rem;
-  min-height: 100vh;
-
-  .bg-circles,
-  .bg-pattern {
-    position: absolute;
-    color: var(--gray-700);
-  }
-
-  .bg-circles {
-    opacity: 0.25;
-  }
-
-  .bg-pattern {
-    top: 0;
-    left: 0;
-  }
-
-  &-wrap {
-    position: relative;
-  }
-}
-
-.auth-title {
-  margin-bottom: 1.5rem;
-
-  img {
-    width: 50px;
-  }
-
-  h1 {
-    color: #fff;
-    font-weight: 500;
-    font-size: 1.8rem;
-    margin-left: 1rem;
-    letter-spacing: 1px;
-  }
-}
-
 .auth-form {
   background-color: #fff;
   border-radius: 0.375rem;
