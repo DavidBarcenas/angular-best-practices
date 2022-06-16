@@ -1,116 +1,59 @@
-<div class="d-center auth">
-  <svg
-    class="w-100 h-100 bg-circles"
-    viewBox="0 0 960 540"
-    width="100%"
-    height="100%"
-    preserveAspectRatio="xMidYMax slice"
-    xmlns="http://www.w3.org/2000/svg"
+<div class="auth-form">
+  <h2 class="text-center">Bienvenido de nuevo</h2>
+  <p class="text-center m-0">
+    ¿Eres nuevo por aquí? <a href="/" class="link">Crea tu cuenta</a>
+  </p>
+  <form
+    [formGroup]="form"
+    novalidate
+    autocomplete="off"
+    (submit)="handleSubmit()"
+    #f="ngForm"
   >
-    <g fill="none" stroke="currentColor" stroke-width="100">
-      <circle r="234" cx="196" cy="491"></circle>
-      <circle r="234" cx="790" cy="23"></circle>
-    </g>
-  </svg>
-  <svg
-    class="bg-pattern"
-    viewBox="0 0 220 192"
-    width="220"
-    height="192"
-    fill="none"
-  >
-    <defs>
-      <pattern
-        id="837c3e70-6c3a-44e6-8854-cc48c737b659"
-        x="0"
-        y="0"
-        width="20"
-        height="20"
-        patternUnits="userSpaceOnUse"
-      >
-        <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
-      </pattern>
-    </defs>
-    <rect
-      width="220"
-      height="192"
-      fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"
-    ></rect>
-  </svg>
-  <div class="d-center w-100 h-100 auth-wrap">
-    <div>
-      <div class="d-center auth-title">
-        <img
-          src="../../../assets/img/angular-logo.png"
-          alt="Angular utilities"
-        />
-        <h1>Utilidades</h1>
-      </div>
-      <div class="auth-form">
-        <h2 class="text-center">Bienvenido de nuevo</h2>
-        <p class="text-center m-0">
-          ¿Eres nuevo por aquí? <a href="/" class="link">Crea tu cuenta</a>
-        </p>
-        <form
-          [formGroup]="form"
-          novalidate
-          autocomplete="off"
-          (submit)="handleSubmit()"
-          #f="ngForm"
-        >
-          <div class="form-group">
-            <label for="email" class="f-label required">
-              Correo electrónico
-            </label>
-            <input
-              type="email"
-              id="email"
-              class="f-control"
-              formControlName="email"
-              [class.invalid-field]="form.get('email')?.errors && f.submitted"
-            />
-            <app-input-error field="email"></app-input-error>
-          </div>
-          <div class="form-group">
-            <label for="psswd" class="f-label required">Contraseña</label>
-            <input
-              type="password"
-              id="psswd"
-              class="f-control"
-              formControlName="psswd"
-              [class.invalid-field]="form.get('psswd')?.errors && f.submitted"
-            />
-            <app-input-error field="psswd"></app-input-error>
-          </div>
-          <div class="d-between remember">
-            <label class="f-label" for="remember-me">
-              <input
-                type="checkbox"
-                id="remember-me"
-                formControlName="remember"
-              />
-              Recordar
-            </label>
-            <a href="/" class="link">¿Olvidaste tu contraseña?</a>
-          </div>
-          <button type="submit" class="btn btn-block">Continuar</button>
-        </form>
-        <span class="social-signin-text">O</span>
-        <div class="social-buttons">
-          <button class="btn-light btn-block">
-            <img src="../../../assets/img/google.png" alt="Google" />
-            Continuar con Google
-          </button>
-          <button class="btn-light btn-block">
-            <img src="../../../assets/img/facebook.png" alt="Facebook" />
-            Continuar con Facebook
-          </button>
-          <button class="btn-light btn-block btn-block">
-            <img src="../../../assets/img/twitter.png" alt="Twitter" />
-            Continuar con Twitter
-          </button>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="email" class="f-label required"> Correo electrónico </label>
+      <input
+        type="email"
+        id="email"
+        class="f-control"
+        formControlName="email"
+        [class.invalid-field]="form.get('email')?.errors && f.submitted"
+      />
+      <app-input-error field="email"></app-input-error>
     </div>
+    <div class="form-group">
+      <label for="psswd" class="f-label required">Contraseña</label>
+      <input
+        type="password"
+        id="psswd"
+        class="f-control"
+        formControlName="psswd"
+        [class.invalid-field]="form.get('psswd')?.errors && f.submitted"
+      />
+      <app-input-error field="psswd"></app-input-error>
+    </div>
+    <div class="d-between remember">
+      <label class="f-label" for="remember-me">
+        <input type="checkbox" id="remember-me" formControlName="remember" />
+        Recordar
+      </label>
+      <a href="/" class="link">¿Olvidaste tu contraseña?</a>
+    </div>
+    <button type="submit" class="btn btn-block">Continuar</button>
+  </form>
+  <span class="social-signin-text">O</span>
+  <div class="social-buttons">
+    <button class="btn-light btn-block">
+      <img src="../../../assets/img/google.png" alt="Google" />
+      Continuar con Google
+    </button>
+    <button class="btn-light btn-block">
+      <img src="../../../assets/img/facebook.png" alt="Facebook" />
+      Continuar con Facebook
+    </button>
+    <button class="btn-light btn-block btn-block">
+      <img src="../../../assets/img/twitter.png" alt="Twitter" />
+      Continuar con Twitter
+    </button>
   </div>
 </div>
