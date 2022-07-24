@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { VerifyCodeComponent } from './verify-code/verify-code.component';
 
 const routes: Routes = [
   {
@@ -9,8 +11,8 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'signup', component: LoginComponent },
-      { path: 'verification', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
+      { path: 'verification', component: VerifyCodeComponent },
       { path: 'email-confirm', component: LoginComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
