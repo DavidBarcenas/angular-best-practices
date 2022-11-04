@@ -1,5 +1,5 @@
-@use '../../../scss/root/colors';
-@use '../../../scss/layout/container';
+@use 'colors';
+@use 'container';
 
 :host {
   background: colors.$g-root__color--primary--01a;

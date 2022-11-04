@@ -33,7 +33,11 @@
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/app/styles"]
+              "includePaths": [
+                "src/app/shared/scss/layout",
+                "src/app/shared/scss/root",
+                "src/app/shared/scss/typography"
+              ]
             }
           },
           "configurations": {

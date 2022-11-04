@@ -1,8 +1,8 @@
-@use 'shared/scss/root/colors';
-@use 'shared/scss/layout/container';
-@use 'shared/scss/layout/grid';
-@use 'shared/scss/typography/headers';
-@use 'shared/scss/typography/paragraphs';
+@use 'colors';
+@use 'container';
+@use 'grid';
+@use 'headers';
+@use 'paragraphs';
 
 // Header
 .header {
