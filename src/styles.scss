@@ -1,5 +1,22 @@
-@import 'vars';
-@import 'mq';
+@use 'styles/colors';
+@use 'styles/mq';
+
+// Root
+// _________________________________________________________________________________________
+@use 'app/shared/scss/root/normalize';
+@use 'app/shared/scss/root/root';
+@use 'app/shared/scss/root/links';
+
+// Layout
+// _________________________________________________________________________________________
+@use 'app/shared/scss/layout/app-header';
+@use 'app/shared/scss/layout/app-footer';
+@use 'app/shared/scss/layout/layout';
+
+// Typography
+// _________________________________________________________________________________________
+@use 'app/shared/scss/typography/headers';
+@use 'app/shared/scss/typography/paragraphs';
 
 * {
   box-sizing: border-box;
