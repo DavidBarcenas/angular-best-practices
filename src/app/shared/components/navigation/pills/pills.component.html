@@ -1,0 +1,18 @@
+<ul class="items">
+  <li
+    *ngFor="let pill of pills; let i = index"
+    class="item"
+    [ngClass]="{ 'item--selected': selectedPill?.label === pill.label }"
+  >
+    <a
+      (click)="togglePill(pill)"
+      class="item__link"
+      [ngClass]="{
+        'item__link--selected':
+          selectedPill?.label === pill.label || (!selectedPill && i === 0)
+      }"
+    >
+      {{ pill.label }}
+    </a>
+  </li>
+</ul>

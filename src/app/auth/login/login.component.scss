@@ -1,11 +1,11 @@
-@import 'mq';
+@use '../../shared/scss/root/mq';
 
 .auth-form {
   background-color: #fff;
   border-radius: 0.375rem;
   padding: 2rem;
 
-  @include mq(lg) {
+  @include mq.media(lg) {
     padding: 3rem;
     width: 500px;
   }

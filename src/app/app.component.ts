@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-utilities';
+  pills = [
+    {
+      label: 'HTML',
+    },
+    {
+      label: 'CSS',
+    },
+    {
+      label: 'SASS',
+    },
+  ];
 }
