@@ -1,6 +1,6 @@
 import { Component, Host, Input, Optional } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
-import { defaultErrors } from '../../utils/messages';
+import { defaultErrors } from '../../../utils/messages';
 
 @Component({
   selector: 'app-input-error',

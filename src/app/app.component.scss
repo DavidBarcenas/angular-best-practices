@@ -1,0 +1,27 @@
+@use 'shared/scss/root/colors';
+@use 'shared/scss/layout/container';
+@use 'shared/scss/layout/grid';
+@use 'shared/scss/typography/headers';
+@use 'shared/scss/typography/paragraphs';
+
+// Header
+.header {
+  background: colors.$g-root__color--secondary--04a;
+  display: block;
+  font-family: arial, sans-serif;
+  overflow: hidden;
+  margin-bottom: 1.8em;
+}
+
+.header__content {
+  @include container.g-layout__container;
+}
+
+.header__title {
+  @include headers.g-root__h1;
+  color: white;
+}
+
+.header__sub-title {
+  color: #888;
+}

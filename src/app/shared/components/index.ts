@@ -1,4 +1,9 @@
-import { InputErrorComponent } from './input-error/input-error.component';
-import { InputCurrencyComponent } from './input-currency/input-currency.component';
+import { InputErrorComponent } from './forms/input-error/input-error.component';
+import { InputCurrencyComponent } from './forms/input-currency/input-currency.component';
+import { NavbarPrimaryComponent } from './navigation/navbar-primary/navbar-primary.component';
 
-export const components = [InputErrorComponent, InputCurrencyComponent];
+export const components = [
+  InputErrorComponent,
+  InputCurrencyComponent,
+  NavbarPrimaryComponent,
+];
