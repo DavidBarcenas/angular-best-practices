@@ -1,7 +1,7 @@
 @use 'links';
 
 :host {
-  border-top: solid 1px #ccc;
+  border-top: solid 0.0625em #ccc;
   display: block;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .item {
-  border: solid 1px #ccc;
+  border: solid 0.0625em #ccc;
   border-top: none;
 }
 
@@ -45,4 +45,10 @@
 // Active
 .item__label--active::after {
   content: '\25b2';
+}
+
+@media (max-width: 58em) {
+  :host {
+    font-size: 0.8125em;
+  }
 }
