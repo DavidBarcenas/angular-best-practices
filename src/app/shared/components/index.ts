@@ -10,6 +10,7 @@ import { TooltipComponent } from './popups/tooltip/tooltip.component';
 import { NavbarSecondaryComponent } from './navigation/navbar-secondary/navbar-secondary.component';
 import { ModalComponent } from './popups/modal/modal.component';
 import { ThumbnailListComponent } from './content/thumbnail-list/thumbnail-list.component';
+import { MessageComponent } from './content/message/message.component';
 
 export const components = [
   InputErrorComponent,
@@ -24,4 +25,5 @@ export const components = [
   NavbarSecondaryComponent,
   ModalComponent,
   ThumbnailListComponent,
+  MessageComponent,
 ];
