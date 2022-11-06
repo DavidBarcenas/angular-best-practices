@@ -71,3 +71,49 @@
 .item:first-child .item__link {
   margin-left: 0;
 }
+
+// Variations
+// _________________________________________________________________________________________
+:host-context(app-modal.color--02) {
+  $color__foreground: white;
+  $color__background: colors.$g-root__color--primary--01a;
+
+  .items {
+    border-bottom-color: $color__foreground;
+  }
+
+  .item__link {
+    border-color: $color__foreground;
+    border-bottom-color: transparent;
+
+    // Inactive
+    &--inactive {
+      background: rgba($color__foreground, 0.3);
+      color: $color__foreground;
+
+      &:hover {
+        background: rgba($color__foreground, 0.5);
+        border-bottom-color: $color__foreground;
+        color: $color__foreground;
+      }
+
+      &:active,
+      &:visited {
+        color: $color__foreground;
+      }
+    }
+
+    // Active
+    &--active {
+      background: $color__background;
+      color: $color__foreground;
+
+      &:hover,
+      &:active,
+      &:visited {
+        background: $color__background;
+        color: $color__foreground;
+      }
+    }
+  }
+}
