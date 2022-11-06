@@ -1,4 +1,5 @@
 @use 'container';
+@use '../shared/scss/mixins';
 
 :host {
   display: block;
@@ -18,15 +19,17 @@
     color: white;
     cursor: pointer;
     text-decoration: none;
-  }
 
-  &__link:hover {
-    color: white;
-    text-decoration: underline;
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
   }
 
   // First
   &:first-child {
     padding-left: 0;
   }
+
+  @include mixins.navigation__search;
 }
