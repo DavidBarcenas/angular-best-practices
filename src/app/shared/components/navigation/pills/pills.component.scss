@@ -18,40 +18,47 @@
   margin: 0 0.2em;
   padding: 0.5em 1em;
   transition: background ease 0.25s;
-}
 
-.item__link:hover {
-  background: colors.$g-root__color--secondary--04c;
-  color: colors.$g-root__color--primary--02b;
-  text-decoration: none;
-}
+  // Unselected
+  &--unselected {
+    background: rgba(colors.$g-root__color--secondary--04c, 0.6);
+    color: colors.$g-root__color--primary--02a;
+    cursor: pointer;
 
-.item__link:active {
-  color: colors.$g-root__color--primary--02b;
-}
+    &:hover {
+      background: colors.$g-root__color--secondary--04c;
+      color: colors.$g-root__color--primary--02b;
+      text-decoration: none;
+    }
 
-.item__link:visited {
-  color: colors.$g-root__color--primary--02a;
+    &:active {
+      color: colors.$g-root__color--primary--02b;
+    }
+
+    &:visited {
+      color: colors.$g-root__color--primary--02a;
+    }
+  }
+
+  // Selected
+  &--selected {
+    background: colors.$g-root__color--primary--02a;
+    color: white;
+
+    &:hover,
+    &:active {
+      background: colors.$g-root__color--primary--02a;
+      color: white;
+      cursor: default;
+    }
+
+    &:visited {
+      color: white;
+    }
+  }
 }
 
 // First Item
 .item:first-child .item__link {
   margin-left: 0;
-}
-
-// Selected
-.item__link--selected {
-  background: colors.$g-root__color--primary--02a;
-  color: white;
-}
-
-.item__link--selected:hover,
-.item__link--selected:active {
-  background: colors.$g-root__color--primary--02a;
-  color: white;
-  cursor: default;
-}
-
-.item__link--selected:visited {
-  color: white;
 }

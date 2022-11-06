@@ -15,52 +15,59 @@
 
 .item {
   margin-bottom: -1px;
-}
 
-.item__link {
-  background: #efefef;
-  border-radius: 0.5em 0.5em 0 0;
-  border: solid 1px #ccc;
-  color: colors.$g-root__color--primary--02a;
-  cursor: pointer;
-  display: block;
-  margin: 0 0.2em;
-  padding: 1em;
-  transition: background ease 0.25s;
-}
+  &__link {
+    background: #efefef;
+    border-radius: 0.5em 0.5em 0 0;
+    border: solid 1px #ccc;
+    color: colors.$g-root__color--primary--02a;
+    cursor: pointer;
+    display: block;
+    margin: 0 0.2em;
+    padding: 1em;
+    transition: background ease 0.25s;
+  }
 
-.item__link:hover {
-  background: colors.$g-root__color--secondary--04c;
-  border-bottom-color: #ccc;
-  color: colors.$g-root__color--primary--02b;
-  text-decoration: none;
-}
+  // Inactive
+  &--inactive {
+    background: #efefef;
+    color: colors.$g-root__color--primary--02a;
+    cursor: pointer;
 
-.item__link:active {
-  color: colors.$g-root__color--primary--02b;
-}
+    &:hover {
+      background: colors.$g-root__color--secondary--04c;
+      border-bottom-color: #ccc;
+      color: colors.$g-root__color--primary--02b;
+      text-decoration: none;
+    }
 
-.item__link:visited {
-  color: colors.$g-root__color--primary--02a;
+    &:active {
+      color: colors.$g-root__color--primary--02b;
+    }
+
+    &:visited {
+      color: colors.$g-root__color--primary--02a;
+    }
+  }
+
+  // Active
+  &--active {
+    background: white;
+    border-bottom-color: transparent;
+    color: colors.$g-root__color--primary--03a;
+
+    &:hover,
+    &:active,
+    &:visited {
+      background: white;
+      border-bottom-color: transparent;
+      color: colors.$g-root__color--primary--03a;
+      cursor: default;
+    }
+  }
 }
 
 // First Item
 .item:first-child .item__link {
   margin-left: 0;
-}
-
-// Active
-.item__link--active {
-  background: white;
-  border-bottom-color: transparent;
-  color: colors.$g-root__color--primary--03a;
-}
-
-.item__link--active:hover,
-.item__link--active:active,
-.item__link--active:visited {
-  background: white;
-  border-bottom-color: transparent;
-  color: colors.$g-root__color--primary--03a;
-  cursor: default;
 }

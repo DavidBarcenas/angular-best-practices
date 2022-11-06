@@ -2,7 +2,11 @@
   <li
     *ngFor="let pill of pills; let i = index"
     class="item"
-    [ngClass]="{ 'item--selected': selectedPill?.label === pill.label }"
+    [ngClass]="
+      pill.label || (!selectedPill && i === 0)
+        ? 'item--selected'
+        : 'item--unselected'
+    "
   >
     <a
       (click)="togglePill(pill)"

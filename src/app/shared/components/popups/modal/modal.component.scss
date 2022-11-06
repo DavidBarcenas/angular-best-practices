@@ -31,38 +31,38 @@
   h3 {
     color: white;
   }
-}
 
-.modal__close {
-  border: solid 1px white;
-  border-radius: 50%;
-  cursor: pointer;
-  display: block;
-  height: 1.7em;
-  overflow: hidden;
-  position: absolute;
-  right: 0.5em;
-  text-indent: -9999px;
-  top: 0.5em;
-  width: 1.7em;
-}
+  &__close {
+    border: solid 1px white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    height: 1.7em;
+    overflow: hidden;
+    position: absolute;
+    right: 0.5em;
+    text-indent: -9999px;
+    top: 0.5em;
+    width: 1.7em;
+  }
 
-.modal__close::before,
-.modal__close::after {
-  background: white;
-  content: '';
-  height: 0.125em;
-  left: 0.25em;
-  margin-top: -0.0625em;
-  position: absolute;
-  top: 50%;
-  right: 0.25em;
-}
+  &__close::before,
+  &__close::after {
+    background: white;
+    content: '';
+    height: 0.125em;
+    left: 0.25em;
+    margin-top: -0.0625em;
+    position: absolute;
+    top: 50%;
+    right: 0.25em;
+  }
 
-.modal__close::before {
-  transform: rotate(45deg);
-}
+  &__close::before {
+    transform: rotate(45deg);
+  }
 
-.modal__close::after {
-  transform: rotate(-45deg);
+  &__close::after {
+    transform: rotate(-45deg);
+  }
 }

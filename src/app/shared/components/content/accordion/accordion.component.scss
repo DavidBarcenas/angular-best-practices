@@ -14,37 +14,41 @@
 .item {
   border: solid 0.0625em #ccc;
   border-top: none;
-}
 
-.item__label {
-  @include links.g-root__link;
-  display: flex;
-  padding: 1em;
-}
+  &__label {
+    @include links.g-root__link;
+    display: flex;
+    padding: 1em;
 
-.item__label::after {
-  content: '\25bc';
-  max-width: 1em;
-  min-width: 1em;
-}
+    &::after {
+      max-width: 1em;
+      min-width: 1em;
+    }
 
-.item__label-text {
-  flex: 1;
-  padding-right: 0.5em;
-}
+    &-text {
+      flex: 1;
+      padding-right: 0.5em;
+    }
 
-// Hover
-.item__label:hover {
-  text-decoration: none;
-}
+    // Hover
+    &:hover {
+      text-decoration: none;
+    }
 
-.item__label:hover .item__label-text {
-  text-decoration: underline;
-}
+    &:hover &-text {
+      text-decoration: underline;
+    }
 
-// Active
-.item__label--active::after {
-  content: '\25b2';
+    // Inactive
+    &--inactive::after {
+      content: '\25bc';
+    }
+
+    // Active
+    &--active::after {
+      content: '\25b2';
+    }
+  }
 }
 
 @media (max-width: 58em) {
