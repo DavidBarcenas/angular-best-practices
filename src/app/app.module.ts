@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { PromoComponent } from './promo/promo.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PromoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

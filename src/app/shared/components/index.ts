@@ -9,6 +9,7 @@ import { PillsComponent } from './navigation/pills/pills.component';
 import { TooltipComponent } from './popups/tooltip/tooltip.component';
 import { NavbarSecondaryComponent } from './navigation/navbar-secondary/navbar-secondary.component';
 import { ModalComponent } from './popups/modal/modal.component';
+import { ThumbnailListComponent } from './content/thumbnail-list/thumbnail-list.component';
 
 export const components = [
   InputErrorComponent,
@@ -22,4 +23,5 @@ export const components = [
   TooltipComponent,
   NavbarSecondaryComponent,
   ModalComponent,
+  ThumbnailListComponent,
 ];
