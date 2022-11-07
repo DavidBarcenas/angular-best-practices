@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-input-currency',
@@ -13,7 +13,7 @@ export class InputCurrencyComponent implements OnInit {
   regex = /^\d{0,12}(\.\d{0,2}?$)/;
   prevAmount = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.form.get('amount')?.valueChanges.subscribe(amount => {

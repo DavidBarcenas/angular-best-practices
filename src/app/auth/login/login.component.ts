@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { Regex } from 'src/app/shared/utils/regex';
 
 @Component({
@@ -8,9 +12,9 @@ import { Regex } from 'src/app/shared/utils/regex';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(Regex.email)]],
       psswd: [
