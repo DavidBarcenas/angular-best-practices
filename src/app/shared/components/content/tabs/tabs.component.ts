@@ -1,9 +1,4 @@
-import {
-  Component,
-  AfterContentInit,
-  ContentChildren,
-  QueryList,
-} from '@angular/core';
+import { Component, AfterContentInit, ContentChildren, QueryList } from '@angular/core';
 import { TabsPaneComponent } from './tabs-pane/tabs-pane.component';
 
 @Component({

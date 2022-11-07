@@ -1,10 +1,4 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChild,
-  Directive,
-  ElementRef,
-} from '@angular/core';
+import { AfterContentInit, Component, ContentChild, Directive, ElementRef } from '@angular/core';
 
 @Directive({ selector: 'app-message-title' })
 export class MessageTitleDirective {}
@@ -25,7 +19,6 @@ export class MessageComponent implements AfterContentInit {
   constructor(private hostRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.isLayout01 =
-      this.hostRef.nativeElement.classList.contains('layout--01');
+    this.isLayout01 = this.hostRef.nativeElement.classList.contains('layout--01');
   }
 }

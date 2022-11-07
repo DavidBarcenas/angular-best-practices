@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Regex } from 'src/app/shared/utils/regex';
 
 @Component({
@@ -17,14 +13,7 @@ export class LoginComponent {
   constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(Regex.email)]],
-      psswd: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(16),
-        ],
-      ],
+      psswd: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
       remember: [false],
     });
   }

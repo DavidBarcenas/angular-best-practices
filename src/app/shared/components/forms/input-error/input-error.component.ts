@@ -16,9 +16,7 @@ export class InputErrorComponent {
     this.formContainer = this.reactiveForm;
 
     if (!this.formContainer) {
-      throw new Error(
-        'input-error must be used with a parent formGroup directive',
-      );
+      throw new Error('input-error must be used with a parent formGroup directive');
     }
   }
 

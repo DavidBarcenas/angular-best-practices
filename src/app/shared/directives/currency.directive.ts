@@ -9,10 +9,7 @@ export class CurrencyDirective {
   @HostListener('keyup', ['$event'])
   onInput() {
     if (this._inputEl.nativeElement.value === '') return;
-    const commasRemoved = this._inputEl.nativeElement.value.replace(
-      /[^0-9.]/g,
-      '',
-    );
+    const commasRemoved = this._inputEl.nativeElement.value.replace(/[^0-9.]/g, '');
 
     let toInt: number;
     let toLocale: string;
@@ -22,8 +19,7 @@ export class CurrencyDirective {
         ? ''
         : parseInt(commasRemoved.split('.')[1]);
       toInt = parseInt(commasRemoved);
-      toLocale =
-        toInt.toLocaleString('en-US') + '.' + decimal.toString().slice(0, 2);
+      toLocale = toInt.toLocaleString('en-US') + '.' + decimal.toString().slice(0, 2);
     } else {
       toInt = parseInt(commasRemoved);
       toLocale = toInt.toLocaleString('en-US');

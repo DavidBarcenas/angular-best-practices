@@ -9,12 +9,7 @@ import { PromoComponent } from './promo/promo.component';
 
 @NgModule({
   declarations: [AppComponent, PromoComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })

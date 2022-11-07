@@ -18,9 +18,7 @@ export class InputCurrencyComponent implements OnInit {
   ngOnInit(): void {
     this.form.get('amount')?.valueChanges.subscribe(amount => {
       if (!this.regex.test(amount)) {
-        this.form
-          .get('amount')
-          ?.setValue(this.prevAmount, { emitEvent: false });
+        this.form.get('amount')?.setValue(this.prevAmount, { emitEvent: false });
       } else {
         this.prevAmount = amount;
       }
