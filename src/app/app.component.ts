@@ -5,17 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'angular-utilities';
-  pills = [
-    {
-      label: 'HTML',
-    },
-    {
-      label: 'CSS',
-    },
-    {
-      label: 'SASS',
-    },
-  ];
-}
+export class AppComponent {}
