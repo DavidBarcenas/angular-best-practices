@@ -14,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'standalone',
-    component: StandaloneComponent,
+    loadComponent: () =>
+      import('./standalone/standalone.component').then(c => c.StandaloneComponent),
   },
   { path: '', redirectTo: 'standalone', pathMatch: 'full' },
 ];
