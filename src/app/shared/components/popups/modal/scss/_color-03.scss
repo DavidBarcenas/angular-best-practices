@@ -1,0 +1,30 @@
+@use 'colors';
+
+:host(.color--03) {
+  // CSS Custom Properties
+  --background: #1f778d;
+  --foreground: white;
+
+  .modal {
+    background: colors.$g-root__color--primary--02a;
+    color: white;
+
+    &__close {
+      border: solid 1px white;
+
+      &::before,
+      &::after {
+        background: white;
+      }
+    }
+
+    &__highlight {
+      background: colors.$g-root__color--secondary--04b;
+      overflow: hidden;
+      padding: 0 1em;
+
+      // CSS Custom Properties
+      --background: #77a032;
+    }
+  }
+}

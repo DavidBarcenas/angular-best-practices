@@ -2,7 +2,10 @@ import {
   MessageContentDirective,
   MessageTitleDirective,
 } from '../components/content/message/message.component';
-import { ModalContentDirective } from '../components/popups/modal/modal.component';
+import {
+  ModalContentDirective,
+  ModalHighlightDirective,
+} from '../components/popups/modal/modal.component';
 import { TooltipMessageDirective } from '../components/popups/tooltip/tooltip.component';
 import { AutofocusDirective } from './autofocus.directive';
 import { CurrencyDirective } from './currency.directive';
@@ -14,6 +17,7 @@ export const directives = [
   CurrencyDirective,
   TooltipMessageDirective,
   ModalContentDirective,
+  ModalHighlightDirective,
   MessageTitleDirective,
   MessageContentDirective,
 ];
