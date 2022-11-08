@@ -1,1 +1,53 @@
-<p>reactive-dev works!</p>
+<div class="top-bar">
+  <div class="flex-between container">
+    <div class="flex-center">
+      <mat-icon aria-hidden="false" fontIcon="phone"></mat-icon>
+      +001234567890
+    </div>
+    <span>Get 50% Off on Selected items | Shop now</span>
+    <div class="flex-center top-bar__drops">
+      <span class="flex-center">
+        Eng
+        <mat-icon aria-hidden="false" fontIcon="expand_more"></mat-icon>
+      </span>
+      <span class="flex-center">
+        Location
+        <mat-icon aria-hidden="false" fontIcon="expand_more"></mat-icon>
+      </span>
+    </div>
+  </div>
+</div>
+<header class="header">
+  <div class="container flex-between">
+    <h1 class="flex-center header__logo">
+      <img src="../../assets/img/cart.png" alt="Shop cart" />
+      <a routerLink="/">ShopCart</a>
+    </h1>
+    <nav>
+      <ul class="nav__items">
+        <li class="nav__item"><a routerLink="/products">Products</a></li>
+        <li class="nav__item">
+          <a routerLink="/products/alternate">Products (Alternate UI)</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="flex-center search">
+      <input type="text" />
+      <mat-icon aria-hidden="false" fontIcon="search"></mat-icon>
+    </div>
+    <div class="header__cta">
+      <button mat-button>
+        <mat-icon aria-hidden="false" fontIcon="person"></mat-icon>
+        <span>Account</span>
+      </button>
+      <button mat-button>
+        <mat-icon aria-hidden="false" fontIcon="shopping_cart"></mat-icon>
+        <span>Cart</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
