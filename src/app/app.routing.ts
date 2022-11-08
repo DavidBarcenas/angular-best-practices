@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StandaloneComponent } from './standalone/standalone.component';
 
 const routes: Routes = [
   {
@@ -17,7 +16,11 @@ const routes: Routes = [
     loadComponent: () =>
       import('./standalone/standalone.component').then(c => c.StandaloneComponent),
   },
-  { path: '', redirectTo: 'standalone', pathMatch: 'full' },
+  {
+    path: 'reactive',
+    loadChildren: () => import('./reactive-dev/reactive-dev.module').then(m => m.ReactiveDevModule),
+  },
+  { path: '', redirectTo: 'reactive', pathMatch: 'full' },
 ];
 
 @NgModule({
