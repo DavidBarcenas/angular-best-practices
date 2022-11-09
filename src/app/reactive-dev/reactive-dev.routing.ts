@@ -9,9 +9,11 @@ const routes: Routes = [
     component: ReactiveDevComponent,
     children: [
       { path: 'welcome', component: HomeComponent },
-      { path: 'products', component: HomeComponent },
-      { path: 'products/alternate', component: HomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      {
+        path: 'products',
+        loadChildren: () => import('./products/products.module').then(m => m.ProductsModule),
+      },
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
     ],
   },
 ];
