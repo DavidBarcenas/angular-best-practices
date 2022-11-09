@@ -9,6 +9,8 @@ const routes: Routes = [
     component: ReactiveDevComponent,
     children: [
       { path: 'welcome', component: HomeComponent },
+      { path: 'products', component: HomeComponent },
+      { path: 'products/alternate', component: HomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     ],
   },

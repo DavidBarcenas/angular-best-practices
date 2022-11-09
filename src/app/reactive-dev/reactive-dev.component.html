@@ -25,9 +25,27 @@
     </h1>
     <nav>
       <ul class="nav__items">
-        <li class="nav__item"><a routerLink="/products">Products</a></li>
         <li class="nav__item">
-          <a routerLink="/products/alternate">Products (Alternate UI)</a>
+          <a class="nav__link" routerLink="/reactive/welcome" routerLinkActive="nav__link--active">
+            Welcome
+          </a>
+        </li>
+        <li class="nav__item">
+          <a
+            class="nav__link"
+            routerLink="/reactive/products"
+            routerLinkActive="nav__link--active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Products</a
+          >
+        </li>
+        <li class="nav__item">
+          <a
+            class="nav__link"
+            routerLink="/reactive/products/alternate"
+            routerLinkActive="nav__link--active"
+            >Products (Alternate UI)</a
+          >
         </li>
       </ul>
     </nav>

@@ -67,6 +67,13 @@ a {
     display: inline-block;
     margin-right: 1.5em;
   }
+  .nav__link {
+    border-bottom: 0.2em solid transparent;
+
+    &--active {
+      border-bottom-color: #aa15aa;
+    }
+  }
 }
 
 .search {
