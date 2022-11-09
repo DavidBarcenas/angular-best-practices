@@ -12,10 +12,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsAPI).pipe(
-      tap(data => console.log('Products: ', JSON.stringify(data))),
-      catchError(this.handleError),
-    );
+    return this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
   }
   private handleError({ error }: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure

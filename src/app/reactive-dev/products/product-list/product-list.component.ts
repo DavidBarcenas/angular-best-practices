@@ -5,8 +5,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Product } from '../product';
+import { Category, Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -17,7 +18,9 @@ import { ProductService } from '../product.service';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   private subs!: Subscription;
+  selected = new FormControl('all', [Validators.required]);
   products: Product[] = [];
+  categories: Category[] = [];
   errorMessage = '';
 
   constructor(private productService: ProductService, private cdr: ChangeDetectorRef) {}
@@ -26,10 +29,16 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.subs = this.productService.getProducts().subscribe({
       next: products => {
         this.products = products;
-        this.cdr.detectChanges();
+        this.getCategories();
+        this.cdr.markForCheck();
       },
       error: error => (this.errorMessage = error),
     });
+  }
+
+  getCategories() {
+    const categoriesSet = new Set(this.products.map(p => p.category));
+    this.categories = [...categoriesSet];
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,45 @@
+.products {
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3em;
+    padding: 0 1em;
+  }
+
+  .product__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5em;
+    color: #000;
+  }
+}
+
+.product {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+
+  &__img {
+    display: block;
+    width: 10em;
+    height: 10em;
+    margin: auto;
+    object-fit: contain;
+  }
+
+  &__price {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+}
+
+.alert {
+  background: #ef4444;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 0.5em;
+  margin-bottom: 4em;
+}
