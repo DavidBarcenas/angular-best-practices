@@ -16,7 +16,7 @@
 
     <button mat-raised-button color="primary">Add product</button>
   </div>
-  <div class="product__list">
+  <div class="product__list" *ngIf="products$ | async as products">
     <figure class="product" *ngFor="let product of products">
       <img [src]="product.image" [alt]="product.title" class="product__img" />
       <figcaption>

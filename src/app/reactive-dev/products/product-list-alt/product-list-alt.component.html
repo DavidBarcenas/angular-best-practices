@@ -2,7 +2,7 @@
   {{ errorMessage }}
 </div>
 
-<div class="products" *ngIf="products">
+<div class="products" *ngIf="products$ | async as products">
   <button
     *ngFor="let product of products"
     [ngClass]="{ active: product?.id === selectedProductId }"

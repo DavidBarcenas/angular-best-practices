@@ -8,12 +8,10 @@ import { Product } from './product';
 })
 export class ProductService {
   private productsAPI = 'https://fakestoreapi.com/products';
+  products$ = this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
-  }
   private handleError({ error }: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
