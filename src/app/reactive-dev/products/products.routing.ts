@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ShellComponent } from './product-list-alt/shell/shell.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'alternate',
-    component: ProductListComponent,
+    component: ShellComponent,
   },
 ];
 

@@ -1,0 +1,13 @@
+<div class="alert" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div class="products" *ngIf="products">
+  <button
+    *ngFor="let product of products"
+    [ngClass]="{ active: product?.id === selectedProductId }"
+    (click)="onSelected(product.id)"
+  >
+    {{ product.title }} - {{ product.category }}
+  </button>
+</div>
