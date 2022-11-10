@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 })
 export class UsersComponent {
   displayedColumns: string[] = ['id', 'name', 'email', 'username', 'cart'];
-  usersWithCart$ = this.userService.users$;
+  usersWithCart$ = this.userService.usersWithCart$;
 
   constructor(private userService: UserService) {}
 }

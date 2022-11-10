@@ -6,6 +6,7 @@ export interface User {
   password: string;
   name: Name;
   phone: string;
+  cart: number;
   __v: number;
 }
 
