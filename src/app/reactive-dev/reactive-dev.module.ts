@@ -4,10 +4,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveDevComponent } from './reactive-dev.component';
 import { ReactiveDevRoutingModule } from './reactive-dev.routing';
-import { HomeComponent } from './home/home.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
-  declarations: [ReactiveDevComponent, HomeComponent],
-  imports: [CommonModule, ReactiveDevRoutingModule, MatIconModule, MatButtonModule],
+  declarations: [ReactiveDevComponent, UsersComponent],
+  imports: [
+    CommonModule,
+    ReactiveDevRoutingModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+  ],
 })
 export class ReactiveDevModule {}
