@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, combineLatest, Observable, throwError } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -8,7 +8,11 @@ import { Product } from './product';
 })
 export class ProductService {
   private productsAPI = 'https://fakestoreapi.com/products';
+  carts$ = this.http.get('https://fakestoreapi.com/carts');
+  users$ = this.http.get('https://fakestoreapi.com/users');
+
   products$ = this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
+  usersWithCart$ = combineLatest([this.carts$, this.users$]);
 
   constructor(private http: HttpClient) {}
 
