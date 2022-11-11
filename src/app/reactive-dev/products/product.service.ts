@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, map, Observable, throwError } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -10,15 +10,27 @@ export class ProductService {
   private productsAPI = 'https://fakestoreapi.com/products';
   categories$ = this.http.get<string[]>('https://fakestoreapi.com/products/categories');
   products$ = this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
-  selectedProduct$ = this.products$.pipe(
-    map(products => products.find(product => product.id === 1)),
-    tap(product => console.log('selectedProduct', product)),
+
+  private productSelectedSubject = new BehaviorSubject<number>(0);
+  productSelectedAction$ = this.productSelectedSubject.asObservable();
+
+  selectedProduct$: Observable<Product | undefined> = combineLatest([
+    this.products$,
+    this.productSelectedAction$,
+  ]).pipe(
+    map(([products, selectedProductId]) =>
+      products.find(product => product.id === selectedProductId),
+    ),
   );
 
   productsByCategory$ = (category: string) =>
     this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`);
 
   constructor(private http: HttpClient) {}
+
+  selectProductChanged(selectProductId: number): void {
+    this.productSelectedSubject.next(selectProductId);
+  }
 
   private handleError({ error }: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure

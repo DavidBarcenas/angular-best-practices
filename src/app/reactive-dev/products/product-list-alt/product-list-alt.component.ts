@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -9,13 +8,13 @@ import { ProductService } from '../product.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListAltComponent {
-  private sub!: Subscription;
   products$ = this.productService.products$;
+  selectedProduct$ = this.productService.selectedProduct$;
   errorMessage = '';
-  selectedProductId = 0;
+
   constructor(private productService: ProductService) {}
 
   onSelected(productId: number): void {
-    this.selectedProductId = productId;
+    this.productService.selectProductChanged(productId);
   }
 }

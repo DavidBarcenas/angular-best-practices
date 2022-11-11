@@ -6,7 +6,7 @@
   <button
     mat-stroked-button
     *ngFor="let product of products"
-    [ngClass]="{ active: product?.id === selectedProductId }"
+    [ngClass]="{ active: product?.id === (selectedProduct$ | async)?.id }"
     (click)="onSelected(product.id)"
   >
     {{ product.title }}

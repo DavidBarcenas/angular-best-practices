@@ -3,4 +3,9 @@ button {
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: left;
+
+  &.active {
+    background-color: #000;
+    color: #fff;
+  }
 }
