@@ -14,7 +14,7 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Add product</button>
+    <button mat-raised-button color="primary" (click)="onAddProduct()">Add product</button>
   </div>
   <div class="product__list" *ngIf="products$ | async as products">
     <figure class="product" *ngFor="let product of products">

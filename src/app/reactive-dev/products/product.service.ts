@@ -1,15 +1,26 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, combineLatest, map, Observable, throwError } from 'rxjs';
-import { Product } from './product';
+import {
+  BehaviorSubject,
+  catchError,
+  combineLatest,
+  map,
+  merge,
+  Observable,
+  scan,
+  Subject,
+  throwError,
+} from 'rxjs';
+import { Category, Product } from './product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private productsAPI = 'https://fakestoreapi.com/products';
   categories$ = this.http.get<string[]>('https://fakestoreapi.com/products/categories');
-  products$ = this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
+  products$ = this.http
+    .get<Product[]>('https://fakestoreapi.com/products')
+    .pipe(catchError(this.handleError));
 
   private productSelectedSubject = new BehaviorSubject<number>(0);
   productSelectedAction$ = this.productSelectedSubject.asObservable();
@@ -23,13 +34,40 @@ export class ProductService {
     ),
   );
 
+  private productInsertedSubject = new Subject<Product>();
+  productInsertedAction$ = this.productInsertedSubject.asObservable();
+
+  productsWithAdd$ = merge(this.products$, this.productInsertedAction$).pipe(
+    scan((acc, value) => (value instanceof Array ? [...value] : [...acc, value]), [] as Product[]),
+  );
+
   productsByCategory$ = (category: string) =>
     this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`);
 
   constructor(private http: HttpClient) {}
 
+  addProduct(newProduct?: Product) {
+    newProduct = newProduct || this.fakeProduct();
+    this.productInsertedSubject.next(newProduct);
+  }
+
   selectProductChanged(selectProductId: number): void {
     this.productSelectedSubject.next(selectProductId);
+  }
+
+  private fakeProduct(): Product {
+    return {
+      id: 100,
+      category: Category.Jewelry,
+      description: 'Another One',
+      image: 'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
+      price: 234.9,
+      rating: {
+        count: 89,
+        rate: 23,
+      },
+      title: 'Our new product',
+    };
   }
 
   private handleError({ error }: HttpErrorResponse): Observable<never> {

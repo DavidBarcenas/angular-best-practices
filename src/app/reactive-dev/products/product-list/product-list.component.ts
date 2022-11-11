@@ -27,13 +27,17 @@ export class ProductListComponent {
 
   constructor(private productService: ProductService) {}
 
+  onAddProduct() {
+    this.productService.addProduct();
+  }
+
   onSelected(category: string) {
     this.categorySelectedSubject.next(category);
   }
 
   private getProducts(category: string): Observable<Product[]> {
     return category === this.defaultCategory
-      ? this.productService.products$
+      ? this.productService.productsWithAdd$
       : this.productService.productsByCategory$(category);
   }
 
