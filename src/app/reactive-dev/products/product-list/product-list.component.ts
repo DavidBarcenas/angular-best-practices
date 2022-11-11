@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { catchError, EMPTY } from 'rxjs';
-import { Category } from '../product';
+import { BehaviorSubject, catchError, EMPTY, Observable, switchMap } from 'rxjs';
+import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -11,18 +12,33 @@ import { ProductService } from '../product.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent {
-  selected = new FormControl('all', [Validators.required]);
   errorMessage = '';
-  categories: Category[] = [];
-  products$ = this.productService.products$.pipe(
-    catchError(error => {
-      this.errorMessage = error;
-      return EMPTY;
-    }),
+  defaultCategory = 'all';
+  selected = new FormControl(this.defaultCategory, [Validators.required]);
+  // Stream action
+  private categorySelectedSubject = new BehaviorSubject<string>(this.defaultCategory);
+  categorySelectedAction$ = this.categorySelectedSubject.asObservable();
+  // Data source
+  categories$ = this.productService.categories$;
+  products$ = this.categorySelectedAction$.pipe(
+    switchMap(category => this.getProducts(category)),
+    catchError(error => this.handleError(error)),
   );
 
   constructor(private productService: ProductService) {}
-  getCategories() {
-    console.log('implement logic');
+
+  onSelected(category: string) {
+    this.categorySelectedSubject.next(category);
+  }
+
+  private getProducts(category: string): Observable<Product[]> {
+    return category === this.defaultCategory
+      ? this.productService.products$
+      : this.productService.productsByCategory$(category);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    this.errorMessage = error.message;
+    return EMPTY;
   }
 }
