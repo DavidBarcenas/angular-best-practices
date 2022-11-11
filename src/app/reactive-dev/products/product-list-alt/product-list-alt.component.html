@@ -4,6 +4,7 @@
 
 <div class="products" *ngIf="products$ | async as products">
   <button
+    mat-stroked-button
     *ngFor="let product of products"
     [ngClass]="{ active: product?.id === selectedProductId }"
     (click)="onSelected(product.id)"

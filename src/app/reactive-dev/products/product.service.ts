@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -10,6 +10,10 @@ export class ProductService {
   private productsAPI = 'https://fakestoreapi.com/products';
   categories$ = this.http.get<string[]>('https://fakestoreapi.com/products/categories');
   products$ = this.http.get<Product[]>(this.productsAPI).pipe(catchError(this.handleError));
+  selectedProduct$ = this.products$.pipe(
+    map(products => products.find(product => product.id === 1)),
+    tap(product => console.log('selectedProduct', product)),
+  );
 
   productsByCategory$ = (category: string) =>
     this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`);
