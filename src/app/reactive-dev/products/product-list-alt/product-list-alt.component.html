@@ -1,4 +1,4 @@
-<div class="alert" *ngIf="errorMessage">
+<div class="alert" *ngIf="errorMessage$ | async as errorMessage">
   {{ errorMessage }}
 </div>
 

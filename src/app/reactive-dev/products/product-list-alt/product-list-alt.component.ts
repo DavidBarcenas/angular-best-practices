@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { catchError, EMPTY, Subject } from 'rxjs';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -8,9 +9,15 @@ import { ProductService } from '../product.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListAltComponent {
-  products$ = this.productService.products$;
+  private errorMessageSubject = new Subject<string>();
+  errorMessage$ = this.errorMessageSubject.asObservable();
   selectedProduct$ = this.productService.selectedProduct$;
-  errorMessage = '';
+  products$ = this.productService.products$.pipe(
+    catchError(error => {
+      this.errorMessageSubject.next(error);
+      return EMPTY;
+    }),
+  );
 
   constructor(private productService: ProductService) {}
 
