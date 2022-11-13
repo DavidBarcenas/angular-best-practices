@@ -1,4 +1,4 @@
-<ng-container *ngIf="usersWithCart$ | async as users; else loading">
+<ng-container *ngIf="users; else loading">
   <table mat-table [dataSource]="users" class="mat-elevation-z1">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>No.</th>

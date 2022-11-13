@@ -7,6 +7,7 @@ import { ReactiveDevRoutingModule } from './reactive-dev.routing';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { UsersComponent } from './users/users.component';
+import { UserResolver } from './users/user-resolver.service';
 
 @NgModule({
   declarations: [ReactiveDevComponent, UsersComponent],
@@ -18,5 +19,6 @@ import { UsersComponent } from './users/users.component';
     MatTableModule,
     MatProgressSpinnerModule,
   ],
+  providers: [UserResolver],
 })
 export class ReactiveDevModule {}

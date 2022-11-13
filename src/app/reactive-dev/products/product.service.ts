@@ -8,6 +8,7 @@ import {
   merge,
   Observable,
   scan,
+  shareReplay,
   Subject,
   throwError,
 } from 'rxjs';
@@ -17,10 +18,12 @@ import { Category, Product } from './product';
   providedIn: 'root',
 })
 export class ProductService {
-  categories$ = this.http.get<string[]>('https://fakestoreapi.com/products/categories');
+  categories$ = this.http
+    .get<string[]>('https://fakestoreapi.com/products/categories')
+    .pipe(shareReplay(1));
   products$ = this.http
     .get<Product[]>('https://fakestoreapi.com/products')
-    .pipe(catchError(this.handleError));
+    .pipe(shareReplay(1), catchError(this.handleError));
 
   private productSelectedSubject = new BehaviorSubject<number>(0);
   productSelectedAction$ = this.productSelectedSubject.asObservable();
@@ -32,6 +35,7 @@ export class ProductService {
     map(([products, selectedProductId]) =>
       products.find(product => product.id === selectedProductId),
     ),
+    shareReplay(1),
   );
 
   private productInsertedSubject = new Subject<Product>();
