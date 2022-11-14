@@ -1,0 +1,28 @@
+<div class="alert" *ngIf="errorMessage">
+  <span>{{ errorMessage }}</span>
+</div>
+
+<div class="products">
+  <div class="products__actions">
+    <mat-form-field appearance="standard">
+      <mat-label>Filter by category</mat-label>
+      <mat-select [formControl]="selected" (valueChange)="onSelected($event)">
+        <mat-option [value]="defaultCategory">Display All</mat-option>
+        <mat-option *ngFor="let category of categories$ | async" [value]="category">
+          {{ category | titlecase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onAddProduct()">Add product</button>
+  </div>
+  <div class="product__list" *ngIf="products$ | async as products">
+    <figure class="product" *ngFor="let product of products">
+      <img [src]="product.image" [alt]="product.title" class="product__img" />
+      <figcaption>
+        <h3 class="product__title">{{ product.title }}</h3>
+        <span class="product__price">{{ product.price | currency }}</span>
+      </figcaption>
+    </figure>
+  </div>
+</div>

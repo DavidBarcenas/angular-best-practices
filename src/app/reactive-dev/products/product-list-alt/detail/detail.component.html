@@ -1,0 +1,10 @@
+<div class="product" *ngIf="product$ | async as product">
+  <img [src]="product.image" [alt]="product.title" />
+  <div class="product__description">
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Votes: {{ product.rating.count }} - Rating: {{ product.rating.rate }}</p>
+    <p>Category: {{ product.category }}</p>
+    <b>${{ product.price }}</b>
+  </div>
+</div>

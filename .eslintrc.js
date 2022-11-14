@@ -1,22 +1,27 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: 'tsconfig.json',
-    sourceType: 'module',
+  env: {
+    browser: true,
+    es2021: true,
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  root: true,
   env: {
     node: true,
-    jest: true,
+  },
+  overrides: [],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
   },
   ignorePatterns: ['.eslintrc.js'],
+  plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'no-multiple-empty-lines': ['warn', { max: 2, maxEOF: 1 }],
   },
+  root: true,
 };

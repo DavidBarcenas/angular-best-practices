@@ -1,0 +1,12 @@
+.shell {
+  display: flex;
+
+  &_products {
+    width: 20%;
+  }
+
+  &_product_description {
+    width: 80%;
+    padding-left: 4em;
+  }
+}

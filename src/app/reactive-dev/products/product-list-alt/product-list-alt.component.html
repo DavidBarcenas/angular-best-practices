@@ -1,0 +1,14 @@
+<div class="alert" *ngIf="errorMessage$ | async as errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div class="products" *ngIf="products$ | async as products">
+  <button
+    mat-stroked-button
+    *ngFor="let product of products"
+    [ngClass]="{ active: product?.id === (selectedProduct$ | async)?.id }"
+    (click)="onSelected(product.id)"
+  >
+    {{ product.title }}
+  </button>
+</div>
