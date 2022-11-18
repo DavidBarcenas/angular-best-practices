@@ -20,7 +20,12 @@ const routes: Routes = [
     path: 'reactive',
     loadChildren: () => import('./reactive-dev/reactive-dev.module').then(m => m.ReactiveDevModule),
   },
-  { path: '', redirectTo: 'reactive', pathMatch: 'full' },
+  {
+    path: 'reactive-heroes',
+    loadChildren: () =>
+      import('./reactive-heroes/reactive-heroes.module').then(m => m.ReactiveHeroesModule),
+  },
+  { path: '', redirectTo: 'reactive-heroes', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -1,0 +1,26 @@
+:host {
+  max-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.bungee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background: var(--header);
+  margin: 0;
+  color: #fff;
+  font-size: 33px;
+}
+
+.content {
+  flex-grow: 1;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+  padding: 40px;
+  background-color: var(--backcolor2);
+}
