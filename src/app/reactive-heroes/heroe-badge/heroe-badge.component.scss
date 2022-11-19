@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+  width: 100px;
+  transition: opacity 250ms linear, transform 100ms linear;
+  transform: scale(1);
+}
+:host:not(.loaded) {
+  opacity: 0;
+}
+:host.loaded {
+  opacity: 1;
+}
+:host:hover {
+  transform: scale(1.05);
+}

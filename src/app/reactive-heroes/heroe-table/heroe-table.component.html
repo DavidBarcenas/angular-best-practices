@@ -1,1 +1,27 @@
-<p>heroe-table works!</p>
+<div class="tool-bar">
+  <span class="search-tool">
+    <label for="heroSearch">Search:</label>
+    <input name="heroSearch" />
+  </span>
+  <span class="page-tool">
+    <label>Page ? of ? : </label>
+    <span class="buttons">
+      <button class="prev">Prev</button>
+      <button class="next">Next</button>
+    </span>
+  </span>
+  <span class="result-tool">
+    <label>Show Results: </label>
+    <span class="buttons">
+      <button *ngFor="let limit of heroService.limits">
+        {{ limit }}
+      </button>
+    </span>
+  </span>
+  <span class="total-tool">
+    <label>Total Results: ???</label>
+  </span>
+</div>
+<div class="table-content">
+  <app-heroe-badge *ngFor="let hero of heroes" [hero]="hero"></app-heroe-badge>
+</div>

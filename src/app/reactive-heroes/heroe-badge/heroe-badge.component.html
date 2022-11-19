@@ -1,1 +1,9 @@
-<p>heroe-badge works!</p>
+<ng-container *ngIf="hero">
+  <div>
+    <img
+      [src]="hero.thumbnail.path + '/' + layout + '_' + size + '.' + hero.thumbnail.extension"
+      (load)="loaded = true"
+    />
+    <div class="name">{{ hero.name }}</div>
+  </div>
+</ng-container>
