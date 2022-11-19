@@ -23,5 +23,5 @@
   </span>
 </div>
 <div class="table-content">
-  <app-heroe-badge *ngFor="let hero of heroes" [hero]="hero"></app-heroe-badge>
+  <app-heroe-badge *ngFor="let hero of heroes$ | async" [hero]="hero"></app-heroe-badge>
 </div>

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from '../heroe';
+import { Component } from '@angular/core';
 import { HeroeService } from '../heroe.service';
 
 @Component({
@@ -7,14 +6,8 @@ import { HeroeService } from '../heroe.service';
   templateUrl: './heroe-table.component.html',
   styleUrls: ['./heroe-table.component.scss'],
 })
-export class HeroeTableComponent implements OnInit {
-  heroes: Hero[] = [];
+export class HeroeTableComponent {
+  heroes$ = this.heroService.heroes$;
 
   constructor(public heroService: HeroeService) {}
-
-  ngOnInit(): void {
-    this.heroService.heroes$.subscribe(data => {
-      this.heroes = data;
-    });
-  }
 }
