@@ -1,4 +1,5 @@
 <ng-container *ngIf="vm$ | async as vm">
+  <p>Loading... {{ vm.loading }}</p>
   <div class="tool-bar">
     <span class="search-tool">
       <label for="heroSearch">Search:</label>

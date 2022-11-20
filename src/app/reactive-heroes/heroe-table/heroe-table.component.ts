@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
-import { HeroeService, DEFAULT_PAGE } from '../heroe.service';
+import { HeroeService } from '../heroe.service';
 
 @Component({
   selector: 'app-heroe-table',
@@ -10,19 +10,21 @@ import { HeroeService, DEFAULT_PAGE } from '../heroe.service';
 export class HeroeTableComponent {
   vm$ = combineLatest([
     this.heroService.heroes$,
-    this.heroService.searchSubject,
+    this.heroService.search$,
     this.heroService.currentPage$,
-    this.heroService.limitSubject,
+    this.heroService.limit$,
     this.heroService.totalResults$,
     this.heroService.totalPages$,
+    this.heroService.loading$,
   ]).pipe(
-    map(([heroes, search, page, limit, totalResults, totalPages]) => ({
+    map(([heroes, search, page, limit, totalResults, totalPages, loading]) => ({
       heroes,
       search,
       page,
       limit,
       totalResults,
       totalPages,
+      loading,
       disableNext: totalPages === page,
       disablePev: page === 1,
     })),
@@ -32,16 +34,14 @@ export class HeroeTableComponent {
 
   doSearch(e: Event) {
     const value = (e?.target as HTMLInputElement).value;
-    this.heroService.searchSubject.next(value);
+    this.heroService.doSearch(value);
   }
 
   movePageBy(moveBy: number) {
-    const currentPage = this.heroService.pageSubject.getValue();
-    this.heroService.pageSubject.next(currentPage + moveBy);
+    this.heroService.movePageBy(moveBy);
   }
 
   setLimit(limit: number) {
-    this.heroService.limitSubject.next(limit);
-    this.heroService.pageSubject.next(DEFAULT_PAGE);
+    this.heroService.setLimit(limit);
   }
 }

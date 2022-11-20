@@ -8,6 +8,7 @@ import {
   Observable,
   shareReplay,
   switchMap,
+  tap,
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HeroResponse } from './heroe';
@@ -36,9 +37,14 @@ export const INCREASE_DEFAULT_PAGE = 1;
 export class HeroeService {
   limits = LIMITS;
 
-  searchSubject = new BehaviorSubject(DEFAULT_SEARCH);
-  limitSubject = new BehaviorSubject(LIMIT_HIGH);
-  pageSubject = new BehaviorSubject(DEFAULT_PAGE);
+  private searchSubject = new BehaviorSubject(DEFAULT_SEARCH);
+  private limitSubject = new BehaviorSubject(LIMIT_HIGH);
+  private pageSubject = new BehaviorSubject(DEFAULT_PAGE);
+  private loadingSubject = new BehaviorSubject(false);
+
+  search$ = this.searchSubject.asObservable();
+  limit$ = this.limitSubject.asObservable();
+  loading$ = this.loadingSubject.asObservable();
 
   private params$ = combineLatest([this.searchSubject, this.limitSubject, this.pageSubject]).pipe(
     map(([searchTerm, limit, page]) => {
@@ -56,7 +62,9 @@ export class HeroeService {
 
   private heroesResponse$: Observable<HeroResponse> = this.params$.pipe(
     debounceTime(500),
+    tap(() => this.loadingSubject.next(true)),
     switchMap(_params => this.http.get<HeroResponse>(HERO_API, { params: { ..._params } })),
+    tap(() => this.loadingSubject.next(false)),
     shareReplay(1),
   );
 
@@ -68,4 +76,19 @@ export class HeroeService {
   );
 
   constructor(private http: HttpClient) {}
+
+  doSearch(term: string) {
+    this.searchSubject.next(term);
+    this.pageSubject.next(DEFAULT_PAGE);
+  }
+
+  movePageBy(moveBy: number) {
+    const currentPage = this.pageSubject.getValue();
+    this.pageSubject.next(currentPage + moveBy);
+  }
+
+  setLimit(newLimit: number) {
+    this.limitSubject.next(newLimit);
+    this.pageSubject.next(DEFAULT_PAGE);
+  }
 }
