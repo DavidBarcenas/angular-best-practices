@@ -4,8 +4,10 @@ import {
   BehaviorSubject,
   combineLatest,
   debounceTime,
+  distinctUntilChanged,
   map,
   Observable,
+  of,
   shareReplay,
   switchMap,
   tap,
@@ -46,7 +48,14 @@ export class HeroeService {
   limit$ = this.limitSubject.asObservable();
   loading$ = this.loadingSubject.asObservable();
 
-  private params$ = combineLatest([this.searchSubject, this.limitSubject, this.pageSubject]).pipe(
+  private heroesResponseCache: { [key: string]: HeroResponse } = {};
+
+  private params$ = combineLatest([
+    this.searchSubject.pipe(debounceTime(500)),
+    this.limitSubject,
+    this.pageSubject.pipe(debounceTime(500)),
+  ]).pipe(
+    distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)),
     map(([searchTerm, limit, page]) => {
       const params: Params = {
         apikey: publicKey,
@@ -61,9 +70,17 @@ export class HeroeService {
   );
 
   private heroesResponse$: Observable<HeroResponse> = this.params$.pipe(
-    debounceTime(500),
+    // debounceTime(500),
     tap(() => this.loadingSubject.next(true)),
-    switchMap(_params => this.http.get<HeroResponse>(HERO_API, { params: { ..._params } })),
+    switchMap((_params: Params) => {
+      const paramsStr = JSON.stringify(_params);
+      if (this.heroesResponseCache[paramsStr]) {
+        return of(this.heroesResponseCache[paramsStr]);
+      }
+      return this.http
+        .get<HeroResponse>(HERO_API, { params: { ..._params } })
+        .pipe(tap(res => (this.heroesResponseCache[paramsStr] = res)));
+    }),
     tap(() => this.loadingSubject.next(false)),
     shareReplay(1),
   );
