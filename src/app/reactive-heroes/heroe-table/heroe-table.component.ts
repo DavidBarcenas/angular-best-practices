@@ -19,4 +19,9 @@ export class HeroeTableComponent {
     const value = (e?.target as HTMLInputElement).value;
     this.heroService.searchSubject.next(value);
   }
+
+  movePageBy(moveBy: number) {
+    const currentPage = this.heroService.pageSubject.getValue();
+    this.heroService.pageSubject.next(currentPage + moveBy);
+  }
 }
