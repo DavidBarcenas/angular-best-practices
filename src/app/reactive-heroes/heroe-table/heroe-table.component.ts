@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HeroeService } from '../heroe.service';
+import { combineLatest, map } from 'rxjs';
+import { HeroeService, DEFAULT_PAGE } from '../heroe.service';
 
 @Component({
   selector: 'app-heroe-table',
@@ -7,12 +8,25 @@ import { HeroeService } from '../heroe.service';
   styleUrls: ['./heroe-table.component.scss'],
 })
 export class HeroeTableComponent {
-  heroes$ = this.heroService.heroes$;
-  search$ = this.heroService.searchSubject;
-  limit$ = this.heroService.limitSubject;
-  currentPage$ = this.heroService.currentPage$;
-  totalResults$ = this.heroService.totalResults$;
-  totalPages$ = this.heroService.totalPages$;
+  vm$ = combineLatest([
+    this.heroService.heroes$,
+    this.heroService.searchSubject,
+    this.heroService.currentPage$,
+    this.heroService.limitSubject,
+    this.heroService.totalResults$,
+    this.heroService.totalPages$,
+  ]).pipe(
+    map(([heroes, search, page, limit, totalResults, totalPages]) => ({
+      heroes,
+      search,
+      page,
+      limit,
+      totalResults,
+      totalPages,
+      disableNext: totalPages === page,
+      disablePev: page === 1,
+    })),
+  );
 
   constructor(public heroService: HeroeService) {}
 
@@ -28,5 +42,6 @@ export class HeroeTableComponent {
 
   setLimit(limit: number) {
     this.heroService.limitSubject.next(limit);
+    this.heroService.pageSubject.next(DEFAULT_PAGE);
   }
 }

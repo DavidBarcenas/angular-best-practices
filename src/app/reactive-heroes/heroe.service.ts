@@ -27,8 +27,8 @@ const LIMIT_MID = 25;
 const LIMIT_HIGH = 100;
 const LIMITS = [LIMIT_LOW, LIMIT_MID, LIMIT_HIGH];
 const DEFAULT_SEARCH = '';
-const DEFAULT_PAGE = 0;
-const INCREASE_DEFAULT_PAGE = 1;
+export const DEFAULT_PAGE = 0;
+export const INCREASE_DEFAULT_PAGE = 1;
 
 @Injectable({
   providedIn: 'root',

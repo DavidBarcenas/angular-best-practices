@@ -1,39 +1,33 @@
-<div class="tool-bar">
-  <span class="search-tool">
-    <label for="heroSearch">Search:</label>
-    <input name="heroSearch" [value]="search$ | async" (input)="doSearch($event)" />
-  </span>
-  <span class="page-tool">
-    <label>Page {{ currentPage$ | async }} of {{ totalPages$ | async }} : </label>
-    <span class="buttons">
-      <button class="prev" (click)="movePageBy(-1)" [disabled]="(currentPage$ | async) === 1">
-        Prev
-      </button>
-      <button
-        class="next"
-        (click)="movePageBy(1)"
-        [disabled]="(totalPages$ | async) === (currentPage$ | async)"
-      >
-        Next
-      </button>
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="tool-bar">
+    <span class="search-tool">
+      <label for="heroSearch">Search:</label>
+      <input name="heroSearch" [value]="vm.search" (input)="doSearch($event)" />
     </span>
-  </span>
-  <span class="result-tool">
-    <label>Show Results: </label>
-    <span class="buttons">
-      <button
-        *ngFor="let limit of heroService.limits"
-        (click)="setLimit(limit)"
-        [disabled]="limit$.getValue() === limit"
-      >
-        {{ limit }}
-      </button>
+    <span class="page-tool">
+      <label>Page {{ vm.page }} of {{ vm.totalPages }} : </label>
+      <span class="buttons">
+        <button class="prev" (click)="movePageBy(-1)" [disabled]="vm.disablePev">Prev</button>
+        <button class="next" (click)="movePageBy(1)" [disabled]="vm.disableNext">Next</button>
+      </span>
     </span>
-  </span>
-  <span class="total-tool">
-    <label>Total Results: {{ totalResults$ | async }}</label>
-  </span>
-</div>
-<div class="table-content">
-  <app-heroe-badge *ngFor="let hero of heroes$ | async" [hero]="hero"></app-heroe-badge>
-</div>
+    <span class="result-tool">
+      <label>Show Results: </label>
+      <span class="buttons">
+        <button
+          *ngFor="let limit of heroService.limits"
+          (click)="setLimit(limit)"
+          [disabled]="vm.limit === limit"
+        >
+          {{ limit }}
+        </button>
+      </span>
+    </span>
+    <span class="total-tool">
+      <label>Total Results: {{ vm.totalResults }}</label>
+    </span>
+  </div>
+  <div class="table-content">
+    <app-heroe-badge *ngFor="let hero of vm.heroes" [hero]="hero"></app-heroe-badge>
+  </div>
+</ng-container>
