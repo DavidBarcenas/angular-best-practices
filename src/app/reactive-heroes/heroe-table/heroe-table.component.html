@@ -21,7 +21,11 @@
   <span class="result-tool">
     <label>Show Results: </label>
     <span class="buttons">
-      <button *ngFor="let limit of heroService.limits">
+      <button
+        *ngFor="let limit of heroService.limits"
+        (click)="setLimit(limit)"
+        [disabled]="limit$.getValue() === limit"
+      >
         {{ limit }}
       </button>
     </span>

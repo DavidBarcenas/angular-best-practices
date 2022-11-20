@@ -9,6 +9,7 @@ import { HeroeService } from '../heroe.service';
 export class HeroeTableComponent {
   heroes$ = this.heroService.heroes$;
   search$ = this.heroService.searchSubject;
+  limit$ = this.heroService.limitSubject;
   currentPage$ = this.heroService.currentPage$;
   totalResults$ = this.heroService.totalResults$;
   totalPages$ = this.heroService.totalPages$;
@@ -23,5 +24,9 @@ export class HeroeTableComponent {
   movePageBy(moveBy: number) {
     const currentPage = this.heroService.pageSubject.getValue();
     this.heroService.pageSubject.next(currentPage + moveBy);
+  }
+
+  setLimit(limit: number) {
+    this.heroService.limitSubject.next(limit);
   }
 }
