@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  map,
+  Observable,
+  shareReplay,
+  switchMap,
+} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HeroResponse } from './heroe';
 
@@ -20,6 +28,7 @@ const LIMIT_HIGH = 100;
 const LIMITS = [LIMIT_LOW, LIMIT_MID, LIMIT_HIGH];
 const DEFAULT_SEARCH = '';
 const DEFAULT_PAGE = 0;
+const INCREASE_DEFAULT_PAGE = 1;
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +40,7 @@ export class HeroeService {
   limitSubject = new BehaviorSubject(LIMIT_HIGH);
   pageSubject = new BehaviorSubject(DEFAULT_PAGE);
 
-  params$ = combineLatest([this.searchSubject, this.limitSubject, this.pageSubject]).pipe(
+  private params$ = combineLatest([this.searchSubject, this.limitSubject, this.pageSubject]).pipe(
     map(([searchTerm, limit, page]) => {
       const params: Params = {
         apikey: publicKey,
@@ -45,13 +54,17 @@ export class HeroeService {
     }),
   );
 
-  heroes$ = this.params$.pipe(
-    switchMap(_params =>
-      this.http.get<HeroResponse>(HERO_API, {
-        params: { ..._params },
-      }),
-    ),
-    map(res => res.data.results),
+  private heroesResponse$: Observable<HeroResponse> = this.params$.pipe(
+    debounceTime(500),
+    switchMap(_params => this.http.get<HeroResponse>(HERO_API, { params: { ..._params } })),
+    shareReplay(1),
+  );
+
+  currentPage$ = this.pageSubject.pipe(map(page => page + INCREASE_DEFAULT_PAGE));
+  totalResults$ = this.heroesResponse$.pipe(map(res => res.data.total));
+  heroes$ = this.heroesResponse$.pipe(map(res => res.data.results));
+  totalPages$ = combineLatest([this.totalResults$, this.limitSubject]).pipe(
+    map(([totalResults, limit]) => Math.ceil(totalResults / limit)),
   );
 
   constructor(private http: HttpClient) {}

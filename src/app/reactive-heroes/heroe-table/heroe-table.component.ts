@@ -8,6 +8,10 @@ import { HeroeService } from '../heroe.service';
 })
 export class HeroeTableComponent {
   heroes$ = this.heroService.heroes$;
+  search$ = this.heroService.searchSubject;
+  currentPage$ = this.heroService.currentPage$;
+  totalResults$ = this.heroService.totalResults$;
+  totalPages$ = this.heroService.totalPages$;
 
   constructor(public heroService: HeroeService) {}
 
