@@ -10,4 +10,9 @@ export class HeroeTableComponent {
   heroes$ = this.heroService.heroes$;
 
   constructor(public heroService: HeroeService) {}
+
+  doSearch(e: Event) {
+    const value = (e?.target as HTMLInputElement).value;
+    this.heroService.searchSubject.next(value);
+  }
 }
