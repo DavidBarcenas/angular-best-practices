@@ -33,6 +33,8 @@ const DEFAULT_SEARCH = '';
 export const DEFAULT_PAGE = 0;
 export const INCREASE_DEFAULT_PAGE = 1;
 
+const HERO_CACHE = new Map();
+
 @Injectable({
   providedIn: 'root',
 })
@@ -74,12 +76,12 @@ export class HeroeService {
     tap(() => this.loadingSubject.next(true)),
     switchMap((_params: Params) => {
       const paramsStr = JSON.stringify(_params);
-      if (this.heroesResponseCache[paramsStr]) {
-        return of(this.heroesResponseCache[paramsStr]);
+      if (HERO_CACHE.has(paramsStr)) {
+        return of(HERO_CACHE.get(paramsStr));
       }
       return this.http
         .get<HeroResponse>(HERO_API, { params: { ..._params } })
-        .pipe(tap(res => (this.heroesResponseCache[paramsStr] = res)));
+        .pipe(tap(res => HERO_CACHE.set(paramsStr, res)));
     }),
     tap(() => this.loadingSubject.next(false)),
     shareReplay(1),
@@ -107,5 +109,9 @@ export class HeroeService {
   setLimit(newLimit: number) {
     this.limitSubject.next(newLimit);
     this.pageSubject.next(DEFAULT_PAGE);
+  }
+
+  clearHeroCache(): void {
+    HERO_CACHE.clear();
   }
 }

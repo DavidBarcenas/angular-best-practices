@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 import { HeroeService } from '../heroe.service';
 
@@ -7,7 +7,7 @@ import { HeroeService } from '../heroe.service';
   templateUrl: './heroe-table.component.html',
   styleUrls: ['./heroe-table.component.scss'],
 })
-export class HeroeTableComponent {
+export class HeroeTableComponent implements OnDestroy {
   vm$ = combineLatest([
     this.heroService.heroes$,
     this.heroService.search$,
@@ -43,5 +43,9 @@ export class HeroeTableComponent {
 
   setLimit(limit: number) {
     this.heroService.setLimit(limit);
+  }
+
+  ngOnDestroy(): void {
+    this.heroService.clearHeroCache();
   }
 }
