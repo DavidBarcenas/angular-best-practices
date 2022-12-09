@@ -1,0 +1,32 @@
+@mixin navbar-primary__icon {
+  fill: white;
+  height: 0.8em;
+  width: 0.8em;
+}
+
+@mixin navigation__search {
+  &--search {
+    margin-left: auto;
+  }
+
+  &__search {
+    align-items: center;
+    display: flex;
+    margin: 0;
+
+    &-field {
+      background: rgba(#fff, 0.25);
+      border: none;
+      border-radius: 0.3em;
+      color: white;
+      padding: 0.25em 0.5em;
+      width: 14em;
+    }
+
+    &-icon {
+      @include navbar-primary__icon;
+
+      margin-left: 0.5em;
+    }
+  }
+}

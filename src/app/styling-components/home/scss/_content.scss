@@ -1,0 +1,46 @@
+@use 'container';
+@use 'grid';
+@use 'headers';
+@use 'paragraphs';
+
+.content {
+  @include container.g-layout__container;
+
+  &__sections {
+    @include grid.g-layout__grid;
+  }
+
+  &__title {
+    @include headers.g-root__h2;
+  }
+
+  &__sub-title {
+    @include headers.g-root__h3;
+  }
+
+  &__paragraph {
+    @include paragraphs.g-root__paragraph;
+  }
+
+  // Large Viewports
+  @media (min-width: 52rem) {
+    &__primary {
+      @include grid.g-layout__grid__item--08;
+    }
+
+    &__secondary {
+      @include grid.g-layout__grid__item--04;
+    }
+  }
+
+  // Small Viewports
+  @media (max-width: 52rem) {
+    &__primary {
+      @include grid.g-layout__grid__item--12;
+    }
+
+    &__secondary {
+      @include grid.g-layout__grid__item--12;
+    }
+  }
+}

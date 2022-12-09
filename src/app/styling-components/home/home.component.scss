@@ -1,3 +1,7 @@
+@use 'scss/header';
+@use 'scss/content';
+@use 'scss/footer';
+
 :host {
   font-size: 1rem;
   min-width: 30rem;

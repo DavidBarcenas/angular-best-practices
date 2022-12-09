@@ -26,7 +26,14 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/styling-components/scss/layout",
+                "src/app/styling-components/scss/root",
+                "src/app/styling-components/scss/typography"
+              ]
+            }
           },
           "configurations": {
             "production": {
