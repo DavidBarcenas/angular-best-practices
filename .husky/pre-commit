@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged
+
+npx concurrently \
+  --kill-others-on-fail \
+  --prefix "[{name}]" \
+  --names "test,lint,typecheck,build" \
+   --prefix-colors "bgRed.bold.white,bgGreen.bold.white,bgBlue.bold.white" \
+    "yarn run test-headless" \
+    "yarn run lint" \
+    "yarn run build" \
