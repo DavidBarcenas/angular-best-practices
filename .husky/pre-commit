@@ -6,7 +6,6 @@ npx lint-staged
 npx concurrently \
   --kill-others-on-fail \
   --prefix "[{name}]" \
-  --names "test,build" \
+  --names "build" \
    --prefix-colors "bgRed.bold.white,bgGreen.bold.white" \
-    "yarn run test-headless" \
-    "yarn run build" \
+    "yarn run build"

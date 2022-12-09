@@ -1,1 +1,9 @@
-/* import styles */
+:host {
+  font-size: 1rem;
+  min-width: 30rem;
+  color: #666;
+
+  @media (max-width: 58em) {
+    font-size: 80%;
+  }
+}

@@ -3,5 +3,9 @@
     "stylelint-config-standard",
     "stylelint-config-standard-scss",
     "stylelint-config-prettier"
-  ]
+  ],
+  "rules": {
+    "scss/dollar-variable-pattern": ["", { "ignore": "global" }],
+    "scss/at-mixin-pattern": ["", { "ignore": "global" }]
+  }
 }
