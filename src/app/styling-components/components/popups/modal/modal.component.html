@@ -1,0 +1,18 @@
+<a class="trigger" (click)="toggleOpenClose()">
+  <ng-content></ng-content>
+</a>
+<div [hidden]="!isOpen" (click)="toggleOpenClose()" class="shield"></div>
+<div [hidden]="!isOpen" class="modal">
+  <a (click)="toggleOpenClose()" class="modal__close">close</a>
+  <div class="modal__content">
+    <ng-content select="app-modal-content"></ng-content>
+    <div class="modal__highlight">
+      <p>
+        Angular revoluciona la forma en que diseña CSS para aplicaciones web modernas. Pero antes de
+        que puedas convertirte en un ninja de estilo angular, debes dar un paso atrás y considerar
+        las diferentes maneras en que se pueden hacer las cosas.
+      </p>
+      <ng-content select="app-modal-highlight"></ng-content>
+    </div>
+  </div>
+</div>

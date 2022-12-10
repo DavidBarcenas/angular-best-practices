@@ -6,6 +6,11 @@ import { NavbarPrimaryComponent } from './components/navigation/navbar-primary/n
 import { NavbarSecondaryComponent } from './components/navigation/navbar-secondary/navbar-secondary.component';
 import { PromoComponent } from './promo/promo.component';
 import { ThumbnailListComponent } from './components/content/thumbnail-list/thumbnail-list.component';
+import {
+  ModalComponent,
+  ModalContentDirective,
+  ModalHighlightDirective
+} from './components/popups/modal/modal.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }];
 
@@ -15,7 +20,10 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     NavbarPrimaryComponent,
     NavbarSecondaryComponent,
     PromoComponent,
-    ThumbnailListComponent
+    ThumbnailListComponent,
+    ModalComponent,
+    ModalContentDirective,
+    ModalHighlightDirective
   ],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
