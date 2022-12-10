@@ -25,7 +25,56 @@
       </p>
       <p class="content__paragraph">
         <app-modal class="color--02">
-          <strong>Click here to learn More!</strong>
+          <strong>¡Click aquí para aprender más!</strong>
+          <app-modal-content>
+            <h1>Estilo de aplicaciones angular</h1>
+            <app-tabs>
+              <app-tabs-pane title="Estilos en angular">
+                <p class="content__paragraph">
+                  Una inmersión en cómo funcionan los estilos en Angular. Cubrimos cómo las
+                  diferentes vistas y los modos de encapsulación funcionan, lo que significan en
+                  cuanto al código compilado y el alcance, y por qué es posible que queramos usar
+                  cada uno de ellos. Luego pasamos a las diferentes formas en que podemos agregar
+                  estilos a los componentes, cómo Angular los maneja y cómo su prioridad fluye a
+                  través. Después de una exploración completa de los estilos en Angular, seguiremos
+                  adelante. a cómo se hace la emulación de Shadow DOM, los selectores de CSS que se
+                  emulan, qué se ven cuando se renderizan en el navegador, y cómo/por qué querríamos
+                  usar a ellos.
+                </p>
+              </app-tabs-pane>
+              <app-tabs-pane title="Arquitectura CSS/SCSS">
+                <p class="content__paragraph">
+                  Enfocado principalmente en el modo de encapsulación de vista "Emulado"
+                  predeterminado para Angular componentes. Cubrimos conceptos sobre cómo los estilos
+                  globales, variables y mixins pueden ser manejados. Analizamos la implementación de
+                  sistemas para selectores y nombres de CSS con convenciones. Luego creamos un
+                  sistema que nos permitirá aplicar unidades relativas con previsibilidad.
+                  Exploramos la creación de archivos bien organizados y estructurados y abordamos
+                  los selectores que usamos, así como los problemas relacionados con las anulaciones
+                  de estilo. Nosotros exploramos ideas sobre código, archivo y estructura y
+                  organización de directorios. Y finalmente, aprovechamos el siempre popular
+                  preprocesador SASS para crear relaciones entre los estilos dentro de componentes
+                  individuales o entre múltiples componentes haciéndolos más fáciles de editar y
+                  mantener con el tiempo.
+                </p>
+              </app-tabs-pane>
+              <app-tabs-pane title="Temas de componentes">
+                <p class="content__paragraph">
+                  Enfocado en crear componentes que tengan múltiples temas y exploramos algunos
+                  diferentes maneras en que podemos aplicarlos. Primero establecemos explícitamente
+                  el tema por instancia agregando clases y propiedades a los componentes y
+                  exploramos como SCSS/CSS se vería. Luego buscamos proporcionar temas conscientes
+                  del contexto para componentes que cambiarán automáticamente los estilos en función
+                  de su entorno utilizando la pseudo clase de contexto de host. Luego buscamos
+                  formas de proporcionar entradas como properties después agregamos lógica para
+                  verificar las clases agregadas para aplicar el tema adecuado. También, exploramos
+                  formas de alterar condicionalmente el marcado del componente y plantillas cuando
+                  sea necesario. Y finalmente, observamos un enfoque completamente diferente de
+                  tematización de componentes utilizando propiedades personalizadas de CSS.
+                </p>
+              </app-tabs-pane>
+            </app-tabs>
+          </app-modal-content>
         </app-modal>
       </p>
       <app-promo></app-promo>

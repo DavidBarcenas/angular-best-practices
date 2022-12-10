@@ -11,6 +11,8 @@ import {
   ModalContentDirective,
   ModalHighlightDirective
 } from './components/popups/modal/modal.component';
+import { TabsComponent } from './components/content/tabs/tabs.component';
+import { TabsPaneComponent } from './components/content/tabs/tabs-pane.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }];
 
@@ -23,7 +25,9 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     ThumbnailListComponent,
     ModalComponent,
     ModalContentDirective,
-    ModalHighlightDirective
+    ModalHighlightDirective,
+    TabsComponent,
+    TabsPaneComponent
   ],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
