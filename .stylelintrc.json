@@ -6,6 +6,7 @@
   ],
   "rules": {
     "scss/dollar-variable-pattern": ["", { "ignore": "global" }],
-    "scss/at-mixin-pattern": ["", { "ignore": "global" }]
+    "scss/at-mixin-pattern": ["", { "ignore": "global" }],
+    "selector-class-pattern": null
   }
 }
