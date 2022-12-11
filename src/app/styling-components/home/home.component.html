@@ -101,6 +101,139 @@
         </app-modal>
       </p>
       <app-promo></app-promo>
+      <app-tabs>
+        <app-tabs-pane title="Estilos en angular">
+          <p class="content__paragraph">
+            Una inmersión en cómo funcionan los estilos en Angular. Cubrimos cómo las
+            diferentes vistas y los modos de encapsulación funcionan, lo que significan en
+            cuanto al código compilado y el alcance, y por qué es posible que queramos usar
+            cada uno de ellos. Luego pasamos a las diferentes formas en que podemos agregar
+            estilos a los componentes, cómo Angular los maneja y cómo su prioridad fluye a
+            través. Después de una exploración completa de los estilos en Angular, seguiremos
+            adelante. a cómo se hace la emulación de Shadow DOM, los selectores de CSS que se
+            emulan, qué se ven cuando se renderizan en el navegador, y cómo/por qué querríamos
+            usar a ellos.
+          </p>
+        </app-tabs-pane>
+        <app-tabs-pane title="Arquitectura CSS/SCSS">
+          <p class="content__paragraph">
+            Enfocado principalmente en el modo de encapsulación de vista "Emulado"
+            predeterminado para Angular componentes. Cubrimos conceptos sobre cómo los estilos
+            globales, variables y mixins pueden ser manejados. Analizamos la implementación de
+            sistemas para selectores y nombres de CSS con convenciones. Luego creamos un
+            sistema que nos permitirá aplicar unidades relativas con previsibilidad.
+            Exploramos la creación de archivos bien organizados y estructurados y abordamos
+            los selectores que usamos, así como los problemas relacionados con las anulaciones
+            de estilo. Nosotros exploramos ideas sobre código, archivo y estructura y
+            organización de directorios. Y finalmente, aprovechamos el siempre popular
+            preprocesador SASS para crear relaciones entre los estilos dentro de componentes
+            individuales o entre múltiples componentes haciéndolos más fáciles de editar y
+            mantener con el tiempo.
+          </p>
+        </app-tabs-pane>
+        <app-tabs-pane title="Temas de componentes">
+          <p class="content__paragraph">
+            Enfocado en crear componentes que tengan múltiples temas y exploramos algunos
+            diferentes maneras en que podemos aplicarlos. Primero establecemos explícitamente
+            el tema por instancia agregando clases y propiedades a los componentes y
+            exploramos como SCSS/CSS se vería. Luego buscamos proporcionar temas conscientes
+            del contexto para componentes que cambiarán automáticamente los estilos en función
+            de su entorno utilizando la pseudo clase de contexto de host. Luego buscamos
+            formas de proporcionar entradas como properties después agregamos lógica para
+            verificar las clases agregadas para aplicar el tema adecuado. También, exploramos
+            formas de alterar condicionalmente el marcado del componente y plantillas cuando
+            sea necesario. Y finalmente, observamos un enfoque completamente diferente de
+            tematización de componentes utilizando propiedades personalizadas de CSS.
+          </p>
+        </app-tabs-pane>
+      </app-tabs>
+    </div>
+    <div class="content__secondary">
+      <h3 class="content__sub-title">Módulos</h3>
+      <app-accordion>
+        <app-accordion-pane title="Módulo 01: Introducción">
+          <p class="content__paragraph">
+            En este módulo, comenzamos discutiendo algunos de los problemas con CSS y la web tradicional.
+            aplicaciones Luego pasamos a una breve discusión sobre los componentes web. Exploramos cómo ellos
+            intentar resolver algunos de estos problemas pero, como descubriremos, faltan sus características
+            en el soporte del navegador. Esto nos lleva a una breve introducción a Angular 2.0+ y cómo
+            actualmente cierra la brecha permitiéndonos aprovechar muchos de los conceptos de componentes web
+            ahora. Exploramos cómo esta nueva forma de construir nos obliga a renovar por completo nuestro
+            proceso de pensamiento cuando se trata de estilo y arquitectura CSS/SCSS.
+          </p>
+        </app-accordion-pane>
+        <app-accordion-pane title="Módulo 02: Estilos en Angular">
+          <p class="content__paragraph">
+            En este módulo nos sumergimos en cómo funcionan los estilos en Angular 2.0+. Cubrimos cómo los diferentes
+            ver el funcionamiento de los modos de encapsulación, lo que significan en cuanto al código compilado y el alcance, y
+            por qué es posible que queramos usar cada uno de ellos. Luego pasamos a las diferentes formas en que podemos
+            agregue estilos a los componentes cómo Angular los maneja y cómo fluye su prioridad.
+            Después de una exploración completa de los estilos en Angular, pasaremos a cómo Shadow DOM
+            se realiza la emulación, los selectores de CSS que se emulan, cómo se ven cuando
+            renderizados en el navegador, y cómo/por qué querríamos usarlos.
+          </p>
+        </app-accordion-pane>
+        <app-accordion-pane title="Módulo 03: Arquitectura CSS/SCSS">
+          <p class="content__paragraph">
+            En este módulo, nos enfocamos principalmente en el modo predeterminado de encapsulación de vista "Emulado" para
+            Componentes angulares. Cubrimos conceptos sobre cómo los estilos globales, variables y mixins
+            puede ser manejado Analizamos la implementación de sistemas para selectores y nombres de CSS
+            convenciones Entonces creamos un sistema que nos permitirá aplicar unidades relativas con
+            previsibilidad Exploramos la creación de archivos bien organizados y estructurados y abordamos las
+            selectores que usamos, así como problemas relacionados con las anulaciones de estilo. Exploramos ideas alrededor
+            código, archivo y estructura y organización de directorios. Y finalmente, aprovechamos el siempre
+            preprocesador polular SASS para crear relaciones entre los estilos dentro de individuos
+            componentes o en múltiples componentes haciéndolos más fáciles de editar y mantener a lo largo de
+            tiempo.
+          </p>
+        </app-accordion-pane>
+        <app-accordion-pane title="Módulo 04: Temas de componentes">
+          <p class="content__paragraph">
+            En este módulo nos enfocamos en crear componentes que tienen múltiples temas y exploramos
+            algunas maneras diferentes en que podemos aplicarlos. Primero establecemos explícitamente el tema por
+            instancia agregando clases y propiedades a los componentes y exploramos lo que esto
+            SCSS/CSS se vería así. Luego buscamos proporcionar temas conscientes del contexto para los componentes.
+            que cambiará automáticamente los estilos en función de su entorno utilizando el contexto del host
+            pseudoclase. Luego buscamos formas de proporcionar entradas como propiedades y luego agregamos lógica a
+            verifique las clases agregadas para aplicar el tema adecuado. También exploramos explorar formas de
+            alterar condicionalmente el marcado de las plantillas de componentes cuando sea necesario. Y finalmente, buscamos
+            en el futuro de la tematización de componentes adoptando un enfoque completamente diferente utilizando CSS
+            Propiedades personalizadas.
+          </p>
+        </app-accordion-pane>
+        <app-accordion-pane title="Módulo 05: Conclusión">
+          <p class="content__paragraph">
+            En este módulo resumimos todo y resumimos en un alto nivel los conceptos básicos y
+            conclusiones del curso para que puedas emprender tu camino feliz armado y listo para el estilo
+            cualquier aplicación angular!
+          </p>
+        </app-accordion-pane>
+      </app-accordion>
+      <h3 class="content__sub-title">Pre-requisitos</h3>
+      <app-pills [pills]="pills"></app-pills>
+      <p class="content__paragraph">
+        Este curso asume un conocimiento de
+        <app-tooltip>
+          HTML
+          <app-tooltip-message>
+            Hyper Text Markup Language. Describe la estructura de páginas web usando un marcado.
+          </app-tooltip-message>
+        </app-tooltip>,
+        <app-tooltip>
+          CSS
+          <app-tooltip-message>
+            Cascading Style Sheets. Describe como son mostrados los elementos en HTML, papel, o en otro medio.
+          </app-tooltip-message>
+        </app-tooltip>,
+        Preprocesador CSS, llamado
+        <app-tooltip>
+          SASS
+          <app-tooltip-message>
+            Syntactically Awesome Style Sheets. Un lenguaje de secuencias de comandos que se interpreta en hojas de estilo en cascada (CSS).
+          </app-tooltip-message>
+        </app-tooltip>,
+        y en general estar familiarizado con Angular y Typescript.
+      </p>
     </div>
   </div>
 </div>

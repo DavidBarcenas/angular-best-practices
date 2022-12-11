@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   title = 'Estilos en aplicaciones Angular';
   subTitle = 'Para aplicaciones modernas';
+  pills = [{ label: 'HTML' }, { label: 'CSS' }, { label: 'SASS' }];
 }

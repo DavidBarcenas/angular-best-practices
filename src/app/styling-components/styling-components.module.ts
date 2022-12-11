@@ -8,6 +8,13 @@ import { PromoComponent } from './promo/promo.component';
 import { ThumbnailListComponent } from './components/content/thumbnail-list/thumbnail-list.component';
 import { TabsComponent } from './components/content/tabs/tabs.component';
 import { TabsPaneComponent } from './components/content/tabs/tabs-pane.component';
+import { AccordionComponent } from './components/content/accordion/accordion.component';
+import { AccordionPaneComponent } from './components/content/accordion/accordion-pane.component';
+import { PillsComponent } from './components/navigation/pills/pills.component';
+import {
+  TooltipComponent,
+  TooltipMessageDirective
+} from './components/popups/tooltip/tooltip.component';
 import {
   ModalComponent,
   ModalContentDirective,
@@ -35,7 +42,12 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     TabsPaneComponent,
     MessageComponent,
     MessageTitleDirective,
-    MessageContentDirective
+    MessageContentDirective,
+    AccordionComponent,
+    AccordionPaneComponent,
+    PillsComponent,
+    TooltipComponent,
+    TooltipMessageDirective
   ],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
