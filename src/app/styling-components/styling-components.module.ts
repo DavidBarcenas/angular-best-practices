@@ -6,13 +6,18 @@ import { NavbarPrimaryComponent } from './components/navigation/navbar-primary/n
 import { NavbarSecondaryComponent } from './components/navigation/navbar-secondary/navbar-secondary.component';
 import { PromoComponent } from './promo/promo.component';
 import { ThumbnailListComponent } from './components/content/thumbnail-list/thumbnail-list.component';
+import { TabsComponent } from './components/content/tabs/tabs.component';
+import { TabsPaneComponent } from './components/content/tabs/tabs-pane.component';
 import {
   ModalComponent,
   ModalContentDirective,
   ModalHighlightDirective
 } from './components/popups/modal/modal.component';
-import { TabsComponent } from './components/content/tabs/tabs.component';
-import { TabsPaneComponent } from './components/content/tabs/tabs-pane.component';
+import {
+  MessageComponent,
+  MessageContentDirective,
+  MessageTitleDirective
+} from './components/content/message/message.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }];
 
@@ -27,7 +32,10 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     ModalContentDirective,
     ModalHighlightDirective,
     TabsComponent,
-    TabsPaneComponent
+    TabsPaneComponent,
+    MessageComponent,
+    MessageTitleDirective,
+    MessageContentDirective
   ],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
