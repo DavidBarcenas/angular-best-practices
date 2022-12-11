@@ -8,6 +8,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <style>
+      html {background: #171717;}
+      app-root {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <div class='loader'></div>
+  </app-root>
 </body>
 </html>
