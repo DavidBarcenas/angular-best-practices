@@ -1,0 +1,19 @@
+<div class="content">
+  <h3 class="content__title">Arquitectura CSS/SCSS</h3>
+  <p class="content__description">
+    Enfocado principalmente en el modo de encapsulación de vista "Emulado" predeterminado para
+    componentes de angular. Cubrimos conceptos sobre cómo los estilos globales se pueden manejar,
+    variables y mixins. Nos fijamos en la implementación de sistemas para selectores de CSS y
+    convenciones de nomenclatura. Entonces creamos un sistema que nos permiten aplicar unidades
+    relativas con previsibilidad. Exploramos creando archivos bien organizados y estructurados y
+    abordar los selectores que usamos, también, problemas relacionados con las anulaciones de
+    estilo. Exploramos ideas sobre código, archivo y estructura y organización del directorio. Y
+    finalmente, aprovechamos el siempre preprocesador polular SASS para crear relaciones entre los
+    estilos dentro componentes individuales o a través de múltiples componentes haciéndolos más
+    fáciles de editar y mantener a lo largo del tiempo.
+  </p>
+</div>
+<app-thumbnail-list
+  [ngClass]="isColor01 ? 'color--01' : 'color--02'"
+  class="layout--01"
+></app-thumbnail-list>

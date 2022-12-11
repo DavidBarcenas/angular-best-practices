@@ -1,0 +1,20 @@
+@use 'colors';
+
+:host(.color--02) {
+  .item {
+    background: colors.$g-root__color--secondary--01a;
+    color: white;
+
+    &__thumbnail {
+      background: rgba(#fff, 0.3);
+    }
+
+    &__button {
+      background: rgba(#fff, 0.3);
+
+      &:hover {
+        background: rgba(#fff, 0.5);
+      }
+    }
+  }
+}
