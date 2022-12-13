@@ -2,7 +2,7 @@
 <div class="tool-bar">
   <div class="search-tool">
     <label for="heroSearch">Search:</label>
-    <input type="text" id="heroSearch" />
+    <input type="text" id="heroSearch" (input)="doSearch($event)" />
   </div>
   <div class="page-tool">
     <label>Page {{ page$ | async }} of {{ totalPages$ | async }}</label>

@@ -14,9 +14,17 @@ import {
 import { HeroResponse } from './hero';
 import { Params } from '@angular/router';
 
+interface HeroAPIParams {
+  apikey: string;
+  offset: number;
+  limit: number;
+  nameStartsWith?: string;
+}
+
 const { marvelAPIUrl, marvelAPIPublicKey } = environment;
 const characters = `${marvelAPIUrl}/v1/public/characters`;
 const increaseDefaultPage = 1;
+const defaultSearch = '';
 const defaultPage = 0;
 const limitLow = 10;
 const limitMid = 25;
@@ -26,20 +34,25 @@ const limitHigh = 100;
   providedIn: 'root'
 })
 export class HeroService {
+  private searchSubject = new BehaviorSubject(defaultSearch);
   private pageSubject = new BehaviorSubject(defaultPage);
   private limitSubject = new BehaviorSubject(limitMid);
 
   private params$ = combineLatest([
+    this.searchSubject.pipe(debounceTime(500)),
     this.pageSubject.pipe(debounceTime(500)),
     this.limitSubject
   ]).pipe(
     distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)),
-    map(([page, limit]) => {
-      const params: Params = {
+    map(([searchTerm, page, limit]) => {
+      const params: HeroAPIParams = {
         apikey: marvelAPIPublicKey,
         offset: page * limit,
         limit
       };
+      if (searchTerm.length) {
+        params.nameStartsWith = searchTerm;
+      }
       return params;
     })
   );
@@ -59,6 +72,11 @@ export class HeroService {
   );
   limits = [limitLow, limitMid, limitHigh];
   constructor(private http: HttpClient) {}
+
+  doSearch(term: string) {
+    this.searchSubject.next(term);
+    this.pageSubject.next(defaultPage);
+  }
 
   movePageBy(moveBy: number) {
     const currentPage = this.pageSubject.getValue();

@@ -14,6 +14,11 @@ export class HeroTableComponent {
   totalResults$ = this.heroService.totalResults$;
   constructor(private readonly heroService: HeroService) {}
 
+  doSearch(e: Event) {
+    const value = (e?.target as HTMLInputElement).value;
+    this.heroService.doSearch(value);
+  }
+
   movePageBy(moveBy: number) {
     this.heroService.movePageBy(moveBy);
   }
