@@ -9,4 +9,8 @@ import { HeroService } from '../hero.service';
 export class HeroTableComponent {
   heroes$ = this.heroService.heroes$;
   constructor(private readonly heroService: HeroService) {}
+
+  movePageBy(moveBy: number) {
+    this.heroService.movePageBy(moveBy);
+  }
 }

@@ -7,8 +7,8 @@
   <div class="page-tool">
     <label>Page 1 of 10</label>
     <div class="buttons">
-      <button>Prev</button>
-      <button>Next</button>
+      <button (click)="movePageBy(-1)">Prev</button>
+      <button (click)="movePageBy(+1)">Next</button>
     </div>
   </div>
   <div class="result-tool">
