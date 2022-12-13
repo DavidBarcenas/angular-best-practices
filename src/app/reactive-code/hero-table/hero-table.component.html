@@ -21,7 +21,5 @@
   </div>
 </div>
 <div class="table-content">
-  <div *ngFor="let hero of heroes$ | async">
-    <h1>{{ hero.name }}</h1>
-  </div>
+  <app-hero-card *ngFor="let hero of heroes$ | async" [hero]="hero"></app-hero-card>
 </div>

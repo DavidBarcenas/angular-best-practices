@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroTableComponent } from './hero-table/hero-table.component';
+import { HeroCardComponent } from './hero-card/hero-card.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HeroesComponent, HeroTableComponent],
+  declarations: [HeroesComponent, HeroTableComponent, HeroCardComponent],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
 export class ReactiveCodeModule {}
