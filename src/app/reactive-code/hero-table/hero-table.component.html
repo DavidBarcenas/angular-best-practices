@@ -5,18 +5,16 @@
     <input type="text" id="heroSearch" />
   </div>
   <div class="page-tool">
-    <label>Page 1 of 10</label>
+    <label>Page {{ page$ | async }} of {{ totalPages$ | async }}</label>
     <div class="buttons">
       <button (click)="movePageBy(-1)">Prev</button>
       <button (click)="movePageBy(+1)">Next</button>
     </div>
   </div>
   <div class="result-tool">
-    <label>Show results (Total: 20)</label>
+    <label>Show results (total: {{ totalResults$ | async }})</label>
     <div class="buttons">
-      <button>25</button>
-      <button>50</button>
-      <button>100</button>
+      <button *ngFor="let limit of limits" (click)="setLimit(limit)">{{ limit }}</button>
     </div>
   </div>
 </div>
