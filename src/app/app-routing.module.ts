@@ -7,7 +7,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./styling-components/styling-components.module').then(m => m.StylingComponentsModule)
   },
-  { path: '', redirectTo: 'styling-components', pathMatch: 'full' }
+  {
+    path: 'reactive-code',
+    loadChildren: () =>
+      import('./reactive-code/reactive-code.module').then(m => m.ReactiveCodeModule)
+  },
+  { path: '', redirectTo: 'reactive-code', pathMatch: 'full' }
 ];
 
 @NgModule({
