@@ -38,6 +38,11 @@ button {
   border-radius: 12px;
   margin-right: 10px;
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -54,7 +59,7 @@ button {
     animation: glowing 20s linear infinite;
   }
 
-  &:hover::before {
+  &:hover:not(&:disabled)::before {
     visibility: visible;
   }
 }

@@ -9,7 +9,8 @@ import {
   map,
   Observable,
   shareReplay,
-  switchMap
+  switchMap,
+  tap
 } from 'rxjs';
 import { HeroResponse } from './hero';
 import { Params } from '@angular/router';
@@ -37,6 +38,7 @@ export class HeroService {
   private searchSubject = new BehaviorSubject(defaultSearch);
   private pageSubject = new BehaviorSubject(defaultPage);
   private limitSubject = new BehaviorSubject(limitMid);
+  private loadingSubject = new BehaviorSubject(false);
 
   private params$ = combineLatest([
     this.searchSubject.pipe(debounceTime(500)),
@@ -58,9 +60,11 @@ export class HeroService {
   );
 
   private heroesResponse$: Observable<HeroResponse> = this.params$.pipe(
+    tap(() => this.loadingSubject.next(true)),
     switchMap((params: Params) => {
       return this.http.get<HeroResponse>(characters, { params });
     }),
+    tap(() => this.loadingSubject.next(false)),
     shareReplay(1)
   );
 
@@ -70,6 +74,9 @@ export class HeroService {
   totalPages$ = combineLatest([this.totalResults$, this.limitSubject]).pipe(
     map(([totalResults, limit]) => Math.ceil(totalResults / limit))
   );
+  search$ = this.searchSubject.asObservable();
+  loading$ = this.loadingSubject.asObservable();
+  limit$ = this.limitSubject.asObservable();
   limits = [limitLow, limitMid, limitHigh];
   constructor(private http: HttpClient) {}
 
