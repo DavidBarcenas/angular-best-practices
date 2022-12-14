@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 
 export const Layouts = {
@@ -18,6 +18,7 @@ export const Sizes = {
   selector: 'app-hero-card',
   templateUrl: './hero-card.component.html',
   styleUrls: ['./hero-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class.loaded]': 'loaded' }
 })
 export class HeroCardComponent implements OnInit {

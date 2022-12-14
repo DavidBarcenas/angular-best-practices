@@ -8,6 +8,7 @@ import {
   distinctUntilChanged,
   map,
   Observable,
+  of,
   shareReplay,
   switchMap,
   tap
@@ -24,12 +25,13 @@ interface HeroAPIParams {
 
 const { marvelAPIUrl, marvelAPIPublicKey } = environment;
 const characters = `${marvelAPIUrl}/v1/public/characters`;
-const increaseDefaultPage = 1;
 const defaultSearch = '';
 const defaultPage = 0;
 const limitLow = 10;
 const limitMid = 25;
 const limitHigh = 100;
+const increaseDefaultPage = 1;
+const heroCache = new Map();
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +64,13 @@ export class HeroService {
   private heroesResponse$: Observable<HeroResponse> = this.params$.pipe(
     tap(() => this.loadingSubject.next(true)),
     switchMap((params: Params) => {
-      return this.http.get<HeroResponse>(characters, { params });
+      const paramsStr = JSON.stringify(params);
+      if (heroCache.has(paramsStr)) {
+        return of(heroCache.get(paramsStr));
+      }
+      return this.http
+        .get<HeroResponse>(characters, { params })
+        .pipe(tap(res => heroCache.set(paramsStr, res)));
     }),
     tap(() => this.loadingSubject.next(false)),
     shareReplay(1)
@@ -78,20 +86,25 @@ export class HeroService {
   loading$ = this.loadingSubject.asObservable();
   limit$ = this.limitSubject.asObservable();
   limits = [limitLow, limitMid, limitHigh];
+
   constructor(private http: HttpClient) {}
 
-  doSearch(term: string) {
+  doSearch(term: string): void {
     this.searchSubject.next(term);
     this.pageSubject.next(defaultPage);
   }
 
-  movePageBy(moveBy: number) {
+  movePageBy(moveBy: number): void {
     const currentPage = this.pageSubject.getValue();
     this.pageSubject.next(currentPage + moveBy);
   }
 
-  setLimit(newLimit: number) {
+  setLimit(newLimit: number): void {
     this.limitSubject.next(newLimit);
     this.pageSubject.next(defaultPage);
+  }
+
+  clearHeroCache(): void {
+    heroCache.clear();
   }
 }

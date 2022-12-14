@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { HeroService } from '../hero.service';
 import { combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-hero-table',
   templateUrl: './hero-table.component.html',
-  styleUrls: ['./hero-table.component.scss']
+  styleUrls: ['./hero-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroTableComponent {
+export class HeroTableComponent implements OnDestroy {
   limits = this.heroService.limits;
   vm$ = combineLatest([
     this.heroService.heroes$,
@@ -32,16 +33,20 @@ export class HeroTableComponent {
   );
   constructor(private readonly heroService: HeroService) {}
 
-  doSearch(e: Event) {
+  doSearch(e: Event): void {
     const value = (e?.target as HTMLInputElement).value;
     this.heroService.doSearch(value);
   }
 
-  movePageBy(moveBy: number) {
+  movePageBy(moveBy: number): void {
     this.heroService.movePageBy(moveBy);
   }
 
-  setLimit(limit: number) {
+  setLimit(limit: number): void {
     this.heroService.setLimit(limit);
+  }
+
+  ngOnDestroy(): void {
+    this.heroService.clearHeroCache();
   }
 }
