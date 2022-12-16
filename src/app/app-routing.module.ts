@@ -13,13 +13,11 @@ const routes: Routes = [
       import('./reactive-code/reactive-code.module').then(m => m.ReactiveCodeModule)
   },
   {
-    path: 'reactive-code-store',
+    path: 'reactive-ecommerce',
     loadChildren: () =>
-      import('./reactive-code-store/reactive-code-store.module').then(
-        m => m.ReactiveCodeStoreModule
-      )
+      import('./reactive-ecommerce/reactive-ecommerce.module').then(m => m.ReactiveEcommerceModule)
   },
-  { path: '', redirectTo: 'reactive-code-store', pathMatch: 'full' }
+  { path: '', redirectTo: 'reactive-ecommerce', pathMatch: 'full' }
 ];
 
 @NgModule({
