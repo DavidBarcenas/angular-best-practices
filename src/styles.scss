@@ -10,6 +10,26 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+input {
+  outline: none;
+  border: 1px solid #000;
+  font-size: 1em;
+  padding: 0.4em 1.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 .loader {
   width: 60px;
   height: 60px;

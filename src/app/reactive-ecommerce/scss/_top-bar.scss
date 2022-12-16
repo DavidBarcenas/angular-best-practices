@@ -1,0 +1,26 @@
+.top-bar {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.9em;
+
+  p,
+  span {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .phone p {
+    margin-left: 0.5em;
+  }
+
+  .offer span {
+    border-left: 1px solid #fff;
+    margin-left: 0.75em;
+    padding-left: 1em;
+  }
+
+  .lang p:first-child {
+    margin-right: 2em;
+  }
+}
