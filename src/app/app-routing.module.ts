@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -12,11 +12,22 @@ const routes: Routes = [
     loadChildren: () =>
       import('./reactive-code/reactive-code.module').then(m => m.ReactiveCodeModule)
   },
-  { path: '', redirectTo: 'reactive-code', pathMatch: 'full' }
+  {
+    path: 'reactive-code-store',
+    loadChildren: () =>
+      import('./reactive-code-store/reactive-code-store.module').then(
+        m => m.ReactiveCodeStoreModule
+      )
+  },
+  { path: '', redirectTo: 'reactive-code-store', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
