@@ -13,14 +13,13 @@
   margin: auto;
 }
 
-.main-content {
-  background: var(--gray);
-}
-
 .top-bar .container,
 .header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.4em 0;
+}
+
+.main-content {
+  padding: 2em 0;
 }

@@ -1,1 +1,9 @@
-<p>products works!</p>
+<div class="grid">
+  <div *ngFor="let _ of skeleton.items">
+    <ngx-skeleton-loader count="1" [theme]="skeleton.card"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" [theme]="skeleton.title"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" [theme]="skeleton.price"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" [theme]="skeleton.description"></ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" [theme]="skeleton.button"></ngx-skeleton-loader>
+  </div>
+</div>

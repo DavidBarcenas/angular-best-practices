@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products/products.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EcommerceComponent } from './ecommerce.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const routes: Routes = [
   {
@@ -16,6 +17,6 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [ProductsComponent, EcommerceComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, RouterModule.forChild(routes), NgxSkeletonLoaderModule]
 })
 export class ReactiveEcommerceModule {}
