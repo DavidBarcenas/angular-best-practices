@@ -1,6 +1,10 @@
 <app-alert></app-alert>
 <ul class="categories">
-  <li *ngFor="let category of categories$ | async" (click)="selectCategory(category)">
+  <li
+    *ngFor="let category of categories$ | async"
+    (click)="selectCategory(category)"
+    [class.active]="(selectedCategory | async) === category"
+  >
     {{ category }}
   </li>
 </ul>

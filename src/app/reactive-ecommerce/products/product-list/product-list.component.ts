@@ -8,11 +8,12 @@ import { ProductsService } from '../products.service';
 })
 export class ProductListComponent {
   private productsService = inject(ProductsService);
-  products$ = this.productsService.products$;
+  products$ = this.productsService.productsByCategory$;
   categories$ = this.productsService.categories$;
+  selectedCategory = this.productsService.selectedCategory$;
 
   selectCategory(category: string) {
-    console.log(category);
+    this.productsService.setCategory(category);
   }
 
   get skeleton() {
