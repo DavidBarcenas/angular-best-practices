@@ -4,6 +4,7 @@ import { ProductsComponent } from './products/products.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EcommerceComponent } from './ecommerce.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { AlertComponent } from './shared/alert/alert.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [ProductsComponent, EcommerceComponent],
+  declarations: [ProductsComponent, EcommerceComponent, AlertComponent],
   imports: [CommonModule, RouterModule.forChild(routes), NgxSkeletonLoaderModule, NgOptimizedImage]
 })
 export class ReactiveEcommerceModule {}
