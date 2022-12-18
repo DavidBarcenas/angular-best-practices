@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ProductsComponent } from './products/products.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EcommerceComponent } from './ecommerce.component';
@@ -17,6 +17,6 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [ProductsComponent, EcommerceComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), NgxSkeletonLoaderModule]
+  imports: [CommonModule, RouterModule.forChild(routes), NgxSkeletonLoaderModule, NgOptimizedImage]
 })
 export class ReactiveEcommerceModule {}

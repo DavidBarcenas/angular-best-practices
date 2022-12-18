@@ -1,9 +1,22 @@
 <div class="grid">
-  <div *ngFor="let _ of skeleton.items">
-    <ngx-skeleton-loader count="1" [theme]="skeleton.card"></ngx-skeleton-loader>
-    <ngx-skeleton-loader count="1" [theme]="skeleton.title"></ngx-skeleton-loader>
-    <ngx-skeleton-loader count="1" [theme]="skeleton.price"></ngx-skeleton-loader>
-    <ngx-skeleton-loader count="1" [theme]="skeleton.description"></ngx-skeleton-loader>
-    <ngx-skeleton-loader count="1" [theme]="skeleton.button"></ngx-skeleton-loader>
-  </div>
+  <ng-container *ngIf="products$ | async as products; else loading">
+    <div class="product" *ngFor="let product of products">
+      <div class="product-image">
+        <img [ngSrc]="product.image" [alt]="product.title" fill />
+      </div>
+      <h2>{{ product.title }}</h2>
+      <strong>{{ product.price }}</strong>
+      <p>{{ product.description }}</p>
+      <button>Add to cart</button>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div *ngFor="let _ of skeleton.items">
+      <ngx-skeleton-loader [theme]="skeleton.card"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.title"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.price"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.description"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.button"></ngx-skeleton-loader>
+    </div>
+  </ng-template>
 </div>
