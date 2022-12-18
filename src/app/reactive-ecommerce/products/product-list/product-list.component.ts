@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { ProductsService } from './products.service';
+import { ProductsService } from '../products.service';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
 })
-export class ProductsComponent {
+export class ProductListComponent {
   private productsService = inject(ProductsService);
   products$ = this.productsService.products$;
 
