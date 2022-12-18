@@ -9,6 +9,11 @@ import { ProductsService } from '../products.service';
 export class ProductListComponent {
   private productsService = inject(ProductsService);
   products$ = this.productsService.products$;
+  categories$ = this.productsService.categories$;
+
+  selectCategory(category: string) {
+    console.log(category);
+  }
 
   get skeleton() {
     const shared = { height: '1em', borderRadius: '2em' };

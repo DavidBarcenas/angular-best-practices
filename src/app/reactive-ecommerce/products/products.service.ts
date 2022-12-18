@@ -19,4 +19,6 @@ export class ProductsService {
       }))
     )
   );
+
+  categories$ = this.http.get<string[]>(`${fakeStoreAPI}/products/categories`);
 }

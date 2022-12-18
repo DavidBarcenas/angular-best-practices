@@ -1,4 +1,9 @@
 <app-alert></app-alert>
+<ul class="categories">
+  <li *ngFor="let category of categories$ | async" (click)="selectCategory(category)">
+    {{ category }}
+  </li>
+</ul>
 <div class="grid">
   <ng-container *ngIf="products$ | async as products; else loading">
     <div class="product fade" *ngFor="let product of products">
