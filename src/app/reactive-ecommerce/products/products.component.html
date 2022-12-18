@@ -1,13 +1,15 @@
 <div class="grid">
   <ng-container *ngIf="products$ | async as products; else loading">
-    <div class="product" *ngFor="let product of products">
+    <div class="product fade" *ngFor="let product of products">
       <div class="product-image">
         <img [ngSrc]="product.image" [alt]="product.title" fill />
       </div>
-      <h2>{{ product.title }}</h2>
-      <strong>{{ product.price }}</strong>
-      <p>{{ product.description }}</p>
-      <button>Add to cart</button>
+      <div class="product-header">
+        <h2 class="product-title">{{ product.title | titlecase }}</h2>
+        <strong class="product-price">${{ product.price }}</strong>
+      </div>
+      <p class="product-description">{{ product.description }}</p>
+      <button class="product-btn">Add to cart</button>
     </div>
   </ng-container>
   <ng-template #loading>

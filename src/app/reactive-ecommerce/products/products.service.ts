@@ -14,7 +14,8 @@ export class ProductsService {
     map(products =>
       products.map(product => ({
         ...product,
-        description: product.description.slice(0, 50) + '...'
+        title: product.description.slice(0, 25) + '...',
+        description: product.description.slice(0, 30) + '...'
       }))
     )
   );

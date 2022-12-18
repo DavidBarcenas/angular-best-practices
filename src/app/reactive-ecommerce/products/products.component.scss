@@ -19,7 +19,40 @@
     }
   }
 
-  h2 {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-title {
     font-size: 1.1em;
+    flex-grow: 1;
+  }
+
+  &-price {
+    color: var(--primary);
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-left: 1.5em;
+  }
+
+  &-description {
+    color: #7e8299;
+    font-size: 0.9em;
+  }
+
+  &-btn {
+    border: 1px solid var(--primary);
+    background: #fff;
+    color: var(--primary);
+    padding: 0.75em 1.5em;
+    border-radius: 1.5em;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+
+    &:hover {
+      background: var(--primary);
+      color: #fff;
+    }
   }
 }
