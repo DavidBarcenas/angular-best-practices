@@ -1,16 +1,15 @@
-<app-alert></app-alert>
-<ul class="categories">
-  <li
-    *ngFor="let category of categories$ | async"
-    (click)="selectCategory(category)"
-    [class.active]="(selectedCategory | async) === category"
-  >
-    {{ category }}
-  </li>
-</ul>
-<div class="grid">
-  <ng-container *ngIf="products$ | async as products; else loading">
-    <div class="product fade" *ngFor="let product of products">
+<ng-container *ngIf="vm$ | async as vm; else loadingOrError">
+  <ul class="categories">
+    <li
+      *ngFor="let category of vm.categories"
+      (click)="selectCategory(category)"
+      [class.active]="vm.selectedCategory === category"
+    >
+      {{ category }}
+    </li>
+  </ul>
+  <div class="grid">
+    <div class="product fade" *ngFor="let product of vm.products">
       <div class="product-image">
         <img [ngSrc]="product.image" [alt]="product.title" fill />
       </div>
@@ -21,14 +20,21 @@
       <p class="product-description">{{ product.description }}</p>
       <button class="product-btn">Add to cart</button>
     </div>
+  </div>
+</ng-container>
+<ng-template #loadingOrError>
+  <ng-container *ngIf="errorMessage$ | async as errorMessage; else loading">
+    <app-alert [message]="errorMessage"></app-alert>
   </ng-container>
   <ng-template #loading>
-    <div *ngFor="let _ of skeleton.items">
-      <ngx-skeleton-loader [theme]="skeleton.card"></ngx-skeleton-loader>
-      <ngx-skeleton-loader [theme]="skeleton.title"></ngx-skeleton-loader>
-      <ngx-skeleton-loader [theme]="skeleton.price"></ngx-skeleton-loader>
-      <ngx-skeleton-loader [theme]="skeleton.description"></ngx-skeleton-loader>
-      <ngx-skeleton-loader [theme]="skeleton.button"></ngx-skeleton-loader>
+    <div class="grid">
+      <div *ngFor="let _ of skeleton.items">
+        <ngx-skeleton-loader [theme]="skeleton.card"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="skeleton.title"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="skeleton.price"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="skeleton.description"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="skeleton.button"></ngx-skeleton-loader>
+      </div>
     </div>
   </ng-template>
-</div>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../products.service';
+import { catchError, combineLatest, EMPTY, map, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -8,9 +9,17 @@ import { ProductsService } from '../products.service';
 })
 export class ProductListComponent {
   private productsService = inject(ProductsService);
-  products$ = this.productsService.productsByCategory$;
-  categories$ = this.productsService.categories$;
-  selectedCategory = this.productsService.selectedCategory$;
+  private errorMessageSubject = new Subject<string>();
+  errorMessage$: Observable<string> = this.errorMessageSubject.asObservable();
+
+  vm$ = combineLatest([
+    this.productsService.categories$,
+    this.productsService.productsByCategory$,
+    this.productsService.selectedCategory$
+  ]).pipe(
+    map(([categories, products, selectedCategory]) => ({ categories, products, selectedCategory })),
+    catchError(error => this.handleError(error))
+  );
 
   selectCategory(category: string) {
     this.productsService.setCategory(category);
@@ -26,5 +35,10 @@ export class ProductListComponent {
       description: { ...shared, width: '85%', height: '.75em' },
       button: { ...shared, width: '30%', display: 'block' }
     };
+  }
+
+  private handleError(error: any): Observable<never> {
+    this.errorMessageSubject.next(error);
+    return EMPTY;
   }
 }

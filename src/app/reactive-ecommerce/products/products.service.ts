@@ -1,8 +1,16 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Product } from './product';
-import { BehaviorSubject, distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  distinctUntilChanged,
+  map,
+  Observable,
+  switchMap,
+  throwError
+} from 'rxjs';
 
 const { fakeStoreAPI } = environment;
 const defaultCategory = 'all';
@@ -13,17 +21,22 @@ const defaultCategory = 'all';
 export class ProductsService {
   private http = inject(HttpClient);
   private selectedCategory = new BehaviorSubject(defaultCategory);
-  categories$ = this.http
-    .get<string[]>(`${fakeStoreAPI}/products/categories`)
-    .pipe(map(categories => [defaultCategory, ...categories]));
+  categories$ = this.http.get<string[]>(`${fakeStoreAPI}/products/categories`).pipe(
+    map(categories => [defaultCategory, ...categories]),
+    catchError(this.handleError)
+  );
   selectedCategory$ = this.selectedCategory.asObservable();
-  products$ = this.http.get<Product[]>(`${fakeStoreAPI}/products`);
+  products$ = this.http
+    .get<Product[]>(`${fakeStoreAPI}/productser`)
+    .pipe(catchError(this.handleError));
   productsByCategory$: Observable<Product[]> = this.selectedCategory$.pipe(
     distinctUntilChanged(),
     switchMap(category =>
       category === defaultCategory
         ? this.products$
-        : this.http.get<Product[]>(`${fakeStoreAPI}/products/category/${category}`)
+        : this.http
+            .get<Product[]>(`${fakeStoreAPI}/products/category/${category}`)
+            .pipe(catchError(this.handleError))
     ),
     map(products =>
       products.map(product => ({
@@ -36,5 +49,20 @@ export class ProductsService {
 
   setCategory(category: string) {
     this.selectedCategory.next(category);
+  }
+
+  private handleError({ error }: HttpErrorResponse): Observable<never> {
+    // in a real world app, we may send the server to some remote logging infrastructure
+    // instead of just logging it to the console
+    let errorMessage: string;
+    if (error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      errorMessage = `An error occurred ${error.message}`;
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      errorMessage = `Backend return code ${error.status}: ${error.message}`;
+    }
+    return throwError(() => errorMessage);
   }
 }
