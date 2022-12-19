@@ -1,6 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../products.service';
-import { catchError, combineLatest, EMPTY, map, Observable, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  combineLatest,
+  EMPTY,
+  map,
+  Observable,
+  Subject,
+  tap
+} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -15,14 +24,25 @@ export class ProductListComponent {
   vm$ = combineLatest([
     this.productsService.categories$,
     this.productsService.productsByCategory$,
-    this.productsService.selectedCategory$
+    this.productsService.selectedCategory$,
+    this.productsService.loading$
   ]).pipe(
-    map(([categories, products, selectedCategory]) => ({ categories, products, selectedCategory })),
+    map(([categories, products, selectedCategory, loading]) => ({
+      categories,
+      products,
+      selectedCategory,
+      loading
+    })),
     catchError(error => this.handleError(error))
   );
 
   selectCategory(category: string) {
     this.productsService.setCategory(category);
+  }
+
+  private handleError(error: any): Observable<never> {
+    this.errorMessageSubject.next(error);
+    return EMPTY;
   }
 
   get skeleton() {
@@ -35,10 +55,5 @@ export class ProductListComponent {
       description: { ...shared, width: '85%', height: '.75em' },
       button: { ...shared, width: '30%', display: 'block' }
     };
-  }
-
-  private handleError(error: any): Observable<never> {
-    this.errorMessageSubject.next(error);
-    return EMPTY;
   }
 }

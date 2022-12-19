@@ -9,6 +9,7 @@ import {
   map,
   Observable,
   switchMap,
+  tap,
   throwError
 } from 'rxjs';
 
@@ -20,17 +21,21 @@ const defaultCategory = 'all';
 })
 export class ProductsService {
   private http = inject(HttpClient);
-  private selectedCategory = new BehaviorSubject(defaultCategory);
+  private selectedCategorySubject = new BehaviorSubject(defaultCategory);
+  private loadingSubject = new BehaviorSubject(false);
+  selectedCategory$ = this.selectedCategorySubject.asObservable();
+  loading$ = this.loadingSubject.asObservable();
+
   categories$ = this.http.get<string[]>(`${fakeStoreAPI}/products/categories`).pipe(
     map(categories => [defaultCategory, ...categories]),
     catchError(this.handleError)
   );
-  selectedCategory$ = this.selectedCategory.asObservable();
   products$ = this.http
-    .get<Product[]>(`${fakeStoreAPI}/productser`)
+    .get<Product[]>(`${fakeStoreAPI}/products`)
     .pipe(catchError(this.handleError));
   productsByCategory$: Observable<Product[]> = this.selectedCategory$.pipe(
     distinctUntilChanged(),
+    tap(() => this.loadingSubject.next(true)),
     switchMap(category =>
       category === defaultCategory
         ? this.products$
@@ -44,11 +49,12 @@ export class ProductsService {
         title: product.description.slice(0, 25) + '...',
         description: product.description.slice(0, 30) + '...'
       }))
-    )
+    ),
+    tap(() => this.loadingSubject.next(false))
   );
 
   setCategory(category: string) {
-    this.selectedCategory.next(category);
+    this.selectedCategorySubject.next(category);
   }
 
   private handleError({ error }: HttpErrorResponse): Observable<never> {
