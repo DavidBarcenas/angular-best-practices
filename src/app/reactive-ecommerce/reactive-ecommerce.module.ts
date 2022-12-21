@@ -6,6 +6,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AlertComponent } from './shared/alert/alert.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -14,12 +15,19 @@ const routes: Routes = [
     children: [
       { path: 'products', component: ProductListComponent },
       { path: 'product/:id', component: ProductComponent },
+      { path: 'cart', component: CartComponent },
       { path: '', pathMatch: 'full', redirectTo: 'products' }
     ]
   }
 ];
 @NgModule({
-  declarations: [EcommerceComponent, AlertComponent, ProductListComponent, ProductComponent],
+  declarations: [
+    EcommerceComponent,
+    AlertComponent,
+    ProductListComponent,
+    ProductComponent,
+    CartComponent
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), NgxSkeletonLoaderModule, NgOptimizedImage]
 })
 export class ReactiveEcommerceModule {}
