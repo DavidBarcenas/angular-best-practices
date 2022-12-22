@@ -10,7 +10,11 @@
       </li>
     </ul>
     <div class="grid">
-      <div class="product fade" *ngFor="let product of vm.products">
+      <div
+        class="product fade"
+        *ngFor="let product of vm.products"
+        (click)="goToDetailPage(product.id)"
+      >
         <div class="product-image">
           <img [ngSrc]="product.image" [alt]="product.title" fill />
         </div>

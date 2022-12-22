@@ -33,6 +33,7 @@ export class ProductsService {
   products$ = this.http
     .get<Product[]>(`${fakeStoreAPI}/products`)
     .pipe(catchError(this.handleError));
+
   productsByCategory$: Observable<Product[]> = this.selectedCategory$.pipe(
     distinctUntilChanged(),
     tap(() => this.loadingSubject.next(true)),

@@ -10,6 +10,7 @@ import {
   Subject,
   tap
 } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -18,6 +19,7 @@ import {
 })
 export class ProductListComponent {
   private productsService = inject(ProductsService);
+  private router = inject(Router);
   private errorMessageSubject = new Subject<string>();
   errorMessage$: Observable<string> = this.errorMessageSubject.asObservable();
 
@@ -38,6 +40,10 @@ export class ProductListComponent {
 
   selectCategory(category: string) {
     this.productsService.setCategory(category);
+  }
+
+  goToDetailPage(id: number): void {
+    this.router.navigate(['/reactive-ecommerce/product', id]);
   }
 
   private handleError(error: any): Observable<never> {
