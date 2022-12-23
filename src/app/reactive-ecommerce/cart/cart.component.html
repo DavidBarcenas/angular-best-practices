@@ -67,3 +67,30 @@
     <button class="pay-btn">Pay $449</button>
   </div>
 </div>
+
+<div class="skeleton">
+  <div class="skeleton-review">
+    <ngx-skeleton-loader [theme]="skeleton.reviewTitle"></ngx-skeleton-loader>
+    <div class="skeleton-review-item" *ngFor="let _ of skeleton.reviewItems">
+      <div class="skeleton-review-item--left">
+        <ngx-skeleton-loader [theme]="skeleton.img"></ngx-skeleton-loader>
+        <div>
+          <ngx-skeleton-loader [theme]="skeleton.product"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="skeleton.desc"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div>
+        <ngx-skeleton-loader [theme]="skeleton.price"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="skeleton.quantity"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+  <div class="skeleton-order">
+    <ngx-skeleton-loader [theme]="skeleton.orderTitle"></ngx-skeleton-loader>
+    <div class="skeleton-order-item" *ngFor="let _ of skeleton.orderItems">
+      <ngx-skeleton-loader [theme]="skeleton.total"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.price"></ngx-skeleton-loader>
+    </div>
+    <ngx-skeleton-loader [theme]="skeleton.btn"></ngx-skeleton-loader>
+  </div>
+</div>

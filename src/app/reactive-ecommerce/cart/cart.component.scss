@@ -1,5 +1,7 @@
-.cart {
+.cart,
+.skeleton {
   display: flex;
+  align-items: flex-start;
 
   &-review,
   .order-summary {
@@ -83,4 +85,32 @@
   width: 100%;
   padding: 0.75em 0;
   border: none;
+}
+
+.skeleton-review,
+.skeleton-order {
+  border: none;
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1em;
+
+    &--left {
+      display: flex;
+      padding-left: 2em;
+      align-items: center;
+    }
+  }
+}
+
+.skeleton-order {
+  padding: 1.5em;
+  flex-grow: 1;
+
+  &-item {
+    margin-bottom: 1em;
+    padding-right: 0;
+  }
 }
