@@ -54,7 +54,11 @@ export class ProductsService {
     tap(() => this.loadingSubject.next(false))
   );
 
-  setCategory(category: string) {
+  product$(id: number): Observable<Product> {
+    return this.http.get<Product>(`${fakeStoreAPI}/products/${id}`);
+  }
+
+  setCategory(category: string): void {
     this.selectedCategorySubject.next(category);
   }
 
