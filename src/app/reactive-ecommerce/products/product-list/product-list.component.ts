@@ -11,6 +11,8 @@ import {
   tap
 } from 'rxjs';
 import { Router } from '@angular/router';
+import { CartService } from '../../cart/cart.service';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-product-list',
@@ -19,6 +21,7 @@ import { Router } from '@angular/router';
 })
 export class ProductListComponent {
   private productsService = inject(ProductsService);
+  private cartService = inject(CartService);
   private router = inject(Router);
   private errorMessageSubject = new Subject<string>();
   errorMessage$: Observable<string> = this.errorMessageSubject.asObservable();
@@ -44,6 +47,10 @@ export class ProductListComponent {
 
   goToDetailPage(id: number): void {
     this.router.navigate(['/reactive-ecommerce/product', id]);
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
   }
 
   private handleError(error: any): Observable<never> {

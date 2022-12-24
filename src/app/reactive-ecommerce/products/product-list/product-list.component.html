@@ -10,20 +10,16 @@
       </li>
     </ul>
     <div class="grid">
-      <div
-        class="product fade"
-        *ngFor="let product of vm.products"
-        (click)="goToDetailPage(product.id)"
-      >
-        <div class="product-image">
+      <div class="product fade" *ngFor="let product of vm.products">
+        <div class="product-image" (click)="goToDetailPage(product.id)">
           <img [ngSrc]="product.image" [alt]="product.title" fill />
         </div>
-        <div class="product-header">
+        <div class="product-header" (click)="goToDetailPage(product.id)">
           <h2 class="product-title">{{ product.title | titlecase }}</h2>
           <strong class="product-price">${{ product.price }}</strong>
         </div>
         <p class="product-description">{{ product.description }}</p>
-        <button class="product-btn">Add to Cart</button>
+        <button class="product-btn" (click)="addToCart(product)">Add to Cart</button>
       </div>
     </div>
   </ng-container>

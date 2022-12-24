@@ -35,6 +35,7 @@
       <a routerLink="./cart">
         <span class="material-symbols-outlined"> shopping_cart </span>
         Cart
+        <span class="counter">{{ (totalCartItems$ | async) || 0 }}</span>
       </a>
     </div>
   </div>

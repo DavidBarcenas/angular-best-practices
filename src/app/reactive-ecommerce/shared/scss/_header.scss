@@ -43,3 +43,17 @@
     }
   }
 }
+
+.counter {
+  $size: 20px;
+
+  display: inline-block;
+  background: var(--primary);
+  font-size: 0.9em;
+  color: #fff;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  border-radius: $size;
+  text-align: center;
+}

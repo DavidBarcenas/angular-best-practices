@@ -30,8 +30,8 @@ export class ProductComponent {
   }
 
   addToCart(product: Product, quantity: number): void {
-    const newProduct = { ...product, quantity };
-    console.log(newProduct);
+    const item = { ...product, quantity };
+    this.cartService.addToCart(item);
   }
 
   private buildSkeleton() {
