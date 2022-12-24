@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../products/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { Product } from '../products/product';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -10,14 +12,29 @@ import { tap } from 'rxjs';
 })
 export class ProductComponent {
   private productsService = inject(ProductsService);
+  private cartService = inject(CartService);
   private route = inject(ActivatedRoute);
-  product$ = this.productsService.product$(
-    parseInt(this.route.snapshot.paramMap.get('id')! || '0')
-  );
+  private quantitySubject = new BehaviorSubject(1);
+  product$ = this.productsService.product$(parseInt(this.route.snapshot.paramMap.get('id') || '0'));
 
+  quantity$ = this.quantitySubject.asObservable();
   skeleton = this.buildSkeleton();
+  vm$: Observable<{ product: Product; quantity: number }> = combineLatest([
+    this.product$,
+    this.quantity$
+  ]).pipe(map(([product, quantity]) => ({ product, quantity })));
 
-  buildSkeleton() {
+  changeQuantity(quantity: number): void {
+    const accQuantity = this.quantitySubject.getValue();
+    this.quantitySubject.next(accQuantity + quantity);
+  }
+
+  addToCart(product: Product, quantity: number): void {
+    const newProduct = { ...product, quantity };
+    console.log(newProduct);
+  }
+
+  private buildSkeleton() {
     return [
       { height: '2em', width: '80%' },
       { height: '.9em', width: '60%' },

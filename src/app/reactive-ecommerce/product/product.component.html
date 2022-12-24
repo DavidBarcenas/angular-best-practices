@@ -1,21 +1,21 @@
-<div class="product" *ngIf="product$ | async as product; else loading">
+<div class="product" *ngIf="vm$ | async as vm; else loading">
   <div class="product-img">
-    <img [src]="product.image" [alt]="product.title" />
+    <img [src]="vm.product.image" [alt]="vm.product.title" />
   </div>
   <div class="product-description">
-    <h2>{{ product.title }}</h2>
+    <h2>{{ vm.product.title }}</h2>
     <p>
-      {{ product.description }}
+      {{ vm.product.description }}
     </p>
-    <strong class="product-price">{{ product.price | currency }}</strong>
+    <strong class="product-price">{{ vm.product.price | currency }}</strong>
     <small>Suggested payments with 6 months special financing</small>
     <div class="product-buttons">
       <div class="product-counter">
-        <span class="material-symbols-outlined"> remove </span>
-        <span>1</span>
-        <span class="material-symbols-outlined"> add </span>
+        <span class="material-symbols-outlined" (click)="changeQuantity(-1)"> remove </span>
+        <span>{{ vm.quantity }}</span>
+        <span class="material-symbols-outlined" (click)="changeQuantity(+1)"> add </span>
       </div>
-      <button class="product-btn">Add to Cart</button>
+      <button class="product-btn" (click)="addToCart(vm.product, vm.quantity)">Add to Cart</button>
     </div>
     <ul class="product-delivery">
       <li>

@@ -16,6 +16,11 @@ import {
 const { fakeStoreAPI } = environment;
 const defaultCategory = 'all';
 
+const defaultQuantity = 1;
+const maxTitleSlice = 25;
+const maxDescSlice = 30;
+const startSlice = 0;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,8 +52,9 @@ export class ProductsService {
     map(products =>
       products.map(product => ({
         ...product,
-        title: product.description.slice(0, 25) + '...',
-        description: product.description.slice(0, 30) + '...'
+        title: product.description.slice(startSlice, maxTitleSlice) + '...',
+        description: product.description.slice(startSlice, maxDescSlice) + '...',
+        quantity: defaultQuantity
       }))
     ),
     tap(() => this.loadingSubject.next(false))
