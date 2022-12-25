@@ -21,6 +21,11 @@ export class CartService {
 
   totalCartItems$ = this.cartItems$.pipe(map(items => items.length));
 
+  // Total up the extended price for each item
+  subtotal$ = this.cartItems$.pipe(
+    map(items => items.reduce((a, b) => a + b.quantity * b.price, 0))
+  );
+
   addToCart(product: Product): void {
     this.itemSubject.next({
       item: product,

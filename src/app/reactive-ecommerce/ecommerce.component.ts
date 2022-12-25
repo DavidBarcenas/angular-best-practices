@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CartService } from './cart/cart.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { CartService } from './cart/cart.service';
   styleUrls: ['./ecommerce.component.scss']
 })
 export class EcommerceComponent {
+  cartService = inject(CartService);
   totalCartItems$ = this.cartService.totalCartItems$;
-
-  constructor(private cartService: CartService) {}
 }

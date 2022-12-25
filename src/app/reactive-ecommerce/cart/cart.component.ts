@@ -9,6 +9,7 @@ import { CartService } from './cart.service';
 export class CartComponent {
   private cartService = inject(CartService);
   cartItems$ = this.cartService.cartItems$;
+  subtotal$ = this.cartService.subtotal$;
   skeleton = this.buildSkeleton();
 
   private buildSkeleton() {
