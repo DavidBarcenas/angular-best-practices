@@ -1,0 +1,47 @@
+<div class="top-bar">
+  <div class="container">
+    <div class="phone">
+      <span class="material-symbols-outlined">phone</span>
+      <p>+001234567890</p>
+    </div>
+    <p class="offer">Get 50% Off on Selected items <span>Shop now</span></p>
+    <div class="lang">
+      <p>Eng <span class="material-symbols-outlined"> expand_more </span></p>
+      <p>Location <span class="material-symbols-outlined"> expand_more </span></p>
+    </div>
+  </div>
+</div>
+<header class="header">
+  <div class="container">
+    <a routerLink="/">
+      <h1>
+        <span class="material-symbols-outlined"> shopping_bag </span>
+        E-commerce
+      </h1>
+    </a>
+    <nav>
+      <a href="#">Categories</a>
+      <a href="#">Suppliers</a>
+    </nav>
+    <div class="search">
+      <input type="text" placeholder="Search product" />
+      <span class="material-symbols-outlined">search</span>
+    </div>
+    <div class="actions">
+      <a href="#">
+        <span class="material-symbols-outlined"> person_outline </span>
+        Account
+      </a>
+      <a routerLink="./cart">
+        <span class="material-symbols-outlined"> shopping_cart </span>
+        Cart
+        <span class="counter">{{ (totalCartItems$ | async) || 0 }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="main-content">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>

@@ -1,0 +1,59 @@
+.header {
+  padding-top: 1.5em;
+
+  h1 {
+    color: var(--primary);
+    font-size: 1.5em;
+
+    span {
+      display: inline-block;
+      font-size: 1.2em;
+      vertical-align: bottom;
+    }
+  }
+
+  nav a {
+    margin-left: 2.5em;
+  }
+
+  .search {
+    position: relative;
+
+    input {
+      background: var(--gray);
+      border-radius: 1em;
+      border: none;
+      min-width: 300px;
+    }
+
+    span {
+      position: absolute;
+      top: 0.1em;
+      right: 0.5em;
+    }
+  }
+
+  .actions {
+    a {
+      margin-left: 1.8em;
+
+      span {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+}
+
+.counter {
+  $size: 20px;
+
+  display: inline-block;
+  background: var(--primary);
+  font-size: 0.9em;
+  color: #fff;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  border-radius: $size;
+  text-align: center;
+}

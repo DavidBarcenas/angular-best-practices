@@ -1,0 +1,55 @@
+<ng-container *ngIf="vm$ | async as vm; else loadingOrError">
+  <ng-container *ngIf="!vm.loading">
+    <ul class="categories">
+      <li
+        *ngFor="let category of vm.categories"
+        (click)="selectCategory(category)"
+        [class.active]="vm.selectedCategory === category"
+      >
+        {{ category }}
+      </li>
+    </ul>
+    <div class="grid">
+      <div class="product fade" *ngFor="let product of vm.products">
+        <div class="product-image" (click)="goToDetailPage(product.id)">
+          <img [ngSrc]="product.image" [alt]="product.title" fill />
+        </div>
+        <div class="product-header" (click)="goToDetailPage(product.id)">
+          <h2 class="product-title">{{ product.title | titlecase }}</h2>
+          <strong class="product-price">${{ product.price }}</strong>
+        </div>
+        <p class="product-description">{{ product.description }}</p>
+        <button class="product-btn" (click)="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!--  Show skeleton when category changes-->
+  <ng-template [ngIf]="vm.loading">
+    <ng-container *ngTemplateOutlet="loading"></ng-container>
+  </ng-template>
+</ng-container>
+
+<!--  If there is an error show the message and remove the skeleton -->
+<ng-template #loadingOrError>
+  <ng-container *ngIf="errorMessage$ | async as errorMessage; else loading">
+    <app-alert [message]="errorMessage"></app-alert>
+  </ng-container>
+</ng-template>
+
+<!--
+  This skeleton is shown when the page loads for the first time,
+  there is no error and when the category is changed the
+  html is injected into *ngTemplateOutlet
+-->
+<ng-template #loading>
+  <div class="grid">
+    <div *ngFor="let _ of skeleton.items">
+      <ngx-skeleton-loader [theme]="skeleton.card"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.title"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.price"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.description"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="skeleton.button"></ngx-skeleton-loader>
+    </div>
+  </div>
+</ng-template>

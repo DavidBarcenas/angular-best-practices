@@ -1,0 +1,52 @@
+<div class="product" *ngIf="vm$ | async as vm; else loading">
+  <div class="product-img">
+    <img [src]="vm.product.image" [alt]="vm.product.title" />
+  </div>
+  <div class="product-description">
+    <h2>{{ vm.product.title }}</h2>
+    <p>
+      {{ vm.product.description }}
+    </p>
+    <strong class="product-price">{{ vm.product.price | currency }}</strong>
+    <small>Suggested payments with 6 months special financing</small>
+    <div class="product-buttons">
+      <div class="product-counter">
+        <span class="material-symbols-outlined" (click)="changeQuantity(-1)"> remove </span>
+        <span>{{ vm.quantity }}</span>
+        <span class="material-symbols-outlined" (click)="changeQuantity(+1)"> add </span>
+      </div>
+      <button class="product-btn" (click)="addToCart(vm.product, vm.quantity)">Add to Cart</button>
+    </div>
+    <ul class="product-delivery">
+      <li>
+        <span class="material-symbols-outlined icon"> local_shipping </span>
+        <div>
+          <strong>Free Delivery</strong>
+          <small>Enter your Postal code for Delivery Availability</small>
+        </div>
+      </li>
+      <li>
+        <span class="material-symbols-outlined icon"> calendar_today </span>
+        <div>
+          <strong>Return Delivery</strong>
+          <small>Free 30 days Delivery Returns</small>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="product">
+    <div style="width: 45%">
+      <ngx-skeleton-loader [theme]="{ height: '400px' }"></ngx-skeleton-loader>
+    </div>
+    <div class="product-description">
+      <ngx-skeleton-loader
+        *ngFor="let item of skeleton"
+        [theme]="item"
+        [count]="item.count || 1"
+      ></ngx-skeleton-loader>
+    </div>
+  </div>
+</ng-template>
