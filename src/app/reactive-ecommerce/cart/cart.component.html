@@ -16,6 +16,9 @@
               <strong>{{ item.price | currency }}</strong>
               <span>Quantity: {{ item.quantity }}</span>
             </div>
+            <span class="material-symbols-outlined delete-btn" (click)="onRemove(item)">
+              remove_circle
+            </span>
           </div>
         </li>
       </ul>

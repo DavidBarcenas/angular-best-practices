@@ -1,15 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../products.service';
-import {
-  BehaviorSubject,
-  catchError,
-  combineLatest,
-  EMPTY,
-  map,
-  Observable,
-  Subject,
-  tap
-} from 'rxjs';
+import { catchError, combineLatest, EMPTY, map, Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
 import { Product } from '../product';
@@ -50,10 +41,10 @@ export class ProductListComponent {
   }
 
   addToCart(product: Product): void {
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(product, 'add');
   }
 
-  private handleError(error: any): Observable<never> {
+  private handleError(error: string): Observable<never> {
     this.errorMessageSubject.next(error);
     return EMPTY;
   }

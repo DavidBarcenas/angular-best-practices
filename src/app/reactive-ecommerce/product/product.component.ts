@@ -31,7 +31,7 @@ export class ProductComponent {
 
   addToCart(product: Product, quantity: number): void {
     const item = { ...product, quantity };
-    this.cartService.addToCart(item);
+    this.cartService.addToCart(item, 'update');
   }
 
   private buildSkeleton() {

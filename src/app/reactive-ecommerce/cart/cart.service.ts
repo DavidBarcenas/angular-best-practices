@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../products/product';
 import { combineLatest, map, scan, shareReplay, Subject } from 'rxjs';
+import { ProductComponent } from '../product/product.component';
 
 type ActionType = 'add' | 'update' | 'delete' | 'none';
 interface Action<T> {
@@ -27,7 +28,7 @@ export class CartService {
   );
 
   // Delivery is free if spending more than $30
-  deliveryFree$ = this.subTotal$.pipe(map(t => (t < 30 ? 5.99 : 0)));
+  deliveryFree$ = this.subTotal$.pipe(map(t => (t > 0 && t < 30 ? 5.99 : 0)));
 
   // Tax could be based on shipping address zip code
   tax$ = this.subTotal$.pipe(map(t => Math.round(t * 10.75) / 100));
@@ -37,19 +38,31 @@ export class CartService {
     map(([subTotal, delivery, tax]) => subTotal + delivery + tax)
   );
 
-  addToCart(product: Product): void {
+  addToCart(product: Product, action: ActionType): void {
     this.itemSubject.next({
       item: product,
-      action: 'add'
+      action
+    });
+  }
+
+  removeFromCart(product: Product): void {
+    this.itemSubject.next({
+      item: product,
+      action: 'delete'
     });
   }
 
   // Return the updated array of cart items
   private modifyCart(items: Product[], operation: Action<Product>): Product[] {
     if (operation.action === 'add') {
-      return items.find(item => item.id === operation.item.id)
-        ? [...items]
-        : [...items, operation.item];
+      const itemExists = items.find(item => item.id === operation.item.id);
+      return itemExists ? [...items] : [...items, operation.item];
+    }
+    if (operation.action === 'update') {
+      return items.map(item => (item.id === operation.item.id ? operation.item : item));
+    }
+    if (operation.action === 'delete') {
+      return items.filter(item => item.id !== operation.item.id);
     }
     return [...items];
   }

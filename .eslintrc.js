@@ -24,10 +24,6 @@ module.exports = {
     semi: ['error', 'always'],
     'max-depth': ['error', 4],
     'no-nested-ternary': 'error',
-    'no-magic-numbers': [
-      'warn',
-      { detectObjects: false, enforceConst: true, ignore: [1], ignoreArrayIndexes: true }
-    ],
     'no-multiple-empty-lines': [
       'warn',
       {

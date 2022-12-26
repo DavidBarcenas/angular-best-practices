@@ -43,7 +43,9 @@
     align-items: center;
     justify-content: space-between;
     padding-left: 1em;
+    padding-right: 3em;
     width: 85%;
+    position: relative;
 
     strong {
       display: block;
@@ -52,6 +54,16 @@
 
     span {
       font-size: 0.8em;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      font-size: 1.5em;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: tomato;
     }
   }
 }

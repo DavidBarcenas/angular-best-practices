@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from './cart.service';
 import { combineLatest, map } from 'rxjs';
+import { Product } from '../products/product';
 
 @Component({
   selector: 'app-cart',
@@ -25,6 +26,10 @@ export class CartComponent {
       total
     }))
   );
+
+  onRemove(product: Product): void {
+    this.cartService.removeFromCart(product);
+  }
 
   private buildSkeleton() {
     return {
