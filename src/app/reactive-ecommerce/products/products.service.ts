@@ -15,7 +15,6 @@ import {
 
 const { fakeStoreAPI } = environment;
 const defaultCategory = 'all';
-
 const defaultQuantity = 1;
 const maxTitleSlice = 25;
 const maxDescSlice = 30;
@@ -35,6 +34,7 @@ export class ProductsService {
     map(categories => [defaultCategory, ...categories]),
     catchError(this.handleError)
   );
+
   products$ = this.http
     .get<Product[]>(`${fakeStoreAPI}/products`)
     .pipe(catchError(this.handleError));

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../products/product';
-import { map, scan, shareReplay, Subject } from 'rxjs';
+import { combineLatest, map, scan, shareReplay, Subject } from 'rxjs';
 
 type ActionType = 'add' | 'update' | 'delete' | 'none';
 interface Action<T> {
@@ -22,8 +22,19 @@ export class CartService {
   totalCartItems$ = this.cartItems$.pipe(map(items => items.length));
 
   // Total up the extended price for each item
-  subtotal$ = this.cartItems$.pipe(
+  subTotal$ = this.cartItems$.pipe(
     map(items => items.reduce((a, b) => a + b.quantity * b.price, 0))
+  );
+
+  // Delivery is free if spending more than $30
+  deliveryFree$ = this.subTotal$.pipe(map(t => (t < 30 ? 5.99 : 0)));
+
+  // Tax could be based on shipping address zip code
+  tax$ = this.subTotal$.pipe(map(t => Math.round(t * 10.75) / 100));
+
+  // Total price
+  totalPrice$ = combineLatest([this.subTotal$, this.deliveryFree$, this.tax$]).pipe(
+    map(([subTotal, delivery, tax]) => subTotal + delivery + tax)
   );
 
   addToCart(product: Product): void {

@@ -1,9 +1,9 @@
-<ng-container *ngIf="cartItems$ | async as cartItems; else loading">
+<ng-container *ngIf="vm$ | async as vm; else loading">
   <div class="cart">
     <div class="cart-review">
       <h2>Review Item And Shipping</h2>
       <ul class="list">
-        <li class="item" *ngFor="let item of cartItems">
+        <li class="item" *ngFor="let item of vm.cartItems">
           <div class="item-img">
             <img [src]="item.image" [alt]="item.title" />
           </div>
@@ -25,26 +25,26 @@
       <ul class="order-list">
         <li class="order-item">
           <span>Sub Total</span>
-          <strong>$549</strong>
+          <strong>{{ vm.subTotal | currency }}</strong>
         </li>
         <li class="order-item">
           <span>Tax(10%)</span>
-          <strong>$54.90</strong>
+          <strong>{{ vm.tax | currency }}</strong>
         </li>
         <li class="order-item">
           <span>Coupon Discount</span>
-          <strong>-35.00</strong>
+          <strong>$0.00</strong>
         </li>
         <li class="order-item">
           <span>Shipping Cost</span>
-          <strong>$0</strong>
+          <strong>{{ vm.delivery | currency }}</strong>
         </li>
         <li class="order-item">
           <span>Total</span>
-          <strong>$449</strong>
+          <strong>{{ vm.total | currency }}</strong>
         </li>
       </ul>
-      <button class="pay-btn">Pay $449</button>
+      <button class="pay-btn">Pay {{ vm.total | currency }}</button>
     </div>
   </div>
 </ng-container>

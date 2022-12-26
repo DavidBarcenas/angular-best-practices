@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from './cart.service';
+import { combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -8,9 +9,22 @@ import { CartService } from './cart.service';
 })
 export class CartComponent {
   private cartService = inject(CartService);
-  cartItems$ = this.cartService.cartItems$;
-  subtotal$ = this.cartService.subtotal$;
   skeleton = this.buildSkeleton();
+  vm$ = combineLatest([
+    this.cartService.cartItems$,
+    this.cartService.subTotal$,
+    this.cartService.tax$,
+    this.cartService.deliveryFree$,
+    this.cartService.totalPrice$
+  ]).pipe(
+    map(([cartItems, subTotal, tax, delivery, total]) => ({
+      cartItems,
+      subTotal,
+      tax,
+      delivery,
+      total
+    }))
+  );
 
   private buildSkeleton() {
     return {
