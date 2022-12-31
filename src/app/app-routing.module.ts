@@ -17,7 +17,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./reactive-ecommerce/reactive-ecommerce.module').then(m => m.ReactiveEcommerceModule)
   },
-  { path: '', redirectTo: 'reactive-ecommerce', pathMatch: 'full' }
+  {
+    path: 'advanced-rxjs',
+    loadChildren: () =>
+      import('./advanced-rxjs/advanced-rxjs.module').then(m => m.AdvancedRxjsModule)
+  },
+  { path: '', redirectTo: 'advanced-rxjs', pathMatch: 'full' }
 ];
 
 @NgModule({
