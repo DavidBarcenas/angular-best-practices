@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, connectable, interval, map, takeUntil } from 'rxjs';
+import { Observable, Subject, connectable, interval, map, share, takeUntil } from 'rxjs';
 
 interface UserResponse {
   data: {
@@ -19,10 +19,26 @@ export class AdvancedRxjsComponent implements OnInit {
   private http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.multicastOperator();
+    this.multicastRefCount();
   }
 
-  // We'll use connectable operator to create multicasted Observables.
+  multicastRefCount(): void {
+    // share the original observable
+    const refCount = interval(1000).pipe(share({ connector: () => new Subject<number>() }));
+
+    // Will emit data as long as there is at least one subscription
+    const sub1 = refCount.subscribe(console.log);
+    const sub2 = refCount.subscribe(console.log);
+
+    // when all subscribers unsubscribe, this one will
+    // automatically unsubscribe from the source
+    setTimeout(() => {
+      sub1.unsubscribe();
+      sub2.unsubscribe();
+    }, 5000);
+  }
+
+  // We'll use connectable operator to create multicasted Observables
   multicastOperator(): void {
     const completeSubject = new Subject<boolean>();
     // we create The source observable
@@ -30,7 +46,7 @@ export class AdvancedRxjsComponent implements OnInit {
       connector: () => new Subject<number>()
     });
 
-    // We subscribe to the observable multiple times.
+    // We subscribe to the observable multiple times
     multicasted.subscribe(console.log);
     multicasted.subscribe(console.log);
 
@@ -45,8 +61,8 @@ export class AdvancedRxjsComponent implements OnInit {
   }
 
   // When a Subject receives a new Observer it does
-  // not invoke a new execution for the production of values.
-  // Rather, each observer receives the same produced values.
+  // not invoke a new execution for the production of values
+  // Rather, each observer receives the same produced values
   multicast(): void {
     const user$ = this.http
       .get<UserResponse>('https://reqres.in/api/users/2')
@@ -58,11 +74,11 @@ export class AdvancedRxjsComponent implements OnInit {
     userSubject.subscribe(console.log);
 
     // Finally, we subscribe to our user Observable and pass along
-    // the notifications to the userSubject.
+    // the notifications to the userSubject
     user$.subscribe(userSubject);
   }
 
-  // Each Observer owns a separate execution of the Observable.
+  // Each Observer owns a separate execution of the Observable
   unicast(): void {
     const o = new Observable(() => {
       console.log('new subscriber');
