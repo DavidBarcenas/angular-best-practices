@@ -22,19 +22,19 @@ export class AdvancedRxjsComponent implements OnInit {
     this.multicastRefCount();
   }
 
+  // share the original observable and track Subscription references
   multicastRefCount(): void {
-    // share the original observable
-    const refCount = interval(1000).pipe(share({ connector: () => new Subject<number>() }));
-
+    const refCount = interval(1000).pipe(share());
     // Will emit data as long as there is at least one subscription
-    const sub1 = refCount.subscribe(console.log);
-    const sub2 = refCount.subscribe(console.log);
-
+    const sub = refCount.subscribe(console.log);
+    // sub with child subscription
+    sub.add(refCount.subscribe(console.log));
     // when all subscribers unsubscribe, this one will
     // automatically unsubscribe from the source
     setTimeout(() => {
-      sub1.unsubscribe();
-      sub2.unsubscribe();
+      // when they unsubscribe from the parent,
+      // automatically the children also unsubscribe
+      sub.unsubscribe();
     }, 5000);
   }
 
