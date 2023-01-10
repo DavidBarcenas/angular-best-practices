@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   AsyncSubject,
   Observable,
+  ReplaySubject,
   Subject,
   connectable,
   fromEvent,
@@ -30,10 +31,25 @@ export class AdvancedRxjsComponent implements OnInit {
   private http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.asyncSubject();
+    this.replaySubject();
   }
 
-  // emits the last value, and only the last value,
+  // Emits all or a specified number of past next notifications
+  replaySubject(): void {
+    const replaySubject = new ReplaySubject<number>();
+    // emit the first values
+    replaySubject.next(1);
+    replaySubject.next(2);
+    // show the first values and new values
+    replaySubject.subscribe(x => console.log('sub 1 ', x));
+    // emit new values
+    replaySubject.next(3);
+    replaySubject.next(4);
+    // get all values [1,2,3,4]
+    replaySubject.subscribe(x => console.log('sub 2 ', x));
+  }
+
+  // Emits the last value, and only the last value,
   // to all Observers upon completion.
   asyncSubject(): void {
     const clicks = fromEvent<MouseEvent>(document, 'click').pipe(
