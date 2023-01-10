@@ -1,6 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, connectable, interval, map, share, takeUntil } from 'rxjs';
+import {
+  AsyncSubject,
+  Observable,
+  Subject,
+  connectable,
+  fromEvent,
+  interval,
+  map,
+  share,
+  takeUntil,
+  tap
+} from 'rxjs';
 
 interface UserResponse {
   data: {
@@ -19,7 +30,23 @@ export class AdvancedRxjsComponent implements OnInit {
   private http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.multicastRefCount();
+    this.asyncSubject();
+  }
+
+  // emits the last value, and only the last value,
+  // to all Observers upon completion.
+  asyncSubject(): void {
+    const clicks = fromEvent<MouseEvent>(document, 'click').pipe(
+      tap(e => console.log(e.pageX, e.pageX))
+    );
+    const asyncSubject = new AsyncSubject<MouseEvent>();
+
+    asyncSubject.subscribe(e => console.log({ x: e.pageX, y: e.pageY }));
+    clicks.subscribe(asyncSubject);
+
+    // Note that if an AsyncSubject never completes then the Observers
+    // will never receive a next notification.
+    setTimeout(() => asyncSubject.complete(), 5000);
   }
 
   // share the original observable and track Subscription references
