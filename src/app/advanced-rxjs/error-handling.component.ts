@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Subject, mergeMap, throwError } from 'rxjs';
+import { Subject, catchError, finalize, mergeMap, throwError } from 'rxjs';
 
 @Component({
   template: `<h2>Error Handling</h2>
+    <div *ngIf="showErrorMessage">Invalid email or password.</div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <input type="email" formControlName="email" />
       <input type="password" formControlName="password" />
@@ -19,6 +20,7 @@ export class ErrorHandlingComponent {
     email: '',
     password: ''
   });
+  showErrorMessage = false;
 
   onSubmit(): void {
     const subject = new Subject<boolean>();
@@ -33,7 +35,19 @@ export class ErrorHandlingComponent {
                 password: this.form.value.password
               })
             : throwError(() => 'Invalid email or password.')
-        )
+        ),
+        catchError(error => {
+          console.error('catchError: ', error);
+          this.showErrorMessage = true;
+          return throwError(() => error);
+        }),
+        finalize(() => {
+          // callback that can be used for a secondary effect
+          console.log('finalize');
+          setTimeout(() => {
+            this.showErrorMessage = false;
+          }, 3000);
+        })
       )
       .subscribe({
         error: e => console.error('observer: ', e),
