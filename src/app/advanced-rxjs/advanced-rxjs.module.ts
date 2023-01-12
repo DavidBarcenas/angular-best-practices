@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SubjectComponent } from './subject.component';
 import { ErrorHandlingComponent } from './error-handling.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomOperatorsComponent } from './custom-operators/custom-operators.component';
 
 const routes: Routes = [
   {
@@ -13,13 +14,19 @@ const routes: Routes = [
     children: [
       { path: 'subjects', component: SubjectComponent },
       { path: 'error-handling', component: ErrorHandlingComponent },
-      { path: '', redirectTo: 'error-handling', pathMatch: 'full' }
+      { path: 'custom-operators', component: CustomOperatorsComponent },
+      { path: '', redirectTo: 'custom-operators', pathMatch: 'full' }
     ]
   }
 ];
 
 @NgModule({
-  declarations: [AdvancedRxjsComponent, SubjectComponent, ErrorHandlingComponent],
+  declarations: [
+    AdvancedRxjsComponent,
+    SubjectComponent,
+    ErrorHandlingComponent,
+    CustomOperatorsComponent
+  ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)]
 })
 export class AdvancedRxjsModule {}
