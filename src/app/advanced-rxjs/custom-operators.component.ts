@@ -13,20 +13,7 @@ import {
   sequenceEqual,
   tap
 } from 'rxjs';
-
-interface UserResponse {
-  page: number;
-  per_page: number;
-  total: number;
-  total_pages: number;
-  data: {
-    id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
-  }[];
-}
+import { UserResponse } from './user.interface';
 
 enum LoggerType {
   Count,
@@ -39,8 +26,7 @@ enum LoggerType {
 const passCode = [1, 1, 1, 1];
 
 @Component({
-  templateUrl: './custom-operators.component.html',
-  styleUrls: ['./custom-operators.component.scss'],
+  template: '<h2>Custom Operators</h2>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomOperatorsComponent implements OnInit {

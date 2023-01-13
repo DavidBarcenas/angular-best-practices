@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SubjectComponent } from './subject.component';
 import { ErrorHandlingComponent } from './error-handling.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CustomOperatorsComponent } from './custom-operators/custom-operators.component';
+import { CustomOperatorsComponent } from './custom-operators.component';
 
 const routes: Routes = [
   {

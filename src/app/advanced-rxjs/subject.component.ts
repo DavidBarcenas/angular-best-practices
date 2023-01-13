@@ -13,16 +13,7 @@ import {
   map,
   Observable
 } from 'rxjs';
-
-interface UserResponse {
-  data: {
-    id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
-  };
-}
+import { UserResponse } from './user.interface';
 
 @Component({
   template: '<h2>Subject</h2>',
