@@ -2,7 +2,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit, inject, isDevMode } from '@angular/core';
-import { Observable, UnaryFunction, map, pipe, tap } from 'rxjs';
+import {
+  Observable,
+  UnaryFunction,
+  bufferCount,
+  from,
+  map,
+  mergeMap,
+  pipe,
+  sequenceEqual,
+  tap
+} from 'rxjs';
 
 interface UserResponse {
   page: number;
@@ -26,6 +36,8 @@ enum LoggerType {
   Table
 }
 
+const passCode = [1, 1, 1, 1];
+
 @Component({
   templateUrl: './custom-operators.component.html',
   styleUrls: ['./custom-operators.component.scss'],
@@ -36,14 +48,18 @@ export class CustomOperatorsComponent implements OnInit {
   buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   ngOnInit(): void {
-    this.http
-      .get<UserResponse>('https://reqres.in/api/users')
-      .pipe(
-        map(response => response.data),
-        this.logger(),
-        this.logger(LoggerType.Table)
-      )
-      .subscribe();
+    this.http.get<UserResponse>('https://reqres.in/api/users').pipe(
+      map(response => response.data),
+      this.logger(),
+      this.logger(LoggerType.Table)
+    );
+  }
+
+  verifyPassword(): UnaryFunction<Observable<number>, Observable<boolean>> {
+    return pipe(
+      bufferCount<number>(4),
+      mergeMap(code => from(code).pipe(sequenceEqual(from(passCode))))
+    );
   }
 
   // create custom operator
