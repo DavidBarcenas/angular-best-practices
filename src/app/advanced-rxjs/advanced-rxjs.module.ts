@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdvancedRxjsComponent } from './advanced-rxjs.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SubjectComponent } from './subject.component';
-import { ErrorHandlingComponent } from './error-handling.component';
+import { SubjectComponent } from './workshop/subject.component';
+import { ErrorHandlingComponent } from './workshop/error-handling.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CustomOperatorsComponent } from './custom-operators.component';
+import { CustomOperatorsComponent } from './workshop/custom-operators.component';
 
 const routes: Routes = [
   {
