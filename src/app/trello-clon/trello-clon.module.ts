@@ -5,6 +5,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DialogModule } from '@angular/cdk/dialog';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { TrelloClonRoutingModule } from './trello-clon-routing.module';
 import { TrelloClonComponent } from './trello-clon.component';
@@ -15,6 +16,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BoardComponent } from './pages/board/board.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ScrollComponent } from './pages/scroll/scroll.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ModalComponent } from './components/modal/modal.component';
     BoardsComponent,
     NavbarComponent,
     BoardComponent,
-    ModalComponent
+    ModalComponent,
+    ScrollComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { ModalComponent } from './components/modal/modal.component';
     FontAwesomeModule,
     CdkAccordionModule,
     DragDropModule,
-    DialogModule
+    DialogModule,
+    ScrollingModule
   ]
 })
 export class TrelloClonModule {}
