@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 import { TrelloClonRoutingModule } from './trello-clon-routing.module';
 import { TrelloClonComponent } from './trello-clon.component';
@@ -19,6 +20,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BoardsComponent,
     NavbarComponent
   ],
-  imports: [CommonModule, TrelloClonRoutingModule, OverlayModule, FontAwesomeModule]
+  imports: [
+    CommonModule,
+    TrelloClonRoutingModule,
+    OverlayModule,
+    FontAwesomeModule,
+    CdkAccordionModule
+  ]
 })
 export class TrelloClonModule {}
