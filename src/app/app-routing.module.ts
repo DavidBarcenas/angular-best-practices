@@ -26,7 +26,7 @@ const routes: Routes = [
     path: 'trello-clone',
     loadChildren: () => import('./trello-clon/trello-clon.module').then(m => m.TrelloClonModule)
   },
-  { path: '', redirectTo: 'advanced-rxjs', pathMatch: 'full' }
+  { path: '', redirectTo: 'trello-clone', pathMatch: 'full' }
 ];
 
 @NgModule({

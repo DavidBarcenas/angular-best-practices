@@ -14,6 +14,7 @@ specifiers:
   '@angular/platform-browser-dynamic': ^15.0.0
   '@angular/router': ^15.0.0
   '@schematics/angular': ^15.1.5
+  '@tailwindcss/forms': ^0.5.3
   '@types/jasmine': ~4.3.0
   '@typescript-eslint/eslint-plugin': ^5.46.0
   '@typescript-eslint/parser': ^5.46.0
@@ -63,6 +64,7 @@ devDependencies:
   '@angular-devkit/build-angular': 15.1.5_kap6fdp5zes5svmbj54sar4wvy
   '@angular/cli': 15.0.5
   '@angular/compiler-cli': 15.1.4_gxhcaysw2mn5qvgnic4tqxdt5u
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   '@types/jasmine': 4.3.1
   '@typescript-eslint/eslint-plugin': 5.52.0_vu35eixqfisfoskmmdpryznqzq
   '@typescript-eslint/parser': 5.52.0_vvbfoh7ci2jjuy6alapehrh2ri
@@ -2165,6 +2167,15 @@ packages:
 
   /@socket.io/component-emitter/3.1.0:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
+    dev: true
+
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.6:
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.2.6_postcss@8.4.21
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -5536,6 +5547,11 @@ packages:
     dependencies:
       schema-utils: 4.0.0
       webpack: 5.75.0_esbuild@0.16.17
+    dev: true
+
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /minimalistic-assert/1.0.1:
