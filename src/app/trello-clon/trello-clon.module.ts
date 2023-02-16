@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BoardsComponent,
     NavbarComponent
   ],
-  imports: [CommonModule, TrelloClonRoutingModule, OverlayModule]
+  imports: [CommonModule, TrelloClonRoutingModule, OverlayModule, FontAwesomeModule]
 })
 export class TrelloClonModule {}
