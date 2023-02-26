@@ -8,4 +8,4 @@ npx concurrently \
   --prefix "[{name}]" \
   --names "build" \
    --prefix-colors "bgRed.bold.white,bgGreen.bold.white" \
-    "yarn run build"
+    "npm run build"

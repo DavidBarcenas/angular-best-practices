@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<cdk-accordion>
+  <cdk-accordion-item #accordionMenu="cdkAccordionItem">
+    <button (click)="accordionMenu.toggle()">My workspace</button>
+    <div class="transition-all" [style.display]="accordionMenu.expanded ? '' : 'none'">
+      Panel
+      <p>Hola</p>
+      <p>Mundo</p>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>
