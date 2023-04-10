@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
@@ -31,6 +32,7 @@ import { ScrollComponent } from './pages/scroll/scroll.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     TrelloClonRoutingModule,
     OverlayModule,
     FontAwesomeModule,
