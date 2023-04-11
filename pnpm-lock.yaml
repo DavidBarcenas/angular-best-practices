@@ -37,7 +37,7 @@ specifiers:
   lint-staged: ^13.1.0
   ngx-skeleton-loader: ^6.0.0
   postcss: ^8.4.21
-  prettier: 2.8.1
+  prettier: 2.8.3
   rxjs: ~7.5.0
   stylelint: ^14.16.0
   stylelint-config-prettier: ^9.0.4
@@ -80,7 +80,7 @@ devDependencies:
   concurrently: 7.6.0
   eslint: 8.34.0
   eslint-config-prettier: 8.5.0_eslint@8.34.0
-  eslint-plugin-prettier: 4.2.1_4rttv2p6i5y7asp6xmletisvzi
+  eslint-plugin-prettier: 4.2.1_zk2yf57rmr7a5hmp664wljrld4
   husky: 8.0.3
   jasmine-core: 4.5.0
   karma: 6.4.1
@@ -90,7 +90,7 @@ devDependencies:
   karma-jasmine-html-reporter: 2.0.0_uk6l45dlsjldsnfgnal4othgyq
   lint-staged: 13.1.2
   postcss: 8.4.21
-  prettier: 2.8.1
+  prettier: 2.8.3
   stylelint: 14.16.1
   stylelint-config-prettier: 9.0.5_stylelint@14.16.1
   stylelint-config-standard: 29.0.0_stylelint@14.16.1
@@ -3906,7 +3906,7 @@ packages:
       eslint: 8.34.0
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_4rttv2p6i5y7asp6xmletisvzi:
+  /eslint-plugin-prettier/4.2.1_zk2yf57rmr7a5hmp664wljrld4:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3919,7 +3919,7 @@ packages:
     dependencies:
       eslint: 8.34.0
       eslint-config-prettier: 8.5.0_eslint@8.34.0
-      prettier: 2.8.1
+      prettier: 2.8.3
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -6481,8 +6481,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.8.1:
-    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
