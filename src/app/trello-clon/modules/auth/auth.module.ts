@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     LoginComponent
   ],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule]
+  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule, SharedModule]
 })
 export class AuthModule {}
