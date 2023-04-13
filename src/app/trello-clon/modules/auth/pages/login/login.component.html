@@ -55,21 +55,7 @@
       </p>
     </div>
   </div>
-  <div>
-    <button
-      type="submit"
-      class="w-full rounded text-sm px-5 py-3 bg-success text-white font-semibold"
-      (click)="login()"
-    >
-      <fa-icon
-        *ngIf="status === 'loading'"
-        class="mr-2"
-        [icon]="faSpinner"
-        [pulse]="true"
-      ></fa-icon>
-      <span *ngIf="status !== 'loading'">Continuar</span>
-    </button>
-  </div>
+  <app-btn type="submit" [loading]="status === 'loading'" color='success' class="w-full">Continuar</app-btn>
 </form>
 <div class="text-center border-t border-t-gray-300 mt-6 pt-6">
   <a
