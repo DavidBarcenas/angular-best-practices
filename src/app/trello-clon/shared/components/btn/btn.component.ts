@@ -15,9 +15,9 @@ export class BtnComponent {
 
   mapColors = {
     success: {
-      'bg-success': true,
-      'hover:bg-success-800': true,
-      'focus:ring-success-300': true,
+      'bg-success-400': true,
+      'hover:bg-success-300': true,
+      'focus:bg-success-400': true,
       'text-white': true
     },
     primary: {
