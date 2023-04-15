@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { RecoveryComponent } from './pages/recovery/recovery.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RecoveryComponent
   ],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule, SharedModule]
 })
