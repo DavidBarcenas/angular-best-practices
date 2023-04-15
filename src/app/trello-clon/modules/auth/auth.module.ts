@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from '../../shared/shared.module';
     HomeBackgroundComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule, SharedModule]
 })
