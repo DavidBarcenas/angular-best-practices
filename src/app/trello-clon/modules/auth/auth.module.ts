@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
     FooterComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    RecoveryComponent
+    RecoveryComponent,
+    RegisterComponent
   ],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule, SharedModule]
 })
