@@ -96,23 +96,21 @@
       >
         Este campo es requerido
       </p>
-
     </div>
-    <div  *ngIf="form.controls.confirmPassword.touched">
-      <p
-        *ngIf="form.hasError('mismatch')"
-        class="font-medium text-red-500 text-xs mt-1 ml-1"
-      >
+    <div *ngIf="form.controls.confirmPassword.touched">
+      <p *ngIf="form.hasError('mismatch')" class="font-medium text-red-500 text-xs mt-1 ml-1">
         La contraseña no coincide
       </p>
     </div>
   </div>
   <app-btn type="submit" [loading]="status === 'loading'" color="success" class="w-full"
-  >Continuar</app-btn
+    >Continuar</app-btn
   >
 </form>
 <div class="text-center border-t border-t-gray-300 mt-6 pt-6">
-  <a routerLink="/trello-clone" class="text-sm text-blue-600 font-light cursor-pointer hover:underline"
-  >¿Ya tienes una cuenta? Inicia sesión</a
+  <a
+    routerLink="/trello-clone"
+    class="text-sm text-blue-600 font-light cursor-pointer hover:underline"
+    >¿Ya tienes una cuenta? Inicia sesión</a
   >
 </div>

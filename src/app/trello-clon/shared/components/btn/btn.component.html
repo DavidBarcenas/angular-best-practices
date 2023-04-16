@@ -4,13 +4,8 @@
   [ngClass]="colors"
   class="w-full rounded text-sm px-5 py-3 font-semibold transition"
 >
-  <fa-icon
-    *ngIf="loading"
-    class="mr-2"
-    [icon]="faSpinner"
-    [pulse]="true"
-  ></fa-icon>
-  <ng-container *ngIf='!loading'>
+  <fa-icon *ngIf="loading" class="mr-2" [icon]="faSpinner" [pulse]="true"></fa-icon>
+  <ng-container *ngIf="!loading">
     <ng-content></ng-content>
   </ng-container>
 </button>
