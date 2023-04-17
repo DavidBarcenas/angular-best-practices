@@ -1,5 +1,38 @@
 <h1 class="text-center font-bold py-2 text-slate-500 mb-6">Regístrate para crear una cuenta</h1>
-<form [formGroup]="form" novalidate class="space-y-6" (ngSubmit)="register()">
+<form *ngIf="statusValidateEmail !== 'success'" [formGroup]='formValidateEmail' novalidate class="space-y-6" (ngSubmit)="validateEmail()">
+  <div>
+    <div class="relative">
+      <input
+        #validateEmailCtrl
+        formControlName="email"
+        placeholder="Ingresa tu correo"
+        type="email"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button (click)="validateEmailCtrl.focus()" type="button" class="p-2 absolute right-2">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="formValidateEmail.controls.email.touched && form.controls.email.invalid">
+      <p
+        *ngIf="formValidateEmail.controls.email.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+      <p
+        *ngIf="formValidateEmail.controls.email.hasError('email')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Ingresa un correo válido
+      </p>
+    </div>
+  </div>
+  <app-btn type="submit" [loading]="statusValidateEmail === 'loading'" color="success" class="w-full"
+  >Continuar</app-btn
+  >
+</form>
+<form *ngIf="statusValidateEmail ==='success'" [formGroup]="form" novalidate class="space-y-6" (ngSubmit)="register()">
   <div>
     <div class="relative">
       <input
@@ -104,7 +137,7 @@
     </div>
   </div>
   <app-btn type="submit" [loading]="status === 'loading'" color="success" class="w-full"
-    >Continuar</app-btn
+    >Crear cuenta</app-btn
   >
 </form>
 <div class="text-center border-t border-t-gray-300 mt-6 pt-6">
