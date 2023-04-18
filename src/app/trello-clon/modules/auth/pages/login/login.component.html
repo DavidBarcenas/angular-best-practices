@@ -1,0 +1,78 @@
+<h1 class="text-center font-bold py-2 text-slate-500 mb-6">Iniciar sesión en Trello</h1>
+<form [formGroup]="form" novalidate (ngSubmit)="login()" class="space-y-6">
+  <div *ngIf="status === 'error'">
+    <p class="font-medium text-red-500 text-xs mt-1 ml-1">
+      El correo o la contraseña son inválidos.
+    </p>
+  </div>
+  <div>
+    <div class="relative">
+      <input
+        #emailCtrl
+        formControlName="email"
+        placeholder="Ingresa tu correo"
+        type="email"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button (click)="emailCtrl.focus()" type="button" class="p-2 absolute right-2">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="form.controls.email.touched && form.controls.email.invalid">
+      <p
+        *ngIf="form.controls.email.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+      <p
+        *ngIf="form.controls.email.hasError('email')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Ingresa un correo válido
+      </p>
+    </div>
+  </div>
+  <div>
+    <div class="relative">
+      <input
+        formControlName="password"
+        placeholder="Ingresa tu contraseña"
+        [type]="showPassword ? 'text' : 'password'"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button type="button" class="p-2 absolute right-2" (click)="showPassword = !showPassword">
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="form.controls.password.touched && form.controls.password.invalid">
+      <p
+        *ngIf="form.controls.password.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+      <p
+        *ngIf="form.controls.password.hasError('minlength')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        La contraseña debe tener al menos 6 caracteres
+      </p>
+    </div>
+  </div>
+  <app-btn type="submit" [loading]="status === 'loading'" color="success" class="w-full"
+    >Continuar</app-btn
+  >
+</form>
+<div class="text-center border-t border-t-gray-300 mt-6 pt-6">
+  <a
+    routerLink="/trello-clone/forgot-password"
+    class="text-sm text-blue-600 font-light block mb-2 cursor-pointer hover:underline"
+    >¿No puede iniciar sesión?</a
+  >
+  <a
+    routerLink="/trello-clone/register"
+    class="text-sm text-blue-600 font-light cursor-pointer hover:underline"
+    >Regístrese para crear una cuenta</a
+  >
+</div>

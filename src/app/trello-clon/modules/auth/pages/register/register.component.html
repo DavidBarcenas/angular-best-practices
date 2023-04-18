@@ -1,0 +1,165 @@
+<h1 class="text-center font-bold py-2 text-slate-500 mb-6">Regístrate para crear una cuenta</h1>
+<form
+  *ngIf="statusValidateEmail !== 'success'"
+  [formGroup]="formValidateEmail"
+  novalidate
+  class="space-y-6"
+  (ngSubmit)="validateEmail()"
+>
+  <div>
+    <div class="relative">
+      <input
+        #validateEmailCtrl
+        formControlName="email"
+        placeholder="Ingresa tu correo"
+        type="email"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button (click)="validateEmailCtrl.focus()" type="button" class="p-2 absolute right-2">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="formValidateEmail.controls.email.touched && form.controls.email.invalid">
+      <p
+        *ngIf="formValidateEmail.controls.email.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+      <p
+        *ngIf="formValidateEmail.controls.email.hasError('email')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Ingresa un correo válido
+      </p>
+    </div>
+  </div>
+  <app-btn
+    type="submit"
+    [loading]="statusValidateEmail === 'loading'"
+    color="success"
+    class="w-full"
+    >Continuar</app-btn
+  >
+</form>
+<form
+  *ngIf="statusValidateEmail === 'success'"
+  [formGroup]="form"
+  novalidate
+  class="space-y-6"
+  (ngSubmit)="register()"
+>
+  <div>
+    <div class="relative">
+      <input
+        #nameCtrl
+        formControlName="name"
+        placeholder="Ingresa tu nombre"
+        type="text"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button (click)="nameCtrl.focus()" type="button" class="p-2 absolute right-2">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="form.controls.name.touched && form.controls.name.invalid">
+      <p
+        *ngIf="form.controls.name.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+    </div>
+  </div>
+  <div>
+    <div class="relative">
+      <input
+        #emailCtrl
+        formControlName="email"
+        placeholder="Ingresa tu correo"
+        type="email"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button (click)="emailCtrl.focus()" type="button" class="p-2 absolute right-2">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="form.controls.email.touched && form.controls.email.invalid">
+      <p
+        *ngIf="form.controls.email.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+      <p
+        *ngIf="form.controls.email.hasError('email')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Ingresa un correo válido
+      </p>
+    </div>
+  </div>
+  <div>
+    <div class="relative">
+      <input
+        formControlName="password"
+        placeholder="Ingresa nueva contraseña"
+        [type]="showPassword ? 'text' : 'password'"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button type="button" class="p-2 absolute right-2" (click)="showPassword = !showPassword">
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="form.controls.password.touched && form.controls.password.invalid">
+      <p
+        *ngIf="form.controls.password.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+      <p
+        *ngIf="form.controls.password.hasError('minlength')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        La contraseña debe tener al menos 6 caracteres
+      </p>
+    </div>
+  </div>
+  <div>
+    <div class="relative">
+      <input
+        formControlName="confirmPassword"
+        placeholder="Confirmar nueva contraseña"
+        [type]="showPassword ? 'text' : 'password'"
+        class="w-full rounded bg-gray-50 border-gray-300 border-1"
+      />
+      <button type="button" class="p-2 absolute right-2" (click)="showPassword = !showPassword">
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    <div *ngIf="form.controls.confirmPassword.touched && form.controls.confirmPassword.invalid">
+      <p
+        *ngIf="form.controls.confirmPassword.hasError('required')"
+        class="font-medium text-red-500 text-xs mt-1 ml-1"
+      >
+        Este campo es requerido
+      </p>
+    </div>
+    <div *ngIf="form.controls.confirmPassword.touched">
+      <p *ngIf="form.hasError('mismatch')" class="font-medium text-red-500 text-xs mt-1 ml-1">
+        La contraseña no coincide
+      </p>
+    </div>
+  </div>
+  <app-btn type="submit" [loading]="status === 'loading'" color="success" class="w-full"
+    >Crear cuenta</app-btn
+  >
+</form>
+<div class="text-center border-t border-t-gray-300 mt-6 pt-6">
+  <a
+    routerLink="/trello-clone"
+    class="text-sm text-blue-600 font-light cursor-pointer hover:underline"
+    >¿Ya tienes una cuenta? Inicia sesión</a
+  >
+</div>
