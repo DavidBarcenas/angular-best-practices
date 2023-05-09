@@ -1,10 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { BtnComponent } from '../../../../shared/components/btn/btn.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html'
+  templateUrl: './forgot-password.component.html',
+  standalone: true,
+  imports: [NgIf, ReactiveFormsModule, FontAwesomeModule, BtnComponent, RouterLink]
 })
 export class ForgotPasswordComponent {
   private fb: FormBuilder = inject(FormBuilder);

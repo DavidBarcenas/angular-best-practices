@@ -4,11 +4,15 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Product } from '../products/product';
 import { CartService } from '../cart/cart.service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgIf, NgFor, AsyncPipe, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  standalone: true,
+  imports: [NgIf, NgxSkeletonLoaderModule, NgFor, AsyncPipe, CurrencyPipe]
 })
 export class ProductComponent {
   private productsService = inject(ProductsService);

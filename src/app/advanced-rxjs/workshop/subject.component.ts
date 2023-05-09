@@ -17,7 +17,8 @@ import { UserResponse } from './user.interface';
 
 @Component({
   template: '<h2>Subject</h2>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class SubjectComponent {
   private http = inject(HttpClient);

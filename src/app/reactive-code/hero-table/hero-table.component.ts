@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { HeroService } from '../hero.service';
 import { combineLatest, map } from 'rxjs';
+import { HeroCardComponent } from '../hero-card/hero-card.component';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-hero-table',
   templateUrl: './hero-table.component.html',
   styleUrls: ['./hero-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgIf, NgFor, HeroCardComponent, AsyncPipe]
 })
 export class HeroTableComponent implements OnDestroy {
   limits = this.heroService.limits;

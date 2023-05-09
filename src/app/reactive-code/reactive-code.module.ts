@@ -17,7 +17,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [HeroesComponent, HeroTableComponent, HeroCardComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    HeroesComponent,
+    HeroTableComponent,
+    HeroCardComponent
+  ]
 })
 export class ReactiveCodeModule {}

@@ -21,13 +21,16 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgxSkeletonLoaderModule,
+    NgOptimizedImage,
     EcommerceComponent,
     AlertComponent,
     ProductListComponent,
     ProductComponent,
     CartComponent
-  ],
-  imports: [CommonModule, RouterModule.forChild(routes), NgxSkeletonLoaderModule, NgOptimizedImage]
+  ]
 })
 export class ReactiveEcommerceModule {}

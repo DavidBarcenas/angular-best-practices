@@ -1,11 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CustomValidators } from '../../../../shared/utils/validators';
+import { BtnComponent } from '../../../../shared/components/btn/btn.component';
+import { NgIf } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-recovery',
-  templateUrl: './recovery.component.html'
+  templateUrl: './recovery.component.html',
+  standalone: true,
+  imports: [ReactiveFormsModule, FontAwesomeModule, NgIf, BtnComponent]
 })
 export class RecoveryComponent {
   private fb: FormBuilder = inject(FormBuilder);

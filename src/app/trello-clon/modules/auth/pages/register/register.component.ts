@@ -1,15 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CustomValidators } from '../../../../shared/utils/validators';
 import { faEye, faEyeSlash, faPen } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RequestStatus } from '../../../../models/request-status';
 import { switchMap } from 'rxjs';
+import { BtnComponent } from '../../../../shared/components/btn/btn.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  standalone: true,
+  imports: [NgIf, ReactiveFormsModule, FontAwesomeModule, BtnComponent, RouterLink]
 })
 export class RegisterComponent {
   private fb: FormBuilder = inject(FormBuilder);

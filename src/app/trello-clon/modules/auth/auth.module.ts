@@ -14,7 +14,12 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    SharedModule,
     AuthComponent,
     HomeBackgroundComponent,
     HeaderComponent,
@@ -23,7 +28,6 @@ import { RegisterComponent } from './pages/register/register.component';
     ForgotPasswordComponent,
     RecoveryComponent,
     RegisterComponent
-  ],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule, SharedModule]
+  ]
 })
 export class AuthModule {}

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subject, catchError, finalize, mergeMap, throwError } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 @Component({
   template: `<h2>Error Handling</h2>
@@ -11,7 +12,9 @@ import { Subject, catchError, finalize, mergeMap, throwError } from 'rxjs';
       <input type="password" formControlName="password" />
       <button>Submit</button>
     </form>`,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgIf, ReactiveFormsModule]
 })
 export class ErrorHandlingComponent {
   private http = inject(HttpClient);
