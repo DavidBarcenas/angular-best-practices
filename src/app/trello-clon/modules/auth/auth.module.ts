@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
+
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -19,7 +19,6 @@ import { RegisterComponent } from './pages/register/register.component';
     AuthRoutingModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    SharedModule,
     AuthComponent,
     HomeBackgroundComponent,
     HeaderComponent,
