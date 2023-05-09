@@ -2,11 +2,15 @@ import { Component, inject } from '@angular/core';
 import { CartService } from './cart.service';
 import { combineLatest, map } from 'rxjs';
 import { Product } from '../products/product';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgIf, NgFor, AsyncPipe, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
+  standalone: true,
+  imports: [NgIf, NgFor, NgxSkeletonLoaderModule, AsyncPipe, CurrencyPipe]
 })
 export class CartComponent {
   private cartService = inject(CartService);

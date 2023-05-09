@@ -29,7 +29,9 @@ import {
 const routes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
     HomeComponent,
     NavbarPrimaryComponent,
     NavbarSecondaryComponent,
@@ -48,7 +50,6 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     PillsComponent,
     TooltipComponent,
     TooltipMessageDirective
-  ],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  ]
 })
 export class StylingComponentsModule {}

@@ -1,13 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { faEye, faEyeSlash, faPen, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RequestStatus } from '../../../../models/request-status';
+import { BtnComponent } from '../../../../shared/components/btn/btn.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgIf, FontAwesomeModule, BtnComponent, RouterLink]
 })
 export class LoginComponent {
   private fb: FormBuilder = inject(FormBuilder);

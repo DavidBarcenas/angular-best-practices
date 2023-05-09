@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../hero';
+import { NgIf } from '@angular/common';
 
 export const Layouts = {
   portrait: 'portrait',
@@ -19,7 +20,9 @@ export const Sizes = {
   templateUrl: './hero-card.component.html',
   styleUrls: ['./hero-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class.loaded]': 'loaded' }
+  host: { '[class.loaded]': 'loaded' },
+  standalone: true,
+  imports: [NgIf]
 })
 export class HeroCardComponent implements OnInit {
   @Input() hero: Hero | null = null;

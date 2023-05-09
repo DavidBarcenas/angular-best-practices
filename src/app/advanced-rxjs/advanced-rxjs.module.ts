@@ -21,12 +21,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
     AdvancedRxjsComponent,
     SubjectComponent,
     ErrorHandlingComponent,
     CustomOperatorsComponent
-  ],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)]
+  ]
 })
 export class AdvancedRxjsModule {}

@@ -4,7 +4,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 
 @NgModule({
-  declarations: [LayoutComponent],
-  imports: [CommonModule, LayoutRoutingModule]
+  imports: [CommonModule, LayoutRoutingModule, LayoutComponent]
 })
 export class LayoutModule {}

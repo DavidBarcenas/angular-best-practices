@@ -4,11 +4,32 @@ import { catchError, combineLatest, EMPTY, map, Observable, Subject } from 'rxjs
 import { Router } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
 import { Product } from '../product';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { AlertComponent } from '../../shared/alert/alert.component';
+import {
+  NgIf,
+  NgFor,
+  NgOptimizedImage,
+  NgTemplateOutlet,
+  AsyncPipe,
+  TitleCasePipe
+} from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    NgOptimizedImage,
+    NgTemplateOutlet,
+    AlertComponent,
+    NgxSkeletonLoaderModule,
+    AsyncPipe,
+    TitleCasePipe
+  ]
 })
 export class ProductListComponent {
   private productsService = inject(ProductsService);

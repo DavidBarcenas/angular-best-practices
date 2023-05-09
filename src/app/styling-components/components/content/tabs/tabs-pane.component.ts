@@ -16,7 +16,8 @@ import { Component, Input } from '@angular/core';
         padding: 1em 1em 0;
       }
     `
-  ]
+  ],
+  standalone: true
 })
 export class TabsPaneComponent {
   @Input() title: string | undefined;

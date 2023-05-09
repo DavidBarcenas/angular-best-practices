@@ -1,10 +1,13 @@
 import { AfterContentInit, Component, ContentChildren, QueryList } from '@angular/core';
 import { TabsPaneComponent } from './tabs-pane.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+  styleUrls: ['./tabs.component.scss'],
+  standalone: true,
+  imports: [NgFor]
 })
 export class TabsComponent implements AfterContentInit {
   @ContentChildren(TabsPaneComponent)

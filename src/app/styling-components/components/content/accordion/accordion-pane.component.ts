@@ -9,7 +9,8 @@ import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
       </div>
     </ng-template>
   `,
-  styles: ['.pane { padding: 0 1em;}']
+  styles: ['.pane { padding: 0 1em;}'],
+  standalone: true
 })
 export class AccordionPaneComponent {
   @ViewChild(TemplateRef, { static: true })

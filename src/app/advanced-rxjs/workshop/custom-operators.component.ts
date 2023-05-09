@@ -27,7 +27,8 @@ const passCode = [1, 1, 1, 1];
 
 @Component({
   template: '<h2>Custom Operators</h2>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class CustomOperatorsComponent implements OnInit {
   private http = inject(HttpClient);

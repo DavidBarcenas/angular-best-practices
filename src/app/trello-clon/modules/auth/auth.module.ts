@@ -8,13 +8,17 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
+
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
     AuthComponent,
     HomeBackgroundComponent,
     HeaderComponent,
@@ -23,7 +27,6 @@ import { RegisterComponent } from './pages/register/register.component';
     ForgotPasswordComponent,
     RecoveryComponent,
     RegisterComponent
-  ],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FontAwesomeModule, SharedModule]
+  ]
 })
 export class AuthModule {}

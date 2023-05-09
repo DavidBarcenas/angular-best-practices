@@ -1,9 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-btn',
-  templateUrl: './btn.component.html'
+  templateUrl: './btn.component.html',
+  standalone: true,
+  imports: [NgClass, NgIf, FontAwesomeModule]
 })
 export class BtnComponent {
   @Input() disabled = false;
