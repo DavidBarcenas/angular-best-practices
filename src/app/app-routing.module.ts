@@ -26,7 +26,12 @@ const routes: Routes = [
     path: 'trello-clone',
     loadChildren: () => import('./trello-clon/trello-clon.module').then(m => m.TrelloClonModule)
   },
-  { path: '', redirectTo: 'trello-clone', pathMatch: 'full' }
+  {
+    path: 'standalone',
+    loadComponent: () =>
+      import('./standalone/signals/signals.component').then(m => m.SignalsComponent)
+  },
+  { path: '', redirectTo: 'standalone', pathMatch: 'full' }
 ];
 
 @NgModule({
