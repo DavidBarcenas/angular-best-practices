@@ -10,11 +10,13 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   overrides: [],
-  parser: '@typescript-eslint/parser',
+  parser: '@angular-eslint/template-parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json'
+    project: './tsconfig.json',
+    extraFileExtensions: ['.html'],
+    parser: '@typescript-eslint/parser'
   },
   plugins: ['@typescript-eslint', 'prettier'],
   ignorePatterns: ['.eslintrc.js'],

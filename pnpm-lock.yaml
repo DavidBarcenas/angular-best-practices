@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@angular-devkit/build-angular': ^16.0.0
+  '@angular-eslint/template-parser': ^16.0.2
   '@angular/animations': ^16.0.0
   '@angular/cdk': 16.0.0
   '@angular/cli': ~16.0.0
@@ -70,6 +71,7 @@ dependencies:
 
 devDependencies:
   '@angular-devkit/build-angular': 16.0.0_fechff2qltcohrv3wexpe3gvp4
+  '@angular-eslint/template-parser': 16.0.2_twx2qloifaq5rdyv2wmfnyf27m
   '@angular/cli': 16.0.0
   '@angular/compiler-cli': 16.0.0_ssg4fhpocz2git322on5ni5uui
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
@@ -339,6 +341,22 @@ packages:
       rxjs: 7.8.1
     transitivePeerDependencies:
       - chokidar
+    dev: true
+
+  /@angular-eslint/bundled-angular-compiler/16.0.2:
+    resolution: {integrity: sha512-gsk3FZ0SfoKs+RZBOXlwy6hItV4hZ19wYC8rXINNBRy4L7y3gdg3sN8lnYIGLmhEy+VRz3vdH2cdl8/PyEjpfA==}
+    dev: true
+
+  /@angular-eslint/template-parser/16.0.2_twx2qloifaq5rdyv2wmfnyf27m:
+    resolution: {integrity: sha512-McIBbIfbKwFAIwRuN4gpAzlhqZgWB4gK9+Iy7pkvQTPQt33gg/D5h0iJIPcvQV3oEAzJIKFO1CTgLP8mFwQ+RQ==}
+    peerDependencies:
+      eslint: ^7.20.0 || ^8.0.0
+      typescript: '*'
+    dependencies:
+      '@angular-eslint/bundled-angular-compiler': 16.0.2
+      eslint: 8.34.0
+      eslint-scope: 7.1.1
+      typescript: 5.0.4
     dev: true
 
   /@angular/animations/16.0.0_@angular+core@16.0.0:
