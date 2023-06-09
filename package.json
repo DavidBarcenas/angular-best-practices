@@ -1,0 +1,24 @@
+{
+  "name": "ng-workshops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "echo \"Error: no lint specified\" && exit 0",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidBarcenas/angular-workshops.git"
+  },
+  "keywords": [],
+  "author": "David Bárcenas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidBarcenas/angular-workshops/issues"
+  },
+  "homepage": "https://github.com/DavidBarcenas/angular-workshops#readme",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}
