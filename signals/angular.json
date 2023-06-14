@@ -10,7 +10,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "standalone-starter-kit": {
+    "signals": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
