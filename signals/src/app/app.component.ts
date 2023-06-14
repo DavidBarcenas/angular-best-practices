@@ -8,6 +8,5 @@ import { AgeCalculatorComponent } from './age-calculator/age-calculator.componen
   standalone: true,
   imports: [CommonModule, RouterOutlet, AgeCalculatorComponent],
   templateUrl: './app.component.html',
-  styles: [],
 })
 export class AppComponent {}
