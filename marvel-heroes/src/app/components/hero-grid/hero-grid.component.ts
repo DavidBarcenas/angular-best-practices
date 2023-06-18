@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeroService } from '../../services/hero.service';
 import { combineLatest, map } from 'rxjs';
 import { totalRecords } from '../../utils/constants';
+import { HeroCardComponent } from '../hero-card/hero-card.component';
 
 @Component({
   selector: 'app-hero-grid',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeroCardComponent],
   templateUrl: './hero-grid.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

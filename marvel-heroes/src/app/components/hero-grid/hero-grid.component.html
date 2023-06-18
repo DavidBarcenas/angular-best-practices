@@ -8,7 +8,7 @@
       <span>Page {{vm.currentPage}} of {{vm.totalPages}}</span>
       <div>
         <button (click)='movePageBy(-1)' [disabled]='vm.prevIsDisabled'>Prev</button>
-        <button (click)='movePageBy(+1)' [disabled]='vm.prevIsDisabled'>Next</button>
+        <button (click)='movePageBy(+1)' [disabled]='vm.nextIsDisabled'>Next</button>
       </div>
     </div>
     <div>
@@ -22,7 +22,9 @@
   <div class='loader' *ngIf='vm.loading; else heroes'></div>
   <ng-template #heroes>
     <ul>
-      <li *ngFor='let hero of vm.heroes'>{{hero.name}}</li>
+      <li *ngFor='let hero of vm.heroes'>
+        <app-hero-card [hero]='hero' />
+      </li>
     </ul>
   </ng-template>
 </ng-container>
