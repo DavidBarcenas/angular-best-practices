@@ -76,7 +76,7 @@ export class HeroService {
   search$ = this.searchSubject.asObservable();
   loading$ = this.loadingSubject.asObservable();
   limit$ = this.limitSubject.asObservable();
-  heroes$ = this.heroesResponse$.pipe(map((res) => res.data));
+  heroes$ = this.heroesResponse$.pipe(map((res) => res.data.results));
   totalResults$ = this.heroesResponse$.pipe(map((res) => res.data.total));
   currentPage$ = this.pageSubject.pipe(map((page) => page + amountPageIncrease));
   totalPages$ = combineLatest([this.totalResults$, this.limitSubject]).pipe(

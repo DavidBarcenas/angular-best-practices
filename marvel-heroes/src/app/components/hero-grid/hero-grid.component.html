@@ -1,0 +1,28 @@
+<ng-container *ngIf='vm$ | async as vm'>
+  <header>
+    <div>
+      <label for='search'>Search:</label>
+      <input type='text' id='search' [value]='vm.search' (input)='doSearch($event)'>
+    </div>
+    <div>
+      <span>Page {{vm.currentPage}} of {{vm.totalPages}}</span>
+      <div>
+        <button (click)='movePageBy(-1)' [disabled]='vm.prevIsDisabled'>Prev</button>
+        <button (click)='movePageBy(+1)' [disabled]='vm.prevIsDisabled'>Next</button>
+      </div>
+    </div>
+    <div>
+      <span>Show results (total: {{vm.totalResults}})</span>
+      <div>
+        <button *ngFor='let limit of limits' (click)='setLimit(limit)'
+                [disabled]='vm.limit === limit'>{{limit}}</button>
+      </div>
+    </div>
+  </header>
+  <div class='loader' *ngIf='vm.loading; else heroes'></div>
+  <ng-template #heroes>
+    <ul>
+      <li *ngFor='let hero of vm.heroes'>{{hero.name}}</li>
+    </ul>
+  </ng-template>
+</ng-container>

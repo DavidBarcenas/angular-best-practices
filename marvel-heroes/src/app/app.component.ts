@@ -1,19 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HeroService } from './services/hero.service';
+import { HeroGridComponent } from './components/hero-grid/hero-grid.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, HeroGridComponent],
   templateUrl: './app.component.html',
   styles: [],
 })
-export class AppComponent implements OnInit {
-  constructor(private heroService: HeroService) {}
-
-  ngOnInit() {
-    this.heroService.heroResponse$.subscribe(console.log);
-  }
-}
+export class AppComponent {}
