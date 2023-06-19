@@ -1,27 +1,31 @@
 <ng-container *ngIf='vm$ | async as vm'>
-  <header>
+  <header class='w-screen flex justify-between bg-gray-100 p-3'>
     <div>
-      <label for='search'>Search:</label>
-      <input type='text' id='search' [value]='vm.search' (input)='doSearch($event)'>
+      <label for='search' class='block'>Search:</label>
+      <input type='text' id='search' [value]='vm.search' (input)='doSearch($event)' class='px-3 py-1'>
     </div>
     <div>
-      <span>Page {{vm.currentPage}} of {{vm.totalPages}}</span>
+      <span class='block text-center'>Page {{vm.currentPage}} of {{vm.totalPages}}</span>
       <div>
-        <button (click)='movePageBy(-1)' [disabled]='vm.prevIsDisabled'>Prev</button>
-        <button (click)='movePageBy(+1)' [disabled]='vm.nextIsDisabled'>Next</button>
+        <button (click)='movePageBy(-1)' [disabled]='vm.prevIsDisabled'
+                class='mr-2 border bg-gray-300 px-3 py-1 hover:bg-gray-400'>Prev
+        </button>
+        <button (click)='movePageBy(+1)' [disabled]='vm.nextIsDisabled'
+                class='border bg-gray-300 px-3 py-1 hover:bg-gray-400'>Next
+        </button>
       </div>
     </div>
     <div>
       <span>Show results (total: {{vm.totalResults}})</span>
-      <div>
+      <div class='flex justify-around'>
         <button *ngFor='let limit of limits' (click)='setLimit(limit)'
-                [disabled]='vm.limit === limit'>{{limit}}</button>
+                [disabled]='vm.limit === limit' class='bg-gray-300 px-3 py-1 hover:bg-gray-400'>{{limit}}</button>
       </div>
     </div>
   </header>
   <div class='loader' *ngIf='vm.loading; else heroes'></div>
   <ng-template #heroes>
-    <ul>
+    <ul class='grid grid-cols-6 gap-2 py-5'>
       <li *ngFor='let hero of vm.heroes'>
         <app-hero-card [hero]='hero' />
       </li>
