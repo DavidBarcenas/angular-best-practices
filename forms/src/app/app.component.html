@@ -1,0 +1,11 @@
+<main class='w-screen h-screen flex flex-col items-center justify-center'>
+  <h1 class='text-4xl mb-10'>Forms</h1>
+  <ul class='grid grid-cols-4 gap-6'>
+    <li *ngFor='let tech of techList' class='border border-gray-300 text-center p-5 hover:border-gray-400'>
+      <a [href]='tech.url' target='_blank'>
+        <img [src]='tech.image' [alt]='tech.name' class='m-auto mb-3 w-32'>
+        <span class='text-xl font-medium'>{{tech.name}}</span>
+      </a>
+    </li>
+  </ul>
+</main>
