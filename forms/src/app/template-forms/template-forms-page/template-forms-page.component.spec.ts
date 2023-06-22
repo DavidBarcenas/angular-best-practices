@@ -8,7 +8,7 @@ describe('TemplateFormsPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TemplateFormsPageComponent]
+      imports: [TemplateFormsPageComponent],
     });
     fixture = TestBed.createComponent(TemplateFormsPageComponent);
     component = fixture.componentInstance;
