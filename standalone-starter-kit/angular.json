@@ -16,7 +16,8 @@
         "@schematics/angular:component": {
           "inlineStyle": true,
           "style": "scss",
-          "standalone": true
+          "standalone": true,
+          "changeDetection": "OnPush"
         },
         "@schematics/angular:directive": {
           "standalone": true
