@@ -1,12 +1,6 @@
-<form class='mt-8 grid grid-cols-6 gap-8'>
+<form ngForm class='mt-8 grid grid-cols-6 gap-10'>
   <div class='col-span-6 sm:col-span-2'>
-    <label
-      for='FirstName'
-      class='block text-sm font-medium text-gray-700'
-    >
-      First Name
-    </label>
-
+    <label for='FirstName' class='block text-sm font-medium text-gray-700'> First Name </label>
     <input
       type='text'
       id='FirstName'
@@ -15,15 +9,8 @@
       placeholder='Enter your name'
     />
   </div>
-
   <div class='col-span-6 sm:col-span-2'>
-    <label
-      for='LastName'
-      class='block text-sm font-medium text-gray-700'
-    >
-      Last Name
-    </label>
-
+    <label for='LastName' class='block text-sm font-medium text-gray-700'> Last Name </label>
     <input
       type='text'
       id='LastName'
@@ -32,12 +19,8 @@
       placeholder='Enter your last name'
     />
   </div>
-
   <div class='col-span-6 sm:col-span-2'>
-    <label for='Nickname' class='block text-sm font-medium text-gray-700'>
-      Nickname
-    </label>
-
+    <label for='Nickname' class='block text-sm font-medium text-gray-700'> Nickname </label>
     <input
       type='text'
       id='Nickname'
@@ -46,15 +29,8 @@
       placeholder='Come up with a nickname'
     />
   </div>
-
   <div class='col-span-6 sm:col-span-2'>
-    <label
-      for='Email'
-      class='block text-sm font-medium text-gray-700'
-    >
-      Email
-    </label>
-
+    <label for='Email' class='block text-sm font-medium text-gray-700'> Email </label>
     <input
       type='email'
       id='Email'
@@ -63,29 +39,18 @@
       placeholder='Provide your email'
     />
   </div>
-
   <div class='col-span-6 sm:col-span-2'>
-    <label
-      for='YearOfBirth'
-      class='block text-sm font-medium text-gray-700'
+    <label for='YearOfBirth' class='block text-sm font-medium text-gray-700'> Year of birth </label>
+    <select
+      name='year-of-birth'
+      id='YearOfBirth'
+      class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
     >
-      Year of birth
-    </label>
-
-    <select name='year-of-birth' id='YearOfBirth'
-            class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'>
-      <option *ngFor='let year of years' [value]='year'>{{year}}</option>
+      <option *ngFor='let year of years' [value]='year'>{{ year }}</option>
     </select>
   </div>
-
   <div class='col-span-6 sm:col-span-2'>
-    <label
-      for='Passport'
-      class='block text-sm font-medium text-gray-700'
-    >
-      Passport Number
-    </label>
-
+    <label for='Passport' class='block text-sm font-medium text-gray-700'> Passport Number </label>
     <input
       type='text'
       id='Passport'
@@ -94,18 +59,10 @@
       placeholder='Provide Passport Data'
     />
   </div>
-
   <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'>
-    <legend class='px-2 text-gray-500'>Address</legend>
-
+    <legend class='px-2 text-gray-400'>Address</legend>
     <div class='col-span-6 sm:col-span-2'>
-      <label
-        for='FullAddress'
-        class='block text-sm font-medium text-gray-700'
-      >
-        Full Address
-      </label>
-
+      <label for='FullAddress' class='block text-sm font-medium text-gray-700'> Full Address </label>
       <input
         type='text'
         id='FullAddress'
@@ -114,15 +71,8 @@
         placeholder='Street name and house number'
       />
     </div>
-
     <div class='col-span-6 sm:col-span-2'>
-      <label
-        for='City'
-        class='block text-sm font-medium text-gray-700'
-      >
-        City
-      </label>
-
+      <label for='City' class='block text-sm font-medium text-gray-700'> City </label>
       <input
         type='text'
         id='City'
@@ -131,15 +81,8 @@
         placeholder='City'
       />
     </div>
-
     <div class='col-span-6 sm:col-span-2'>
-      <label
-        for='PostCode'
-        class='block text-sm font-medium text-gray-700'
-      >
-        PPost code
-      </label>
-
+      <label for='PostCode' class='block text-sm font-medium text-gray-700'> Post code </label>
       <input
         type='text'
         id='PostCode'
@@ -149,15 +92,8 @@
       />
     </div>
   </fieldset>
-
   <div class='col-span-6 sm:col-span-3'>
-    <label
-      for='Password'
-      class='block text-sm font-medium text-gray-700'
-    >
-      Password
-    </label>
-
+    <label for='Password' class='block text-sm font-medium text-gray-700'> Password </label>
     <input
       type='password'
       id='Password'
@@ -165,15 +101,8 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
     />
   </div>
-
   <div class='col-span-6 sm:col-span-3'>
-    <label
-      for='PasswordConfirmation'
-      class='block text-sm font-medium text-gray-700'
-    >
-      Password Confirmation
-    </label>
-
+    <label for='PasswordConfirmation' class='block text-sm font-medium text-gray-700'> Password Confirmation </label>
     <input
       type='password'
       id='PasswordConfirmation'
@@ -181,7 +110,6 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
     />
   </div>
-
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
     <button
       class='inline-block shrink-0 rounded-md border border-gray-500 px-12 py-3 text-sm font-medium text-gray-600 transition hover:bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-blue-500'
