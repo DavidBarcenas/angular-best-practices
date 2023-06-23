@@ -9,4 +9,11 @@ import { CommonModule } from '@angular/common';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TemplateFormsPageComponent {}
+export class TemplateFormsPageComponent {
+  get years() {
+    const now = new Date().getUTCFullYear();
+    return Array(now - (now - 40))
+      .fill('')
+      .map((_, idx) => now - idx);
+  }
+}
