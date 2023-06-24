@@ -28,6 +28,7 @@ specifiers:
   karma-coverage: ~2.2.0
   karma-jasmine: ~5.1.0
   karma-jasmine-html-reporter: ~2.0.0
+  ngx-slider-v2: 16.0.0
   postcss: ^8.4.24
   prettier: 2.8.8
   rxjs: ~7.8.0
@@ -45,6 +46,7 @@ dependencies:
   '@angular/platform-browser': 16.0.4_ec5amzolysdtewwy757n2gy5ru
   '@angular/platform-browser-dynamic': 16.0.4_kowea3etvsfysrxau7jvp7nb2a
   '@angular/router': 16.0.4_sdbn35hzmlsgxan2lvzdkaybvi
+  ngx-slider-v2: 16.0.0_uuiidgwdzff3nyp4l3se7fveie
   rxjs: 7.8.1
   tslib: 2.5.3
   zone.js: 0.13.0
@@ -3943,9 +3945,19 @@ packages:
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
     dev: true
 
+  /detect-it/4.0.1:
+    resolution: {integrity: sha512-dg5YBTJYvogK1+dA2mBUDKzOWfYZtHVba89SyZUhc4+e3i2tzgjANFg5lDRCd3UOtRcw00vUTMK8LELcMdicug==}
+    dev: false
+
   /detect-node/2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
     dev: true
+
+  /detect-passive-events/2.0.3:
+    resolution: {integrity: sha512-QN/1X65Axis6a9D8qg8Py9cwY/fkWAmAH/edTbmLMcv4m5dboLJ7LcAi8CfaCON2tjk904KwKX/HTdsHC6yeRg==}
+    dependencies:
+      detect-it: 4.0.1
+    dev: false
 
   /di/0.0.1:
     resolution: {integrity: sha512-uJaamHkagcZtHPqCIHZxnFrXlunQXgBOsZSUOWwFw31QJCAbyTBoHMW75YOTur5ZNx8pIeAKgf6GWIgaqqiLhA==}
@@ -6161,6 +6173,21 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /ngx-slider-v2/16.0.0_uuiidgwdzff3nyp4l3se7fveie:
+    resolution: {integrity: sha512-X1npm9iccL+akdlumsFm409KVUjg6vHHhDrPzuS2i9I+5+yYVDh4qSxQTjBR4mjVFxwhKySsOhJYXsukhFS6wg==}
+    peerDependencies:
+      '@angular/common': ^16.0.0
+      '@angular/core': ^16.0.0
+      '@angular/forms': ^16.0.0
+    dependencies:
+      '@angular/common': 16.0.4_rtb6cyesdkb354rudqsmds7bza
+      '@angular/core': 16.0.4_rxjs@7.8.1+zone.js@0.13.0
+      '@angular/forms': 16.0.4_sdbn35hzmlsgxan2lvzdkaybvi
+      detect-passive-events: 2.0.3
+      rxjs: 7.8.1
+      tslib: 2.5.3
+    dev: false
 
   /nice-napi/1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
