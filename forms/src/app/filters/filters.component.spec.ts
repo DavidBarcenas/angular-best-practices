@@ -8,7 +8,7 @@ describe('FiltersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FiltersComponent]
+      imports: [FiltersComponent],
     });
     fixture = TestBed.createComponent(FiltersComponent);
     component = fixture.componentInstance;
