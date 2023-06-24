@@ -1,0 +1,30 @@
+<section class='grid grid-cols-4 gap-10 mb-5'>
+  <div class='w-full'>
+    <span class='block mb-3 text-blue-500'>Rating</span>
+    <ngx-slider [value]='0' [highValue]='10' [options]='ratingOptions'></ngx-slider>
+    <span class='block mb-3 mt-6 text-blue-500'>Date</span>
+    <ngx-slider [value]='2000' [highValue]='2023' [options]='dateOptions'></ngx-slider>
+  </div>
+  <div class='pl-10'>
+    <span class='block mb-3 text-blue-500'>Genres</span>
+    <label [for]='genre' *ngFor='let genre of movieGenres' class='block mb-2'>
+      <input type='checkbox' [id]='genre' />
+      {{ genre }}
+    </label>
+  </div>
+  <div class='pl-10'>
+    <span class='block mb-3 text-blue-500'>Languages</span>
+    <label [for]='lang' *ngFor='let lang of languages' class='block mb-2'>
+      <input type='checkbox' [id]='lang' />
+      {{ lang }}
+    </label>
+  </div>
+  <div>
+    <input type='text' class='border border-gray-500 px-4 py-1 mb-7 rounded-full' placeholder='Search movie...' />
+    <span class='block mb-3 text-blue-500'>Order by</span>
+    <label [for]='order' *ngFor='let order of orderList' class='block mb-2'>
+      <input type='radio' [id]='order' />
+      {{ order }}
+    </label>
+  </div>
+</section>
