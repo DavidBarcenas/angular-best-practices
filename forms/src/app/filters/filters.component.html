@@ -1,2 +1,2 @@
-<app-filter-group />
-<app-data-table />
+<app-filter-group (activeFilters)='filterData($event)' />
+<app-data-table [data]='movies' />
