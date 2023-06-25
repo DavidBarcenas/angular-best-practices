@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { movieListMock } from '../mock-data';
 
 @Component({
   selector: 'app-data-table',
@@ -11,5 +10,5 @@ import { movieListMock } from '../mock-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataTableComponent {
-  movies = movieListMock;
+  @Input('data') data: any[] = [];
 }
