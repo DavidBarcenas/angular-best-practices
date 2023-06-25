@@ -1,2 +1,2 @@
 <app-filter-group (activeFilters)='filterData($event)' />
-<app-data-table [data]='movies' />
+<app-data-table [data]='movies' (sort)='sorting()' />

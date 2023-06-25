@@ -9,35 +9,47 @@ import { movieListMock } from './mock-data';
   standalone: true,
   imports: [CommonModule, FilterGroupComponent, DataTableComponent],
   templateUrl: './filters.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersComponent {
   movies = movieListMock;
 
   filterData(filters: any) {
-    this.movies = movieListMock.filter((movie: any) => {
-      for (const filtro in filters) {
-        if (!filters[filtro]) continue;
+    this.movies = movieListMock.map(this.valueToLowerCase).filter((movie) => this.onFilter(movie, filters));
+  }
 
-        if (filtro === 'date') {
-          const { min, max } = filters[filtro];
-          if (movie.date < min || movie.date > max) return false;
-        } else if (filtro === 'genres') {
-          if (!filters[filtro].includes(movie.genre.toLowerCase())) return false;
-        } else if (filtro === 'languages') {
-          if (!filters[filtro].includes(movie.language.toLowerCase())) return false;
-        } else if (filtro === 'query') {
-          if (!movie.title.toLowerCase().includes(filters[filtro].toLowerCase())) return false;
-        } else if (filtro === 'orderBy') {
-          if (movie.status.toLowerCase() !== filters[filtro].toLowerCase()) return false;
-        } else {
-          if (filters[filtro].toString().toLowerCase() !== filters[filtro].toString().toLowerCase()) {
-            return false;
-          }
-        }
+  onFilter(movie: any, filters: any) {
+    return Object.keys(filters).every((key) => {
+      switch (key) {
+        case 'query':
+          return movie.title.includes(filters[key]) || movie.id.includes(filters[key]);
+        case 'orderBy':
+          return filters[key] === movie.status;
+        case 'date':
+        case 'rating':
+          return movie[key] >= filters[key].min && movie[key] <= filters[key].max;
+        default:
+          return filters[key].includes(movie[key]);
       }
-      return true;
+    });
+  }
+
+  valueToLowerCase(movie: any) {
+    return {
+      ...movie,
+      id: movie.id.toString(),
+      genre: movie.genre.toLowerCase(),
+      language: movie.language.toLowerCase(),
+      title: movie.title.toLowerCase(),
+      status: movie.status.toLowerCase(),
+    };
+  }
+
+  sorting() {
+    this.movies.sort((a, b) => {
+      if (a.title > b.title) return 1;
+      if (a.title < b.title) return -1;
+      return 0;
     });
   }
 }

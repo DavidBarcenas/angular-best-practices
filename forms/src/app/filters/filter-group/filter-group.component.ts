@@ -50,8 +50,8 @@ export class FilterGroupComponent {
 
   filters: any = {
     query: '',
-    languages: [],
-    genres: [],
+    language: [],
+    genre: [],
     orderBy: '',
     rating: {
       min: 0,
@@ -64,9 +64,8 @@ export class FilterGroupComponent {
   };
 
   onFiltersChange() {
-    this.filters.languages = this.languages.filter((l) => l.checked).map((l) => l.name);
-    this.filters.genres = this.movieGenres.filter((g) => g.checked).map((g) => g.name);
-    console.log(this.cleanEmptyProperties({ ...this.filters }));
+    this.filters.language = this.languages.filter((l) => l.checked).map((l) => l.name);
+    this.filters.genre = this.movieGenres.filter((g) => g.checked).map((g) => g.name);
     this.activeFilters.emit(this.cleanEmptyProperties({ ...this.filters }));
   }
 

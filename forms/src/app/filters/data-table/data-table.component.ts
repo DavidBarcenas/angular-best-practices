@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,5 +10,10 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataTableComponent {
+  @Output('sort') sort = new EventEmitter<boolean>();
   @Input('data') data: any[] = [];
+
+  sorting() {
+    this.sort.emit(true);
+  }
 }
