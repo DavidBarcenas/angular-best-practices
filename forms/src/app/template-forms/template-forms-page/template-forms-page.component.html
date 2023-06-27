@@ -1,12 +1,14 @@
 <form ngForm class='mt-8 grid grid-cols-6 gap-10'>
+  <div class='col-span-full'>{{userInfo | json}}</div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='FirstName' class='block text-sm font-medium text-gray-700'> First Name </label>
     <input
       type='text'
       id='FirstName'
-      name='first_name'
+      name='first-name'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Enter your name'
+      [(ngModel)]='userInfo.firstName'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -14,9 +16,10 @@
     <input
       type='text'
       id='LastName'
-      name='last_name'
+      name='last-name'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Enter your last name'
+      [(ngModel)]='userInfo.lastName'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -24,9 +27,10 @@
     <input
       type='text'
       id='Nickname'
-      name='nick_name'
+      name='nick-name'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Come up with a nickname'
+      [(ngModel)]='userInfo.nickname'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -37,6 +41,7 @@
       name='email'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Provide your email'
+      [(ngModel)]='userInfo.email'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -45,6 +50,7 @@
       name='year-of-birth'
       id='YearOfBirth'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
+      [(ngModel)]='userInfo.yearOfBirth'
     >
       <option *ngFor='let year of years' [value]='year'>{{ year }}</option>
     </select>
@@ -57,6 +63,7 @@
       name='passport'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Provide Passport Data'
+      [(ngModel)]='userInfo.password'
     />
   </div>
   <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'>
@@ -69,6 +76,7 @@
         name='full-address'
         class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
         placeholder='Street name and house number'
+        [(ngModel)]='userInfo.fullAddress'
       />
     </div>
     <div class='col-span-6 sm:col-span-2'>
@@ -79,6 +87,7 @@
         name='city'
         class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
         placeholder='City'
+        [(ngModel)]='userInfo.city'
       />
     </div>
     <div class='col-span-6 sm:col-span-2'>
@@ -86,9 +95,10 @@
       <input
         type='text'
         id='PostCode'
-        name='passport'
+        name='post-code'
         class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
         placeholder='Post code'
+        [(ngModel)]='userInfo.postCode'
       />
     </div>
   </fieldset>

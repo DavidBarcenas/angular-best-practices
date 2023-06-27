@@ -14,5 +14,5 @@ export const routes: Routes = [
     title: 'Advanced Filters Playground',
     loadComponent: () => import('./filters/filters.component').then((c) => c.FiltersComponent),
   },
-  { path: '', redirectTo: 'filters', pathMatch: 'full' },
+  { path: '', redirectTo: 'template-driven', pathMatch: 'full' },
 ];
