@@ -1,5 +1,5 @@
-<form ngForm class='mt-8 grid grid-cols-6 gap-10'>
-  <div class='col-span-full'>{{userInfo | json}}</div>
+<form class='mt-8 grid grid-cols-6 gap-10' #form='ngForm' [ngFormOptions]="{ updateOn: 'submit' }">
+  <div class='col-span-full'>{{ form.value | json }}</div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='FirstName' class='block text-sm font-medium text-gray-700'> First Name </label>
     <input
@@ -9,6 +9,7 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Enter your name'
       [(ngModel)]='userInfo.firstName'
+      [ngModelOptions]="{ updateOn: 'change' }"
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -31,6 +32,7 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Come up with a nickname'
       [(ngModel)]='userInfo.nickname'
+      [ngModelOptions]='{ standalone: true }'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -122,12 +124,12 @@
   </div>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
     <button
+      type='reset'
       class='inline-block shrink-0 rounded-md border border-gray-500 px-12 py-3 text-sm font-medium text-gray-600 transition hover:bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-blue-500'
     >
-      Create an account
+      Reset
     </button>
     <button
-      type='reset'
       class='inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500'
     >
       Create an account

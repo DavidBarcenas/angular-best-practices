@@ -1,11 +1,19 @@
 <section class='grid grid-cols-4 gap-10 mb-5'>
   <div class='w-full'>
     <span class='block mb-3 text-blue-500'>Rating</span>
-    <ngx-slider [(value)]='filters.rating.min' [(highValue)]='filters.rating.max'
-                [options]='ratingOptions' (userChangeEnd)='onFiltersChange()'></ngx-slider>
+    <ngx-slider
+      [(value)]='filters.rating.min'
+      [(highValue)]='filters.rating.max'
+      [options]='ratingOptions'
+      (userChangeEnd)='onFiltersChange()'
+    ></ngx-slider>
     <span class='block mb-3 mt-6 text-blue-500'>Date</span>
-    <ngx-slider [(value)]='filters.date.min' [(highValue)]='filters.date.max' [options]='dateOptions'
-                (userChangeEnd)='onFiltersChange()'></ngx-slider>
+    <ngx-slider
+      [(value)]='filters.date.min'
+      [(highValue)]='filters.date.max'
+      [options]='dateOptions'
+      (userChangeEnd)='onFiltersChange()'
+    ></ngx-slider>
   </div>
   <div class='pl-10'>
     <span class='block mb-3 text-blue-500'>Genres</span>
@@ -22,12 +30,23 @@
     </label>
   </div>
   <div>
-    <input type='text' class='border border-gray-500 px-4 py-1 mb-7 rounded-full' placeholder='Search movie...'
-           [(ngModel)]='filters.query' (input)='onFiltersChange()' />
+    <input
+      type='text'
+      class='border border-gray-500 px-4 py-1 mb-7 rounded-full'
+      placeholder='Search movie...'
+      [(ngModel)]='filters.query'
+      (input)='onFiltersChange()'
+    />
     <span class='block mb-3 text-blue-500'>Order by</span>
     <label [for]='order' *ngFor='let order of orderList' class='block mb-2'>
-      <input type='radio' [id]='order' name='order' [value]='order' [(ngModel)]='filters.orderBy'
-             (ngModelChange)='onFiltersChange()' />
+      <input
+        type='radio'
+        [id]='order'
+        name='order'
+        [value]='order'
+        [(ngModel)]='filters.orderBy'
+        (ngModelChange)='onFiltersChange()'
+      />
       {{ order }}
     </label>
   </div>
