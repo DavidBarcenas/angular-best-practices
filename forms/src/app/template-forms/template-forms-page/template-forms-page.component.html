@@ -10,9 +10,14 @@
       placeholder='Enter your name'
       [(ngModel)]='userInfo.firstName'
       [ngModelOptions]="{ updateOn: 'change' }"
+      #firstName='ngModel'
       required
       minlength='2'
     />
+    <span class='text-red-500 text-xs px-2' *ngIf='firstName.dirty && firstName.hasError("required")'>This field is required</span>
+    <span class='text-red-500 text-xs px-2' *ngIf='firstName.dirty && firstName.hasError("minlength")'>
+      The length should be at least <strong>{{firstName.getError('minlength')?.requiredLength}}</strong> characters
+    </span>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='LastName' class='block text-sm font-medium text-gray-700'> Last Name </label>
@@ -23,9 +28,14 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Enter your last name'
       [(ngModel)]='userInfo.lastName'
+      #lastName='ngModel'
       required
       minlength='3'
     />
+    <span class='text-red-500 text-xs px-2' *ngIf='lastName.dirty && lastName.hasError("required")'>This field is required</span>
+    <span class='text-red-500 text-xs px-2' *ngIf='lastName.dirty && lastName.hasError("minlength")'>
+      The length should be at least <strong>{{lastName.getError('minlength')?.requiredLength}}</strong> characters
+    </span>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='Nickname' class='block text-sm font-medium text-gray-700'> Nickname </label>
