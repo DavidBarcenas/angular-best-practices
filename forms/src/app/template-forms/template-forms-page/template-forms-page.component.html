@@ -1,5 +1,5 @@
-<form class='mt-8 grid grid-cols-6 gap-10' #form='ngForm' [ngFormOptions]="{ updateOn: 'submit' }">
-  <div class='col-span-full'>{{ form.value | json }}</div>
+<form class='mt-8 grid grid-cols-6 gap-10' #form='ngForm' (ngSubmit)='onSubmit(form)'
+      [ngFormOptions]="{ updateOn: 'submit' }">
   <div class='col-span-6 sm:col-span-2'>
     <label for='FirstName' class='block text-sm font-medium text-gray-700'> First Name </label>
     <input
@@ -68,7 +68,8 @@
       [(ngModel)]='userInfo.password'
     />
   </div>
-  <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'>
+  <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'
+            ngModelGroup='address'>
     <legend class='px-2 text-gray-400'>Address</legend>
     <div class='col-span-6 sm:col-span-2'>
       <label for='FullAddress' class='block text-sm font-medium text-gray-700'> Full Address </label>

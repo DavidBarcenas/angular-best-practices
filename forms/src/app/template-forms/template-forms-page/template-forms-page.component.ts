@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { UserInfo } from '../../core/user-info';
 
 @Component({
@@ -9,6 +9,13 @@ import { UserInfo } from '../../core/user-info';
   imports: [CommonModule, FormsModule],
   templateUrl: './template-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [
+    `
+      .ng-valid.ng-dirty:not([ngModelGroup]):not(form) {
+        border: 1px solid green;
+      }
+    `,
+  ],
 })
 export class TemplateFormsPageComponent {
   userInfo: UserInfo = {
@@ -28,5 +35,9 @@ export class TemplateFormsPageComponent {
     return Array(now - (now - 40))
       .fill('')
       .map((_, idx) => now - idx);
+  }
+
+  onSubmit(form: NgForm) {
+    console.log('onSubmit', form.value);
   }
 }
