@@ -14,6 +14,16 @@ import { UserInfo } from '../../core/user-info';
       .ng-valid.ng-dirty:not([ngModelGroup]):not(form) {
         border: 1px solid green;
       }
+
+      .ng-invalid.ng-dirty:not([ngModelGroup]):not(form) {
+        border: 1px solid red;
+      }
+
+      button[disabled] {
+        background: rgba(0, 0, 0, 0.15);
+        border-color: rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+      }
     `,
   ],
 })
@@ -25,7 +35,7 @@ export class TemplateFormsPageComponent {
     fullAddress: '',
     lastName: '',
     nickname: '',
-    password: '',
+    passport: 0,
     postCode: 0,
     yearOfBirth: 0,
   };

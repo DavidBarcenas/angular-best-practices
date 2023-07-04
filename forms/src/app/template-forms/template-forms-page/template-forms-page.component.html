@@ -1,5 +1,5 @@
-<form class='mt-8 grid grid-cols-6 gap-10' #form='ngForm' (ngSubmit)='onSubmit(form)'
-      [ngFormOptions]="{ updateOn: 'submit' }">
+<form class='mt-8 grid grid-cols-6 gap-10 px-2' #form='ngForm' (ngSubmit)='onSubmit(form)'
+      [ngFormOptions]="{ updateOn: 'blur' }">
   <div class='col-span-6 sm:col-span-2'>
     <label for='FirstName' class='block text-sm font-medium text-gray-700'> First Name </label>
     <input
@@ -10,6 +10,8 @@
       placeholder='Enter your name'
       [(ngModel)]='userInfo.firstName'
       [ngModelOptions]="{ updateOn: 'change' }"
+      required
+      minlength='2'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -21,6 +23,8 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Enter your last name'
       [(ngModel)]='userInfo.lastName'
+      required
+      minlength='3'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -33,6 +37,9 @@
       placeholder='Come up with a nickname'
       [(ngModel)]='userInfo.nickname'
       [ngModelOptions]='{ standalone: true }'
+      required
+      minlength='2'
+      pattern='^[\w.]+$'
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -44,6 +51,8 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Provide your email'
       [(ngModel)]='userInfo.email'
+      required
+      email
     />
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -65,7 +74,8 @@
       name='passport'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Provide Passport Data'
-      [(ngModel)]='userInfo.password'
+      [(ngModel)]='userInfo.passport'
+      pattern='^[A-Z]{2}[0-9]{3}$'
     />
   </div>
   <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'
@@ -80,6 +90,7 @@
         class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
         placeholder='Street name and house number'
         [(ngModel)]='userInfo.fullAddress'
+        required
       />
     </div>
     <div class='col-span-6 sm:col-span-2'>
@@ -91,6 +102,7 @@
         class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
         placeholder='City'
         [(ngModel)]='userInfo.city'
+        required
       />
     </div>
     <div class='col-span-6 sm:col-span-2'>
@@ -102,27 +114,10 @@
         class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
         placeholder='Post code'
         [(ngModel)]='userInfo.postCode'
+        required
       />
     </div>
   </fieldset>
-  <div class='col-span-6 sm:col-span-3'>
-    <label for='Password' class='block text-sm font-medium text-gray-700'> Password </label>
-    <input
-      type='password'
-      id='Password'
-      name='password'
-      class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
-    />
-  </div>
-  <div class='col-span-6 sm:col-span-3'>
-    <label for='PasswordConfirmation' class='block text-sm font-medium text-gray-700'> Password Confirmation </label>
-    <input
-      type='password'
-      id='PasswordConfirmation'
-      name='password_confirmation'
-      class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
-    />
-  </div>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
     <button
       type='reset'
@@ -131,6 +126,8 @@
       Reset
     </button>
     <button
+      type='submit'
+      [disabled]='form.invalid'
       class='inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500'
     >
       Create an account

@@ -4,8 +4,8 @@ export interface UserInfo {
   nickname: string;
   email: string;
   yearOfBirth: number;
-  password: string;
   fullAddress: string;
   city: string;
   postCode: number;
+  passport: number;
 }
