@@ -44,6 +44,11 @@ export class TemplateFormsPageComponent {
     confirmPassword: '',
   };
 
+  get isAdult() {
+    const currentYear = new Date().getUTCFullYear();
+    return currentYear - this.userInfo.yearOfBirth >= 18;
+  }
+
   get years() {
     const now = new Date().getUTCFullYear();
     return Array(now - (now - 40))

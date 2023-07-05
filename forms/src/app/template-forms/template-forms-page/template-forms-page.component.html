@@ -97,9 +97,14 @@
       name='passport'
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Provide Passport Data'
+      #passport='ngModel'
       [(ngModel)]='userInfo.passport'
       pattern='^[A-Z]{2}[0-9]{3}$'
+      [required]='isAdult'
     />
+    <span class='text-red-500 text-xs px-2' *ngIf="passport.dirty && passport.hasError('required')"
+    >This field is required</span
+    >
   </div>
   <fieldset
     class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'
