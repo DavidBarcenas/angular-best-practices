@@ -17,7 +17,7 @@
       #firstName='ngModel'
       required
       minlength='2'
-      [appBanWords]='["test", "hello"]'
+      [appBanWords]="['test', 'hello']"
     />
     <span class='text-red-500 text-xs px-2' *ngIf="firstName.dirty && firstName.hasError('required')"
     >This field is required</span
@@ -141,6 +141,49 @@
         [(ngModel)]='userInfo.postCode'
         required
       />
+    </div>
+  </fieldset>
+  <fieldset
+    class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'
+    ngModelGroup='passwords'
+    appPasswordMatch
+  >
+    <legend class='px-2 text-gray-400'>User Password</legend>
+    <div class='col-span-6 sm:col-span-2'>
+      <label for='password' class='block text-sm font-medium text-gray-700'>Password</label>
+      <input
+        type='password'
+        id='password'
+        name='password'
+        class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
+        placeholder="Enter user's password"
+        [(ngModel)]='userInfo.password'
+        #password='ngModel'
+        required
+        minlength='6'
+      />
+      <span class='text-red-500 text-xs px-2' *ngIf="password.dirty && password.hasError('required')">
+        This field is required
+      </span>
+      <span class='text-red-500 text-xs px-2' *ngIf="password.dirty && password.hasError('minlength')">
+        The length should be at least <strong>{{ password.getError('minlength')?.requiredLength }}</strong> characters
+      </span>
+    </div>
+    <div class='col-span-6 sm:col-span-2'>
+      <label for='confirmPassword' class='block text-sm font-medium text-gray-700'>Confirm password</label>
+      <input
+        type='password'
+        id='confirmPassword'
+        name='confirmPassword'
+        class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
+        placeholder="Confirm user's password"
+        #confirmPassword='ngModel'
+        [(ngModel)]='userInfo.confirmPassword'
+      />
+      <span class='text-red-500 text-xs px-2'
+            *ngIf="confirmPassword.dirty && confirmPassword.hasError('passwordMatch')">
+          Password doesn't match
+        </span>
     </div>
   </fieldset>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>

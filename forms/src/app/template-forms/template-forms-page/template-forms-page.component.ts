@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserInfo } from '../../core/user-info';
 import { BanWordsDirective } from './validators/ban-words.directive';
+import { PasswordMatchDirective } from './validators/password-match.directive';
 
 @Component({
   selector: 'app-template-forms-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, BanWordsDirective],
+  imports: [CommonModule, FormsModule, BanWordsDirective, PasswordMatchDirective],
   templateUrl: './template-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
@@ -39,6 +40,8 @@ export class TemplateFormsPageComponent {
     passport: 0,
     postCode: 0,
     yearOfBirth: 0,
+    password: '',
+    confirmPassword: '',
   };
 
   get years() {
