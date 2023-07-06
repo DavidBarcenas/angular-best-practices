@@ -17,7 +17,7 @@
       #firstName='ngModel'
       required
       minlength='2'
-      [appBanWords]="['test', 'hello']"
+      [appBanWords]="isAdult | toggleBanWords:['test', 'hello']"
     />
     <span class='text-red-500 text-xs px-2' *ngIf="firstName.dirty && firstName.hasError('required')"
     >This field is required</span

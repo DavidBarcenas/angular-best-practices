@@ -4,11 +4,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { UserInfo } from '../../core/user-info';
 import { BanWordsDirective } from './validators/ban-words.directive';
 import { PasswordMatchDirective } from './validators/password-match.directive';
+import { ToggleBanWordsPipe } from './pipes/toggle-ban-words.pipe';
 
 @Component({
   selector: 'app-template-forms-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, BanWordsDirective, PasswordMatchDirective],
+  imports: [CommonModule, FormsModule, BanWordsDirective, PasswordMatchDirective, ToggleBanWordsPipe],
   templateUrl: './template-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
