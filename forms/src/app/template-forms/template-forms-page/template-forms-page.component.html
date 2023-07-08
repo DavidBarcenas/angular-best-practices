@@ -58,12 +58,19 @@
       class='mt-1 w-full rounded-md border border-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3'
       placeholder='Come up with a nickname'
       [(ngModel)]='userInfo.nickname'
-      [ngModelOptions]='{ standalone: true }'
+      [ngModelOptions]='{ standalone: true, updateOn: "blur" }'
+      #nickname='ngModel'
       required
       minlength='2'
       pattern='^[\w.]+$'
       appBanWords='test'
+      appUniqueNickname
     />
+    <div class='text-xs text-blue-700 mt-1' *ngIf='nickname.pending'>Checking<span
+      class='animate-ping'>...</span></div>
+    <span class='text-red-500 text-xs px-2' *ngIf="nickname.dirty && nickname.hasError('uniqueNickname')">
+      This name is taken
+    </span>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='Email' class='block text-sm font-medium text-gray-700'> Email </label>
@@ -200,7 +207,7 @@
     </button>
     <button
       type='submit'
-      [disabled]='form.invalid'
+      [disabled]='form.invalid || form.pending'
       class='inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500'
     >
       Create an account
