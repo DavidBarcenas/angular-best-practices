@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserInfo } from '../../core/user-info';
@@ -41,6 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
   ],
 })
 export class TemplateFormsPageComponent {
+  @ViewChild(NgForm)
+  ngForm: NgForm | undefined;
+
   userInfo: UserInfo = {
     city: '',
     email: '',
@@ -69,5 +72,12 @@ export class TemplateFormsPageComponent {
 
   onSubmit(form: NgForm) {
     console.log('onSubmit', form.value);
+    // Strategy 1 - Reset form values, validation statuses, making controls untouched, pristine, etc.
+    this.ngForm?.resetForm();
+  }
+
+  onReset(e: Event) {
+    e.preventDefault();
+    this.ngForm?.resetForm();
   }
 }
