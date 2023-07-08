@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserInfo } from '../../core/user-info';
@@ -40,14 +40,14 @@ import { HttpClientModule } from '@angular/common/http';
     `,
   ],
 })
-export class TemplateFormsPageComponent {
+export class TemplateFormsPageComponent implements AfterViewInit {
   @ViewChild(NgForm)
   ngForm: NgForm | undefined;
 
   userInfo: UserInfo = {
     city: '',
     email: '',
-    firstName: '',
+    firstName: 'Davee',
     fullAddress: '',
     lastName: '',
     nickname: '',
@@ -57,6 +57,14 @@ export class TemplateFormsPageComponent {
     password: '',
     confirmPassword: '',
   };
+
+  private initialFormValues: unknown;
+
+  ngAfterViewInit() {
+    queueMicrotask(() => {
+      this.initialFormValues = this.ngForm?.value;
+    });
+  }
 
   get isAdult() {
     const currentYear = new Date().getUTCFullYear();
@@ -73,11 +81,14 @@ export class TemplateFormsPageComponent {
   onSubmit(form: NgForm) {
     console.log('onSubmit', form.value);
     // Strategy 1 - Reset form values, validation statuses, making controls untouched, pristine, etc.
-    this.ngForm?.resetForm();
+    //this.ngForm?.resetForm();
+    // Strategy 2 - Reset only control statuses but not values
+    this.ngForm?.resetForm(this.ngForm?.value);
+    this.initialFormValues = this.ngForm?.value;
   }
 
   onReset(e: Event) {
     e.preventDefault();
-    this.ngForm?.resetForm();
+    this.ngForm?.resetForm(this.initialFormValues);
   }
 }
