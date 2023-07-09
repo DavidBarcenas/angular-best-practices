@@ -8,7 +8,7 @@ describe('ReactiveFormsPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsPageComponent]
+      imports: [ReactiveFormsPageComponent],
     });
     fixture = TestBed.createComponent(ReactiveFormsPageComponent);
     component = fixture.componentInstance;

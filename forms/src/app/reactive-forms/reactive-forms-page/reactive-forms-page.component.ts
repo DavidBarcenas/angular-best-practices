@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ButtonComponent } from '../../core/button/button.component';
 
 @Component({
   selector: 'app-reactive-forms-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
   templateUrl: './reactive-forms-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .form-label {
@@ -18,7 +20,6 @@ import { ReactiveFormsModule } from '@angular/forms';
       }
     `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReactiveFormsPageComponent {
   get years() {

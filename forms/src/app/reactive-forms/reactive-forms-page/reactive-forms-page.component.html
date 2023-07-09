@@ -1,121 +1,58 @@
-<form class='mt-8 grid grid-cols-6 gap-10 px-2'>
+<form class='mt-8 grid grid-cols-6 gap-8 px-2'>
   <div class='col-span-6 sm:col-span-2'>
     <label for='firstName' class='form-label'>First Name</label>
-    <input
-      type='text'
-      id='firstName'
-      class='form-input'
-      placeholder='Enter your name'
-    />
+    <input type='text' id='firstName' class='form-input' placeholder='Enter your name' />
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='lastName' class='form-label'>Last Name</label>
-    <input
-      type='text'
-      id='lastName'
-      class='form-input'
-      placeholder='Enter your last name'
-    />
+    <input type='text' id='lastName' class='form-input' placeholder='Enter your last name' />
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='nickName' class='form-label'>First Name</label>
-    <input
-      type='text'
-      id='nickName'
-      class='form-input'
-      placeholder='Come up with a nickname'
-    />
+    <input type='text' id='nickName' class='form-input' placeholder='Come up with a nickname' />
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='email' class='form-label'>First Name</label>
-    <input
-      type='email'
-      id='email'
-      class='form-input'
-      placeholder='Provide your email'
-    />
+    <input type='email' id='email' class='form-input' placeholder='Provide your email' />
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='yearOfBirth' class='form-label'> Year of birth </label>
-    <select
-      id='yearOfBirth'
-      class='form-input'
-    >
+    <select id='yearOfBirth' class='form-input'>
       <option *ngFor='let year of years' [value]='year'>{{ year }}</option>
     </select>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='passport' class='form-label'>Passport</label>
-    <input
-      type='text'
-      id='passport'
-      class='form-input'
-      placeholder='Provide passport data'
-    />
+    <input type='text' id='passport' class='form-input' placeholder='Provide passport data' />
   </div>
   <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'>
     <legend class='px-2 text-gray-400'>Address</legend>
     <div class='col-span-6 sm:col-span-2'>
       <label for='fullAddress' class='form-label'>Full Address</label>
-      <input
-        type='text'
-        id='fullAddress'
-        class='form-input'
-        placeholder='Street name and house number'
-      />
+      <input type='text' id='fullAddress' class='form-input' placeholder='Street name and house number' />
     </div>
     <div class='col-span-6 sm:col-span-2'>
       <label for='city' class='form-label'>City</label>
-      <input
-        type='text'
-        id='city'
-        class='form-input'
-        placeholder='City'
-      />
+      <input type='text' id='city' class='form-input' placeholder='City' />
     </div>
     <div class='col-span-6 sm:col-span-2'>
       <label for='postCode' class='form-label'>Post code</label>
-      <input
-        type='text'
-        id='postCode'
-        class='form-input'
-        placeholder='Post code'
-      />
+      <input type='text' id='postCode' class='form-input' placeholder='Post code' />
     </div>
   </fieldset>
   <fieldset class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'>
     <legend class='px-2 text-gray-400'>User Password</legend>
     <div class='col-span-6 sm:col-span-2'>
       <label for='password' class='form-label'>Password</label>
-      <input
-        type='password'
-        id='password'
-        class='form-input'
-        placeholder="Enter user's password"
-      />
+      <input type='password' id='password' class='form-input' placeholder="Enter user's password" />
     </div>
     <div class='col-span-6 sm:col-span-2'>
       <label for='confirmPassword' class='form-label'>Confirm Password</label>
-      <input
-        type='password'
-        id='confirmPassword'
-        class='form-input'
-        placeholder="Confirm user's password"
-      />
+      <input type='password' id='confirmPassword' class='form-input' placeholder="Confirm user's password" />
     </div>
   </fieldset>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
-    <button
-      type='reset'
-      class='inline-block shrink-0 rounded-md border border-gray-500 px-12 py-3 text-sm font-medium text-gray-600 transition hover:bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-blue-500'
-    >
-      Reset
-    </button>
-    <button
-      type='submit'
-      class='inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500'
-    >
-      Create an account
-    </button>
+    <app-button text='Reset' type='reset' />
+    <app-button text='Create an account' type='submit' />
   </div>
 </form>
