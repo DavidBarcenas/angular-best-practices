@@ -1,0 +1,11 @@
+<button
+  [type]='type'
+  [disabled]='disabled'
+  class='inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-blue-700 focus:outline-none focus:ring active:text-blue-500'
+  [ngClass]="{
+    'bg-white text-blue-600 hover:bg-blue-600 hover:text-white': type === 'reset',
+    'bg-gray-200 border-gray-200 text-gray-500 pointer-events-none hover:bg-gray-200 hover:text-gray-500': disabled
+  }"
+>
+  {{text}}
+</button>
