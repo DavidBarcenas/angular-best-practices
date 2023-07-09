@@ -10,9 +10,17 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'reactive-forms',
+    title: 'Reactive Forms Playground',
+    loadComponent: () =>
+      import('./reactive-forms/reactive-forms-page/reactive-forms-page.component').then(
+        (c) => c.ReactiveFormsPageComponent
+      ),
+  },
+  {
     path: 'filters',
     title: 'Advanced Filters Playground',
     loadComponent: () => import('./filters/filters.component').then((c) => c.FiltersComponent),
   },
-  { path: '', redirectTo: 'template-driven', pathMatch: 'full' },
+  { path: '', redirectTo: 'reactive-forms', pathMatch: 'full' },
 ];
