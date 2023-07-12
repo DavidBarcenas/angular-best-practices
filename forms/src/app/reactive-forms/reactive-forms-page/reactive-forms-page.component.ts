@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
 
 @Component({
@@ -22,6 +22,24 @@ import { ButtonComponent } from '../../core/button/button.component';
   ],
 })
 export class ReactiveFormsPageComponent {
+  private fb = inject(FormBuilder);
+
+  form = this.fb.group({
+    firstName: '',
+    lastName: '',
+    nickname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    yearOfBirth: '',
+    passport: '',
+    address: this.fb.group({
+      fullAddress: '',
+      city: '',
+      postCode: 0,
+    }),
+  });
+
   get years() {
     const now = new Date().getUTCFullYear();
     return Array(now - (now - 40))
