@@ -1,5 +1,4 @@
-<form [formGroup]='form' class='mt-8 grid grid-cols-6 gap-8 px-2'>
-  <pre class='fixed z-20 top-0 right-0 bg-blue-500 text-white backdrop-blur-lg shadow'>{{ form.value | json }}</pre>
+<form [formGroup]='form' (ngSubmit)='onSubmit()' class='mt-8 grid grid-cols-6 gap-8 px-2'>
   <div class='col-span-6 sm:col-span-2'>
     <label for='firstName' class='form-label'>First Name</label>
     <input formControlName='firstName' type='text' id='firstName' class='form-input' placeholder='Enter your name' />

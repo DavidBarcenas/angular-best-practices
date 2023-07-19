@@ -24,6 +24,7 @@ import { ButtonComponent } from '../../core/button/button.component';
 export class ReactiveFormsPageComponent {
   private fb = inject(FormBuilder);
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
+  years = this.getYears();
   form = this.fb.group({
     firstName: '',
     lastName: '',
@@ -68,7 +69,11 @@ export class ReactiveFormsPageComponent {
     this.form.controls.hobbies.removeAt(index);
   }
 
-  get years() {
+  onSubmit(): void {
+    console.log(this.form.getRawValue());
+  }
+
+  private getYears() {
     const now = new Date().getUTCFullYear();
     return Array(now - (now - 40))
       .fill('')
