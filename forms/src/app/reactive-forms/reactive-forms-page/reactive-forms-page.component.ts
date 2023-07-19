@@ -23,7 +23,7 @@ import { ButtonComponent } from '../../core/button/button.component';
 })
 export class ReactiveFormsPageComponent {
   private fb = inject(FormBuilder);
-
+  phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
   form = this.fb.group({
     firstName: '',
     lastName: '',
@@ -39,13 +39,32 @@ export class ReactiveFormsPageComponent {
       postCode: 0,
     }),
     hobbies: this.fb.array(['']),
+    phones: this.fb.array([
+      this.fb.group({
+        label: this.phoneLabels[0],
+        phone: '',
+      }),
+    ]),
   });
 
-  addHobbie(): void {
+  addPhone(): void {
+    this.form.controls.phones.push(
+      this.fb.group({
+        label: this.phoneLabels[0],
+        phone: '',
+      })
+    );
+  }
+
+  removePhone(index: number): void {
+    this.form.controls.phones.removeAt(index);
+  }
+
+  addHobbies(): void {
     this.form.controls.hobbies.push(this.fb.control(''));
   }
 
-  removeHobbie(index: number): void {
+  removeHobbies(index: number): void {
     this.form.controls.hobbies.removeAt(index);
   }
 
