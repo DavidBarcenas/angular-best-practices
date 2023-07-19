@@ -86,19 +86,19 @@
     </div>
   </fieldset>
   <fieldset
-    formArrayName='phones'
+    formArrayName='hobbies'
     class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4 relative'
   >
-    <legend class='px-2 text-gray-400'>Phones</legend>
-    <button type='button' (click)='addPhone()' class='absolute right-0 -top-3 bg-green-400 inline-block p-1 w-9'>
+    <legend class='px-2 text-gray-400'>Hobbies</legend>
+    <button type='button' (click)='addHobbie()' class='absolute right-0 -top-3 bg-green-400 inline-block p-1 w-9'>
       +
     </button>
-    <div *ngFor='let phone of form.controls.phones.controls; index as i' class='col-span-6 sm:col-span-2 relative'>
-      <label for='phone-{{ i }}'>Phone number</label>
-      <input [formControlName]='i' type='text' id='phone-{{ i }}' class='form-input' />
+    <div *ngFor='let _ of form.controls.hobbies.controls; index as i' class='col-span-6 sm:col-span-2 relative'>
+      <label for='hobbies-{{ i }}'>Hobbies #{{i + 1}}</label>
+      <input [formControlName]='i' type='text' id='hobbies-{{ i }}' class='form-input' />
       <button
         type='button'
-        (click)='removePhone(i)'
+        (click)='removeHobbie(i)'
         class='bg-red-500 text-white block w-5 h-5 rounded-full absolute top-0 right-0 leading-4'
       >
         -
