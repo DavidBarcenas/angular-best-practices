@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
+import { SkillsService } from '../../core/skills.service';
+import { tap } from 'rxjs';
 
 const fb = new FormBuilder();
 
@@ -24,8 +26,12 @@ const fb = new FormBuilder();
   ],
 })
 export class ReactiveFormsPageComponent {
+  private skillsService = inject(SkillsService);
+  skills$ = this.skillsService.skills$.pipe(tap((skills) => this.buildSkills(skills)));
+
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
   years = this.getYears();
+
   form = fb.nonNullable.group({
     firstName: [''],
     lastName: '',
@@ -47,6 +53,7 @@ export class ReactiveFormsPageComponent {
         phone: '',
       }),
     ]),
+    skills: fb.group<{ [key: string]: FormControl<boolean> }>({}),
   });
 
   addPhone(): void {
@@ -79,5 +86,11 @@ export class ReactiveFormsPageComponent {
     return Array(now - (now - 40))
       .fill('')
       .map((_, idx) => now - idx);
+  }
+
+  private buildSkills(skills: string[]): void {
+    skills.forEach((skill) => {
+      this.form.controls.skills.addControl(skill, fb.control(false, { nonNullable: true }));
+    });
   }
 }
