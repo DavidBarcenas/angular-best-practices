@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
+
+const fb = new FormBuilder();
 
 @Component({
   selector: 'app-reactive-forms-page',
@@ -22,11 +24,10 @@ import { ButtonComponent } from '../../core/button/button.component';
   ],
 })
 export class ReactiveFormsPageComponent {
-  private fb = inject(FormBuilder);
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
   years = this.getYears();
-  form = this.fb.group({
-    firstName: '',
+  form = fb.nonNullable.group({
+    firstName: [''],
     lastName: '',
     nickname: '',
     email: '',
@@ -34,14 +35,14 @@ export class ReactiveFormsPageComponent {
     confirmPassword: '',
     yearOfBirth: '',
     passport: '',
-    address: this.fb.group({
+    address: fb.group({
       fullAddress: '',
       city: '',
       postCode: 0,
     }),
-    hobbies: this.fb.array(['']),
-    phones: this.fb.array([
-      this.fb.group({
+    hobbies: fb.array(['']),
+    phones: fb.array([
+      fb.group({
         label: this.phoneLabels[0],
         phone: '',
       }),
@@ -50,7 +51,7 @@ export class ReactiveFormsPageComponent {
 
   addPhone(): void {
     this.form.controls.phones.push(
-      this.fb.group({
+      fb.group({
         label: this.phoneLabels[0],
         phone: '',
       })
@@ -62,7 +63,7 @@ export class ReactiveFormsPageComponent {
   }
 
   addHobbies(): void {
-    this.form.controls.hobbies.push(this.fb.control(''));
+    this.form.controls.hobbies.push(fb.control(''));
   }
 
   removeHobbies(index: number): void {

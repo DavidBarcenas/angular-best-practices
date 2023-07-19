@@ -22,6 +22,7 @@
           <a routerLinkActive='bg-green-300 text-blue-950' routerLink='/filters'>Advanced Filters</a>
         </nav>
         <input
+          [formControl]='query'
           type='text'
           placeholder='Global Search'
           class='bg-transparent outline outline-1 outline-white/50 px-4 py-2 rounded-full focus:outline-green-300'
