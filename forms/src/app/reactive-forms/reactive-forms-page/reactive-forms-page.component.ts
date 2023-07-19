@@ -38,7 +38,16 @@ export class ReactiveFormsPageComponent {
       city: '',
       postCode: 0,
     }),
+    phones: this.fb.array(['']),
   });
+
+  addPhone(): void {
+    this.form.controls.phones.push(this.fb.control(''));
+  }
+
+  removePhone(index: number): void {
+    this.form.controls.phones.removeAt(index);
+  }
 
   get years() {
     const now = new Date().getUTCFullYear();
