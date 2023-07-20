@@ -18,15 +18,19 @@ import { tap } from 'rxjs';
       }
 
       .form-input {
-        @apply mt-1 w-full rounded-md outline outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
+        @apply mt-1 w-full rounded-md outline outline-1 outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
       }
 
       .ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form) {
-        @apply outline-2 outline-green-500;
+        @apply outline outline-1 outline-green-500;
       }
 
       .ng-invalid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form) {
-        @apply outline-2 outline-red-500;
+        @apply outline outline-1 outline-red-500;
+      }
+
+      .error-message {
+        @apply text-red-500 text-xs px-2;
       }
     `,
   ],
@@ -40,17 +44,17 @@ export class ReactiveFormsPageComponent {
   years = this.getYears();
 
   form = this.fb.group({
-    firstName: ['', [Validators.required, Validators.minLength(2)]],
-    lastName: '',
-    nickname: '',
-    email: '',
+    firstName: ['Dave', [Validators.required, Validators.minLength(2)]],
+    lastName: ['Pro', [Validators.required, Validators.minLength(2)]],
+    nickname: ['dave_.1', [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/)]],
+    email: ['dave@mail.com', Validators.email],
     password: '',
     confirmPassword: '',
-    yearOfBirth: '',
-    passport: '',
+    yearOfBirth: [this.years[25], Validators.required],
+    passport: ['DF1234', [Validators.pattern(/^[A-Z]{2}\d{4}$/)]],
     address: this.fb.group({
-      fullAddress: '',
-      city: '',
+      fullAddress: ['', Validators.required],
+      city: ['', Validators.required],
       postCode: 0,
     }),
     hobbies: this.fb.array(['']),

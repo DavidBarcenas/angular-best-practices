@@ -2,10 +2,26 @@
   <div class='col-span-6 sm:col-span-2'>
     <label for='firstName' class='form-label'>First Name</label>
     <input formControlName='firstName' type='text' id='firstName' class='form-input' placeholder='Enter your name' />
+    <ng-container *ngIf="form.get('firstName') as firstName">
+      <span *ngIf="firstName?.dirty && firstName?.hasError('required')" class='error-message'>
+        This field is required
+      </span>
+      <span *ngIf="firstName?.dirty && firstName?.hasError('minlength')" class='error-message'>
+        This name is too short
+      </span>
+    </ng-container>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='lastName' class='form-label'>Last Name</label>
     <input formControlName='lastName' type='text' id='lastName' class='form-input' placeholder='Enter your last name' />
+    <ng-container *ngIf="form.get('lastName') as lastName">
+      <span *ngIf="lastName?.dirty && lastName?.hasError('required')" class='error-message'>
+        This field is required
+      </span>
+      <span *ngIf="lastName?.dirty && lastName?.hasError('minlength')" class='error-message'>
+        This last name is too short
+      </span>
+    </ng-container>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='nickName' class='form-label'>Nickname</label>
@@ -16,6 +32,17 @@
       class='form-input'
       placeholder='Come up with a nickname'
     />
+    <ng-container *ngIf="form.get('nickname') as nickName">
+      <span *ngIf="nickName?.dirty && nickName?.hasError('required')" class='error-message'>
+        This field is required
+      </span>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('minlength')" class='error-message'>
+        This nickname is too short
+      </span>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('pattern')" class='error-message'>
+        Only characters a-z, _ and .
+      </span>
+    </ng-container>
   </div>
   <div class='col-span-6 sm:col-span-2'>
     <label for='email' class='form-label'>Email</label>
@@ -84,18 +111,20 @@
       />
     </div>
   </fieldset>
-  <fieldset
-    formArrayName='hobbies'
-    class='col-span-2 border border-gray-200 p-2 pb-0 relative'
-  >
+  <fieldset formArrayName='hobbies' class='col-span-2 border border-gray-200 p-2 pb-0 relative'>
     <legend class='px-2 text-gray-400'>Hobbies</legend>
     <button type='button' (click)='addHobbies()' class='absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9'>
       +
     </button>
     <div *ngFor='let _ of form.controls.hobbies.controls; index as i' class='mb-3 relative'>
-      <label for='hobbies-{{ i }}' class='form-label'>Hobbies #{{i + 1}}</label>
-      <input [formControlName]='i' type='text' id='hobbies-{{ i }}' class='form-input'
-             placeholder='Enter your hobbies' />
+      <label for='hobbies-{{ i }}' class='form-label'>Hobbies #{{ i + 1 }}</label>
+      <input
+        [formControlName]='i'
+        type='text'
+        id='hobbies-{{ i }}'
+        class='form-input'
+        placeholder='Enter your hobbies'
+      />
       <button
         type='button'
         (click)='removeHobbies(i)'
@@ -105,23 +134,24 @@
       </button>
     </div>
   </fieldset>
-  <fieldset
-    formArrayName='phones'
-    class='col-span-2 border border-gray-200 p-2 pb-0 relative'
-  >
+  <fieldset formArrayName='phones' class='col-span-2 border border-gray-200 p-2 pb-0 relative'>
     <legend class='px-2 text-gray-400'>Phones</legend>
     <button type='button' (click)='addPhone()' class='absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9'>
       +
     </button>
-    <div *ngFor='let _ of form.controls.phones.controls; index as i' [formGroupName]='i'
-         class='mb-3 relative'>
-      <label for='phone-{{ i }}' class='form-label'>Phone #{{i + 1}}</label>
+    <div *ngFor='let _ of form.controls.phones.controls; index as i' [formGroupName]='i' class='mb-3 relative'>
+      <label for='phone-{{ i }}' class='form-label'>Phone #{{ i + 1 }}</label>
       <div class='flex gap-2'>
         <select formControlName='label'>
-          <option *ngFor='let label of phoneLabels'>{{label}}</option>
+          <option *ngFor='let label of phoneLabels'>{{ label }}</option>
         </select>
-        <input formControlName='phone' type='text' id='phone-{{ i }}' class='form-input'
-               placeholder='Enter phone number' />
+        <input
+          formControlName='phone'
+          type='text'
+          id='phone-{{ i }}'
+          class='form-input'
+          placeholder='Enter phone number'
+        />
       </div>
       <button
         type='button'
@@ -136,8 +166,8 @@
     <legend class='px-2 text-gray-400'>User Skills</legend>
     <ng-container *ngIf='skills$ | async as skills; else loading'>
       <div formGroupName='skills' *ngFor='let skill of skills' class='mb-2.5 flex items-center'>
-        <input [formControlName]='skill' type='checkbox' [id]='skill'>
-        <label [for]='skill' class='form-label ml-1'>{{skill | titlecase}}</label>
+        <input [formControlName]='skill' type='checkbox' [id]='skill' />
+        <label [for]='skill' class='form-label ml-1'>{{ skill | titlecase }}</label>
       </div>
     </ng-container>
   </fieldset>
