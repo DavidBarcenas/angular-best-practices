@@ -143,7 +143,7 @@
   </fieldset>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
     <app-button text='Reset' type='reset' />
-    <app-button text='Create an account' type='submit' />
+    <app-button text='Create an account' type='submit' [disabled]='form.invalid' />
   </div>
 </form>
 
