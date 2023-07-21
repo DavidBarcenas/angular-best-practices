@@ -1,4 +1,4 @@
-<form [formGroup]='form' (ngSubmit)='onSubmit()' class='mt-8 grid grid-cols-6 gap-8 px-2'>
+<form [formGroup]='form' (ngSubmit)='onSubmit()' autocomplete='off' class='mt-8 grid grid-cols-6 gap-8 px-2'>
   <div class='col-span-6 sm:col-span-2'>
     <label for='firstName' class='form-label'>First Name</label>
     <input formControlName='firstName' type='text' id='firstName' class='form-input' placeholder='Enter your name' />
@@ -7,7 +7,10 @@
         This field is required
       </span>
       <span *ngIf="firstName?.dirty && firstName?.hasError('minlength')" class='error-message'>
-        This name is too short
+        This name must be at least <strong>{{firstName.getError('minlength').requiredLength}}</strong> characters
+      </span>
+      <span *ngIf="firstName?.dirty && firstName?.hasError('banWord')" class='error-message'>
+        The value <strong>{{firstName.getError('banWord')}}</strong> is banned
       </span>
     </ng-container>
   </div>

@@ -4,6 +4,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { ButtonComponent } from '../../core/button/button.component';
 import { SkillsService } from '../../core/skills.service';
 import { tap } from 'rxjs';
+import { banWord } from '../validators/ban-word.validator';
 
 @Component({
   selector: 'app-reactive-forms-page',
@@ -44,7 +45,7 @@ export class ReactiveFormsPageComponent {
   years = this.getYears();
 
   form = this.fb.group({
-    firstName: ['Dave', [Validators.required, Validators.minLength(2)]],
+    firstName: ['Dave', [Validators.required, Validators.minLength(2), banWord(['test', 'anonymous', 'dummy'])]],
     lastName: ['Pro', [Validators.required, Validators.minLength(2)]],
     nickname: ['dave_.1', [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/)]],
     email: ['dave@mail.com', Validators.email],
