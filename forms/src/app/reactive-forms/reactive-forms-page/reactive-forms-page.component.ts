@@ -19,7 +19,7 @@ import { banWord } from '../validators/ban-word.validator';
       }
 
       .form-input {
-        @apply mt-1 w-full rounded-md outline outline-1 outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
+        @apply mt-1 mb-1a w-full rounded-md outline outline-1 outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
       }
 
       .ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form) {
@@ -31,7 +31,7 @@ import { banWord } from '../validators/ban-word.validator';
       }
 
       .error-message {
-        @apply text-red-500 text-xs px-2;
+        @apply text-red-500 text-xs px-2 block animate-fade-message;
       }
     `,
   ],
@@ -42,12 +42,16 @@ export class ReactiveFormsPageComponent {
   skills$ = this.skillsService.skills$.pipe(tap((skills) => this.buildSkills(skills)));
 
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
+  bannedWords = ['test', 'anonymous', 'dummy'];
   years = this.getYears();
 
   form = this.fb.group({
-    firstName: ['Dave', [Validators.required, Validators.minLength(2), banWord(['test', 'anonymous', 'dummy'])]],
-    lastName: ['Pro', [Validators.required, Validators.minLength(2)]],
-    nickname: ['dave_.1', [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/)]],
+    firstName: ['Dave', [Validators.required, Validators.minLength(2), banWord(this.bannedWords)]],
+    lastName: ['Pro', [Validators.required, Validators.minLength(2), banWord(this.bannedWords)]],
+    nickname: [
+      'dave_.1',
+      [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/), banWord(this.bannedWords)],
+    ],
     email: ['dave@mail.com', Validators.email],
     password: '',
     confirmPassword: '',

@@ -22,7 +22,10 @@
         This field is required
       </span>
       <span *ngIf="lastName?.dirty && lastName?.hasError('minlength')" class='error-message'>
-        This last name is too short
+        This last name must be at least <strong>{{lastName.getError('minlength').requiredLength}}</strong> characters
+      </span>
+      <span *ngIf="lastName?.dirty && lastName?.hasError('banWord')" class='error-message'>
+        The value <strong>{{lastName.getError('banWord')}}</strong> is banned
       </span>
     </ng-container>
   </div>
@@ -40,10 +43,13 @@
         This field is required
       </span>
       <span *ngIf="nickName?.dirty && nickName?.hasError('minlength')" class='error-message'>
-        This nickname is too short
+        This nickname must be at least <strong>{{nickName.getError('minlength').requiredLength}}</strong> characters
       </span>
       <span *ngIf="nickName?.dirty && nickName?.hasError('pattern')" class='error-message'>
         Only characters a-z, _ and .
+      </span>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('banWord')" class='error-message'>
+        The value <strong>{{nickName.getError('banWord')}}</strong> is banned
       </span>
     </ng-container>
   </div>
