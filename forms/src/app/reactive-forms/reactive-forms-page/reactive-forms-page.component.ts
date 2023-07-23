@@ -5,6 +5,7 @@ import { ButtonComponent } from '../../core/button/button.component';
 import { SkillsService } from '../../core/skills.service';
 import { tap } from 'rxjs';
 import { banWord } from '../validators/ban-word.validator';
+import { passwordMatch } from '../validators/password-match.validator';
 
 @Component({
   selector: 'app-reactive-forms-page',
@@ -19,7 +20,7 @@ import { banWord } from '../validators/ban-word.validator';
       }
 
       .form-input {
-        @apply mt-1 mb-1a w-full rounded-md outline outline-1 outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
+        @apply mt-1 mb-1 w-full rounded-md outline outline-1 outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
       }
 
       .ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form) {
@@ -53,8 +54,6 @@ export class ReactiveFormsPageComponent {
       [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/), banWord(this.bannedWords)],
     ],
     email: ['dave@mail.com', Validators.email],
-    password: '',
-    confirmPassword: '',
     yearOfBirth: [this.years[25], Validators.required],
     passport: ['DF1234', [Validators.pattern(/^[A-Z]{2}\d{4}$/)]],
     address: this.fb.group({
@@ -70,6 +69,13 @@ export class ReactiveFormsPageComponent {
       }),
     ]),
     skills: this.fb.record<boolean>({}),
+    userPassword: this.fb.group(
+      {
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: [''],
+      },
+      { validators: passwordMatch }
+    ),
   });
 
   addPhone(): void {
