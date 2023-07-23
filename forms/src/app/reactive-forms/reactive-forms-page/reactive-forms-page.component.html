@@ -168,7 +168,7 @@
     <button type='button' (click)='addPhone()' class='absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9'>
       +
     </button>
-    <div *ngFor='let _ of form.controls.phones.controls; index as i' [formGroupName]='i' class='mb-3 relative'>
+    <div *ngFor='let _ of form.controls.phones.controls; index as i' [formGroupName]='i' class='mb-3 relative phones'>
       <label for='phone-{{ i }}' class='form-label'>Phone #{{ i + 1 }}</label>
       <div class='flex gap-2'>
         <select formControlName='label'>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
@@ -23,7 +23,7 @@ import { passwordMatch } from '../validators/password-match.validator';
         @apply mt-1 mb-1 w-full rounded-md outline outline-1 outline-gray-400 bg-white text-sm text-gray-700 shadow-sm py-2 px-3;
       }
 
-      .ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form) {
+      .ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form):not(.phones) {
         @apply outline outline-1 outline-green-500;
       }
 
@@ -37,7 +37,7 @@ import { passwordMatch } from '../validators/password-match.validator';
     `,
   ],
 })
-export class ReactiveFormsPageComponent {
+export class ReactiveFormsPageComponent implements OnInit {
   private fb = inject(NonNullableFormBuilder);
   private skillsService = inject(SkillsService);
   skills$ = this.skillsService.skills$.pipe(tap((skills) => this.buildSkills(skills)));
@@ -78,6 +78,14 @@ export class ReactiveFormsPageComponent {
     ),
   });
 
+  ngOnInit(): void {
+    this.form.get('yearOfBirth')?.valueChanges.subscribe((year) => {
+      this.isAdult(year)
+        ? this.form.get('passport')?.setValidators(Validators.required)
+        : this.form.get('passport')?.removeValidators(Validators.required);
+    });
+  }
+
   addPhone(): void {
     this.form.controls.phones.push(
       this.fb.group({
@@ -114,5 +122,9 @@ export class ReactiveFormsPageComponent {
     skills.forEach((skill) => {
       this.form.controls.skills.addControl(skill, this.fb.control(false));
     });
+  }
+
+  private isAdult(yearOfBirth: number): boolean {
+    return new Date().getUTCFullYear() - yearOfBirth >= 18;
   }
 }
