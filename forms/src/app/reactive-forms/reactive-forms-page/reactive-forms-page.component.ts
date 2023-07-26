@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
@@ -6,6 +6,7 @@ import { SkillsService } from '../../core/skills.service';
 import { startWith, tap } from 'rxjs';
 import { banWord } from '../validators/ban-word.validator';
 import { passwordMatch } from '../validators/password-match.validator';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-reactive-forms-page',
@@ -40,6 +41,7 @@ import { passwordMatch } from '../validators/password-match.validator';
 export class ReactiveFormsPageComponent implements OnInit {
   private fb = inject(NonNullableFormBuilder);
   private skillsService = inject(SkillsService);
+  private destroyRef = inject(DestroyRef);
   skills$ = this.skillsService.skills$.pipe(tap((skills) => this.buildSkills(skills)));
 
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
@@ -79,12 +81,18 @@ export class ReactiveFormsPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.addDynamicPassportValidation();
+  }
+
+  addDynamicPassportValidation(): void {
     const birthYearCtrl = this.form.get('yearOfBirth');
     const passportCtrl = this.form.get('passport');
+
     birthYearCtrl?.valueChanges
       .pipe(
         tap(() => passportCtrl?.markAsDirty()),
-        startWith(birthYearCtrl?.value)
+        startWith(birthYearCtrl?.value),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((year) => {
         this.isAdult(year ?? 0)
