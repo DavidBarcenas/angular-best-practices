@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
 import { SkillsService } from '../../core/skills.service';
-import { tap } from 'rxjs';
+import { startWith, tap } from 'rxjs';
 import { banWord } from '../validators/ban-word.validator';
 import { passwordMatch } from '../validators/password-match.validator';
 
@@ -54,8 +54,8 @@ export class ReactiveFormsPageComponent implements OnInit {
       [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/), banWord(this.bannedWords)],
     ],
     email: ['dave@mail.com', Validators.email],
-    yearOfBirth: [this.years[25], Validators.required],
-    passport: ['DF1234', [Validators.pattern(/^[A-Z]{2}\d{4}$/)]],
+    yearOfBirth: [this.years[30], Validators.required],
+    passport: ['', [Validators.pattern(/^[A-Z]{2}\d{4}$/)]],
     address: this.fb.group({
       fullAddress: ['', Validators.required],
       city: ['', Validators.required],
@@ -79,11 +79,19 @@ export class ReactiveFormsPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.form.get('yearOfBirth')?.valueChanges.subscribe((year) => {
-      this.isAdult(year)
-        ? this.form.get('passport')?.setValidators(Validators.required)
-        : this.form.get('passport')?.removeValidators(Validators.required);
-    });
+    const birthYearCtrl = this.form.get('yearOfBirth');
+    const passportCtrl = this.form.get('passport');
+    birthYearCtrl?.valueChanges
+      .pipe(
+        tap(() => passportCtrl?.markAsDirty()),
+        startWith(birthYearCtrl?.value)
+      )
+      .subscribe((year) => {
+        this.isAdult(year ?? 0)
+          ? passportCtrl?.addValidators(Validators.required)
+          : passportCtrl?.removeValidators(Validators.required);
+        passportCtrl?.updateValueAndValidity();
+      });
   }
 
   addPhone(): void {

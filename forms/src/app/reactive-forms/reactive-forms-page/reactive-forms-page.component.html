@@ -72,6 +72,12 @@
       class='form-input'
       placeholder='Provide passport data'
     />
+    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('required')" class='error-message'>
+      This field is required
+    </span>
+    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('pattern')" class='error-message'>
+      The pattern is invalid. Eg. DF1234
+    </span>
   </div>
   <fieldset
     formGroupName='address'
