@@ -1,6 +1,14 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroupDirective, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
 import { SkillsService } from '../../core/skills.service';
 import { bufferCount, filter, startWith, tap } from 'rxjs';
@@ -46,6 +54,7 @@ export class ReactiveFormsPageComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private uniqueNickname = inject(UniqueNicknameValidator);
 
+  @ViewChild(FormGroupDirective, { static: false }) formDirective: FormGroupDirective | undefined;
   skills$ = this.skillsService.skills$.pipe(tap((skills) => this.buildSkills(skills)));
 
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
@@ -149,6 +158,13 @@ export class ReactiveFormsPageComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.form.getRawValue());
+    // this.formDirective?.resetForm(this.form.getRawValue()); Mantiene los datos después del submit
+    this.formDirective?.resetForm();
+  }
+
+  onReset(e: Event): void {
+    e.preventDefault();
+    this.form.reset();
   }
 
   private getYears(): number[] {

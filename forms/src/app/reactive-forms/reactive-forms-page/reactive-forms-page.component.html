@@ -1,4 +1,5 @@
-<form [formGroup]='form' (ngSubmit)='onSubmit()' autocomplete='off' class='mt-8 grid grid-cols-6 gap-8 px-2'>
+<form [formGroup]='form' (ngSubmit)='onSubmit()' (reset)='onReset($event)' autocomplete='off'
+      class='mt-8 grid grid-cols-6 gap-8 px-2'>
   <div class='col-span-6 sm:col-span-2'>
     <label for='firstName' class='form-label'>First Name</label>
     <input formControlName='firstName' type='text' id='firstName' class='form-input' placeholder='Enter your name' />
@@ -213,7 +214,7 @@
     </ng-container>
   </fieldset>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
-    <app-button text='Reset' type='reset' />
+    <app-button text='Reset' type='reset' [disabled]='form.pristine' />
     <app-button text='Create an account' type='submit' [disabled]='form.invalid || form.pending' />
   </div>
 </form>
