@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
 import { SkillsService } from '../../core/skills.service';
-import { startWith, tap } from 'rxjs';
+import { bufferCount, filter, startWith, tap } from 'rxjs';
 import { banWord } from '../validators/ban-word.validator';
 import { passwordMatch } from '../validators/password-match.validator';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UniqueNicknameValidator } from '../validators/unique-nickname-validator';
 
 @Component({
   selector: 'app-reactive-forms-page',
@@ -40,8 +41,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class ReactiveFormsPageComponent implements OnInit {
   private fb = inject(NonNullableFormBuilder);
+  private cd = inject(ChangeDetectorRef);
   private skillsService = inject(SkillsService);
   private destroyRef = inject(DestroyRef);
+  private uniqueNickname = inject(UniqueNicknameValidator);
+
   skills$ = this.skillsService.skills$.pipe(tap((skills) => this.buildSkills(skills)));
 
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
@@ -52,8 +56,17 @@ export class ReactiveFormsPageComponent implements OnInit {
     firstName: ['Dave', [Validators.required, Validators.minLength(2), banWord(this.bannedWords)]],
     lastName: ['Pro', [Validators.required, Validators.minLength(2), banWord(this.bannedWords)]],
     nickname: [
-      'dave_.1',
-      [Validators.required, Validators.minLength(2), Validators.pattern(/^[\w.]+$/), banWord(this.bannedWords)],
+      '',
+      {
+        validators: [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.pattern(/^[\w.]+$/),
+          banWord(this.bannedWords),
+        ],
+        asyncValidators: [this.uniqueNickname.validate.bind(this.uniqueNickname)],
+        updateOn: 'blur',
+      },
     ],
     email: ['dave@mail.com', Validators.email],
     yearOfBirth: [this.years[30], Validators.required],
@@ -82,6 +95,17 @@ export class ReactiveFormsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.addDynamicPassportValidation();
+    this.checkPendingFormStatus();
+  }
+
+  checkPendingFormStatus(): void {
+    this.form.statusChanges
+      .pipe(
+        bufferCount(2, 1),
+        filter(([prevStatus]) => prevStatus === 'PENDING'),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => this.cd.markForCheck());
   }
 
   addDynamicPassportValidation(): void {
@@ -127,7 +151,7 @@ export class ReactiveFormsPageComponent implements OnInit {
     console.log(this.form.getRawValue());
   }
 
-  private getYears() {
+  private getYears(): number[] {
     const now = new Date().getUTCFullYear();
     return Array(now - (now - 40))
       .fill('')

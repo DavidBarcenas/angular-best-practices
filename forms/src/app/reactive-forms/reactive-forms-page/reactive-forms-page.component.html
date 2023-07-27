@@ -51,6 +51,12 @@
       <span *ngIf="nickName?.dirty && nickName?.hasError('banWord')" class='error-message'>
         The value <strong>{{ nickName.getError('banWord') }}</strong> is banned
       </span>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('uniqueNickname')" class='error-message'>
+        this nickname is already taken
+      </span>
+      <div class='text-xs text-blue-700 mt-1' *ngIf='nickName.pending'>
+        Checking<span class='animate-ping'>...</span>
+      </div>
     </ng-container>
   </div>
   <div class='col-span-6 sm:col-span-2'>
@@ -208,7 +214,7 @@
   </fieldset>
   <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
     <app-button text='Reset' type='reset' />
-    <app-button text='Create an account' type='submit' [disabled]='form.invalid' />
+    <app-button text='Create an account' type='submit' [disabled]='form.invalid || form.pending' />
   </div>
 </form>
 
