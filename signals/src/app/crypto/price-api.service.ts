@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PriceApi } from './PriceApi';
+import { PriceApi } from './price-api';
 import { Observable } from 'rxjs';
 
 const WEB_SOCKET_ENDPOINT = 'wss://ws.coincap.io/prices/';

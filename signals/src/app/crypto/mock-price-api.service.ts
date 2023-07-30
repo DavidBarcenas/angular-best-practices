@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PriceApi } from './PriceApi';
+import { PriceApi } from './price-api';
 import { delay, map, Observable, Subject, takeUntil, timer } from 'rxjs';
 
 const BASE_PRICES: { [key: string]: number } = {

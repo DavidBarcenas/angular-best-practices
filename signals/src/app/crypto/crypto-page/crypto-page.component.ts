@@ -30,12 +30,12 @@ export class CryptoPageComponent implements OnInit {
     { value: 'ethereum', label: 'Ethereum' },
   ];
 
-  constructor(private api: PriceApiService) {}
+  constructor(private priceApiService: PriceApiService) {}
 
   ngOnInit() {
     this.price$ = this.currency$.pipe(
       mergeMap((currency: string | undefined) => {
-        return currency ? this.api.getPrice(currency) : of(undefined);
+        return currency ? this.priceApiService.getPrice(currency) : of(undefined);
       }),
       shareReplay(1)
     );
@@ -44,7 +44,7 @@ export class CryptoPageComponent implements OnInit {
   onCryptoSelected(asset: Event) {
     const currency = (asset as any).target.value;
     if (this.currency$.value) {
-      this.api.unsubscribe();
+      this.priceApiService.unsubscribe();
     }
 
     this.currency$.next(currency);
