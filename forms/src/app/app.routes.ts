@@ -30,5 +30,5 @@ export const routes: Routes = [
         (c) => c.RatingPickerPageComponent
       ),
   },
-  { path: '', redirectTo: 'reactive-forms', pathMatch: 'full' },
+  { path: '', redirectTo: 'custom-rating-picker', pathMatch: 'full' },
 ];

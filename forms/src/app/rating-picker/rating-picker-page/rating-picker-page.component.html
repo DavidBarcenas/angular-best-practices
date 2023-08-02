@@ -1,1 +1,12 @@
-<p>rating-picker-page works!</p>
+<form [formGroup]='form' (ngSubmit)='onSubmit()' class='flex flex-col gap-4 bg-gray-100 p-8 w-1/2 mx-auto mt-7'>
+  <h3 class='text-2xl font-bold'>Review</h3>
+  <paper-textarea
+    ngDefaultControl
+    formControlName='reviewText'
+    label='Review Text'
+    placeholder='Your honest review'
+    rows='2'
+  >
+  </paper-textarea>
+  <button class='bg-green-500 text-white block w-full py-2'>Save</button>
+</form>
