@@ -1,4 +1,5 @@
-<form [formGroup]='form' (ngSubmit)='onSubmit()' class='flex flex-col gap-4 bg-gray-100 p-8 w-1/2 mx-auto mt-7'>
+<form [formGroup]='form' (ngSubmit)='onSubmit()'
+      class='flex flex-col gap-4 bg-gray-100 backdrop-blur-3xl p-8 w-1/2 mx-auto mt-7'>
   <h3 class='text-2xl font-bold'>Review</h3>
   <paper-textarea
     ngDefaultControl
@@ -8,5 +9,5 @@
     rows='2'
   >
   </paper-textarea>
-  <button class='bg-green-500 text-white block w-full py-2'>Save</button>
+  <button class='bg-green-300 block w-full py-2'>Save</button>
 </form>
