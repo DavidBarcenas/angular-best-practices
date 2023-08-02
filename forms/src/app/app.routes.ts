@@ -22,5 +22,13 @@ export const routes: Routes = [
     title: 'Advanced Filters Playground',
     loadComponent: () => import('./filters/filters.component').then((c) => c.FiltersComponent),
   },
+  {
+    path: 'custom-rating-picker',
+    title: 'Custom Rating Picker',
+    loadComponent: () =>
+      import('./rating-picker/rating-picker-page/rating-picker-page.component').then(
+        (c) => c.RatingPickerPageComponent
+      ),
+  },
   { path: '', redirectTo: 'reactive-forms', pathMatch: 'full' },
 ];
