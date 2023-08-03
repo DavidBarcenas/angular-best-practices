@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import '@polymer/paper-input/paper-textarea';
 import { ButtonComponent } from '../../core/button/button.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { EditableContentDirective } from '../value-accesor/editable-content.directive';
 
 @Component({
   selector: 'app-rating-picker-page',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, ReactiveFormsModule],
+  imports: [CommonModule, ButtonComponent, ReactiveFormsModule, EditableContentDirective],
   templateUrl: './rating-picker-page.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +16,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 export class RatingPickerPageComponent {
   private fb = inject(FormBuilder);
   form = this.fb.group({
-    reviewText: '',
+    reviewText: [''],
   });
 
   onSubmit(): void {

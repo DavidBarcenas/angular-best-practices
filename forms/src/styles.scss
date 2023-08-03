@@ -5,3 +5,24 @@
 input:focus {
   outline: none;
 }
+
+// Rating Date Picker
+.review-area {
+  background: #fff;
+  border-radius: 5px;
+  min-height: 120px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  h2:empty:before,
+  p:empty:before {
+    content: attr(data-placeholder);
+    opacity: 0.6;
+  }
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}
+
