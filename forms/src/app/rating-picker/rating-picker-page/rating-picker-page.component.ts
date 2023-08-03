@@ -4,7 +4,12 @@ import '@polymer/paper-input/paper-textarea';
 import { ButtonComponent } from '../../core/button/button.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { EditableContentDirective } from '../value-accesor/editable-content.directive';
-import { RatingPickerOptionsComponent } from '../rating-picker-options/rating-picker-options.component';
+import { RatingOptions, RatingPickerOptionsComponent } from '../rating-picker-options/rating-picker-options.component';
+
+interface RatingPickerForm {
+  reviewRating: RatingOptions;
+  reviewText: string;
+}
 
 @Component({
   selector: 'app-rating-picker-page',
@@ -16,8 +21,9 @@ import { RatingPickerOptionsComponent } from '../rating-picker-options/rating-pi
 })
 export class RatingPickerPageComponent {
   private fb = inject(FormBuilder);
-  form = this.fb.group({
-    reviewText: [''],
+  form = this.fb.group<RatingPickerForm>({
+    reviewRating: null,
+    reviewText: '',
   });
 
   onSubmit(): void {
