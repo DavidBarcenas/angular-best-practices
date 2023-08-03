@@ -4,11 +4,12 @@ import '@polymer/paper-input/paper-textarea';
 import { ButtonComponent } from '../../core/button/button.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { EditableContentDirective } from '../value-accesor/editable-content.directive';
+import { RatingPickerOptionsComponent } from '../rating-picker-options/rating-picker-options.component';
 
 @Component({
   selector: 'app-rating-picker-page',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, ReactiveFormsModule, EditableContentDirective],
+  imports: [CommonModule, ButtonComponent, ReactiveFormsModule, EditableContentDirective, RatingPickerOptionsComponent],
   templateUrl: './rating-picker-page.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   changeDetection: ChangeDetectionStrategy.OnPush,
