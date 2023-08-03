@@ -1,11 +1,29 @@
 <div
+  cdkOverlayOrigin
+  #trigger='cdkOverlayOrigin'
   class='flex flex-col border-2 border-black px-5 py-2 box-border rounded min-w-[350px] transition-colors hover:bg-gray-50 group/value cursor-pointer'
 >
   <span class='text-sm font-bold'>{{ label }}</span>
   <div class='flex justify-between items-baseline'>
-    <span class='transition-transform origin-left group-hover/value:scale-90' [ngClass]="{ 'opacity-40': !value }">{{
-      value || 'Nothing is selected...'
-      }}</span>
+    <span
+      class='transition-transform origin-left group-hover/value:scale-90 text-lg'
+      [ngClass]="{ 'opacity-40': !value }"
+    >{{ value || 'Nothing is selected...' }}</span
+    >
     <span class='text-xl'>👇</span>
   </div>
 </div>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]='trigger'
+  [cdkConnectedOverlayOpen]='isOpen'
+  [cdkConnectedOverlayOffsetY]='8'
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass='cdk-overlay-transparent-backdrop'
+  (backdropClick)='close()'
+  (detach)='close()'
+>
+  <div class='shadow-2xl min-w-[350px] px-5 py-2 border-2 border-black'>
+    <p>Overlay panel</p>
+  </div>
+</ng-template>
