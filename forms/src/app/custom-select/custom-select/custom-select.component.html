@@ -1,7 +1,7 @@
 <div
   cdkOverlayOrigin
   #trigger='cdkOverlayOrigin'
-  class='flex flex-col border-2 border-black px-5 py-2 box-border rounded min-w-[350px] transition-colors hover:bg-gray-50 group/value cursor-pointer'
+  class='flex flex-col border-2 border-black px-5 py-2 box-border rounded w-full transition-colors hover:bg-gray-50 group/value cursor-pointer'
 >
   <span class='text-sm font-bold'>{{ label }}</span>
   <div class='flex justify-between items-baseline'>
@@ -18,12 +18,14 @@
   [cdkConnectedOverlayOrigin]='trigger'
   [cdkConnectedOverlayOpen]='isOpen'
   [cdkConnectedOverlayOffsetY]='8'
-  cdkConnectedOverlayHasBackdrop
-  cdkConnectedOverlayBackdropClass='cdk-overlay-transparent-backdrop'
-  (backdropClick)='close()'
+  (overlayOutsideClick)='close()'
+  [cdkConnectedOverlayWidth]='defaultWidth'
   (detach)='close()'
 >
-  <div class='shadow-2xl min-w-[350px] px-5 py-2 border-2 border-black'>
+  <div
+    @dropdown
+    (@dropdown.done)='onPanelAnimationDone($event)'
+    class='shadow-2xl block w-full min-h-[200px] px-5 py-2 border-2 border-black origin-top-left'>
     <p>Overlay panel</p>
   </div>
 </ng-template>
