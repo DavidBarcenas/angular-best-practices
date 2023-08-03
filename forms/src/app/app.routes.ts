@@ -30,5 +30,13 @@ export const routes: Routes = [
         (c) => c.RatingPickerPageComponent
       ),
   },
-  { path: '', redirectTo: 'custom-rating-picker', pathMatch: 'full' },
+  {
+    path: 'custom-select',
+    title: 'Custom Select Playground',
+    loadComponent: () =>
+      import('./custom-select/custom-select-page/custom-select-page.component').then(
+        (c) => c.CustomSelectPageComponent
+      ),
+  },
+  { path: '', redirectTo: 'custom-select', pathMatch: 'full' },
 ];

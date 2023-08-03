@@ -8,6 +8,7 @@ specifiers:
   '@angular-eslint/schematics': 16.0.3
   '@angular-eslint/template-parser': 16.0.3
   '@angular/animations': ^16.0.0
+  '@angular/cdk': 16.1.7
   '@angular/cli': ~16.0.5
   '@angular/common': ^16.0.0
   '@angular/compiler': ^16.0.0
@@ -40,6 +41,7 @@ specifiers:
 
 dependencies:
   '@angular/animations': 16.0.4_@angular+core@16.0.4
+  '@angular/cdk': 16.1.7_kofabtkp5u3cttmoq2bekbcd74
   '@angular/common': 16.0.4_rtb6cyesdkb354rudqsmds7bza
   '@angular/compiler': 16.0.4_@angular+core@16.0.4
   '@angular/core': 16.0.4_rxjs@7.8.1+zone.js@0.13.0
@@ -406,6 +408,21 @@ packages:
     dependencies:
       '@angular/core': 16.0.4_rxjs@7.8.1+zone.js@0.13.0
       tslib: 2.5.3
+    dev: false
+
+  /@angular/cdk/16.1.7_kofabtkp5u3cttmoq2bekbcd74:
+    resolution: {integrity: sha512-KLiqzbilkGBtQcaNdqjN16XyNdQxEkN4Oqbg6coahWqwvEVEdhNwLrwOJcCHMH2vvMzCd4XHaOnAxQjVy5pkjQ==}
+    peerDependencies:
+      '@angular/common': ^16.0.0 || ^17.0.0
+      '@angular/core': ^16.0.0 || ^17.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 16.0.4_rtb6cyesdkb354rudqsmds7bza
+      '@angular/core': 16.0.4_rxjs@7.8.1+zone.js@0.13.0
+      rxjs: 7.8.1
+      tslib: 2.5.3
+    optionalDependencies:
+      parse5: 7.1.2
     dev: false
 
   /@angular/cli/16.0.5:
@@ -4241,7 +4258,6 @@ packages:
   /entities/4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
-    dev: true
 
   /env-paths/2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
@@ -6751,7 +6767,6 @@ packages:
     resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
     dependencies:
       entities: 4.5.0
-    dev: true
 
   /parseurl/1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
