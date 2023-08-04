@@ -20,20 +20,8 @@ import { animate, AnimationEvent, state, style, transition, trigger } from '@ang
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('dropdown', [
-      state(
-        'void',
-        style({
-          opacity: 0,
-          transform: 'scale(1, 0.8)',
-        })
-      ),
-      state(
-        '*',
-        style({
-          opacity: 1,
-          transform: 'scale(1,1)',
-        })
-      ),
+      state('void', style({ opacity: 0, transform: 'scale(1, 0.8)' })),
+      state('*', style({ opacity: 1, transform: 'scale(1,1)' })),
       transition(':enter', [animate('120ms cubic-bezier(0, 0, 0.2, 1)')]),
       transition(':leave', [animate('100ms linear')]),
     ]),
