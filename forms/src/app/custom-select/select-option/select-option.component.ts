@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -21,6 +22,10 @@ import { CommonModule } from '@angular/common';
         &.selected {
           @apply before:content-['✔︎'] before:animate-checked-option before:origin-bottom-left;
         }
+
+        &.disabled {
+          @apply opacity-40 pointer-events-none justify-between;
+        }
       }
     `,
   ],
@@ -29,6 +34,13 @@ import { CommonModule } from '@angular/common';
 export class SelectOptionComponent {
   @Input()
   value: string | null = null;
+
+  @Input()
+  disabledHint: string | null = null;
+
+  @Input({ transform: booleanAttribute })
+  @HostBinding('class.disabled')
+  disabled = false;
 
   @Output()
   selected = new EventEmitter<SelectOptionComponent>();
