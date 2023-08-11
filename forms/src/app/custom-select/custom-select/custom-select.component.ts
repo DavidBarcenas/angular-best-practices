@@ -1,16 +1,21 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChildren,
   EventEmitter,
+  HostBinding,
   HostListener,
   Input,
   Output,
+  QueryList,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkOverlayOrigin, OverlayModule } from '@angular/cdk/overlay';
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { SelectOptionComponent } from '../select-option/select-option.component';
 
 @Component({
   selector: 'app-custom-select',
@@ -26,9 +31,18 @@ import { animate, AnimationEvent, state, style, transition, trigger } from '@ang
       transition(':leave', [animate('100ms linear')]),
     ]),
   ],
+  styles: [
+    `
+      :host.opened {
+        pointer-events: none;
+      }
+    `,
+  ],
 })
-export class CustomSelectComponent implements AfterViewInit {
-  @ViewChild('trigger') parent: CdkOverlayOrigin | undefined;
+export class CustomSelectComponent implements AfterContentInit, AfterViewInit {
+  @ViewChild('trigger')
+  parent: CdkOverlayOrigin | undefined;
+
   @Input()
   label = '';
 
@@ -50,11 +64,20 @@ export class CustomSelectComponent implements AfterViewInit {
     this.isOpen = false;
   }
 
+  @ContentChildren(SelectOptionComponent, { descendants: true })
+  options: QueryList<SelectOptionComponent> | undefined;
+
+  @HostBinding('class.opened')
   isOpen = false;
+
   defaultWidth = 'auto';
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
+  }
+
+  ngAfterContentInit() {
+    console.log('[ngAfterContentInit] ', this.options);
   }
 
   onPanelAnimationDone({ fromState, toState }: AnimationEvent): void {
