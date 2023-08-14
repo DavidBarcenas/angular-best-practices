@@ -1,5 +1,6 @@
 <div class='flex justify-center'>
-  <app-custom-select value='hydrogen' label='Pick the Element' class='w-[350px]'>
+  <app-custom-select (selectionChanged)='onSelectionChange($event)' value='hydrogen' label='Pick the Element'
+                     class='w-[350px]'>
     <div>
       <app-select-option value='hydrogen'>Hydrogen</app-select-option>
       <app-select-option value='beryllium'>Beryllium</app-select-option>

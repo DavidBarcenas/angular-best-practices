@@ -1,10 +1,12 @@
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   HostBinding,
   HostListener,
+  inject,
   Input,
   Output,
 } from '@angular/core';
@@ -46,13 +48,20 @@ export class SelectOptionComponent {
   selected = new EventEmitter<SelectOptionComponent>();
 
   @HostListener('click')
-  select(): void {
-    this.isSelected = true;
+  protected select(): void {
+    this.highlightAsSelected();
     this.selected.emit(this);
   }
 
   @HostBinding('class.selected')
   protected isSelected = false;
+
+  private cd = inject(ChangeDetectorRef);
+
+  highlightAsSelected(): void {
+    this.isSelected = true;
+    this.cd.markForCheck();
+  }
 
   deselect(): void {
     this.isSelected = false;

@@ -11,4 +11,8 @@ import { SelectOptionComponent } from '../select-option/select-option.component'
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomSelectPageComponent {}
+export class CustomSelectPageComponent {
+  onSelectionChange(value: string) {
+    console.log(value);
+  }
+}
