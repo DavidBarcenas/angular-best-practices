@@ -21,6 +21,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { merge, startWith, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+export type SelectValue<T> = T | null;
+
 @Component({
   selector: 'app-custom-select',
   standalone: true,
@@ -43,7 +45,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     `,
   ],
 })
-export class CustomSelectComponent implements AfterViewInit {
+export class CustomSelectComponent<T> implements AfterViewInit {
   @ViewChild('trigger')
   parent: CdkOverlayOrigin | undefined;
 
@@ -51,7 +53,7 @@ export class CustomSelectComponent implements AfterViewInit {
   label = '';
 
   @Input()
-  set value(value: string | null) {
+  set value(value: SelectValue<T>) {
     this.selectionModel.clear();
     if (value) {
       this.selectionModel.select(value);
@@ -62,7 +64,7 @@ export class CustomSelectComponent implements AfterViewInit {
     return this.selectionModel.selected[0] || null;
   }
 
-  private selectionModel = new SelectionModel<string>();
+  private selectionModel = new SelectionModel<T>();
 
   @Output()
   readonly opened = new EventEmitter<void>();
@@ -71,7 +73,7 @@ export class CustomSelectComponent implements AfterViewInit {
   readonly closed = new EventEmitter<void>();
 
   @Output()
-  readonly selectionChanged = new EventEmitter<string>();
+  readonly selectionChanged = new EventEmitter<SelectValue<T>>();
 
   @HostListener('click')
   open(): void {
@@ -83,25 +85,26 @@ export class CustomSelectComponent implements AfterViewInit {
   }
 
   @ContentChildren(SelectOptionComponent, { descendants: true })
-  options: QueryList<SelectOptionComponent> | undefined;
+  options: QueryList<SelectOptionComponent<T>> | undefined;
 
   @HostBinding('class.opened')
   isOpen = false;
 
   defaultWidth = 'auto';
-  private destoryRef = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
 
   ngAfterViewInit(): void {
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
     this.highlightOption(this.value);
-    this.selectionModel.changed.pipe(takeUntilDestroyed(this.destoryRef)).subscribe((values) => {
+    this.selectionModel.changed.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((values) => {
       values.removed.forEach((value) => this.findOptionsByValue(value)?.deselect());
+      values.added.forEach((value) => this.findOptionsByValue(value)?.highlightAsSelected());
     });
     this.options?.changes
       .pipe(
-        startWith<QueryList<SelectOptionComponent>>(this.options),
+        startWith<QueryList<SelectOptionComponent<T>>>(this.options),
         switchMap((options) => merge(...options.map((option) => option.selected))),
-        takeUntilDestroyed(this.destoryRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((selectedOption) => this.handleSelection(selectedOption));
   }
@@ -115,7 +118,7 @@ export class CustomSelectComponent implements AfterViewInit {
     }
   }
 
-  private handleSelection(selectedOption: SelectOptionComponent): void {
+  private handleSelection(selectedOption: SelectOptionComponent<T>): void {
     if (selectedOption.value) {
       this.selectionModel.toggle(selectedOption.value);
       this.selectionChanged.emit(selectedOption.value);
@@ -123,11 +126,11 @@ export class CustomSelectComponent implements AfterViewInit {
     this.close();
   }
 
-  private highlightOption(value: string | null): void {
+  private highlightOption(value: SelectValue<T>): void {
     this.findOptionsByValue(value)?.highlightAsSelected();
   }
 
-  private findOptionsByValue(value: string | null): SelectOptionComponent | undefined {
+  private findOptionsByValue(value: SelectValue<T>): SelectOptionComponent<T> | undefined {
     return this.options && this.options.find((option) => option.value === value);
   }
 }

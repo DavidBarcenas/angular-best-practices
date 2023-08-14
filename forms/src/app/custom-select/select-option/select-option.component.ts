@@ -11,6 +11,7 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SelectValue } from '../custom-select/custom-select.component';
 
 @Component({
   selector: 'app-select-option',
@@ -33,9 +34,9 @@ import { CommonModule } from '@angular/common';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectOptionComponent {
+export class SelectOptionComponent<T> {
   @Input()
-  value: string | null = null;
+  value: SelectValue<T> = null;
 
   @Input()
   disabledHint: string | null = null;
@@ -45,7 +46,7 @@ export class SelectOptionComponent {
   disabled = false;
 
   @Output()
-  selected = new EventEmitter<SelectOptionComponent>();
+  selected = new EventEmitter<SelectOptionComponent<T>>();
 
   @HostListener('click')
   protected select(): void {

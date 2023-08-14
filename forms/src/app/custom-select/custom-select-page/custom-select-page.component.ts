@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomSelectComponent } from '../custom-select/custom-select.component';
+import { CustomSelectComponent, SelectValue } from '../custom-select/custom-select.component';
 import { SelectOptionComponent } from '../select-option/select-option.component';
 
 @Component({
@@ -12,7 +12,9 @@ import { SelectOptionComponent } from '../select-option/select-option.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomSelectPageComponent {
-  onSelectionChange(value: string) {
+  selectedValue = 'hydrogen';
+
+  onSelectionChange(value: SelectValue<string>) {
     console.log(value);
   }
 }
