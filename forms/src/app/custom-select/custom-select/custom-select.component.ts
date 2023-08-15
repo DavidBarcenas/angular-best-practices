@@ -53,6 +53,9 @@ export class CustomSelectComponent<T> implements AfterViewInit {
   label = '';
 
   @Input()
+  displayWith: ((value: T) => string | number) | null = null;
+
+  @Input()
   set value(value: SelectValue<T>) {
     this.selectionModel.clear();
     if (value) {
@@ -93,6 +96,13 @@ export class CustomSelectComponent<T> implements AfterViewInit {
   defaultWidth = 'auto';
   private destroyRef = inject(DestroyRef);
 
+  protected get displayValue() {
+    if (this.displayWith && this.value) {
+      return this.displayWith(this.value);
+    }
+    return this.value;
+  }
+
   ngAfterViewInit(): void {
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
     this.highlightOption(this.value);
@@ -104,7 +114,7 @@ export class CustomSelectComponent<T> implements AfterViewInit {
       .pipe(
         startWith<QueryList<SelectOptionComponent<T>>>(this.options),
         switchMap((options) => merge(...options.map((option) => option.selected))),
-        takeUntilDestroyed(this.destroyRef),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((selectedOption) => this.handleSelection(selectedOption));
   }
