@@ -20,7 +20,7 @@ import { CdkOverlayOrigin, OverlayModule } from '@angular/cdk/overlay';
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import { SelectOptionComponent } from '../select-option/select-option.component';
 import { SelectionModel } from '@angular/cdk/collections';
-import { merge, startWith, switchMap } from 'rxjs';
+import { merge, startWith, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export type SelectValue<T> = T | null;
@@ -100,6 +100,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
 
   defaultWidth = 'auto';
   private destroyRef = inject(DestroyRef);
+  private optionMap = new Map<SelectValue<T>, SelectOptionComponent<T>>();
 
   protected get displayValue() {
     if (this.displayWith && this.value) {
@@ -111,20 +112,21 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['compareWith']) {
       this.selectionModel.compareWith = changes['compareWith'].currentValue;
-      this.highlightOption(this.value);
+      this.highlightOption();
     }
   }
 
   ngAfterViewInit(): void {
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
-    this.highlightOption(this.value);
     this.selectionModel.changed.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((values) => {
-      values.removed.forEach((value) => this.findOptionsByValue(value)?.deselect());
-      values.added.forEach((value) => this.findOptionsByValue(value)?.highlightAsSelected());
+      values.removed.forEach((value) => this.optionMap.get(value)?.deselect());
+      values.added.forEach((value) => this.optionMap.get(value)?.highlightAsSelected());
     });
     this.options?.changes
       .pipe(
         startWith<QueryList<SelectOptionComponent<T>>>(this.options),
+        tap(() => this.refreshOptionMap()),
+        tap(() => queueMicrotask(() => this.highlightOption())),
         switchMap((options) => merge(...options.map((option) => option.selected))),
         takeUntilDestroyed(this.destroyRef)
       )
@@ -148,11 +150,24 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
     this.close();
   }
 
-  private highlightOption(value: SelectValue<T>): void {
-    this.findOptionsByValue(value)?.highlightAsSelected();
+  private refreshOptionMap(): void {
+    this.optionMap.clear();
+    this.options?.forEach((option) => this.optionMap.set(option.value, option));
+  }
+
+  private highlightOption(): void {
+    const valuesWithUpdateReferences = this.selectionModel.selected.map((value) => {
+      const correspondingOption = this.findOptionsByValue(value);
+      return correspondingOption?.value ? correspondingOption.value : value;
+    });
+    this.selectionModel.clear();
+    this.selectionModel.select(...valuesWithUpdateReferences);
   }
 
   private findOptionsByValue(value: SelectValue<T>): SelectOptionComponent<T> | undefined {
+    if (this.optionMap.has(value)) {
+      return this.optionMap.get(value);
+    }
     return this.options && this.options.find((option) => this.compareWith(option.value, value));
   }
 }
