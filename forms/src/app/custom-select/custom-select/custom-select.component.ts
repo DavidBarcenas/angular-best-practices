@@ -9,8 +9,10 @@ import {
   HostListener,
   inject,
   Input,
+  OnChanges,
   Output,
   QueryList,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -45,7 +47,7 @@ export type SelectValue<T> = T | null;
     `,
   ],
 })
-export class CustomSelectComponent<T> implements AfterViewInit {
+export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   @ViewChild('trigger')
   parent: CdkOverlayOrigin | undefined;
 
@@ -54,6 +56,9 @@ export class CustomSelectComponent<T> implements AfterViewInit {
 
   @Input()
   displayWith: ((value: T) => string | number) | null = null;
+
+  @Input()
+  compareWith: (value1: SelectValue<T>, value2: SelectValue<T>) => boolean = (value1, value2) => value1 === value2;
 
   @Input()
   set value(value: SelectValue<T>) {
@@ -103,6 +108,13 @@ export class CustomSelectComponent<T> implements AfterViewInit {
     return this.value;
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['compareWith']) {
+      this.selectionModel.compareWith = changes['compareWith'].currentValue;
+      this.highlightOption(this.value);
+    }
+  }
+
   ngAfterViewInit(): void {
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
     this.highlightOption(this.value);
@@ -141,6 +153,6 @@ export class CustomSelectComponent<T> implements AfterViewInit {
   }
 
   private findOptionsByValue(value: SelectValue<T>): SelectOptionComponent<T> | undefined {
-    return this.options && this.options.find((option) => option.value === value);
+    return this.options && this.options.find((option) => this.compareWith(option.value, value));
   }
 }

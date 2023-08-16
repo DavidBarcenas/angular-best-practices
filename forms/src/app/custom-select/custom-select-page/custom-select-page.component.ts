@@ -31,6 +31,10 @@ export class CustomSelectPageComponent {
     return user.name;
   }
 
+  compareWithFn(user1: User | null, user2: User | null) {
+    return user1?.id === user2?.id;
+  }
+
   onSelectionChange(value: SelectValue<User>) {
     console.log(value);
   }

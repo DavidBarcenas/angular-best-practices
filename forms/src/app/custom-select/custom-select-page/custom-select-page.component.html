@@ -1,8 +1,9 @@
 <div class='flex justify-center'>
   <app-custom-select
-    (selectionChanged)='onSelectionChange($event)'
+    [compareWith]='compareWithFn'
     [displayWith]='displayWithFn'
     [value]='selectedValue'
+    (selectionChanged)='onSelectionChange($event)'
     label='Pick the Element'
     class='w-[350px]'
   >
