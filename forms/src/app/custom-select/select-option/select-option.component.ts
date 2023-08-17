@@ -11,7 +11,6 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectValue } from '../custom-select/custom-select.component';
 
 @Component({
   selector: 'app-select-option',
@@ -36,7 +35,7 @@ import { SelectValue } from '../custom-select/custom-select.component';
 })
 export class SelectOptionComponent<T> {
   @Input()
-  value: SelectValue<T> = null;
+  value: T | null = null;
 
   @Input()
   disabledHint: string | null = null;

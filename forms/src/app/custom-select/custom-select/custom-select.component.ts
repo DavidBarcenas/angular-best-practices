@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  Attribute,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -7,7 +8,6 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
-  inject,
   Input,
   OnChanges,
   Output,
@@ -22,8 +22,9 @@ import { SelectOptionComponent } from '../select-option/select-option.component'
 import { SelectionModel } from '@angular/cdk/collections';
 import { merge, startWith, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-export type SelectValue<T> = T | null;
+export type SelectValue<T> = T | T[] | null;
 
 @Component({
   selector: 'app-custom-select',
@@ -58,21 +59,27 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   displayWith: ((value: T) => string | number) | null = null;
 
   @Input()
-  compareWith: (value1: SelectValue<T>, value2: SelectValue<T>) => boolean = (value1, value2) => value1 === value2;
+  compareWith: (value1: T | null, value2: T | null) => boolean = (value1, value2) => value1 === value2;
 
   @Input()
   set value(value: SelectValue<T>) {
     this.selectionModel.clear();
     if (value) {
-      this.selectionModel.select(value);
+      Array.isArray(value) ? this.selectionModel.select(...value) : this.selectionModel.select(value);
     }
   }
 
   get value() {
-    return this.selectionModel.selected[0] || null;
+    if (this.selectionModel.isEmpty()) {
+      return null;
+    }
+    if (this.selectionModel.isMultipleSelection()) {
+      return this.selectionModel.selected;
+    }
+    return this.selectionModel.selected[0];
   }
 
-  private selectionModel = new SelectionModel<T>();
+  private selectionModel = new SelectionModel<T>(coerceBooleanProperty(this.multiple));
 
   @Output()
   readonly opened = new EventEmitter<void>();
@@ -99,15 +106,19 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   isOpen = false;
 
   defaultWidth = 'auto';
-  private destroyRef = inject(DestroyRef);
   private optionMap = new Map<SelectValue<T>, SelectOptionComponent<T>>();
 
   protected get displayValue() {
     if (this.displayWith && this.value) {
+      if (Array.isArray(this.value)) {
+        return this.value.map(this.displayWith);
+      }
       return this.displayWith(this.value);
     }
     return this.value;
   }
+
+  constructor(private destroyRef: DestroyRef, @Attribute('multiple') private multiple: string | null) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['compareWith']) {
@@ -147,7 +158,9 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
       this.selectionModel.toggle(selectedOption.value);
       this.selectionChanged.emit(selectedOption.value);
     }
-    this.close();
+    if (!this.selectionModel.isMultipleSelection()) {
+      this.close();
+    }
   }
 
   private refreshOptionMap(): void {
@@ -164,7 +177,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
     this.selectionModel.select(...valuesWithUpdateReferences);
   }
 
-  private findOptionsByValue(value: SelectValue<T>): SelectOptionComponent<T> | undefined {
+  private findOptionsByValue(value: T | null): SelectOptionComponent<T> | undefined {
     if (this.optionMap.has(value)) {
       return this.optionMap.get(value);
     }
