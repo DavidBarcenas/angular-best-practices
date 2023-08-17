@@ -42,8 +42,10 @@ export type SelectValue<T> = T | T[] | null;
   ],
   styles: [
     `
-      :host.opened {
+      :host.select-panel-open {
         pointer-events: none;
+        position: relative;
+        z-index: 1001;
       }
     `,
   ],
@@ -102,7 +104,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   @ContentChildren(SelectOptionComponent, { descendants: true })
   options: QueryList<SelectOptionComponent<T>> | undefined;
 
-  @HostBinding('class.opened')
+  @HostBinding('class.select-panel-open')
   isOpen = false;
 
   defaultWidth = 'auto';
@@ -142,6 +144,12 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((selectedOption) => this.handleSelection(selectedOption));
+  }
+
+  clearSelection(e: Event) {
+    e.stopPropagation();
+    this.selectionModel.clear();
+    this.selectionChanged.emit(this.value);
   }
 
   onPanelAnimationDone({ fromState, toState }: AnimationEvent): void {

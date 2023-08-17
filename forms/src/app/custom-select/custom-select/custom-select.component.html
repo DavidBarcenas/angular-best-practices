@@ -3,7 +3,12 @@
   #trigger='cdkOverlayOrigin'
   class='flex flex-col border-2 border-black px-5 py-2 box-border rounded w-full transition-colors hover:bg-gray-50 group/value cursor-pointer'
 >
-  <span class='text-sm font-bold'>{{ label }}</span>
+  <div class='flex items-center justify-between'>
+    <span class='text-sm font-bold'>{{ label }}</span>
+    <button *ngIf='value' (click)='clearSelection($event)'
+            class='bg-gray-100 text-xs cursor-pointer px-3 py-0.5 rounded-full hover:bg-gray-300'>clear
+    </button>
+  </div>
   <div class='flex justify-between items-baseline'>
     <span
       class='transition-transform origin-left group-hover/value:scale-90 text-lg'
