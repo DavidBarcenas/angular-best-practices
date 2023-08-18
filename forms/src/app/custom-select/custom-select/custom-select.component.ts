@@ -1,10 +1,12 @@
 import {
   AfterViewInit,
   Attribute,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
   DestroyRef,
+  ElementRef,
   EventEmitter,
   HostBinding,
   HostListener,
@@ -54,8 +56,14 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   @ViewChild('trigger')
   parent: CdkOverlayOrigin | undefined;
 
+  @ViewChild('searchInput')
+  searchInputEl: ElementRef<HTMLInputElement> | undefined;
+
   @Input()
   label = '';
+
+  @Input({ transform: booleanAttribute })
+  searchable = false;
 
   @Input()
   displayWith: ((value: T) => string | number) | null = null;
@@ -90,11 +98,19 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   readonly closed = new EventEmitter<void>();
 
   @Output()
+  readonly searchChanged = new EventEmitter<string>();
+
+  @Output()
   readonly selectionChanged = new EventEmitter<SelectValue<T>>();
 
   @HostListener('click')
   open(): void {
     this.isOpen = true;
+    if (this.searchable) {
+      setTimeout(() => {
+        this.searchInputEl?.nativeElement.focus();
+      }, 0);
+    }
   }
 
   close(): void {
@@ -152,7 +168,11 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
     this.selectionChanged.emit(this.value);
   }
 
-  onPanelAnimationDone({ fromState, toState }: AnimationEvent): void {
+  protected onHandleSearch(e: Event): void {
+    this.searchChanged.emit((e.target as HTMLInputElement).value);
+  }
+
+  protected onPanelAnimationDone({ fromState, toState }: AnimationEvent): void {
     if (fromState === 'void' && toState === null && this.isOpen) {
       this.opened.emit();
     }

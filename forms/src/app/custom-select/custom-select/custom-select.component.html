@@ -5,16 +5,26 @@
 >
   <div class='flex items-center justify-between'>
     <span class='text-sm font-bold'>{{ label }}</span>
-    <button *ngIf='value' (click)='clearSelection($event)'
-            class='bg-gray-100 text-xs cursor-pointer px-3 py-0.5 rounded-full hover:bg-gray-300'>clear
+    <button
+      *ngIf='value'
+      (click)='clearSelection($event)'
+      class='bg-gray-100 text-xs cursor-pointer px-3 py-0.5 rounded-full hover:bg-gray-300'
+    >
+      clear
     </button>
   </div>
   <div class='flex justify-between items-baseline'>
-    <span
-      class='transition-transform origin-left group-hover/value:scale-90 text-lg'
-      [ngClass]="{ 'opacity-40': !value }"
-    >{{ displayValue || 'Nothing is selected...' }}</span
-    >
+    <ng-container [ngSwitch]='searchable && isOpen'>
+      <input #searchInput *ngSwitchCase='true' (input)='onHandleSearch($event)' type='text'
+             placeholder='Start typing...' />
+      <span
+        *ngSwitchCase='false'
+        class='transition-transform origin-left group-hover/value:scale-90 text-lg'
+        [ngClass]="{ 'opacity-40': !value }"
+      >
+        {{ displayValue || 'Nothing is selected...' }}
+      </span>
+    </ng-container>
     <span class='text-xl'>👇</span>
   </div>
 </div>

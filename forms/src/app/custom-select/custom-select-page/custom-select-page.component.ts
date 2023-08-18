@@ -29,6 +29,11 @@ export class CustomSelectPageComponent {
     new User(9, 'Richard Feynman', 'richard', 'USA'),
     new User(10, 'Ernest Rutherford', 'ernest', 'New Zealand'),
   ];
+  filteredUsers = this.users;
+
+  onHandleSearch(query: string): void {
+    this.filteredUsers = this.users.filter((user) => user.name.toLowerCase().startsWith(query.toLowerCase()));
+  }
 
   displayWithFn(user: User) {
     return user.name;
