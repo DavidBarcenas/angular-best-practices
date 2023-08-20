@@ -44,10 +44,17 @@ export type SelectValue<T> = T | T[] | null;
   ],
   styles: [
     `
-      :host.select-panel-open {
-        pointer-events: none;
-        position: relative;
-        z-index: 1001;
+      :host {
+        &.select-panel-open {
+          pointer-events: none;
+          position: relative;
+          z-index: 1001;
+        }
+
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.5;
+        }
       }
     `,
   ],
@@ -64,6 +71,10 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
 
   @Input({ transform: booleanAttribute })
   searchable = false;
+
+  @Input({ transform: booleanAttribute })
+  @HostBinding('class.disabled')
+  disabled = false;
 
   @Input()
   displayWith: ((value: T) => string | number) | null = null;
@@ -105,6 +116,9 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
 
   @HostListener('click')
   open(): void {
+    if (this.disabled) {
+      return;
+    }
     this.isOpen = true;
     if (this.searchable) {
       setTimeout(() => {
@@ -164,6 +178,9 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
 
   clearSelection(e: Event) {
     e.stopPropagation();
+    if (this.disabled) {
+      return;
+    }
     this.selectionModel.clear();
     this.selectionChanged.emit(this.value);
   }
@@ -182,6 +199,9 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   }
 
   private handleSelection(selectedOption: SelectOptionComponent<T>): void {
+    if (this.disabled) {
+      return;
+    }
     if (selectedOption.value) {
       this.selectionModel.toggle(selectedOption.value);
       this.selectionChanged.emit(selectedOption.value);
