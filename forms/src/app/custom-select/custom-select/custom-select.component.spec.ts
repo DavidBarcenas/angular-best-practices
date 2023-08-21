@@ -8,7 +8,7 @@ describe('CustomSelectComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CustomSelectComponent]
+      imports: [CustomSelectComponent],
     });
     fixture = TestBed.createComponent(CustomSelectComponent);
     component = fixture.componentInstance;

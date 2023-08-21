@@ -1,26 +1,26 @@
-<table class='min-w-full divide-y-2 divide-gray-200 bg-white text-sm'>
+<table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
   <thead
-    class='ltr:text-left rtl:text-right bg-blue-950 text-white [&_th]:whitespace-nowrap [&_th]:px-4 [&_th]:py-2 [&_th]:font-medium'
+    class="ltr:text-left rtl:text-right bg-blue-950 text-white [&_th]:whitespace-nowrap [&_th]:px-4 [&_th]:py-2 [&_th]:font-medium"
   >
-  <tr>
-    <th>Id</th>
-    <th (click)='sorting()'>Title</th>
-    <th>Language</th>
-    <th>Genre</th>
-    <th>Date</th>
-    <th>Rating</th>
-    <th>Status</th>
-  </tr>
+    <tr>
+      <th>Id</th>
+      <th (click)="sorting()">Title</th>
+      <th>Language</th>
+      <th>Genre</th>
+      <th>Date</th>
+      <th>Rating</th>
+      <th>Status</th>
+    </tr>
   </thead>
-  <tbody class='[&_td]:whitespace-nowrap [&_td]:px-4 [&_td]:py-2 [&_td]:font-medium [&_td]:text-center'>
-  <tr *ngFor='let movie of data'>
-    <td>{{ movie.id }}</td>
-    <td>{{ movie.title }}</td>
-    <td>{{ movie.language }}</td>
-    <td>{{ movie.genre }}</td>
-    <td>{{ movie.date }}</td>
-    <td>{{ movie.rating }}</td>
-    <td>{{ movie.status }}</td>
-  </tr>
+  <tbody class="[&_td]:whitespace-nowrap [&_td]:px-4 [&_td]:py-2 [&_td]:font-medium [&_td]:text-center">
+    <tr *ngFor="let movie of data">
+      <td>{{ movie.id }}</td>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.language }}</td>
+      <td>{{ movie.genre }}</td>
+      <td>{{ movie.date }}</td>
+      <td>{{ movie.rating }}</td>
+      <td>{{ movie.status }}</td>
+    </tr>
   </tbody>
 </table>

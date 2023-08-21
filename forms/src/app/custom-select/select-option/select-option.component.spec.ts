@@ -8,7 +8,7 @@ describe('SelectOptionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SelectOptionComponent]
+      imports: [SelectOptionComponent],
     });
     fixture = TestBed.createComponent(SelectOptionComponent);
     component = fixture.componentInstance;

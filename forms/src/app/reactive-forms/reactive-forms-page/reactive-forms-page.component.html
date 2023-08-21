@@ -1,145 +1,150 @@
-<form [formGroup]='form' (ngSubmit)='onSubmit()' (reset)='onReset($event)' autocomplete='off'
-      class='mt-8 grid grid-cols-6 gap-8 px-2'>
-  <div class='col-span-6 sm:col-span-2'>
-    <label for='firstName' class='form-label'>First Name</label>
-    <input formControlName='firstName' type='text' id='firstName' class='form-input' placeholder='Enter your name' />
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  (reset)="onReset($event)"
+  autocomplete="off"
+  class="mt-8 grid grid-cols-6 gap-8 px-2"
+>
+  <div class="col-span-6 sm:col-span-2">
+    <label for="firstName" class="form-label">First Name</label>
+    <input formControlName="firstName" type="text" id="firstName" class="form-input" placeholder="Enter your name" />
     <ng-container *ngIf="form.get('firstName') as firstName">
-      <span *ngIf="firstName?.dirty && firstName?.hasError('required')" class='error-message'>
+      <span *ngIf="firstName?.dirty && firstName?.hasError('required')" class="error-message">
         This field is required
       </span>
-      <span *ngIf="firstName?.dirty && firstName?.hasError('minlength')" class='error-message'>
+      <span *ngIf="firstName?.dirty && firstName?.hasError('minlength')" class="error-message">
         This name must be at least <strong>{{ firstName.getError('minlength').requiredLength }}</strong> characters
       </span>
-      <span *ngIf="firstName?.dirty && firstName?.hasError('banWord')" class='error-message'>
+      <span *ngIf="firstName?.dirty && firstName?.hasError('banWord')" class="error-message">
         The value <strong>{{ firstName.getError('banWord') }}</strong> is banned
       </span>
     </ng-container>
   </div>
-  <div class='col-span-6 sm:col-span-2'>
-    <label for='lastName' class='form-label'>Last Name</label>
-    <input formControlName='lastName' type='text' id='lastName' class='form-input' placeholder='Enter your last name' />
+  <div class="col-span-6 sm:col-span-2">
+    <label for="lastName" class="form-label">Last Name</label>
+    <input formControlName="lastName" type="text" id="lastName" class="form-input" placeholder="Enter your last name" />
     <ng-container *ngIf="form.get('lastName') as lastName">
-      <span *ngIf="lastName?.dirty && lastName?.hasError('required')" class='error-message'>
+      <span *ngIf="lastName?.dirty && lastName?.hasError('required')" class="error-message">
         This field is required
       </span>
-      <span *ngIf="lastName?.dirty && lastName?.hasError('minlength')" class='error-message'>
+      <span *ngIf="lastName?.dirty && lastName?.hasError('minlength')" class="error-message">
         This last name must be at least <strong>{{ lastName.getError('minlength').requiredLength }}</strong> characters
       </span>
-      <span *ngIf="lastName?.dirty && lastName?.hasError('banWord')" class='error-message'>
+      <span *ngIf="lastName?.dirty && lastName?.hasError('banWord')" class="error-message">
         The value <strong>{{ lastName.getError('banWord') }}</strong> is banned
       </span>
     </ng-container>
   </div>
-  <div class='col-span-6 sm:col-span-2'>
-    <label for='nickName' class='form-label'>Nickname</label>
+  <div class="col-span-6 sm:col-span-2">
+    <label for="nickName" class="form-label">Nickname</label>
     <input
-      formControlName='nickname'
-      type='text'
-      id='nickName'
-      class='form-input'
-      placeholder='Come up with a nickname'
+      formControlName="nickname"
+      type="text"
+      id="nickName"
+      class="form-input"
+      placeholder="Come up with a nickname"
     />
     <ng-container *ngIf="form.get('nickname') as nickName">
-      <span *ngIf="nickName?.dirty && nickName?.hasError('required')" class='error-message'>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('required')" class="error-message">
         This field is required
       </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('minlength')" class='error-message'>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('minlength')" class="error-message">
         This nickname must be at least <strong>{{ nickName.getError('minlength').requiredLength }}</strong> characters
       </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('pattern')" class='error-message'>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('pattern')" class="error-message">
         Only characters a-z, _ and .
       </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('banWord')" class='error-message'>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('banWord')" class="error-message">
         The value <strong>{{ nickName.getError('banWord') }}</strong> is banned
       </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('uniqueNickname')" class='error-message'>
+      <span *ngIf="nickName?.dirty && nickName?.hasError('uniqueNickname')" class="error-message">
         this nickname is already taken
       </span>
-      <div class='text-xs text-blue-700 mt-1' *ngIf='nickName.pending'>
-        Checking<span class='animate-ping'>...</span>
+      <div class="text-xs text-blue-700 mt-1" *ngIf="nickName.pending">
+        Checking<span class="animate-ping">...</span>
       </div>
     </ng-container>
   </div>
-  <div class='col-span-6 sm:col-span-2'>
-    <label for='email' class='form-label'>Email</label>
-    <input formControlName='email' type='email' id='email' class='form-input' placeholder='Provide your email' />
+  <div class="col-span-6 sm:col-span-2">
+    <label for="email" class="form-label">Email</label>
+    <input formControlName="email" type="email" id="email" class="form-input" placeholder="Provide your email" />
   </div>
-  <div class='col-span-6 sm:col-span-2'>
-    <label for='yearOfBirth' class='form-label'> Year of birth </label>
-    <select formControlName='yearOfBirth' id='yearOfBirth' class='form-input'>
-      <option *ngFor='let year of years' [value]='year'>{{ year }}</option>
+  <div class="col-span-6 sm:col-span-2">
+    <label for="yearOfBirth" class="form-label"> Year of birth </label>
+    <select formControlName="yearOfBirth" id="yearOfBirth" class="form-input">
+      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
     </select>
   </div>
-  <div class='col-span-6 sm:col-span-2'>
-    <label for='passport' class='form-label'>Passport</label>
+  <div class="col-span-6 sm:col-span-2">
+    <label for="passport" class="form-label">Passport</label>
     <input
-      formControlName='passport'
-      type='text'
-      id='passport'
-      class='form-input'
-      placeholder='Provide passport data'
+      formControlName="passport"
+      type="text"
+      id="passport"
+      class="form-input"
+      placeholder="Provide passport data"
     />
-    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('required')" class='error-message'>
+    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('required')" class="error-message">
       This field is required
     </span>
-    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('pattern')" class='error-message'>
+    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('pattern')" class="error-message">
       The pattern is invalid. Eg. DF1234
     </span>
   </div>
   <fieldset
-    formGroupName='address'
-    class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'
+    formGroupName="address"
+    class="grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4"
   >
-    <legend class='px-2 text-gray-400'>Address</legend>
-    <div class='col-span-6 sm:col-span-2'>
-      <label for='fullAddress' class='form-label'>Full Address</label>
+    <legend class="px-2 text-gray-400">Address</legend>
+    <div class="col-span-6 sm:col-span-2">
+      <label for="fullAddress" class="form-label">Full Address</label>
       <input
-        formControlName='fullAddress'
-        type='text'
-        id='fullAddress'
-        class='form-input'
-        placeholder='Street name and house number'
+        formControlName="fullAddress"
+        type="text"
+        id="fullAddress"
+        class="form-input"
+        placeholder="Street name and house number"
       />
     </div>
-    <div class='col-span-6 sm:col-span-2'>
-      <label for='city' class='form-label'>City</label>
-      <input formControlName='city' type='text' id='city' class='form-input' placeholder='City' />
+    <div class="col-span-6 sm:col-span-2">
+      <label for="city" class="form-label">City</label>
+      <input formControlName="city" type="text" id="city" class="form-input" placeholder="City" />
     </div>
-    <div class='col-span-6 sm:col-span-2'>
-      <label for='postCode' class='form-label'>Post code</label>
-      <input formControlName='postCode' type='text' id='postCode' class='form-input' placeholder='Post code' />
+    <div class="col-span-6 sm:col-span-2">
+      <label for="postCode" class="form-label">Post code</label>
+      <input formControlName="postCode" type="text" id="postCode" class="form-input" placeholder="Post code" />
     </div>
   </fieldset>
   <fieldset
-    formGroupName='userPassword'
-    class='grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4'
+    formGroupName="userPassword"
+    class="grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4"
   >
-    <legend class='px-2 text-gray-400'>User Password</legend>
-    <div class='col-span-6 sm:col-span-2'>
-      <label for='password' class='form-label'>Password</label>
+    <legend class="px-2 text-gray-400">User Password</legend>
+    <div class="col-span-6 sm:col-span-2">
+      <label for="password" class="form-label">Password</label>
       <input
-        formControlName='password'
-        type='password'
-        id='password'
-        class='form-input'
+        formControlName="password"
+        type="password"
+        id="password"
+        class="form-input"
         placeholder="Enter user's password"
       />
       <ng-container *ngIf="form.controls.userPassword.get('password') as password">
-        <span *ngIf="password?.dirty && password?.hasError('required')" class='error-message'>
+        <span *ngIf="password?.dirty && password?.hasError('required')" class="error-message">
           This field is required
         </span>
-        <span *ngIf="password?.dirty && password?.hasError('minlength')" class='error-message'>
+        <span *ngIf="password?.dirty && password?.hasError('minlength')" class="error-message">
           This name must be at least <strong>{{ password.getError('minlength').requiredLength }}</strong> characters
         </span>
       </ng-container>
     </div>
-    <div class='col-span-6 sm:col-span-2'>
-      <label for='confirmPassword' class='form-label'>Confirm Password</label>
+    <div class="col-span-6 sm:col-span-2">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
       <input
-        formControlName='confirmPassword'
-        type='password'
-        id='confirmPassword'
-        class='form-input'
+        formControlName="confirmPassword"
+        type="password"
+        id="confirmPassword"
+        class="form-input"
         placeholder="Confirm user's password"
       />
       <span
@@ -147,75 +152,75 @@
           form.controls.userPassword.get('confirmPassword')?.dirty &&
           form.controls.userPassword.get('confirmPassword')?.hasError('noPasswordMatch')
         "
-        class='error-message'
+        class="error-message"
       >
         The password does not match
       </span>
     </div>
   </fieldset>
-  <fieldset formArrayName='hobbies' class='col-span-2 border border-gray-200 p-2 pb-0 relative'>
-    <legend class='px-2 text-gray-400'>Hobbies</legend>
-    <button type='button' (click)='addHobbies()' class='absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9'>
+  <fieldset formArrayName="hobbies" class="col-span-2 border border-gray-200 p-2 pb-0 relative">
+    <legend class="px-2 text-gray-400">Hobbies</legend>
+    <button type="button" (click)="addHobbies()" class="absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9">
       +
     </button>
-    <div *ngFor='let _ of form.controls.hobbies.controls; index as i' class='mb-3 relative'>
-      <label for='hobbies-{{ i }}' class='form-label'>Hobbies #{{ i + 1 }}</label>
+    <div *ngFor="let _ of form.controls.hobbies.controls; index as i" class="mb-3 relative">
+      <label for="hobbies-{{ i }}" class="form-label">Hobbies #{{ i + 1 }}</label>
       <input
-        [formControlName]='i'
-        type='text'
-        id='hobbies-{{ i }}'
-        class='form-input'
-        placeholder='Enter your hobbies'
+        [formControlName]="i"
+        type="text"
+        id="hobbies-{{ i }}"
+        class="form-input"
+        placeholder="Enter your hobbies"
       />
       <button
-        type='button'
-        (click)='removeHobbies(i)'
-        class='bg-red-500 text-white block w-5 h-5 rounded-full absolute top-0 right-0 leading-4'
+        type="button"
+        (click)="removeHobbies(i)"
+        class="bg-red-500 text-white block w-5 h-5 rounded-full absolute top-0 right-0 leading-4"
       >
         -
       </button>
     </div>
   </fieldset>
-  <fieldset formArrayName='phones' class='col-span-2 border border-gray-200 p-2 pb-0 relative'>
-    <legend class='px-2 text-gray-400'>Phones</legend>
-    <button type='button' (click)='addPhone()' class='absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9'>
+  <fieldset formArrayName="phones" class="col-span-2 border border-gray-200 p-2 pb-0 relative">
+    <legend class="px-2 text-gray-400">Phones</legend>
+    <button type="button" (click)="addPhone()" class="absolute right-0 -top-6 bg-green-400 inline-block p-1 w-9">
       +
     </button>
-    <div *ngFor='let _ of form.controls.phones.controls; index as i' [formGroupName]='i' class='mb-3 relative phones'>
-      <label for='phone-{{ i }}' class='form-label'>Phone #{{ i + 1 }}</label>
-      <div class='flex gap-2'>
-        <select formControlName='label'>
-          <option *ngFor='let label of phoneLabels'>{{ label }}</option>
+    <div *ngFor="let _ of form.controls.phones.controls; index as i" [formGroupName]="i" class="mb-3 relative phones">
+      <label for="phone-{{ i }}" class="form-label">Phone #{{ i + 1 }}</label>
+      <div class="flex gap-2">
+        <select formControlName="label">
+          <option *ngFor="let label of phoneLabels">{{ label }}</option>
         </select>
         <input
-          formControlName='phone'
-          type='text'
-          id='phone-{{ i }}'
-          class='form-input'
-          placeholder='Enter phone number'
+          formControlName="phone"
+          type="text"
+          id="phone-{{ i }}"
+          class="form-input"
+          placeholder="Enter phone number"
         />
       </div>
       <button
-        type='button'
-        (click)='removePhone(i)'
-        class='bg-red-500 text-white block w-5 h-5 rounded-full absolute top-0 right-0 leading-4'
+        type="button"
+        (click)="removePhone(i)"
+        class="bg-red-500 text-white block w-5 h-5 rounded-full absolute top-0 right-0 leading-4"
       >
         -
       </button>
     </div>
   </fieldset>
-  <fieldset class='col-span-2 border border-gray-200 p-2 pb-4 relative'>
-    <legend class='px-2 text-gray-400'>User Skills</legend>
-    <ng-container *ngIf='skills$ | async as skills; else loading'>
-      <div formGroupName='skills' *ngFor='let skill of skills' class='mb-2.5 flex items-center'>
-        <input [formControlName]='skill' type='checkbox' [id]='skill' />
-        <label [for]='skill' class='form-label ml-1'>{{ skill | titlecase }}</label>
+  <fieldset class="col-span-2 border border-gray-200 p-2 pb-4 relative">
+    <legend class="px-2 text-gray-400">User Skills</legend>
+    <ng-container *ngIf="skills$ | async as skills; else loading">
+      <div formGroupName="skills" *ngFor="let skill of skills" class="mb-2.5 flex items-center">
+        <input [formControlName]="skill" type="checkbox" [id]="skill" />
+        <label [for]="skill" class="form-label ml-1">{{ skill | titlecase }}</label>
       </div>
     </ng-container>
   </fieldset>
-  <div class='col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4'>
-    <app-button text='Reset' type='reset' [disabled]='form.pristine' />
-    <app-button text='Create an account' type='submit' [disabled]='form.invalid || form.pending' />
+  <div class="col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4">
+    <app-button text="Reset" type="reset" [disabled]="form.pristine" />
+    <app-button text="Create an account" type="submit" [disabled]="form.invalid || form.pending" />
   </div>
 </form>
 

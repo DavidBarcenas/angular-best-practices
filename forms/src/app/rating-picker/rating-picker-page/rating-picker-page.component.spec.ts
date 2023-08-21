@@ -8,7 +8,7 @@ describe('RatingPickerPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RatingPickerPageComponent]
+      imports: [RatingPickerPageComponent],
     });
     fixture = TestBed.createComponent(RatingPickerPageComponent);
     component = fixture.componentInstance;

@@ -1,21 +1,21 @@
 <ul
-  class='flex text-center text-3xl bg-white'
+  class="flex text-center text-3xl bg-white"
   [ngClass]="disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer'"
 >
-  <li (click)="setRating('great')" [ngClass]="{ 'bg-blue-300 cursor-default': value === 'great' }" class='flex-1 p-2'>
+  <li (click)="setRating('great')" [ngClass]="{ 'bg-blue-300 cursor-default': value === 'great' }" class="flex-1 p-2">
     👌
   </li>
-  <li (click)="setRating('good')" [ngClass]="{ 'bg-blue-300 cursor-default': value === 'good' }" class='flex-1 p-2'>
+  <li (click)="setRating('good')" [ngClass]="{ 'bg-blue-300 cursor-default': value === 'good' }" class="flex-1 p-2">
     😃
   </li>
   <li
     (click)="setRating('neutral')"
     [ngClass]="{ 'bg-blue-300 cursor-default': value === 'neutral' }"
-    class='flex-1 p-2'
+    class="flex-1 p-2"
   >
     🙂
   </li>
-  <li (click)="setRating('bad')" [ngClass]="{ 'bg-blue-300 cursor-default': value === 'bad' }" class='flex-1 p-2'>
+  <li (click)="setRating('bad')" [ngClass]="{ 'bg-blue-300 cursor-default': value === 'bad' }" class="flex-1 p-2">
     😕
   </li>
 </ul>

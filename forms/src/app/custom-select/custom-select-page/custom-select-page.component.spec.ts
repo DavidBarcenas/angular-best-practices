@@ -8,7 +8,7 @@ describe('CustomSelectPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CustomSelectPageComponent]
+      imports: [CustomSelectPageComponent],
     });
     fixture = TestBed.createComponent(CustomSelectPageComponent);
     component = fixture.componentInstance;

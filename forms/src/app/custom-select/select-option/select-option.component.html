@@ -1,8 +1,9 @@
-<div class='transition-transform duration-300 ease-out' [ngClass]="{ 'translate-x-2': isSelected }">
+<div class="transition-transform duration-300 ease-out" [ngClass]="{ 'translate-x-2': isSelected }">
   <ng-content />
 </div>
 <span
-  *ngIf='disabledHint'
-  class='[&:not(:empty)]:text-xs [&:not(:empty)]:rounded-full [&:not(:empty)]:px-2 [&:not(:empty)]:py-1 [&:not(:empty)]:bg-gray-200'>
+  *ngIf="disabledHint"
+  class="[&:not(:empty)]:text-xs [&:not(:empty)]:rounded-full [&:not(:empty)]:px-2 [&:not(:empty)]:py-1 [&:not(:empty)]:bg-gray-200"
+>
   {{ disabledHint }}
 </span>

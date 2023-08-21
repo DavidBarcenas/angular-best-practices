@@ -8,7 +8,7 @@ describe('RatingPickerOptionsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RatingPickerOptionsComponent]
+      imports: [RatingPickerOptionsComponent],
     });
     fixture = TestBed.createComponent(RatingPickerOptionsComponent);
     component = fixture.componentInstance;
