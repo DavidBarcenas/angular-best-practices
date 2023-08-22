@@ -3,6 +3,7 @@ import {
   Attribute,
   booleanAttribute,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   DestroyRef,
@@ -85,6 +86,10 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   disabled = false;
 
   @Input()
+  @HostBinding('attr.tabIndex')
+  tabIndex = 0;
+
+  @Input()
   displayWith: ((value: T) => string | number) | null = null;
 
   @Input()
@@ -120,6 +125,14 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   @Output()
   readonly selectionChanged = new EventEmitter<SelectValue<T>>();
 
+  @HostListener('blur')
+  markAsTouched(): void {
+    if (!this.disabled && !this.isOpen) {
+      this.onTouched();
+      this.cd.markForCheck();
+    }
+  }
+
   @HostListener('click')
   open(): void {
     if (this.disabled) {
@@ -131,10 +144,13 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
         this.searchInputEl?.nativeElement.focus();
       }, 0);
     }
+    this.cd.markForCheck();
   }
 
   close(): void {
     this.isOpen = false;
+    this.onTouched();
+    this.cd.markForCheck();
   }
 
   @ContentChildren(SelectOptionComponent, { descendants: true })
@@ -146,6 +162,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   defaultWidth = 'auto';
   private optionMap = new Map<SelectValue<T>, SelectOptionComponent<T>>();
   protected onChange: (newValue: SelectValue<T>) => void = () => {};
+  protected onTouched: () => void = () => {};
 
   protected get displayValue() {
     if (this.displayWith && this.value) {
@@ -157,19 +174,29 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
     return this.value;
   }
 
-  constructor(private destroyRef: DestroyRef, @Attribute('multiple') private multiple: string | null) {}
+  constructor(
+    @Attribute('multiple') private multiple: string | null,
+    private destroyRef: DestroyRef,
+    private cd: ChangeDetectorRef
+  ) {}
 
   writeValue(obj: SelectValue<T>): void {
     this.setupValue(obj);
+    this.cd.markForCheck();
   }
 
   registerOnChange(fn: (newValue: SelectValue<T>) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    this.cd.markForCheck();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['compareWith']) {
@@ -195,14 +222,15 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
       .subscribe((selectedOption) => this.handleSelection(selectedOption));
   }
 
-  clearSelection(e: Event) {
-    e.stopPropagation();
+  clearSelection(e?: Event) {
+    e?.stopPropagation();
     if (this.disabled) {
       return;
     }
     this.selectionModel.clear();
     this.selectionChanged.emit(this.value);
     this.onChange(this.value);
+    this.cd.markForCheck();
   }
 
   protected onHandleSearch(e: Event): void {

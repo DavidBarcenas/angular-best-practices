@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomSelectComponent, SelectValue } from '../custom-select/custom-select.component';
 import { SelectOptionComponent } from '../select-option/select-option.component';
 import { User } from '../../core/user';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-custom-select-page',
@@ -14,6 +15,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomSelectPageComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   selectedValue: FormControl<SelectValue<User>> = new FormControl([
     new User(2, 'Niels Bohr', 'niels', 'Denmark'),
     new User(3, 'Marie Curie', 'marie', 'Poland/French'),
@@ -33,7 +35,7 @@ export class CustomSelectPageComponent implements OnInit {
   filteredUsers = this.users;
 
   ngOnInit(): void {
-    this.selectedValue.valueChanges.subscribe(this.onSelectionChange);
+    this.selectedValue.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(this.onSelectionChange);
   }
 
   onHandleSearch(query: string): void {
