@@ -25,6 +25,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { merge, startWith, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type SelectValue<T> = T | T[] | null;
 
@@ -34,6 +35,13 @@ export type SelectValue<T> = T | T[] | null;
   imports: [CommonModule, OverlayModule],
   templateUrl: './custom-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: CustomSelectComponent,
+      multi: true,
+    },
+  ],
   animations: [
     trigger('dropdown', [
       state('void', style({ opacity: 0, transform: 'scale(1, 0.8)' })),
@@ -59,7 +67,7 @@ export type SelectValue<T> = T | T[] | null;
     `,
   ],
 })
-export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
+export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, ControlValueAccessor {
   @ViewChild('trigger')
   parent: CdkOverlayOrigin | undefined;
 
@@ -84,10 +92,8 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
 
   @Input()
   set value(value: SelectValue<T>) {
-    this.selectionModel.clear();
-    if (value) {
-      Array.isArray(value) ? this.selectionModel.select(...value) : this.selectionModel.select(value);
-    }
+    this.setupValue(value);
+    this.onChange(this.value);
   }
 
   get value() {
@@ -139,6 +145,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
 
   defaultWidth = 'auto';
   private optionMap = new Map<SelectValue<T>, SelectOptionComponent<T>>();
+  protected onChange: (newValue: SelectValue<T>) => void = () => {};
 
   protected get displayValue() {
     if (this.displayWith && this.value) {
@@ -151,6 +158,18 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
   }
 
   constructor(private destroyRef: DestroyRef, @Attribute('multiple') private multiple: string | null) {}
+
+  writeValue(obj: SelectValue<T>): void {
+    this.setupValue(obj);
+  }
+
+  registerOnChange(fn: (newValue: SelectValue<T>) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {}
+
+  setDisabledState?(isDisabled: boolean): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['compareWith']) {
@@ -183,6 +202,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
     }
     this.selectionModel.clear();
     this.selectionChanged.emit(this.value);
+    this.onChange(this.value);
   }
 
   protected onHandleSearch(e: Event): void {
@@ -198,13 +218,21 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit {
     }
   }
 
+  private setupValue(value: SelectValue<T>) {
+    this.selectionModel.clear();
+    if (value) {
+      Array.isArray(value) ? this.selectionModel.select(...value) : this.selectionModel.select(value);
+    }
+  }
+
   private handleSelection(selectedOption: SelectOptionComponent<T>): void {
     if (this.disabled) {
       return;
     }
     if (selectedOption.value) {
       this.selectionModel.toggle(selectedOption.value);
-      this.selectionChanged.emit(selectedOption.value);
+      this.selectionChanged.emit(this.value);
+      this.onChange(this.value);
     }
     if (!this.selectionModel.isMultipleSelection()) {
       this.close();

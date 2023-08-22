@@ -2,16 +2,15 @@
   <app-custom-select
     [compareWith]="compareWithFn"
     [displayWith]="displayWithFn"
-    [value]="selectedValue"
-    (selectionChanged)="onSelectionChange($event)"
+    [formControl]="selectedValue"
     (searchChanged)="onHandleSearch($event)"
     (closed)="onHandleSearch('')"
     searchable
     multiple
-    disabled
     label="Pick the Element"
     class="w-[350px]"
   >
+    <!-- (selectionChanged)="onSelectionChange($event)" -->
     <app-select-option *ngFor="let user of filteredUsers" [value]="user">{{ user.name }}</app-select-option>
     <!--<app-select-option value='fluorine' disabled disabledHint='My reason'>Fluorine</app-select-option>-->
   </app-custom-select>

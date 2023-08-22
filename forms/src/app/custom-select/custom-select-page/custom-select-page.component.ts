@@ -1,22 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomSelectComponent, SelectValue } from '../custom-select/custom-select.component';
 import { SelectOptionComponent } from '../select-option/select-option.component';
 import { User } from '../../core/user';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-select-page',
   standalone: true,
-  imports: [CommonModule, CustomSelectComponent, SelectOptionComponent],
+  imports: [CommonModule, CustomSelectComponent, SelectOptionComponent, ReactiveFormsModule],
   templateUrl: './custom-select-page.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomSelectPageComponent {
-  selectedValue: SelectValue<User> = [
+export class CustomSelectPageComponent implements OnInit {
+  selectedValue: FormControl<SelectValue<User>> = new FormControl([
     new User(2, 'Niels Bohr', 'niels', 'Denmark'),
     new User(3, 'Marie Curie', 'marie', 'Poland/French'),
-  ];
+  ]);
   users: User[] = [
     new User(1, 'Albert Einstein', 'albert', 'Germany/USA'),
     new User(2, 'Niels Bohr', 'niels', 'Denmark'),
@@ -30,6 +31,10 @@ export class CustomSelectPageComponent {
     new User(10, 'Ernest Rutherford', 'ernest', 'New Zealand'),
   ];
   filteredUsers = this.users;
+
+  ngOnInit(): void {
+    this.selectedValue.valueChanges.subscribe(this.onSelectionChange);
+  }
 
   onHandleSearch(query: string): void {
     this.filteredUsers = this.users.filter((user) => user.name.toLowerCase().startsWith(query.toLowerCase()));
