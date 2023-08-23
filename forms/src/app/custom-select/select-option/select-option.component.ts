@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   HostBinding,
   HostListener,
@@ -64,6 +65,7 @@ export class SelectOptionComponent<T> implements Highlightable {
   protected isActive = false;
 
   private cd = inject(ChangeDetectorRef);
+  private el: ElementRef<HTMLElement> = inject(ElementRef);
 
   setActiveStyles(): void {
     this.isActive = true;
@@ -82,5 +84,9 @@ export class SelectOptionComponent<T> implements Highlightable {
 
   deselect(): void {
     this.isSelected = false;
+  }
+
+  scrollIntoView(options: ScrollIntoViewOptions) {
+    this.el.nativeElement.scrollIntoView(options);
   }
 }

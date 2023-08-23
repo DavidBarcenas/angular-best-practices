@@ -163,6 +163,11 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
     }
     if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && this.isOpen) {
       this.listKeyManager?.onKeydown(e);
+      return;
+    }
+    if (e.key === 'Enter' && this.isOpen && this.listKeyManager?.activeItem) {
+      this.handleSelection(this.listKeyManager?.activeItem);
+      return;
     }
   }
 
@@ -223,6 +228,12 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   ngAfterViewInit(): void {
     if (this.options) {
       this.listKeyManager = new ActiveDescendantKeyManager(this.options).withWrap();
+      this.listKeyManager.change.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((itemIndex) => {
+        this.options?.get(itemIndex)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      });
     }
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
     this.selectionModel.changed.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((values) => {
@@ -278,6 +289,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
     if (selectedOption.value) {
       this.selectionModel.toggle(selectedOption.value);
       this.selectionChanged.emit(this.value);
+      this.hostEl.nativeElement.focus();
       this.onChange(this.value);
     }
     if (!this.selectionModel.isMultipleSelection()) {
