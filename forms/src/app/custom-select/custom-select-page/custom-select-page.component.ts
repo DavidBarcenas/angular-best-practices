@@ -11,7 +11,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [CommonModule, CustomSelectComponent, SelectOptionComponent, ReactiveFormsModule],
   templateUrl: './custom-select-page.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomSelectPageComponent implements OnInit {

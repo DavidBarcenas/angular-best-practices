@@ -27,6 +27,7 @@ import { merge, startWith, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 
 export type SelectValue<T> = T | T[] | null;
 
@@ -150,7 +151,19 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   close(): void {
     this.isOpen = false;
     this.onTouched();
+    this.hostEl.nativeElement.focus();
     this.cd.markForCheck();
+  }
+
+  @HostListener('keydown', ['$event'])
+  protected onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'ArrowDown' && !this.isOpen) {
+      this.open();
+      return;
+    }
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && this.isOpen) {
+      this.listKeyManager?.onKeydown(e);
+    }
   }
 
   @ContentChildren(SelectOptionComponent, { descendants: true })
@@ -161,6 +174,7 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
 
   defaultWidth = 'auto';
   private optionMap = new Map<SelectValue<T>, SelectOptionComponent<T>>();
+  private listKeyManager: ActiveDescendantKeyManager<SelectOptionComponent<T>> | undefined;
   protected onChange: (newValue: SelectValue<T>) => void = () => {};
   protected onTouched: () => void = () => {};
 
@@ -177,7 +191,8 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   constructor(
     @Attribute('multiple') private multiple: string | null,
     private destroyRef: DestroyRef,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private hostEl: ElementRef
   ) {}
 
   writeValue(obj: SelectValue<T>): void {
@@ -206,6 +221,9 @@ export class CustomSelectComponent<T> implements OnChanges, AfterViewInit, Contr
   }
 
   ngAfterViewInit(): void {
+    if (this.options) {
+      this.listKeyManager = new ActiveDescendantKeyManager(this.options).withWrap();
+    }
     this.defaultWidth = this.parent?.elementRef.nativeElement.getBoundingClientRect().width + 'px';
     this.selectionModel.changed.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((values) => {
       values.removed.forEach((value) => this.optionMap.get(value)?.deselect());

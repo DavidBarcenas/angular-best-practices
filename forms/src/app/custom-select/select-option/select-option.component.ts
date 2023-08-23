@@ -11,6 +11,7 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Highlightable } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-select-option',
@@ -28,12 +29,15 @@ import { CommonModule } from '@angular/common';
         &.disabled {
           @apply opacity-40 pointer-events-none justify-between;
         }
+        &.active {
+          @apply bg-blue-50;
+        }
       }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectOptionComponent<T> {
+export class SelectOptionComponent<T> implements Highlightable {
   @Input()
   value: T | null = null;
 
@@ -56,7 +60,20 @@ export class SelectOptionComponent<T> {
   @HostBinding('class.selected')
   protected isSelected = false;
 
+  @HostBinding('class.active')
+  protected isActive = false;
+
   private cd = inject(ChangeDetectorRef);
+
+  setActiveStyles(): void {
+    this.isActive = true;
+    this.cd.markForCheck();
+  }
+
+  setInactiveStyles(): void {
+    this.isActive = false;
+    this.cd.markForCheck();
+  }
 
   highlightAsSelected(): void {
     this.isSelected = true;
