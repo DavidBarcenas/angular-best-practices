@@ -7,13 +7,13 @@
       "label": "Company Name",
       "value": ""
     },
-    "email": {
+    "companyTel": {
       "controlType": "input",
       "type": "tel",
       "label": "Phone Number",
       "value": ""
     },
-    "role": {
+    "size": {
       "controlType": "select",
       "label": "Company Size",
       "value": "",

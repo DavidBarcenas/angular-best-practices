@@ -3,9 +3,29 @@
     <app-button text="Load user form" (click)="formLoadingTrigger.next('user')" />
     <app-button text="Load company form" (click)="formLoadingTrigger.next('company')" />
   </div>
-  <div *ngIf="formConfig$ | async as formConfig">
-    <form>
-      <pre class="bg-gray-100 p-4">{{ formConfig | json }}</pre>
+  <div *ngIf="formConfig$ | async as formConfig" class="text-center grow">
+    <h3 class="text-lg font-bold mb-3">{{ formConfig.description }}</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-left max-w-lg m-auto grid gap-5">
+      <div *ngFor="let control of formConfig.controls | keyvalue" class="col-span-12">
+        <label [for]="control.key" class="form-label">{{ control.value.label }}</label>
+        <ng-container [ngSwitch]="control.value.controlType">
+          <input
+            *ngSwitchCase="'input'"
+            [formControlName]="control.key"
+            [type]="control.value.type"
+            [id]="control.key"
+            class="form-input"
+          />
+          <ng-container *ngSwitchCase="'select'">
+            <select class="form-input" [id]="control.key" [formControlName]="control.key">
+              <option *ngFor="let option of control.value.options" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="text-right col-span-12">
+        <app-button type="submit" text="Save" />
+      </div>
     </form>
   </div>
 </section>
