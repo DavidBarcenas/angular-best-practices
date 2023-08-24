@@ -38,5 +38,13 @@ export const routes: Routes = [
         (c) => c.CustomSelectPageComponent
       ),
   },
-  { path: '', redirectTo: 'custom-select', pathMatch: 'full' },
+  {
+    path: 'dynamic-forms',
+    title: 'Dynamic Forms Playground',
+    loadComponent: () =>
+      import('./dynamic-forms/dynamic-forms-page/dynamic-forms-page.component').then(
+        (c) => c.DynamicFormsPageComponent
+      ),
+  },
+  { path: '', redirectTo: 'dynamic-forms', pathMatch: 'full' },
 ];

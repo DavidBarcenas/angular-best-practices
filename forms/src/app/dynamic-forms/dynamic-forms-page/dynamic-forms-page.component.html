@@ -1,0 +1,11 @@
+<section class="flex gap-4">
+  <div class="flex flex-col gap-3">
+    <app-button text="Load user form" (click)="formLoadingTrigger.next('user')" />
+    <app-button text="Load company form" (click)="formLoadingTrigger.next('company')" />
+  </div>
+  <div *ngIf="formConfig$ | async as formConfig">
+    <form>
+      <pre class="bg-gray-100 p-4">{{ formConfig | json }}</pre>
+    </form>
+  </div>
+</section>

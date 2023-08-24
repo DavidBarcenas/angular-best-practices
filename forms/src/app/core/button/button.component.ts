@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './button.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input() text: string = '';
-  @Input() disabled: boolean = false;
-  @Input() type: string = 'button';
+  @Input() text = '';
+  @Input() disabled = false;
+  @Input() type = 'button';
 }
