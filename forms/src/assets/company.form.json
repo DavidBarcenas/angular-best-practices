@@ -1,3 +1,36 @@
 {
-  "description": "The new company form config"
+  "description": "The new company form config",
+  "controls": {
+    "companyName": {
+      "controlType": "input",
+      "type": "text",
+      "label": "Company Name",
+      "value": ""
+    },
+    "email": {
+      "controlType": "input",
+      "type": "tel",
+      "label": "Phone Number",
+      "value": ""
+    },
+    "role": {
+      "controlType": "select",
+      "label": "Company Size",
+      "value": "",
+      "options": [
+        {
+          "label": "Up to 50 employees",
+          "value": "small"
+        },
+        {
+          "label": "50 - 100 employees",
+          "value": "medium"
+        },
+        {
+          "label": "More than 150 employees",
+          "value": "large"
+        }
+      ]
+    }
+  }
 }
