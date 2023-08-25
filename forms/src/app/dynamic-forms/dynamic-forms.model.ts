@@ -1,3 +1,5 @@
+import { ValidatorFn, Validators } from '@angular/forms';
+
 export interface DynamicFormConfig {
   description: string;
   controls: {
@@ -12,7 +14,7 @@ export interface DynamicControl<T = string> {
   value: T | null;
   options?: DynamicOptions[];
   validators?: {
-    [key: string]: unknown;
+    [key in ValidatorKeys]?: unknown;
   };
 }
 
@@ -20,3 +22,6 @@ export interface DynamicOptions {
   label: string;
   value: string;
 }
+
+type ValidatorKeys = keyof Omit<typeof Validators & CustomValidators, 'prototype' | 'compose' | 'composeAsync'>;
+type CustomValidators = { banWords: ValidatorFn };

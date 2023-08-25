@@ -49,7 +49,7 @@ export class DynamicFormsPageComponent implements OnInit {
   private resolveValidators({
     validators = {},
   }: DynamicControl): ((control: AbstractControl) => ValidationErrors | null)[] {
-    return Object.keys(validators).map((validatorKey) => {
+    return (Object.keys(validators) as Array<keyof typeof validators>).map((validatorKey) => {
       const validatorValue = validators[validatorKey];
       if (validatorKey === 'required') {
         return Validators.required;
@@ -57,7 +57,7 @@ export class DynamicFormsPageComponent implements OnInit {
       if (validatorKey === 'email') {
         return Validators.email;
       }
-      if (validatorKey === 'minlength' && typeof validatorValue === 'number') {
+      if (validatorKey === 'minLength' && typeof validatorValue === 'number') {
         return Validators.minLength(validatorValue);
       }
       if (validatorKey === 'banWords' && Array.isArray(validatorValue)) {
