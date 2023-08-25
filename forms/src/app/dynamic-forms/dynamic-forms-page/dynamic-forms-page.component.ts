@@ -13,16 +13,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { banWord } from 'src/app/reactive-forms/validators/ban-word.validator';
+import { DynamicControlResolver } from '../dynamic-control-resolver.service';
+import { ControlInjectorPipe } from '../control-injector.pipe';
 
 @Component({
   selector: 'app-dynamic-forms-page',
   standalone: true,
   templateUrl: './dynamic-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ControlInjectorPipe],
 })
 export class DynamicFormsPageComponent implements OnInit {
   private http = inject(HttpClient);
+  protected controlResolver = inject(DynamicControlResolver);
   protected formLoadingTrigger = new Subject<'user' | 'company'>();
   protected formConfig$: Observable<DynamicFormConfig> | undefined;
   form!: FormGroup;
