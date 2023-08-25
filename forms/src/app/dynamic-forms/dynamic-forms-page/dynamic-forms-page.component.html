@@ -22,6 +22,21 @@
             </select>
           </ng-container>
         </ng-container>
+        <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('required')" class="error-message">
+          This field is required
+        </span>
+        <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('email')" class="error-message">
+          It must be a valid email
+        </span>
+        <span
+          *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('minlength')"
+          class="error-message"
+        >
+          The field must be at least {{ form.get(control.key)?.getError('minlength').requiredLength }} characters
+        </span>
+        <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('banWord')" class="error-message">
+          This word is not allowed
+        </span>
       </div>
       <div class="text-right col-span-12">
         <app-button type="submit" text="Save" [disabled]="form.invalid" />
