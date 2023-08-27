@@ -1,18 +1,24 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CONTROL_DATA } from '../control-data.token';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BaseDynamicControl } from './base-dynamic-input';
 
 @Component({
   selector: 'app-dynamic-select',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
-    <select class="form-input" [id]="control.controlKey" [value]="control.config.value">
-      <option *ngFor="let option of control.config.options" [value]="option.value">{{ option.label }}</option>
-    </select>
+    <ng-container [formGroup]="formGroup">
+      <select
+        [formControlName]="control.controlKey"
+        class="form-input"
+        [id]="control.controlKey"
+        [value]="control.config.value"
+      >
+        <option *ngFor="let option of control.config.options" [value]="option.value">{{ option.label }}</option>
+      </select>
+    </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DynamicSelectComponent {
-  control = inject(CONTROL_DATA);
-}
+export class DynamicSelectComponent extends BaseDynamicControl {}
