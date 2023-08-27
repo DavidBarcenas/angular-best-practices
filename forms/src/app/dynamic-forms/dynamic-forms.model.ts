@@ -8,7 +8,7 @@ export interface DynamicFormConfig {
 }
 
 export interface DynamicControl<T = string> {
-  controlType: 'input' | 'select';
+  controlType: 'input' | 'select' | 'checkbox';
   type?: string;
   label: string;
   value: T | null;

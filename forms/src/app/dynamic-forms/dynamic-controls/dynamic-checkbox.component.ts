@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BaseDynamicControl } from './base-dynamic-input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-dynamic-select',
+  selector: 'app-dynamic-checkbox',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   template: `
     <ng-container [formGroup]="formGroup">
-      <label [for]="control.controlKey" class="form-label">{{ control.config.label }}</label>
-      <select
+      <input
+        type="checkbox"
         [formControlName]="control.controlKey"
-        class="form-input"
+        [checked]="control.config.value"
         [id]="control.controlKey"
-        [value]="control.config.value"
-      >
-        <option *ngFor="let option of control.config.options" [value]="option.value">{{ option.label }}</option>
-      </select>
+      />
+      <label [for]="control.controlKey" class="text-sm inline-block align-text-bottom ml-2">{{
+        control.config.label
+      }}</label>
     </ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DynamicSelectComponent extends BaseDynamicControl {}
+export class DynamicCheckboxComponent extends BaseDynamicControl {}
