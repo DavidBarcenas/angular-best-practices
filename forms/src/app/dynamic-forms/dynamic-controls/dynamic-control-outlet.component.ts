@@ -10,7 +10,7 @@ import { DynamicControl } from '../dynamic-forms.model';
   template: `
     <ng-container
       *ngIf="control"
-      [ngComponentOutlet]="controlResolver.resolve(control.controlType)"
+      [ngComponentOutlet]="controlResolver.resolve(control.controlType) | async"
       [ngComponentOutletInjector]="controlKey | controlInjector : control"
     />
   `,
