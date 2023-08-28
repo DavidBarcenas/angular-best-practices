@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { Observable, Subject, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ButtonComponent } from '../../core/button/button.component';
-import { DynamicControl, DynamicFormConfig } from '../dynamic-forms.model';
 import {
   AbstractControl,
   FormControl,
@@ -16,6 +14,8 @@ import { banWord } from 'src/app/reactive-forms/validators/ban-word.validator';
 import { DynamicControlResolver } from '../dynamic-control-resolver.service';
 import { ControlInjectorPipe } from '../control-injector.pipe';
 import { DynamicControlOutletComponent } from '../dynamic-controls/dynamic-control-outlet.component';
+import { ButtonComponent } from '../../core/button/button.component';
+import { DynamicControl, DynamicFormConfig } from '../dynamic-forms.model';
 
 @Component({
   selector: 'app-dynamic-forms-page',

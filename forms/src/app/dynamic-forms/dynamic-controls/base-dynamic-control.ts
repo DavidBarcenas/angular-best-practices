@@ -1,4 +1,4 @@
-import { Directive, inject } from '@angular/core';
+import { Directive, HostBinding, inject } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 import { CONTROL_DATA } from '../control-data.token';
 
@@ -10,4 +10,6 @@ export class BaseDynamicControl {
   get formGroup(): FormGroup {
     return this.parentForm.control as FormGroup;
   }
+
+  @HostBinding('class') hostClass = 'form-field block mb-2';
 }

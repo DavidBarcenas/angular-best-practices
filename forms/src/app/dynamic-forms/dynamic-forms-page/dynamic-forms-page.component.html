@@ -5,8 +5,8 @@
   </div>
   <div *ngIf="formConfig$ | async as formConfig" class="text-center grow">
     <h3 class="text-lg font-bold mb-3">{{ formConfig.description }}</h3>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-left max-w-lg m-auto grid gap-5" autocomplete="off">
-      <div *ngFor="let control of formConfig.controls | keyvalue" class="col-span-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-left max-w-lg m-auto" autocomplete="off">
+      <ng-container *ngFor="let control of formConfig.controls | keyvalue">
         <app-dynamic-control-outlet [controlKey]="control.key" [control]="control.value" />
         <!-- 
         <ng-container
@@ -43,7 +43,7 @@
         <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('banWord')" class="error-message">
           This word is not allowed
         </span>
-      </div>
+      </ng-container>
       <div class="text-right col-span-12">
         <app-button type="submit" text="Save" [disabled]="form.invalid" />
       </div>
