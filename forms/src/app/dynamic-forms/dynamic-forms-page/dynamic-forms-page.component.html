@@ -7,11 +7,12 @@
     <h3 class="text-lg font-bold mb-3">{{ formConfig.description }}</h3>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-left max-w-lg m-auto grid gap-5" autocomplete="off">
       <div *ngFor="let control of formConfig.controls | keyvalue" class="col-span-12">
+        <app-dynamic-control-outlet [controlKey]="control.key" [control]="control.value" />
+        <!-- 
         <ng-container
           [ngComponentOutlet]="controlResolver.resolve(control.value.controlType)"
           [ngComponentOutletInjector]="control.key | controlInjector : control.value"
         />
-        <!-- 
         <label [for]="control.key" class="form-label">{{ control.value.label }}</label>
         <ng-container [ngSwitch]="control.value.controlType">
           <input

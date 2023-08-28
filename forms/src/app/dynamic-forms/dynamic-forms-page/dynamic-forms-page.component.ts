@@ -15,13 +15,14 @@ import {
 import { banWord } from 'src/app/reactive-forms/validators/ban-word.validator';
 import { DynamicControlResolver } from '../dynamic-control-resolver.service';
 import { ControlInjectorPipe } from '../control-injector.pipe';
+import { DynamicControlOutletComponent } from '../dynamic-controls/dynamic-control-outlet.component';
 
 @Component({
   selector: 'app-dynamic-forms-page',
   standalone: true,
   templateUrl: './dynamic-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ControlInjectorPipe],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ControlInjectorPipe, DynamicControlOutletComponent],
 })
 export class DynamicFormsPageComponent implements OnInit {
   private http = inject(HttpClient);
@@ -39,14 +40,30 @@ export class DynamicFormsPageComponent implements OnInit {
 
   protected onSubmit() {
     console.log(this.form.getRawValue());
+    this.form.reset();
   }
 
   private buildForm(controls: DynamicFormConfig['controls']): void {
     this.form = new FormGroup({});
-    Object.keys(controls).forEach((key) => {
-      const validators = this.resolveValidators(controls[key]);
-      this.form?.addControl(key, new FormControl(controls[key].value, validators));
-    });
+    Object.keys(controls).forEach((key) => this.buildControls(key, controls[key], this.form));
+  }
+
+  private buildControls(controlKey: string, config: DynamicControl, formGroup: FormGroup): void {
+    if (config.controlType === 'group') {
+      this.buildGroup(controlKey, config.controls, formGroup);
+      return;
+    }
+    const validators = this.resolveValidators(config);
+    formGroup.addControl(controlKey, new FormControl(config.value, validators));
+  }
+
+  private buildGroup(controlKey: string, controls: DynamicControl['controls'], parentFormGroup: FormGroup): void {
+    if (!controls) {
+      return;
+    }
+    const nestedFormGroup = new FormGroup({});
+    Object.keys(controls).forEach((key) => this.buildControls(key, controls[key], nestedFormGroup));
+    parentFormGroup.addControl(controlKey, nestedFormGroup);
   }
 
   private resolveValidators({
