@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BaseDynamicControl } from './base-dynamic-input';
+import { BaseDynamicControl } from './base-dynamic-control';
 
 @Component({
   selector: 'app-dynamic-select',

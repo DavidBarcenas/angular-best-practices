@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseDynamicControl } from './base-dynamic-input';
+import { BaseDynamicControl } from './base-dynamic-control';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
