@@ -8,7 +8,7 @@ describe('DynamicFormsPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DynamicFormsPageComponent]
+      imports: [DynamicFormsPageComponent],
     });
     fixture = TestBed.createComponent(DynamicFormsPageComponent);
     component = fixture.componentInstance;
