@@ -1,11 +1,12 @@
 {
   "description": "The new user form config",
   "controls": {
-    "displayName": {
+    "fullName": {
       "controlType": "input",
       "type": "text",
       "label": "Full Name",
       "value": "",
+      "order": 0,
       "validators": {
         "required": true,
         "minLength": 2,
@@ -17,6 +18,7 @@
       "type": "email",
       "label": "Email",
       "value": "",
+      "order": 1,
       "validators": {
         "email": true
       }
@@ -25,6 +27,7 @@
       "controlType": "select",
       "label": "User Role",
       "value": "",
+      "order": 3,
       "options": [
         {
           "label": "Admin",
@@ -48,19 +51,22 @@
           "controlType": "input",
           "label": "YouTube",
           "value": null,
-          "type": "text"
+          "type": "text",
+          "order": 0
         },
         "twitter": {
           "controlType": "input",
           "label": "Twitter",
           "value": null,
-          "type": "text"
+          "type": "text",
+          "order": 1
         },
         "instagram": {
           "controlType": "input",
           "label": "Instagram",
           "value": null,
-          "type": "text"
+          "type": "text",
+          "order": 2
         }
       }
     },
@@ -68,6 +74,7 @@
       "controlType": "checkbox",
       "label": "Terms & Conditions were accepted",
       "value": false,
+      "order": 4,
       "validators": {
         "requiredTrue": true
       }

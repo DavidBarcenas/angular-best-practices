@@ -16,6 +16,7 @@ import { ControlInjectorPipe } from '../control-injector.pipe';
 import { DynamicControlOutletComponent } from '../dynamic-controls/dynamic-control-outlet.component';
 import { ButtonComponent } from '../../core/button/button.component';
 import { DynamicControl, DynamicFormConfig } from '../dynamic-forms.model';
+import { compareFn } from '../dynamic-controls/base-dynamic-control';
 
 @Component({
   selector: 'app-dynamic-forms-page',
@@ -29,6 +30,8 @@ export class DynamicFormsPageComponent implements OnInit {
   protected controlResolver = inject(DynamicControlResolver);
   protected formLoadingTrigger = new Subject<'user' | 'company'>();
   protected formConfig$: Observable<DynamicFormConfig> | undefined;
+  protected compareFn = compareFn;
+
   form!: FormGroup;
 
   ngOnInit(): void {

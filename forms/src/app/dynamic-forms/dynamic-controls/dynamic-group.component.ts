@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseDynamicControl, dynamicControlProvider } from './base-dynamic-control';
+import { BaseDynamicControl, compareFn, dynamicControlProvider } from './base-dynamic-control';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicControlOutletComponent } from './dynamic-control-outlet.component';
 
@@ -11,7 +11,7 @@ import { DynamicControlOutletComponent } from './dynamic-control-outlet.componen
   template: `
     <fieldset [formGroupName]="control.controlKey">
       <legend class="text-blue-500 mb-2">{{ control.config.label }}</legend>
-      <ng-container *ngFor="let control of control.config.controls | keyvalue">
+      <ng-container *ngFor="let control of control.config.controls | keyvalue : compareFn">
         <app-dynamic-control-outlet [controlKey]="control.key" [control]="control.value" />
       </ng-container>
     </fieldset>
@@ -21,4 +21,5 @@ import { DynamicControlOutletComponent } from './dynamic-control-outlet.componen
 })
 export class DynamicGroupComponent extends BaseDynamicControl {
   @HostBinding('class') override hostClass = 'form-field-group';
+  protected compareFn = compareFn;
 }

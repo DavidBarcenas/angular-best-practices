@@ -6,7 +6,7 @@
   <div *ngIf="formConfig$ | async as formConfig" class="text-center grow">
     <h3 class="text-lg font-bold mb-3">{{ formConfig.description }}</h3>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-left max-w-lg m-auto" autocomplete="off">
-      <ng-container *ngFor="let control of formConfig.controls | keyvalue">
+      <ng-container *ngFor="let control of formConfig.controls | keyvalue : compareFn">
         <app-dynamic-control-outlet [controlKey]="control.key" [control]="control.value" />
         <!-- 
         <ng-container
