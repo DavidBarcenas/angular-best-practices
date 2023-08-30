@@ -4,9 +4,14 @@
     <app-button text="Load company form" (click)="formLoadingTrigger.next('company')" />
   </div>
   <div *ngIf="formConfig$ | async as formConfig" class="text-center grow">
-    <h3 class="text-lg font-bold mb-3">{{ formConfig.description }}</h3>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-left max-w-lg m-auto" autocomplete="off">
-      <ng-container *ngFor="let control of formConfig.controls | keyvalue : compareFn">
+    <h3 class="text-lg font-bold mb-3">{{ formConfig.config.description }}</h3>
+    <form
+      [formGroup]="formConfig.form"
+      (ngSubmit)="onSubmit(formConfig.form)"
+      class="text-left max-w-lg m-auto"
+      autocomplete="off"
+    >
+      <ng-container *ngFor="let control of formConfig.config.controls | keyvalue : compareFn">
         <app-dynamic-control-outlet [controlKey]="control.key" [control]="control.value" />
         <!-- 
         <ng-container
@@ -28,24 +33,34 @@
             </select>
           </ng-container>
         </ng-container> -->
-        <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('required')" class="error-message">
+        <span
+          *ngIf="formConfig.form.get(control.key)?.dirty && formConfig.form.get(control.key)?.hasError('required')"
+          class="error-message"
+        >
           This field is required
         </span>
-        <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('email')" class="error-message">
+        <span
+          *ngIf="formConfig.form.get(control.key)?.dirty && formConfig.form.get(control.key)?.hasError('email')"
+          class="error-message"
+        >
           It must be a valid email
         </span>
         <span
-          *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('minlength')"
+          *ngIf="formConfig.form.get(control.key)?.dirty && formConfig.form.get(control.key)?.hasError('minlength')"
           class="error-message"
         >
-          The field must be at least {{ form.get(control.key)?.getError('minlength').requiredLength }} characters
+          The field must be at least
+          {{ formConfig.form.get(control.key)?.getError('minlength').requiredLength }} characters
         </span>
-        <span *ngIf="form.get(control.key)?.dirty && form.get(control.key)?.hasError('banWord')" class="error-message">
+        <span
+          *ngIf="formConfig.form.get(control.key)?.dirty && formConfig.form.get(control.key)?.hasError('banWord')"
+          class="error-message"
+        >
           This word is not allowed
         </span>
       </ng-container>
       <div class="text-right col-span-12">
-        <app-button type="submit" text="Save" [disabled]="form.invalid" />
+        <app-button type="submit" text="Save" [disabled]="formConfig.form.invalid" />
       </div>
     </form>
   </div>
