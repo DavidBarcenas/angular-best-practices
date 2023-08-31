@@ -1,7 +1,11 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BaseDynamicControl, compareFn, dynamicControlProvider } from './base-dynamic-control';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  BaseDynamicControl,
+  compareFn,
+  dynamicControlProvider,
+  sharedDynamicControlDeps,
+} from './base-dynamic-control';
+import { FormGroup } from '@angular/forms';
 import { DynamicControlOutletComponent } from './dynamic-control-outlet.component';
 
 @Component({
@@ -17,7 +21,7 @@ import { DynamicControlOutletComponent } from './dynamic-control-outlet.componen
     </fieldset>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, DynamicControlOutletComponent],
+  imports: [...sharedDynamicControlDeps, DynamicControlOutletComponent],
 })
 export class DynamicGroupComponent extends BaseDynamicControl {
   @HostBinding('class') override hostClass = 'form-field-group';

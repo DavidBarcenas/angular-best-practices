@@ -7,8 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormGroupDirective, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroupDirective, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../core/button/button.component';
 import { SkillsService } from '../../core/skills.service';
 import { bufferCount, filter, startWith, tap } from 'rxjs';
@@ -16,11 +15,13 @@ import { banWord } from '../validators/ban-word.validator';
 import { passwordMatch } from '../validators/password-match.validator';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UniqueNicknameValidator } from '../validators/unique-nickname-validator';
+import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
+import { sharedDynamicControlDeps } from 'src/app/dynamic-forms/dynamic-controls/base-dynamic-control';
 
 @Component({
   selector: 'app-reactive-forms-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [...sharedDynamicControlDeps, ButtonComponent, DynamicInputErrorDirective],
   templateUrl: './reactive-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [

@@ -7,7 +7,7 @@ import { PasswordMatchDirective } from './validators/password-match.directive';
 import { ToggleBanWordsPipe } from './pipes/toggle-ban-words.pipe';
 import { UniqueNicknameDirective } from './validators/unique-nickname.directive';
 import { HttpClientModule } from '@angular/common/http';
-import { InputErrorComponent } from '../../core/input-error/input-error.component';
+import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
 
 @Component({
   selector: 'app-template-forms-page',
@@ -39,7 +39,7 @@ import { InputErrorComponent } from '../../core/input-error/input-error.componen
     PasswordMatchDirective,
     ToggleBanWordsPipe,
     UniqueNicknameDirective,
-    InputErrorComponent,
+    DynamicInputErrorDirective,
   ],
 })
 export class TemplateFormsPageComponent implements AfterViewInit {

@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BaseDynamicControl, dynamicControlProvider } from './base-dynamic-control';
+import { BaseDynamicControl, dynamicControlProvider, sharedDynamicControlDeps } from './base-dynamic-control';
 
 @Component({
   selector: 'app-dynamic-select',
   standalone: true,
   viewProviders: [dynamicControlProvider],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [...sharedDynamicControlDeps],
   template: `
     <label [for]="control.controlKey" class="form-label">{{ control.config.label }}</label>
     <select

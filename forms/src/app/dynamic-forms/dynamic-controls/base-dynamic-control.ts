@@ -4,13 +4,17 @@ import {
   ControlContainer,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { CommonModule, KeyValue } from '@angular/common';
 import { CONTROL_DATA } from '../control-data.token';
-import { KeyValue } from '@angular/common';
 import { DynamicControl } from '../dynamic-forms.model';
 import { banWord } from 'src/app/reactive-forms/validators/ban-word.validator';
+import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
+
+export const sharedDynamicControlDeps = [CommonModule, ReactiveFormsModule, DynamicInputErrorDirective];
 
 export const compareFn = (a: KeyValue<string, DynamicControl>, b: KeyValue<string, DynamicControl>): number => {
   return a.value.order - b.value.order;
