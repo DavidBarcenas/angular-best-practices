@@ -9,7 +9,7 @@ import { VALIDATION_ERROR_MESSAGES } from './input-error-messages.token';
   imports: [CommonModule],
   template: `
     <div *ngFor="let error of errors | keyvalue" class="error-message">
-      {{ errorsMap[error.key] }}
+      {{ errorsMap[error.key](error.value) }}
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
