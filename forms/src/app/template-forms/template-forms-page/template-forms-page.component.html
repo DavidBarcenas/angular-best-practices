@@ -17,18 +17,9 @@
       [ngModelOptions]="{ updateOn: 'change' }"
       #firstName="ngModel"
       required
-      minlength="2"
+      minlength="4"
       [appBanWords]="isAdult | toggleBanWords : ['test', 'hello']"
     />
-    <span class="text-red-500 text-xs px-2" *ngIf="firstName.dirty && firstName.hasError('required')"
-      >This field is required</span
-    >
-    <span class="text-red-500 text-xs px-2" *ngIf="firstName.dirty && firstName.hasError('minlength')">
-      The length should be at least <strong>{{ firstName.getError('minlength')?.requiredLength }}</strong> characters
-    </span>
-    <span class="text-red-500 text-xs px-2" *ngIf="firstName.dirty && firstName.hasError('appBanWords')">
-      The value <strong>{{ firstName.getError('appBanWords').bannedWord }}</strong> is not allowed
-    </span>
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="LastName" class="block text-sm font-medium text-gray-700"> Last Name </label>
@@ -43,12 +34,6 @@
       required
       minlength="3"
     />
-    <span class="text-red-500 text-xs px-2" *ngIf="lastName.dirty && lastName.hasError('required')"
-      >This field is required</span
-    >
-    <span class="text-red-500 text-xs px-2" *ngIf="lastName.dirty && lastName.hasError('minlength')">
-      The length should be at least <strong>{{ lastName.getError('minlength')?.requiredLength }}</strong> characters
-    </span>
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="Nickname" class="block text-sm font-medium text-gray-700"> Nickname </label>
@@ -68,9 +53,6 @@
       appUniqueNickname
     />
     <div class="text-xs text-blue-700 mt-1" *ngIf="nickname.pending">Checking<span class="animate-ping">...</span></div>
-    <span class="text-red-500 text-xs px-2" *ngIf="nickname.dirty && nickname.hasError('uniqueNickname')">
-      This name is taken
-    </span>
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
@@ -109,9 +91,6 @@
       pattern="^[A-Z]{2}[0-9]{3}$"
       [required]="isAdult"
     />
-    <span class="text-red-500 text-xs px-2" *ngIf="passport.dirty && passport.hasError('required')"
-      >This field is required</span
-    >
   </div>
   <fieldset
     class="grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4"
@@ -174,12 +153,6 @@
         required
         minlength="6"
       />
-      <span class="text-red-500 text-xs px-2" *ngIf="password.dirty && password.hasError('required')">
-        This field is required
-      </span>
-      <span class="text-red-500 text-xs px-2" *ngIf="password.dirty && password.hasError('minlength')">
-        The length should be at least <strong>{{ password.getError('minlength')?.requiredLength }}</strong> characters
-      </span>
     </div>
     <div class="col-span-6 sm:col-span-2">
       <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm password</label>
@@ -192,12 +165,6 @@
         #confirmPassword="ngModel"
         [(ngModel)]="userInfo.confirmPassword"
       />
-      <span
-        class="text-red-500 text-xs px-2"
-        *ngIf="confirmPassword.dirty && confirmPassword.hasError('passwordMatch')"
-      >
-        Password doesn't match
-      </span>
     </div>
   </fieldset>
   <div class="col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4">

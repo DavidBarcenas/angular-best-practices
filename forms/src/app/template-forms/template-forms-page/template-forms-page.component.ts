@@ -7,19 +7,11 @@ import { PasswordMatchDirective } from './validators/password-match.directive';
 import { ToggleBanWordsPipe } from './pipes/toggle-ban-words.pipe';
 import { UniqueNicknameDirective } from './validators/unique-nickname.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { InputErrorComponent } from '../../core/input-error/input-error.component';
 
 @Component({
   selector: 'app-template-forms-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    BanWordsDirective,
-    PasswordMatchDirective,
-    ToggleBanWordsPipe,
-    UniqueNicknameDirective,
-  ],
   templateUrl: './template-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
@@ -38,6 +30,16 @@ import { HttpClientModule } from '@angular/common/http';
         pointer-events: none;
       }
     `,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    BanWordsDirective,
+    PasswordMatchDirective,
+    ToggleBanWordsPipe,
+    UniqueNicknameDirective,
+    InputErrorComponent,
   ],
 })
 export class TemplateFormsPageComponent implements AfterViewInit {

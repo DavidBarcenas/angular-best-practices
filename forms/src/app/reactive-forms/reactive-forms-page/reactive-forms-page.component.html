@@ -8,32 +8,10 @@
   <div class="col-span-6 sm:col-span-2">
     <label for="firstName" class="form-label">First Name</label>
     <input formControlName="firstName" type="text" id="firstName" class="form-input" placeholder="Enter your name" />
-    <ng-container *ngIf="form.get('firstName') as firstName">
-      <span *ngIf="firstName?.dirty && firstName?.hasError('required')" class="error-message">
-        This field is required
-      </span>
-      <span *ngIf="firstName?.dirty && firstName?.hasError('minlength')" class="error-message">
-        This name must be at least <strong>{{ firstName.getError('minlength').requiredLength }}</strong> characters
-      </span>
-      <span *ngIf="firstName?.dirty && firstName?.hasError('banWord')" class="error-message">
-        The value <strong>{{ firstName.getError('banWord') }}</strong> is banned
-      </span>
-    </ng-container>
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="lastName" class="form-label">Last Name</label>
     <input formControlName="lastName" type="text" id="lastName" class="form-input" placeholder="Enter your last name" />
-    <ng-container *ngIf="form.get('lastName') as lastName">
-      <span *ngIf="lastName?.dirty && lastName?.hasError('required')" class="error-message">
-        This field is required
-      </span>
-      <span *ngIf="lastName?.dirty && lastName?.hasError('minlength')" class="error-message">
-        This last name must be at least <strong>{{ lastName.getError('minlength').requiredLength }}</strong> characters
-      </span>
-      <span *ngIf="lastName?.dirty && lastName?.hasError('banWord')" class="error-message">
-        The value <strong>{{ lastName.getError('banWord') }}</strong> is banned
-      </span>
-    </ng-container>
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="nickName" class="form-label">Nickname</label>
@@ -44,26 +22,6 @@
       class="form-input"
       placeholder="Come up with a nickname"
     />
-    <ng-container *ngIf="form.get('nickname') as nickName">
-      <span *ngIf="nickName?.dirty && nickName?.hasError('required')" class="error-message">
-        This field is required
-      </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('minlength')" class="error-message">
-        This nickname must be at least <strong>{{ nickName.getError('minlength').requiredLength }}</strong> characters
-      </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('pattern')" class="error-message">
-        Only characters a-z, _ and .
-      </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('banWord')" class="error-message">
-        The value <strong>{{ nickName.getError('banWord') }}</strong> is banned
-      </span>
-      <span *ngIf="nickName?.dirty && nickName?.hasError('uniqueNickname')" class="error-message">
-        this nickname is already taken
-      </span>
-      <div class="text-xs text-blue-700 mt-1" *ngIf="nickName.pending">
-        Checking<span class="animate-ping">...</span>
-      </div>
-    </ng-container>
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="email" class="form-label">Email</label>
@@ -84,12 +42,6 @@
       class="form-input"
       placeholder="Provide passport data"
     />
-    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('required')" class="error-message">
-      This field is required
-    </span>
-    <span *ngIf="form.get('passport')?.dirty && form.get('passport')?.hasError('pattern')" class="error-message">
-      The pattern is invalid. Eg. DF1234
-    </span>
   </div>
   <fieldset
     formGroupName="address"
@@ -129,14 +81,6 @@
         class="form-input"
         placeholder="Enter user's password"
       />
-      <ng-container *ngIf="form.controls.userPassword.get('password') as password">
-        <span *ngIf="password?.dirty && password?.hasError('required')" class="error-message">
-          This field is required
-        </span>
-        <span *ngIf="password?.dirty && password?.hasError('minlength')" class="error-message">
-          This name must be at least <strong>{{ password.getError('minlength').requiredLength }}</strong> characters
-        </span>
-      </ng-container>
     </div>
     <div class="col-span-6 sm:col-span-2">
       <label for="confirmPassword" class="form-label">Confirm Password</label>
@@ -147,15 +91,6 @@
         class="form-input"
         placeholder="Confirm user's password"
       />
-      <span
-        *ngIf="
-          form.controls.userPassword.get('confirmPassword')?.dirty &&
-          form.controls.userPassword.get('confirmPassword')?.hasError('noPasswordMatch')
-        "
-        class="error-message"
-      >
-        The password does not match
-      </span>
     </div>
   </fieldset>
   <fieldset formArrayName="hobbies" class="col-span-2 border border-gray-200 p-2 pb-0 relative">
