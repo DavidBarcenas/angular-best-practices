@@ -50,5 +50,5 @@ input:none(.form-input):focus {
 }
 
 .error-message {
-  @apply text-red-500 text-xs px-2 block animate-fade-message;
+  @apply text-red-500 text-xs px-2 block animate-fade-message mt-1;
 }
