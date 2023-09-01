@@ -17,7 +17,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UniqueNicknameValidator } from '../validators/unique-nickname-validator';
 import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
 import { sharedDynamicControlDeps } from 'src/app/dynamic-forms/dynamic-controls/base-dynamic-control';
-import { ErrorStateMatcher, OnTouchedErrorStateMatcher } from 'src/app/core/input-error/error-state-matcher.service';
+import { OnTouchedErrorStateMatcher } from 'src/app/core/input-error/error-state-matcher.service';
 
 @Component({
   selector: 'app-reactive-forms-page',
