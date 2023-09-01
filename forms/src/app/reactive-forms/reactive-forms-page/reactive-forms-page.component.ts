@@ -17,6 +17,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UniqueNicknameValidator } from '../validators/unique-nickname-validator';
 import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
 import { sharedDynamicControlDeps } from 'src/app/dynamic-forms/dynamic-controls/base-dynamic-control';
+import { ErrorStateMatcher, OnTouchedErrorStateMatcher } from 'src/app/core/input-error/error-state-matcher.service';
 
 @Component({
   selector: 'app-reactive-forms-page',
@@ -38,7 +39,7 @@ import { sharedDynamicControlDeps } from 'src/app/dynamic-forms/dynamic-controls
         @apply outline outline-1 outline-green-500;
       }
 
-      .ng-invalid.ng-dirty:not([formGroupName]):not([formArrayName]):not(form) {
+      .ng-invalid.ng-touched:not([formGroupName]):not([formArrayName]):not(form) {
         @apply outline outline-1 outline-red-500;
       }
 
@@ -61,6 +62,7 @@ export class ReactiveFormsPageComponent implements OnInit {
   phoneLabels = ['Home', 'Work', 'Mobile', 'Main'];
   bannedWords = ['test', 'anonymous', 'dummy'];
   years = this.getYears();
+  showErrorStrategy = new OnTouchedErrorStateMatcher();
 
   form = this.fb.group({
     firstName: ['Dave', [Validators.required, Validators.minLength(2), banWord(this.bannedWords)]],

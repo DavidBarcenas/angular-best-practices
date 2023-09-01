@@ -8,6 +8,7 @@ import { DynamicControlOutletComponent } from '../dynamic-controls/dynamic-contr
 import { ButtonComponent } from '../../core/button/button.component';
 import { DynamicFormConfig } from '../dynamic-forms.model';
 import { compareFn, sharedDynamicControlDeps } from '../dynamic-controls/base-dynamic-control';
+import { ErrorStateMatcher, OnTouchedErrorStateMatcher } from 'src/app/core/input-error/error-state-matcher.service';
 
 @Component({
   selector: 'app-dynamic-forms-page',
@@ -15,6 +16,12 @@ import { compareFn, sharedDynamicControlDeps } from '../dynamic-controls/base-dy
   templateUrl: './dynamic-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [...sharedDynamicControlDeps, ButtonComponent, ControlInjectorPipe, DynamicControlOutletComponent],
+  providers: [
+    {
+      provide: ErrorStateMatcher,
+      useClass: OnTouchedErrorStateMatcher,
+    },
+  ],
 })
 export class DynamicFormsPageComponent implements OnInit {
   private http = inject(HttpClient);

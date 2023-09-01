@@ -7,7 +7,14 @@
 >
   <div class="col-span-6 sm:col-span-2">
     <label for="firstName" class="form-label">First Name</label>
-    <input formControlName="firstName" type="text" id="firstName" class="form-input" placeholder="Enter your name" />
+    <input
+      [errorStateMatcher]="showErrorStrategy"
+      formControlName="firstName"
+      type="text"
+      id="firstName"
+      class="form-input"
+      placeholder="Enter your name"
+    />
   </div>
   <div class="col-span-6 sm:col-span-2">
     <label for="lastName" class="form-label">Last Name</label>
