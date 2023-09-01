@@ -3,7 +3,7 @@
   #form="ngForm"
   (reset)="onReset($event)"
   (ngSubmit)="onSubmit(form)"
-  [ngFormOptions]="{ updateOn: 'blur' }"
+  [ngFormOptions]="{ updateOn: 'submit' }"
 >
   <div class="col-span-6 sm:col-span-2">
     <label for="FirstName" class="block text-sm font-medium text-gray-700"> First Name </label>
@@ -176,7 +176,6 @@
     </button>
     <button
       type="submit"
-      [disabled]="form.invalid || form.pending"
       class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
     >
       Create an account

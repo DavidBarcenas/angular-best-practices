@@ -81,6 +81,9 @@ export class TemplateFormsPageComponent implements AfterViewInit {
   }
 
   onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
     console.log('onSubmit', form.value);
     // Strategy 1 - Reset form values, validation statuses, making controls untouched, pristine, etc.
     //this.ngForm?.resetForm();
