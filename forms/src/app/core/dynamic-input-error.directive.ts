@@ -16,7 +16,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ErrorStateMatcher } from './input-error/error-state-matcher.service';
 
 @Directive({
-  selector: '[ngModel],[formControl],[formControlName],[formGroupName],[ngModelGroup]',
+  selector: `
+    [ngModel]:not([withoutValidationErrors]),
+    [formControl]:not([withoutValidationErrors]),
+    [formControlName]:not([withoutValidationErrors]),
+    [formGroupName]:not([withoutValidationErrors]),
+    [ngModelGroup]:not([withoutValidationErrors])`,
   standalone: true,
 })
 export class DynamicInputErrorDirective implements OnInit {
