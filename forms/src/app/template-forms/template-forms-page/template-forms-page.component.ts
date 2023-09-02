@@ -8,6 +8,7 @@ import { ToggleBanWordsPipe } from './pipes/toggle-ban-words.pipe';
 import { UniqueNicknameDirective } from './validators/unique-nickname.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
+import { ValidatorMessageContainer } from 'src/app/core/input-error/validator-message-container.directive';
 
 @Component({
   selector: 'app-template-forms-page',
@@ -40,6 +41,7 @@ import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.dir
     ToggleBanWordsPipe,
     UniqueNicknameDirective,
     DynamicInputErrorDirective,
+    ValidatorMessageContainer,
   ],
 })
 export class TemplateFormsPageComponent implements AfterViewInit {

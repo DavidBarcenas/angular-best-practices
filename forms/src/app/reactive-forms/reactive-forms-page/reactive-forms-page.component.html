@@ -76,6 +76,7 @@
   </fieldset>
   <fieldset
     formGroupName="userPassword"
+    [containerRef]="containerDir.container"
     class="grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4"
   >
     <legend class="px-2 text-gray-400">User Password</legend>
@@ -99,6 +100,7 @@
         placeholder="Confirm user's password"
         withoutValidationErrors
       />
+      <ng-container validatorMessageContainer #containerDir="validatorMessageContainer" />
     </div>
   </fieldset>
   <fieldset formArrayName="hobbies" class="col-span-2 border border-gray-200 p-2 pb-0 relative">

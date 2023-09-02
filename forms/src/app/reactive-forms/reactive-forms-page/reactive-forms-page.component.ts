@@ -18,11 +18,12 @@ import { UniqueNicknameValidator } from '../validators/unique-nickname-validator
 import { DynamicInputErrorDirective } from 'src/app/core/dynamic-input-error.directive';
 import { sharedDynamicControlDeps } from 'src/app/dynamic-forms/dynamic-controls/base-dynamic-control';
 import { OnTouchedErrorStateMatcher } from 'src/app/core/input-error/error-state-matcher.service';
+import { ValidatorMessageContainer } from 'src/app/core/input-error/validator-message-container.directive';
 
 @Component({
   selector: 'app-reactive-forms-page',
   standalone: true,
-  imports: [...sharedDynamicControlDeps, ButtonComponent, DynamicInputErrorDirective],
+  imports: [...sharedDynamicControlDeps, ButtonComponent, DynamicInputErrorDirective, ValidatorMessageContainer],
   templateUrl: './reactive-forms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [

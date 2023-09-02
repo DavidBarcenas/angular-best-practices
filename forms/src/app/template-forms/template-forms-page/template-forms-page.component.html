@@ -138,6 +138,7 @@
     class="grid grid-cols-6 gap-8 col-span-6 sm:col-span-6 border border-gray-200 p-2 pb-4"
     ngModelGroup="passwords"
     appPasswordMatch
+    [containerRef]="containerDir.container"
   >
     <legend class="px-2 text-gray-400">User Password</legend>
     <div class="col-span-6 sm:col-span-2">
@@ -166,6 +167,7 @@
         [(ngModel)]="userInfo.confirmPassword"
         withoutValidationErrors
       />
+      <ng-container validatorMessageContainer #containerDir="validatorMessageContainer" />
     </div>
   </fieldset>
   <div class="col-span-6 sm:flex sm:items-center sm:justify-end sm:gap-4 mt-4">
