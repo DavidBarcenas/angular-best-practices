@@ -26,13 +26,15 @@ import { ErrorStateMatcher } from './input-error/error-state-matcher.service';
 })
 export class DynamicInputErrorDirective implements OnInit {
   private destroyRef = inject(DestroyRef);
-  private containerRef = inject(ViewContainerRef);
   private elRef = inject(ElementRef);
   private parentContainer = inject(ControlContainer, { optional: true });
   private componentRef: ComponentRef<InputErrorComponent> | null = null;
 
   @Input()
   errorStateMatcher = inject(ErrorStateMatcher);
+
+  @Input()
+  containerRef = inject(ViewContainerRef);
 
   ngControl = inject(NgControl, { self: true, optional: true }) || inject(ControlContainer, { self: true });
 
