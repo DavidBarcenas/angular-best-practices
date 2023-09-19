@@ -1,37 +1,84 @@
 <section class='border border-gray-100 shadow-xl rounded-br-[5rem] p-12 min-w-[600px]'>
-  <form #ageForm='ngForm' class='flex gap-8 mb-5'>
+  <form
+    #ageForm='ngForm'
+    class='flex gap-8 mb-5'
+  >
     <div>
-      <label for='day' class='block uppercase tracking-wider font-bold text-sm mb-2'>Día:</label>
-      <input type='number' ngModel name='day' id='day'
-             placeholder='DD'
-             class='border w-28 px-4 py-2 font-medium text-lg'>
+      <label
+        for='day'
+        class='block uppercase tracking-wider font-bold text-sm mb-2'
+      >Día:</label
+      >
+      <input
+        type='number'
+        ngModel
+        name='day'
+        id='day'
+        placeholder='DD'
+        class='border w-28 px-4 py-2 font-medium text-lg'
+      />
     </div>
     <div>
-      <label for='month' class='block uppercase tracking-wider font-bold text-sm mb-2'>Mes:</label>
-      <input type='number' ngModel name='month' id='month' placeholder='MM'
-             class='border w-28 px-4 py-2 font-medium text-lg'>
+      <label
+        for='month'
+        class='block uppercase tracking-wider font-bold text-sm mb-2'
+      >Mes:</label
+      >
+      <input
+        type='number'
+        ngModel
+        name='month'
+        id='month'
+        placeholder='MM'
+        class='border w-28 px-4 py-2 font-medium text-lg'
+      />
     </div>
     <div>
-      <label for='year' class='block uppercase tracking-wider font-bold text-sm mb-2'>Año:</label>
-      <input type='number' ngModel name='year' id='year' placeholder='AAAA'
-             class='border w-28 px-4 py-2 font-medium text-lg'>
+      <label
+        for='year'
+        class='block uppercase tracking-wider font-bold text-sm mb-2'
+      >Año:</label
+      >
+      <input
+        type='number'
+        ngModel
+        name='year'
+        id='year'
+        placeholder='AAAA'
+        class='border w-28 px-4 py-2 font-medium text-lg'
+      />
     </div>
   </form>
   <div class='relative mb-5'>
-    <hr class='border absolute w-full top-1/2 translate-y-1/2'>
+    <hr class='border absolute w-full top-1/2 translate-y-1/2' />
     <button
       (click)='onSubmit(ageForm)'
-      class='bg-indigo-500 text-white rounded-full w-14 h-14 block ml-auto relative cursor-pointer hover:bg-indigo-600'>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='30px' fill='#ffffff'
-           class='m-auto'>
-        <path d='M0 0h24v24H0V0z' fill='none' />
+      class='bg-indigo-500 text-white rounded-full w-14 h-14 block ml-auto relative cursor-pointer hover:bg-indigo-600'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 24 24'
+        height='30px'
+        fill='#ffffff'
+        class='m-auto'
+      >
+        <path
+          d='M0 0h24v24H0V0z'
+          fill='none'
+        />
         <path d='M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z' />
       </svg>
     </button>
   </div>
   <article>
-    <h2 class='text-7xl font-black italic mb-1'><span class='text-indigo-500'>{{year() || '--'}}</span> años</h2>
-    <h2 class='text-7xl font-black italic mb-1'><span class='text-indigo-500'>{{month() || '--'}}</span> meses</h2>
-    <h2 class='text-7xl font-black italic'><span class='text-indigo-500'>{{day() || '--'}}</span> días</h2>
+    <h2 class='text-7xl font-black italic mb-1'>
+      <span class='text-indigo-500'>{{ year() || '--' }}</span> años
+    </h2>
+    <h2 class='text-7xl font-black italic mb-1'>
+      <span class='text-indigo-500'>{{ month() || '--' }}</span> meses
+    </h2>
+    <h2 class='text-7xl font-black italic'>
+      <span class='text-indigo-500'>{{ day() || '--' }}</span> días
+    </h2>
   </article>
 </section>

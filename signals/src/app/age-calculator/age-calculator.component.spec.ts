@@ -8,7 +8,7 @@ describe('AgeCalculatorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AgeCalculatorComponent]
+      imports: [AgeCalculatorComponent],
     });
     fixture = TestBed.createComponent(AgeCalculatorComponent);
     component = fixture.componentInstance;

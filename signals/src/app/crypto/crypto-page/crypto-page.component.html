@@ -3,15 +3,31 @@
   <div class='my-5 text-2xl text-blue-600'>
     <span>Cryptocurrency</span>
     <select (change)='onCryptoSelected($event)'>
-      <option selected value=''>--</option>
-      <option *ngFor='let asset of assets' [value]='asset.value'>{{asset.label}}</option>
+      <option
+        selected
+        value=''
+      >
+        --
+      </option>
+      <option
+        *ngFor='let asset of assets'
+        [value]='asset.value'
+      >
+        {{ asset.label }}
+      </option>
     </select>
   </div>
   <h2 class='text-7xl font-medium'>{{ price$ | async }}</h2>
-  <div class='bg-blue-200 leading-10' *ngIf='(price$ | async) === undefined && (currency$ | async)'>
+  <div
+    class='bg-blue-200 leading-10'
+    *ngIf='(price$ | async) === undefined && (currency$ | async)'
+  >
     <span>Awaiting for Price...</span>
   </div>
-  <div class='bg-amber-200 leading-10' *ngIf='!(currency$ | async)'>
+  <div
+    class='bg-amber-200 leading-10'
+    *ngIf='!(currency$ | async)'
+  >
     <span>No Crypto Subscribed Yet</span>
   </div>
 </section>

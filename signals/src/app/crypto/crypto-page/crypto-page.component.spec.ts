@@ -8,7 +8,7 @@ describe('CryptoPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CryptoPageComponent]
+      imports: [CryptoPageComponent],
     });
     fixture = TestBed.createComponent(CryptoPageComponent);
     component = fixture.componentInstance;
