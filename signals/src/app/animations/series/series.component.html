@@ -1,0 +1,18 @@
+<ng-container *ngIf='items$ | async as items'>
+  <div class='flex flex-wrap w-[1200px] m-auto' [@rotateInStaggeredAnimation]='items.length'>
+    <div *ngFor='let item of items; trackBy: trackByFn'
+         class='bg-gray-300 text-white text-lg flex items-center justify-center h-[10rem] w-[15rem] mr-2 mb-2'>
+      {{item}}
+    </div>
+  </div>
+</ng-container>
+<div class='load__more-control'>
+  <div class='loading__animation'>
+    <ng-container *ngIf='isLoading'>
+      <span class='animate-pulse'>Loading...</span>
+    </ng-container>
+  </div>
+  <button *ngIf='!complete' (click)='loadMore()'>
+    Load more
+  </button>
+</div>
