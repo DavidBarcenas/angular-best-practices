@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { AgeCalculatorComponent } from './age-calculator/age-calculator.component';
-import { CryptoPageComponent } from './crypto/crypto-page/crypto-page.component';
+import { SeriesComponent } from './animations/series/series.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, AgeCalculatorComponent, CryptoPageComponent],
+  imports: [CommonModule, RouterOutlet, SeriesComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {}
