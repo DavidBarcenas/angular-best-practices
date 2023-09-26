@@ -11,13 +11,6 @@ import { MatCardModule } from '@angular/material/card';
   standalone: true,
   imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatSelectModule, MatCardModule],
   templateUrl: './theming.component.html',
-  styles: [
-    `
-      :host {
-        width: 100%;
-        height: 100%;
-      }
-    `,
-  ],
+  styleUrls: ['./theming.component.scss'],
 })
 export class ThemingComponent {}

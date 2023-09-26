@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$workshop-primary: mat.define-palette(mat.$red-palette);
+$workshop-accent: mat.define-palette(mat.$orange-palette);
+
+$workshop-theme: mat.define-light-theme((
+  color: (
+    primary: $workshop-primary,
+    accent: $workshop-accent
+  )
+));
+
+@include mat.all-component-themes($workshop-theme);

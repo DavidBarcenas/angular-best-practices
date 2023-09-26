@@ -1,0 +1,14 @@
+$primary-color: #006fff;
+$secondary-color: #1e1e1e;
+$suffixes: small, medium, large;
+$breakpoints: (
+  sm: 768px,
+  md: 1040px,
+  lg: 1400px,
+);
+
+div {
+  &.panel-#{nth($suffixes, 1)} {
+    width: map-get($breakpoints, md);
+  }
+}
