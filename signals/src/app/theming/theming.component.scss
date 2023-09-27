@@ -1,9 +1,12 @@
 @use '@angular/material' as mat;
+@use 'sass:map';
 
 @include mat.core();
 
 $workshop-primary: mat.define-palette(mat.$red-palette);
 $workshop-accent: mat.define-palette(mat.$orange-palette);
+$workshop-success: mat.define-palette(mat.$green-palette);
+$workshop-info: mat.define-palette(mat.$blue-palette);
 
 $workshop-theme: mat.define-light-theme((
   color: (
@@ -12,4 +15,17 @@ $workshop-theme: mat.define-light-theme((
   )
 ));
 
+$workshop-theme: map.deep-merge($workshop-theme, (
+  success: $workshop-success,
+  info: $workshop-info,
+  color: (
+    success: $workshop-success,
+    info: $workshop-info,
+  )
+));
+
 @include mat.all-component-themes($workshop-theme);
+
+:host {
+  width: 100%;
+}
