@@ -5,11 +5,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { BannerComponent } from './banner/banner.component';
 
 @Component({
   selector: 'app-theming',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatSelectModule, MatCardModule],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatCardModule,
+    BannerComponent,
+  ],
   templateUrl: './theming.component.html',
   styleUrls: ['./theming.component.scss'],
 })

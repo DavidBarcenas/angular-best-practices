@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use './banner/banner.component.theme' as banner;
 @use 'sass:map';
 
 @include mat.core();
@@ -25,6 +26,7 @@ $workshop-theme: map.deep-merge($workshop-theme, (
 ));
 
 @include mat.all-component-themes($workshop-theme);
+@include banner.app-banner-theme($workshop-theme);
 
 :host {
   width: 100%;
