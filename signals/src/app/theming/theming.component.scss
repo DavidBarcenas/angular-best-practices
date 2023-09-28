@@ -9,11 +9,16 @@ $workshop-accent: mat.define-palette(mat.$orange-palette);
 $workshop-success: mat.define-palette(mat.$green-palette);
 $workshop-info: mat.define-palette(mat.$blue-palette);
 
+$workshop-typography: mat.define-typography-config(
+  $font-family: 'Roboto'
+);
+
 $workshop-theme: mat.define-light-theme((
   color: (
     primary: $workshop-primary,
     accent: $workshop-accent
-  )
+  ),
+  typography: $workshop-typography,
 ));
 
 $workshop-theme: map.deep-merge($workshop-theme, (
@@ -30,4 +35,5 @@ $workshop-theme: map.deep-merge($workshop-theme, (
 
 :host {
   width: 100%;
+  min-height: 100%;
 }
