@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use './banner/banner.component.theme' as banner;
+@use './styles/app.component.theme' as root;
 @use 'sass:map';
 
 @include mat.core();
@@ -9,19 +10,40 @@ $workshop-accent: mat.define-palette(mat.$orange-palette);
 $workshop-success: mat.define-palette(mat.$green-palette);
 $workshop-info: mat.define-palette(mat.$blue-palette);
 
+$light-primary: mat.define-palette(mat.$amber-palette);
+$light-accent: mat.define-palette(mat.$purple-palette);
+$light-success: mat.define-palette(mat.$lime-palette);
+$light-info: mat.define-palette(mat.$blue-gray-palette);
+
 $workshop-typography: mat.define-typography-config(
   $font-family: 'Roboto'
 );
 
-$workshop-theme: mat.define-light-theme((
+$light-theme: mat.define-light-theme((
   color: (
-    primary: $workshop-primary,
-    accent: $workshop-accent
+    primary: $light-primary,
+    accent: $light-accent
   ),
   typography: $workshop-typography,
 ));
 
-$workshop-theme: map.deep-merge($workshop-theme, (
+$light-theme: map.deep-merge($light-theme, (
+  success: $light-success,
+  info: $light-info,
+  color: (
+    success: $light-success,
+    info: $light-info,
+  )
+));
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $workshop-primary,
+    accent: $workshop-accent
+  ),
+));
+
+$dark-theme: map.deep-merge($dark-theme, (
   success: $workshop-success,
   info: $workshop-info,
   color: (
@@ -30,10 +52,21 @@ $workshop-theme: map.deep-merge($workshop-theme, (
   )
 ));
 
-@include mat.all-component-themes($workshop-theme);
-@include banner.app-banner-theme($workshop-theme);
-
 :host {
   width: 100%;
   min-height: 100%;
+}
+
+.light-theme {
+  @include mat.all-component-themes($light-theme);
+  @include banner.app-banner-theme($light-theme);
+  @include root.app-root-theme($light-theme);
+}
+
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+  @include banner.app-banner-theme($dark-theme);
+  @include root.app-root-theme($dark-theme);
+
+  color: #fff;
 }

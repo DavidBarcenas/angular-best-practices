@@ -1,0 +1,10 @@
+@use '../../../../node_modules/@angular/material/index' as mat;
+
+@mixin app-root-theme($theme) {
+  $theme-colors: mat.get-color-config($theme);
+  $backgrounds: map-get($theme-colors, background);
+
+  .content {
+    background: mat.get-color-from-palette($backgrounds, background);
+  }
+}
