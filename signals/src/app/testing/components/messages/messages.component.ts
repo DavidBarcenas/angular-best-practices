@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-heroes',
+  selector: 'app-messages',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './heroes.component.html',
+  templateUrl: './messages.component.html',
   styles: [
   ]
 })
-export class HeroesComponent {
+export class MessagesComponent {
 
 }

@@ -1,0 +1,12 @@
+<header>
+  <h1>User List</h1>
+  <app-user-search />
+</header>
+<div>
+  <a routerLink='/detail/{{user.id}}' *ngFor='let user of users'>
+    <div>
+      <h2>{{user.name}}</h2>
+      <span>{{user.website}}</span>
+    </div>
+  </a>
+</div>
