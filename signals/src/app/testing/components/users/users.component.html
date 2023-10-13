@@ -1,0 +1,16 @@
+<h2>My Users</h2>
+
+<div>
+  <label>Hero name:
+    <input #userName />
+  </label>
+  <button (click)="add(userName.value); userName.value=''">
+    add
+  </button>
+</div>
+
+<ul class='heroes'>
+  <li *ngFor='let user of users'>
+    <app-user [user]='user' (delete)='delete(user)' />
+  </li>
+</ul>

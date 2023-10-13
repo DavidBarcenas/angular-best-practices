@@ -1,0 +1,6 @@
+<ng-container *ngIf='user'>
+  <a routerLink='/detail/{{user.id}}'>
+    <span class='badge'>{{user.id}}</span> {{user.name}}
+  </a>
+  <button class='delete' (click)='onDeleteClick($event)'>x</button>
+</ng-container>
