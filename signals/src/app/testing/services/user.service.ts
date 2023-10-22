@@ -41,7 +41,7 @@ export class UserService {
       .pipe(catchError(this.handleError<User[]>('searchUsers', [])));
   }
 
-  addUser(user: User): Observable<User> {
+  addUser(user: string): Observable<User> {
     return this.http.post<User>(`${this.usersURL}/users`, user).pipe(catchError(this.handleError<User>('addUser')));
   }
 

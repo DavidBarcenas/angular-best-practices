@@ -20,9 +20,10 @@ export class UsersComponent {
     if (!name) {
       return;
     }
+    this.userService.addUser(name);
   }
 
   delete(user: User): void {
-    console.log(user);
+    this.userService.deleteUser(user);
   }
 }
