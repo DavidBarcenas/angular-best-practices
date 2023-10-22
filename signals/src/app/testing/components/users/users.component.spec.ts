@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { userMock } from '../../_fixtures_/user.mock';
 import { Component, Input } from '@angular/core';
 import { User } from '../../models/user.model';
+import { By } from '@angular/platform-browser';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -48,5 +49,11 @@ describe('UsersComponent', () => {
     mockUserService.getUsers.and.returnValue(of([userMock]));
     fixture.detectChanges();
     expect(fixture.componentInstance.users.length).toBe(1);
+  });
+
+  it('should create one li for each hero', () => {
+    mockUserService.getUsers.and.returnValue(of([userMock]));
+    fixture.detectChanges();
+    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(1);
   });
 });
