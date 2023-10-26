@@ -7,6 +7,7 @@ import { userMock } from '../../_fixtures_/user.mock';
 import { Component, Input } from '@angular/core';
 import { User } from '../../models/user.model';
 import { By } from '@angular/platform-browser';
+import { UserComponent } from '../user/user.component';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -28,7 +29,11 @@ describe('UsersComponent', () => {
     mockUserService = jasmine.createSpyObj('UserService', ['getUsers', 'addUser', 'deleteUSer']);
 
     TestBed.configureTestingModule({
-      imports: [UsersComponent, FakeUserComponent],
+      imports: [
+        UsersComponent,
+        UserComponent
+        // FakeUserComponent
+      ],
       providers: [
         {
           provide: UserService,
