@@ -31,7 +31,7 @@ describe('UsersComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         UsersComponent,
-        UserComponent
+        UserComponent,
         // FakeUserComponent
       ],
       providers: [
@@ -60,5 +60,15 @@ describe('UsersComponent', () => {
     mockUserService.getUsers.and.returnValue(of([userMock]));
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(1);
+  });
+
+  it('should render each user as a UserComponent', () => {
+    mockUserService.getUsers.and.returnValue(of([userMock]));
+    fixture.detectChanges();
+    const userComponentsDEs = fixture.debugElement.queryAll(By.directive(UserComponent));
+    expect(userComponentsDEs.length).toBe(1);
+    userComponentsDEs.forEach((userComponentDE, i) => {
+      expect(userComponentDE.componentInstance.user).toBe(userMock);
+    });
   });
 });
