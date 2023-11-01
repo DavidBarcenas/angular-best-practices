@@ -4,10 +4,23 @@ import { UsersComponent } from './users.component';
 import { UserService } from '../../services/user.service';
 import { of } from 'rxjs';
 import { userMock } from '../../_fixtures_/user.mock';
-import { Component, Input } from '@angular/core';
+import { Component, Directive, Input } from '@angular/core';
 import { User } from '../../models/user.model';
 import { By } from '@angular/platform-browser';
 import { UserComponent } from '../user/user.component';
+
+@Directive({
+  selector: 'routerLink[]',
+  host: { '(click)': 'onClick()' },
+})
+class RouterLinkDirectiveStub {
+  @Input('routerLink') linkParams: any;
+  navigatedTo: any = null;
+
+  onClick() {
+    this.navigatedTo = this.linkParams;
+  }
+}
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -32,6 +45,7 @@ describe('UsersComponent', () => {
       imports: [
         UsersComponent,
         UserComponent,
+        RouterLinkDirectiveStub,
         // FakeUserComponent
       ],
       providers: [
@@ -104,5 +118,18 @@ describe('UsersComponent', () => {
 
     const heroText = fixture.debugElement.query(By.css('li')).nativeElement.textContent;
     expect(heroText).toContain(newUser.name);
+  });
+
+  it('should have the correct route for first hero', () => {
+    mockUserService.getUsers.and.returnValue(of([userMock]));
+    fixture.detectChanges();
+
+    const userComponents = fixture.debugElement.queryAll(By.directive(UserComponent));
+    const routerLink = userComponents[0]
+      .query(By.directive(RouterLinkDirectiveStub))
+      .injector.get(RouterLinkDirectiveStub);
+
+    userComponents[0].query(By.css('a')).triggerEventHandler('click', null);
+    expect(routerLink.navigatedTo).toBe('/users/1');
   });
 });
