@@ -88,4 +88,21 @@ describe('UsersComponent', () => {
     userComponents[0].triggerEventHandler('delete', null);
     expect(fixture.componentInstance.delete).toHaveBeenCalledWith(userMock);
   });
+
+  it('should add a new user to the user list when add button is clicked', () => {
+    mockUserService.getUsers.and.returnValue(of([userMock]));
+    fixture.detectChanges();
+
+    const newUser: User = { ...userMock, id: 10, name: 'new-name' };
+    mockUserService.addUser.and.returnValue(of(newUser));
+    const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    const addButton = fixture.debugElement.queryAll(By.css('button'))[0];
+
+    inputElement.value = newUser.name;
+    addButton.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    const heroText = fixture.debugElement.query(By.css('li')).nativeElement.textContent;
+    expect(heroText).toContain(newUser.name);
+  });
 });
