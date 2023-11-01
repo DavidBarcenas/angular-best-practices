@@ -3,6 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styles: [],
 })
 export class UserDetailComponent {
-  //private route = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
   private userService = inject(UserService);
   private location = inject(Location);
 
