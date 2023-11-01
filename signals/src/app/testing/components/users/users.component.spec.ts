@@ -71,4 +71,21 @@ describe('UsersComponent', () => {
       expect(userComponentDE.componentInstance.user).toBe(userMock);
     });
   });
+
+  it('should call userService.deleteUser when delete button is clicked', () => {
+    spyOn(fixture.componentInstance, 'delete');
+    mockUserService.getUsers.and.returnValue(of([userMock]));
+    fixture.detectChanges();
+
+    const userComponents = fixture.debugElement.queryAll(By.directive(UserComponent));
+    /* option 1
+    userComponents[0].query(By.css('button')).triggerEventHandler('click', {
+      stopPropagation: () => {},
+    }); */
+    /* option 2
+    userComponents[0].componentInstance.delete.emit(undefined); */
+    // option 3
+    userComponents[0].triggerEventHandler('delete', null);
+    expect(fixture.componentInstance.delete).toHaveBeenCalledWith(userMock);
+  });
 });
